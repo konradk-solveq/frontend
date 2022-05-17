@@ -25,7 +25,7 @@ import {
     getRouteLengthFuelEquivalent,
 } from '@utils/transformData';
 import GenericScreen from '@src/pages/template/GenericScreen';
-import {ThankYouPageContainer} from '@src/containers/World';
+import {ThankYouPageContainer} from '@src/containers/Recording';
 import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortRouteModal';
 
 enum Action {

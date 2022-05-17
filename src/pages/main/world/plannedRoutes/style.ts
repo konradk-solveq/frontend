@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
         marginBottom: getVerticalPx(150),
     },
     loaderContainer: {
-        height: getHorizontalPx(50),
+        height: getFVerticalPx(50),
         width: '100%',
-        marginTop: -getVerticalPx(120),
-        marginBottom: getVerticalPx(150),
+        marginTop: -getFVerticalPx(120),
+        marginBottom: getFVerticalPx(200),
     },
     listBodyLoader: {
         marginTop: '50%',

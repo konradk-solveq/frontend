@@ -239,7 +239,7 @@ export class BikesConfig implements BikesConfigI {
     }
 
     get bikeTypesOptions() {
-        return this.bikeTypes?.options.map(
+        return this.bikeTypes?.options?.map(
             bt => ({
                 enumValue: bt.enumValue,
                 i18nValue: firstLetterToUpperCase(bt.i18nValue),

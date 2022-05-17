@@ -8,7 +8,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -22,7 +22,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         Object {
           "backgroundColor": "#FAFAFA",
           "height": "100%",
-          "paddingHorizontal": 28.985507246376812,
+          "paddingHorizontal": 30.76923076923077,
           "width": "100%",
         },
         Object {
@@ -43,6 +43,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -62,6 +63,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
       </Text>
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -626,53 +628,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                   source={
                     Object {
                       "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#ededed",
-                        "borderRadius": 16,
-                        "height": 125,
-                        "marginRight": 15,
-                        "width": 125,
-                      },
-                      Object {
-                        "borderRadius": 15.384615384615385,
-                        "height": 126.44549763033176,
-                        "width": 211.53846153846155,
-                      },
-                    ]
-                  }
-                />
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png",
                     }
                   }
                   style={
@@ -1154,7 +1109,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -1168,7 +1123,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         Object {
           "backgroundColor": "#FAFAFA",
           "height": "100%",
-          "paddingHorizontal": 28.985507246376812,
+          "paddingHorizontal": 30.76923076923077,
           "width": "100%",
         },
         undefined,
@@ -1186,6 +1141,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -1205,6 +1161,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
       </Text>
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -1769,53 +1726,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                   source={
                     Object {
                       "uri": "https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg",
-                    }
-                  }
-                  style={
-                    Array [
-                      Object {
-                        "backgroundColor": "#ededed",
-                        "borderRadius": 16,
-                        "height": 125,
-                        "marginRight": 15,
-                        "width": 125,
-                      },
-                      Object {
-                        "borderRadius": 15.384615384615385,
-                        "height": 126.44549763033176,
-                        "width": 211.53846153846155,
-                      },
-                    ]
-                  }
-                />
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "flexDirection": "row",
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Image
-                  resizeMode="cover"
-                  source={
-                    Object {
-                      "uri": "https://public.pre.mykross.kross.pl/cycling-map/KMW8QTXTGMuxJUVOF92p_maw4Hd6Yzep/map-public_1024.png",
                     }
                   }
                   style={

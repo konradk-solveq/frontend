@@ -1,18 +1,21 @@
-import {PrimaryButton} from '@src/components/buttons';
-import {Header1, Subtitle} from '@src/components/texts/texts';
+import React from 'react';
+import {Image, StyleSheet, View, GestureResponderEvent} from 'react-native';
+
 import {
     getFHorizontalPx,
     getFVerticalPx,
-} from '@src/theme/utils/appLayoutDimensions';
-import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
-import React from 'react';
-import {Image, StyleSheet, View, GestureResponderEvent} from 'react-native';
+} from '@theme/utils/appLayoutDimensions';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+
+import {PrimaryButton} from '@components/buttons';
+import {BlueBikeSvg} from '@components/svg';
+import {Header1, Subtitle} from '@components/texts/texts';
 
 interface IProps {
     bikeName: string;
     frameNumber: string;
-    imageUrl: string;
     onAddBike: (e: GestureResponderEvent) => void;
+    imageUrl?: string;
     testID?: string;
 }
 
@@ -28,12 +31,16 @@ const AddBikeSummaryContainer: React.FC<IProps> = ({
     return (
         <View style={styles.container} testID={testID}>
             <View style={styles.imageContainer}>
-                <Image
-                    resizeMode="contain"
-                    source={{uri: imageUrl}}
-                    style={styles.image}
-                    testID={`${testID}-image`}
-                />
+                {imageUrl ? (
+                    <Image
+                        resizeMode="contain"
+                        source={{uri: imageUrl}}
+                        style={styles.image}
+                        testID={`${testID}-image`}
+                    />
+                ) : (
+                    <BlueBikeSvg />
+                )}
             </View>
             <View style={styles.summary}>
                 <Header1

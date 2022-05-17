@@ -28,7 +28,7 @@ const NoBikesContainer: React.FC<IProps> = ({
                     style={styles.tile}
                 />
             </View>
-            <ServicePointsTile onPressTile={onPressTile} />
+            <ServicePointsTile onPressTile={onPressTile} showImage />
         </View>
     );
 };

@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Pressable} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getVerticalPx} from '@helpers/layoutFoo';
@@ -19,7 +19,7 @@ import styles from './styles';
 
 interface IProps {
     mapData: Map | undefined;
-    images: {images: string[]; mapImg: string; fullSizeImages: string[]};
+    images: {images: string[]; fullSizeImages?: string[]};
     thumbnail?: Thumbnails;
     isPrivateView?: boolean;
     isFavView?: boolean;
@@ -40,7 +40,6 @@ const Description: React.FC<IProps> = ({
     const privateName = isPrivateView ? userName : t('defaultAuthor');
     const authorName = mapData?.author || privateName;
     const [showImgPreview, setShowImgPreview] = useState(false);
-
     const onNavigateToMapPreview = () => {
         navigation.navigate({
             name: RegularStackRoute.MAP_PREVIEW_SCREEN,
@@ -161,7 +160,10 @@ const Description: React.FC<IProps> = ({
                             onPress={onNavigateToMapPreview}
                         />
                     ) : (
-                        <View style={styles.mImg} />
+                        <Pressable
+                            style={styles.mImg}
+                            onPress={onNavigateToMapPreview}
+                        />
                     )}
                 </View>
             </View>

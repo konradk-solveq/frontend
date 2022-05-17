@@ -5,7 +5,7 @@ import {mapsListToClass} from '../../utils/transformData';
 import routes from '../reducers/routes';
 import {getMapFromFeaturedSections} from './utils/map';
 import {NestedPaginationType} from '@src/interfaces/api';
-import {FiltersState} from '@storage/reducers/maps';
+import {FiltersState, IMapsListError} from '@storage/reducers/maps';
 
 export enum selectorMapTypeEnum {
     regular = 'regular',
@@ -206,4 +206,22 @@ export const privateTotalMapsNumberSelector = (
 export const featuredMapsLengthSelector = createSelector(
     featuredMapsSelector,
     fm => fm?.length || 0,
+);
+
+export const mapsListErrorSelector = (state: RootState): IMapsListError =>
+    state.maps.mapsListError;
+
+export const plannedMapsListErrorSelector = createSelector(
+    mapsListErrorSelector,
+    (errors: IMapsListError) => errors.planned,
+);
+
+export const privateMapsListErrorSelector = createSelector(
+    mapsListErrorSelector,
+    (errors: IMapsListError) => errors.private,
+);
+
+export const publicMapsListErrorSelector = createSelector(
+    mapsListErrorSelector,
+    (errors: IMapsListError) => errors.public,
 );

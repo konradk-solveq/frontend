@@ -8,393 +8,399 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
   }
 >
-  <View
-    accessible={true}
+  <RNGestureHandlerButton
     collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
     testID="list-tile"
   >
     <View
-      style={
-        Object {
-          "left": 30.76923076923077,
-          "width": 657.6923076923077,
-        }
-      }
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
     >
       <View
         style={
           Object {
-            "height": 598.0769230769231,
-            "marginBottom": 15.384615384615385,
-            "marginTop": 15.384615384615385,
+            "left": 30.76923076923077,
+            "width": 657.6923076923077,
           }
         }
       >
         <View
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderRadius": 23.076923076923077,
-              "height": "100%",
-              "overflow": "hidden",
-              "width": "100%",
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
+              "marginTop": 15.384615384615385,
             }
           }
         >
           <View
             style={
               Object {
-                "height": 313.46153846153845,
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
                 "overflow": "hidden",
                 "width": "100%",
               }
             }
           >
-            <Image
-              resizeMode="cover"
-              source={
-                Object {
-                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
-                }
-              }
-              style={
-                Object {
-                  "height": "100%",
-                  "width": "100%",
-                }
-              }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "height": 238.46153846153848,
-                "left": 30.76923076923077,
-                "top": 15.384615384615385,
-                "width": 626.9230769230769,
-              }
-            }
-          >
-            <Text
-              adjustsFontSizeToFit={false}
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "overflow": "hidden",
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-crop-test-id"
-            >
-              bardzo długa nazwa trasy nie mieszcząca się w jednej linii
-            </Text>
-            <Text
-              adjustsFontSizeToFit={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-test-id"
-            >
-              12km - 3h 45m
-            </Text>
             <View
               style={
                 Object {
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
+                  "width": "100%",
                 }
               }
             >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#717171",
-                      "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                  ]
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
+                  }
                 }
-                testID="demi-16-h36-test-id"
-              >
-                12km od Ciebie
-              </Text>
-              <Text
                 style={
-                  Array [
-                    Object {
-                      "color": "#717171",
-                      "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
                 }
-                testID="demi-16-h36-test-id"
-              >
-                Łatwa - Szutrowa
-              </Text>
+              />
             </View>
             <View
               style={
                 Object {
-                  "bottom": 0,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "position": "absolute",
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
                 }
               }
             >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
+              <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-crop-test-id"
               >
+                bardzo długa nazwa trasy nie mieszcząca się w jednej linii
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-test-id"
+              >
+                12km - 3h 45m
+              </Text>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="demi-16-h36-test-id"
+                >
+                  12km od Ciebie
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="demi-16-h36-test-id"
+                >
+                  Łatwa - Szutrowa
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "marginRight": 30.76923076923077,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        I
+                      </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        numberOfLines={0}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 20,
+                              "fontWeight": "600",
+                              "lineHeight": 24,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "marginLeft": 7.6923076923076925,
+                              "top": 3.8461538461538463,
+                            },
+                          ]
+                        }
+                        testID="header2-test-id"
+                      >
+                        123
+                      </Text>
+                    </View>
+                  </View>
+                </RNGestureHandlerButton>
                 <View
                   style={
                     Object {
-                      "display": "flex",
-                      "flexDirection": "row",
                       "marginRight": 30.76923076923077,
                     }
                   }
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
+                  <RNGestureHandlerButton
+                    collapsable={false}
+                    onGestureEvent={[Function]}
+                    onGestureHandlerEvent={[Function]}
+                    onGestureHandlerStateChange={[Function]}
+                    onHandlerStateChange={[Function]}
+                    rippleColor={0}
                   >
-                    I
-                  </Text>
-                  <Text
-                    adjustsFontSizeToFit={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#333333",
-                          "fontFamily": "DIN2014-Demi",
-                          "fontSize": 20,
-                          "fontWeight": "600",
-                          "lineHeight": 24,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "marginLeft": 7.6923076923076925,
-                          "top": 3.8461538461538463,
-                        },
-                      ]
-                    }
-                    testID="header2-test-id"
-                  >
-                    123
-                  </Text>
+                    <View
+                      accessible={true}
+                      collapsable={false}
+                      nativeID="animatedComponent"
+                      style={Object {}}
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        S
+                      </Text>
+                    </View>
+                  </RNGestureHandlerButton>
                 </View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      W
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
               <View
                 style={
                   Object {
-                    "marginRight": 30.76923076923077,
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
                   }
                 }
               >
-                <View
-                  accessible={true}
+                <RNGestureHandlerButton
                   collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
                   >
-                    S
-                  </Text>
-                </View>
-              </View>
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
-                    ]
-                  }
-                  testID="text-icon-test-id"
-                >
-                  W
-                </Text>
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 0,
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
-                    ]
-                  }
-                  testID="text-icon-test-id"
-                >
-                  Y
-                </Text>
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
         </View>
       </View>
     </View>
-  </View>
+  </RNGestureHandlerButton>
 </View>
 `;
 
@@ -406,291 +412,294 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
   }
 >
-  <View
-    accessible={true}
+  <RNGestureHandlerButton
     collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
     testID="list-tile"
   >
     <View
-      style={
-        Object {
-          "left": 30.76923076923077,
-          "width": 688.4615384615385,
-        }
-      }
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
     >
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#717171",
-              "fontFamily": "DIN2014-Demi",
-              "fontSize": 14,
-              "lineHeight": 48,
-              "textAlign": "left",
-            },
-            undefined,
-          ]
-        }
-        testID="demi-14-h48-test-id"
-      >
-        01.01.2022
-      </Text>
       <View
         style={
           Object {
-            "height": 598.0769230769231,
-            "marginBottom": 15.384615384615385,
+            "left": 30.76923076923077,
+            "width": 688.4615384615385,
           }
         }
       >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 14,
+                "lineHeight": 48,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="demi-14-h48-test-id"
+        >
+          01.01.2022
+        </Text>
         <View
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderRadius": 23.076923076923077,
-              "height": "100%",
-              "overflow": "hidden",
-              "width": "100%",
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
             }
           }
         >
           <View
             style={
               Object {
-                "height": 313.46153846153845,
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
                 "overflow": "hidden",
                 "width": "100%",
               }
             }
           >
-            <Image
-              resizeMode="cover"
-              source={
-                Object {
-                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
-                }
-              }
+            <View
               style={
                 Object {
-                  "height": "100%",
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
                   "width": "100%",
                 }
               }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "height": 238.46153846153848,
-                "left": 30.76923076923077,
-                "top": 15.384615384615385,
-                "width": 626.9230769230769,
-              }
-            }
-          >
-            <Text
-              adjustsFontSizeToFit={false}
-              numberOfLines={1}
-              style={
-                Array [
+            >
+              <Image
+                resizeMode="cover"
+                source={
                   Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "overflow": "hidden",
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-crop-test-id"
-            >
-              nazwa trasy
-            </Text>
-            <Text
-              adjustsFontSizeToFit={false}
-              style={
-                Array [
+                    "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
+                  }
+                }
+                style={
                   Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-test-id"
-            >
-              12km - 3h 45m
-            </Text>
-            <View
-              style={
-                Object {
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
+                    "height": "100%",
+                    "width": "100%",
+                  }
                 }
-              }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#717171",
-                      "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                  ]
-                }
-                testID="demi-16-h36-test-id"
-              >
-                12km od Ciebie
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#717171",
-                      "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                  ]
-                }
-                testID="demi-16-h36-test-id"
-              >
-                Łatwa - Szutrowa
-              </Text>
+              />
             </View>
             <View
               style={
                 Object {
-                  "bottom": 0,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "position": "absolute",
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
                 }
               }
             >
+              <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-crop-test-id"
+              >
+                nazwa trasy
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-test-id"
+              >
+                12km - 3h 45m
+              </Text>
               <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
               >
                 <Text
                   style={
                     Array [
                       Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
                       },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
+                      undefined,
                     ]
                   }
-                  testID="text-icon-test-id"
+                  testID="demi-16-h36-test-id"
                 >
-                  E
+                  12km od Ciebie
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="demi-16-h36-test-id"
+                >
+                  Łatwa - Szutrowa
                 </Text>
               </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 0,
-                }
-              }
-            >
               <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
-                    ]
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
                   }
-                  testID="text-icon-test-id"
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
                 >
-                  Y
-                </Text>
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      E
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
         </View>
       </View>
     </View>
-  </View>
+  </RNGestureHandlerButton>
 </View>
 `;
 
@@ -702,344 +711,349 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
   }
 >
-  <View
-    accessible={true}
+  <RNGestureHandlerButton
     collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
     testID="list-tile"
   >
     <View
-      style={
-        Object {
-          "left": 30.76923076923077,
-          "width": 688.4615384615385,
-        }
-      }
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
     >
       <View
         style={
           Object {
-            "height": 598.0769230769231,
-            "marginBottom": 15.384615384615385,
-            "marginTop": 15.384615384615385,
+            "left": 30.76923076923077,
+            "width": 688.4615384615385,
           }
         }
       >
         <View
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderRadius": 23.076923076923077,
-              "height": "100%",
-              "overflow": "hidden",
-              "width": "100%",
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
+              "marginTop": 15.384615384615385,
             }
           }
         >
           <View
             style={
               Object {
-                "height": 313.46153846153845,
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
                 "overflow": "hidden",
                 "width": "100%",
               }
             }
           >
-            <Image
-              resizeMode="cover"
-              source={
-                Object {
-                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
-                }
-              }
-              style={
-                Object {
-                  "height": "100%",
-                  "width": "100%",
-                }
-              }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "height": 238.46153846153848,
-                "left": 30.76923076923077,
-                "top": 15.384615384615385,
-                "width": 626.9230769230769,
-              }
-            }
-          >
-            <Text
-              adjustsFontSizeToFit={false}
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "overflow": "hidden",
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-crop-test-id"
-            >
-              nazwa trasy
-            </Text>
-            <Text
-              adjustsFontSizeToFit={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-test-id"
-            >
-              12km - 3h 45m
-            </Text>
             <View
               style={
                 Object {
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
+                  "width": "100%",
                 }
               }
             >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#717171",
-                      "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                  ]
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
+                  }
                 }
-                testID="demi-16-h36-test-id"
-              >
-                12km od Ciebie
-              </Text>
-              <Text
                 style={
-                  Array [
-                    Object {
-                      "color": "#717171",
-                      "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
-                      "textAlign": "left",
-                    },
-                    undefined,
-                  ]
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
                 }
-                testID="demi-16-h36-test-id"
-              >
-                Łatwa - Szutrowa
-              </Text>
+              />
             </View>
             <View
               style={
                 Object {
-                  "bottom": 0,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "position": "absolute",
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
                 }
               }
             >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <View
-                  style={
+              <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
+                style={
+                  Array [
                     Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "marginRight": 30.76923076923077,
-                    }
-                  }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
-                  >
-                    I
-                  </Text>
-                  <Text
-                    adjustsFontSizeToFit={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#333333",
-                          "fontFamily": "DIN2014-Demi",
-                          "fontSize": 20,
-                          "fontWeight": "600",
-                          "lineHeight": 24,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "marginLeft": 7.6923076923076925,
-                          "top": 3.8461538461538463,
-                        },
-                      ]
-                    }
-                    testID="header2-test-id"
-                  >
-                    123
-                  </Text>
-                </View>
-              </View>
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-crop-test-id"
+              >
+                nazwa trasy
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-test-id"
+              >
+                12km - 3h 45m
+              </Text>
               <View
                 style={
                   Object {
-                    "marginRight": 30.76923076923077,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
                   }
                 }
-              >
-                <View
-                  accessible={true}
-                  collapsable={false}
-                  focusable={true}
-                  onBlur={[Function]}
-                  onClick={[Function]}
-                  onFocus={[Function]}
-                  onResponderGrant={[Function]}
-                  onResponderMove={[Function]}
-                  onResponderRelease={[Function]}
-                  onResponderTerminate={[Function]}
-                  onResponderTerminationRequest={[Function]}
-                  onStartShouldSetResponder={[Function]}
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
-                  >
-                    S
-                  </Text>
-                </View>
-              </View>
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
               >
                 <Text
                   style={
                     Array [
                       Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
                       },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
+                      undefined,
                     ]
                   }
-                  testID="text-icon-test-id"
+                  testID="demi-16-h36-test-id"
                 >
-                  W
+                  12km od Ciebie
                 </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="demi-16-h36-test-id"
+                >
+                  Łatwa - Szutrowa
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "marginRight": 30.76923076923077,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        I
+                      </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        numberOfLines={0}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 20,
+                              "fontWeight": "600",
+                              "lineHeight": 24,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "marginLeft": 7.6923076923076925,
+                              "top": 3.8461538461538463,
+                            },
+                          ]
+                        }
+                        testID="header2-test-id"
+                      >
+                        123
+                      </Text>
+                    </View>
+                  </View>
+                </RNGestureHandlerButton>
+                <View
+                  style={
+                    Object {
+                      "marginRight": 30.76923076923077,
+                    }
+                  }
+                >
+                  <RNGestureHandlerButton
+                    collapsable={false}
+                    onGestureEvent={[Function]}
+                    onGestureHandlerEvent={[Function]}
+                    onGestureHandlerStateChange={[Function]}
+                    onHandlerStateChange={[Function]}
+                    rippleColor={0}
+                  >
+                    <View
+                      accessible={true}
+                      collapsable={false}
+                      nativeID="animatedComponent"
+                      style={Object {}}
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        S
+                      </Text>
+                    </View>
+                  </RNGestureHandlerButton>
+                </View>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      W
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
         </View>
       </View>
     </View>
-  </View>
+  </RNGestureHandlerButton>
 </View>
 `;
 
@@ -1051,345 +1065,350 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
   }
 >
-  <View
-    accessible={true}
+  <RNGestureHandlerButton
     collapsable={false}
-    focusable={true}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
     testID="list-tile"
   >
     <View
-      style={
-        Object {
-          "left": 30.76923076923077,
-          "width": 688.4615384615385,
-        }
-      }
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
     >
       <View
         style={
           Object {
-            "height": 598.0769230769231,
-            "marginBottom": 15.384615384615385,
-            "marginTop": 15.384615384615385,
+            "left": 30.76923076923077,
+            "width": 688.4615384615385,
           }
         }
       >
         <View
           style={
             Object {
-              "backgroundColor": "#fff",
-              "borderRadius": 23.076923076923077,
-              "height": "100%",
-              "overflow": "hidden",
-              "width": "100%",
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
+              "marginTop": 15.384615384615385,
             }
           }
         >
           <View
             style={
               Object {
-                "height": 313.46153846153845,
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
                 "overflow": "hidden",
                 "width": "100%",
               }
             }
           >
-            <Image
-              resizeMode="cover"
-              source={
-                Object {
-                  "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
-                }
-              }
+            <View
               style={
                 Object {
-                  "height": "100%",
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
                   "width": "100%",
                 }
               }
-            />
-          </View>
-          <View
-            style={
-              Object {
-                "height": 238.46153846153848,
-                "left": 30.76923076923077,
-                "top": 15.384615384615385,
-                "width": 626.9230769230769,
-              }
-            }
-          >
-            <Text
-              adjustsFontSizeToFit={false}
-              numberOfLines={1}
-              style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "overflow": "hidden",
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-crop-test-id"
             >
-              bardzo długa nazwa trasy nie mieszcząca się w jednej linii
-            </Text>
-            <Text
-              adjustsFontSizeToFit={false}
-              style={
-                Array [
+              <Image
+                resizeMode="cover"
+                source={
                   Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 18,
-                    "lineHeight": 28,
-                    "textAlign": "left",
-                  },
-                  undefined,
-                ]
-              }
-              testID="demi-18-h28-test-id"
-            >
-              12km - 3h 45m
-            </Text>
+                    "uri": "https://as1.ftcdn.net/v2/jpg/00/74/81/40/1000_F_74814031_3pdDZAD0tWHKEcM1k8SBRRThJwaRCZJ5.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
+                }
+              />
+            </View>
             <View
               style={
                 Object {
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "justifyContent": "space-between",
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
                 }
               }
             >
               <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
                 style={
                   Array [
                     Object {
-                      "color": "#717171",
+                      "color": "#333333",
                       "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
                       "textAlign": "left",
                     },
                     undefined,
                   ]
                 }
-                testID="demi-16-h36-test-id"
+                testID="demi-18-h28-crop-test-id"
               >
-                12km od Ciebie
+                bardzo długa nazwa trasy nie mieszcząca się w jednej linii
               </Text>
               <Text
+                adjustsFontSizeToFit={false}
                 style={
                   Array [
                     Object {
-                      "color": "#717171",
+                      "color": "#333333",
                       "fontFamily": "DIN2014-Demi",
-                      "fontSize": 16,
-                      "lineHeight": 36,
+                      "fontSize": 18,
+                      "lineHeight": 28,
                       "textAlign": "left",
                     },
                     undefined,
                   ]
                 }
-                testID="demi-16-h36-test-id"
+                testID="demi-18-h28-test-id"
               >
-                Łatwa - Szutrowa
+                12km - 3h 45m
               </Text>
-            </View>
-            <View
-              style={
-                Object {
-                  "bottom": 0,
-                  "display": "flex",
-                  "flexDirection": "row",
-                  "position": "absolute",
-                }
-              }
-            >
               <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
-                <View
-                  style={
-                    Object {
-                      "display": "flex",
-                      "flexDirection": "row",
-                      "marginRight": 30.76923076923077,
-                    }
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
                   }
-                >
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "fontFamily": "mykross",
-                          "textAlign": "center",
-                        },
-                        Object {
-                          "color": "#C63733",
-                          "fontSize": 20,
-                        },
-                        Object {
-                          "color": "#333333",
-                          "fontSize": 46.15384615384615,
-                          "height": 46.15384615384615,
-                          "textAlign": "center",
-                          "width": 46.15384615384615,
-                        },
-                      ]
-                    }
-                    testID="text-icon-test-id"
-                  >
-                    I
-                  </Text>
-                  <Text
-                    adjustsFontSizeToFit={false}
-                    style={
-                      Array [
-                        Object {
-                          "color": "#333333",
-                          "fontFamily": "DIN2014-Demi",
-                          "fontSize": 20,
-                          "fontWeight": "600",
-                          "lineHeight": 24,
-                          "textAlign": "left",
-                        },
-                        Object {
-                          "marginLeft": 7.6923076923076925,
-                          "top": 3.8461538461538463,
-                        },
-                      ]
-                    }
-                    testID="header2-test-id"
-                  >
-                    123
-                  </Text>
-                </View>
-              </View>
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
+                }
               >
                 <Text
                   style={
                     Array [
                       Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
                       },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
+                      undefined,
                     ]
                   }
-                  testID="text-icon-test-id"
+                  testID="demi-16-h36-test-id"
                 >
-                  W
+                  12km od Ciebie
                 </Text>
-              </View>
-            </View>
-            <View
-              style={
-                Object {
-                  "bottom": 0,
-                  "position": "absolute",
-                  "right": 0,
-                }
-              }
-            >
-              <View
-                accessible={true}
-                collapsable={false}
-                focusable={true}
-                onBlur={[Function]}
-                onClick={[Function]}
-                onFocus={[Function]}
-                onResponderGrant={[Function]}
-                onResponderMove={[Function]}
-                onResponderRelease={[Function]}
-                onResponderTerminate={[Function]}
-                onResponderTerminationRequest={[Function]}
-                onStartShouldSetResponder={[Function]}
-              >
                 <Text
                   style={
                     Array [
                       Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
                       },
-                      Object {
-                        "color": "#C63733",
-                        "fontSize": 20,
-                      },
-                      Object {
-                        "color": "#333333",
-                        "fontSize": 46.15384615384615,
-                        "height": 46.15384615384615,
-                        "textAlign": "center",
-                        "width": 46.15384615384615,
-                      },
+                      undefined,
                     ]
                   }
-                  testID="text-icon-test-id"
+                  testID="demi-16-h36-test-id"
                 >
-                  Y
+                  Łatwa - Szutrowa
                 </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <View
+                      style={
+                        Object {
+                          "display": "flex",
+                          "flexDirection": "row",
+                          "marginRight": 30.76923076923077,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#C63733",
+                              "fontSize": 20,
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 46.15384615384615,
+                              "height": 46.15384615384615,
+                              "textAlign": "center",
+                              "width": 46.15384615384615,
+                            },
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        I
+                      </Text>
+                      <Text
+                        adjustsFontSizeToFit={false}
+                        numberOfLines={0}
+                        style={
+                          Array [
+                            Object {
+                              "color": "#333333",
+                              "fontFamily": "DIN2014-Demi",
+                              "fontSize": 20,
+                              "fontWeight": "600",
+                              "lineHeight": 24,
+                              "textAlign": "left",
+                            },
+                            Object {
+                              "marginLeft": 7.6923076923076925,
+                              "top": 3.8461538461538463,
+                            },
+                          ]
+                        }
+                        testID="header2-test-id"
+                      >
+                        123
+                      </Text>
+                    </View>
+                  </View>
+                </RNGestureHandlerButton>
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      W
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
               </View>
             </View>
           </View>
         </View>
       </View>
     </View>
-  </View>
+  </RNGestureHandlerButton>
 </View>
 `;

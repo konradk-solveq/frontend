@@ -1,0 +1,467 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/AddBike/components/FrameSticker Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "paddingHorizontal": 16,
+        "width": 750,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 194.40995260663507,
+          "width": 489.42307692307696,
+        }
+      }
+      testID="frame-sticker-id"
+    >
+      <View
+        style={
+          Object {
+            "height": 38.565876777251184,
+            "width": 489.42307692307696,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "flex-start",
+              "backgroundColor": "#C63733",
+              "borderRadius": 13.461538461538462,
+              "height": 31.61137440758294,
+              "justifyContent": "center",
+              "marginLeft": 128.84615384615384,
+              "paddingHorizontal": 9.615384615384615,
+              "zIndex": 1,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                },
+              ]
+            }
+            testID="frame-sticker-id-title"
+          >
+            Bike nr
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "borderRadius": 19.23076923076923,
+            "height": 155.84407582938388,
+            "width": 480.7692307692308,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/assets/images/layout/rectangle_with_shadow.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 19.23076923076923,
+              "bottom": 0,
+              "height": 218.1184834123223,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 489.42307692307696,
+              "zIndex": 0,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 19.23076923076923,
+              "flexDirection": "row",
+              "height": 155.84407582938388,
+              "width": 489.42307692307696,
+              "zIndex": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#717171",
+                "height": 45.83649289099526,
+                "marginLeft": 25,
+                "marginRight": 19.23076923076923,
+                "marginTop": 15.80568720379147,
+                "width": 45.83649289099526,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#C63733",
+                  "height": 24.972985781990523,
+                  "marginLeft": 92.3076923076923,
+                  "position": "absolute",
+                  "top": -11.854265402843602,
+                  "width": 2.8450236966824645,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignSelf": "flex-start",
+                  "borderColor": "#C63733",
+                  "borderRadius": 17.307692307692307,
+                  "borderWidth": 2.8450236966824645,
+                  "height": 42.35924170616114,
+                  "justifyContent": "center",
+                  "marginTop": 13.43483412322275,
+                  "paddingHorizontal": 9.615384615384615,
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="frame-sticker-id-frame-number"
+              >
+                123456789
+              </Text>
+            </View>
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#BDBDBD",
+                    "fontFamily": "DIN2014-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 9.615384615384615,
+                    "marginTop": 12.170379146919432,
+                  },
+                ]
+              }
+              testID="frame-sticker-id-frame-description"
+            >
+              Frame: 123456789
+            </Text>
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 9.615384615384615,
+                  },
+                ]
+              }
+              testID="frame-sticker-id-additional-info"
+            >
+              Size L
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/AddBike/components/FrameSticker Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "paddingHorizontal": 16,
+        "width": 750,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "height": 194.40995260663507,
+          "width": 489.42307692307696,
+        }
+      }
+      testID="frame-sticker-id"
+    >
+      <View
+        style={
+          Object {
+            "height": 38.565876777251184,
+            "width": 489.42307692307696,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "flex-start",
+              "backgroundColor": "#C63733",
+              "borderRadius": 13.461538461538462,
+              "height": 31.61137440758294,
+              "justifyContent": "center",
+              "marginLeft": 128.84615384615384,
+              "paddingHorizontal": 9.615384615384615,
+              "zIndex": 1,
+            }
+          }
+        >
+          <Text
+            adjustsFontSizeToFit={false}
+            style={
+              Array [
+                Object {
+                  "color": "#717171",
+                  "fontFamily": "DIN2014-Regular",
+                  "fontSize": 14,
+                  "lineHeight": 16,
+                  "textAlign": "left",
+                },
+                Object {
+                  "color": "#FFFFFF",
+                },
+              ]
+            }
+            testID="frame-sticker-id-title"
+          >
+            Bike nr
+          </Text>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "borderRadius": 19.23076923076923,
+            "height": 155.84407582938388,
+            "width": 480.7692307692308,
+          }
+        }
+      >
+        <Image
+          source={
+            Object {
+              "testUri": "../../../src/assets/images/layout/rectangle_with_shadow.png",
+            }
+          }
+          style={
+            Object {
+              "borderRadius": 19.23076923076923,
+              "bottom": 0,
+              "height": 218.1184834123223,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+              "width": 489.42307692307696,
+              "zIndex": 0,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "backgroundColor": "#FAFAFA",
+              "borderRadius": 19.23076923076923,
+              "flexDirection": "row",
+              "height": 155.84407582938388,
+              "width": 489.42307692307696,
+              "zIndex": 1,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#717171",
+                "height": 45.83649289099526,
+                "marginLeft": 25,
+                "marginRight": 19.23076923076923,
+                "marginTop": 15.80568720379147,
+                "width": 45.83649289099526,
+              }
+            }
+          />
+          <View
+            style={
+              Object {
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#C63733",
+                  "height": 24.972985781990523,
+                  "marginLeft": 92.3076923076923,
+                  "position": "absolute",
+                  "top": -11.854265402843602,
+                  "width": 2.8450236966824645,
+                }
+              }
+            />
+            <View
+              style={
+                Object {
+                  "alignSelf": "flex-start",
+                  "borderColor": "#C63733",
+                  "borderRadius": 17.307692307692307,
+                  "borderWidth": 2.8450236966824645,
+                  "height": 42.35924170616114,
+                  "justifyContent": "center",
+                  "marginTop": 13.43483412322275,
+                  "paddingHorizontal": 9.615384615384615,
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="frame-sticker-id-frame-number"
+              >
+                123456789
+              </Text>
+            </View>
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#BDBDBD",
+                    "fontFamily": "DIN2014-Regular",
+                    "fontSize": 16,
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 9.615384615384615,
+                    "marginTop": 12.170379146919432,
+                  },
+                ]
+              }
+              testID="frame-sticker-id-frame-description"
+            >
+              Frame: 123456789
+            </Text>
+            <Text
+              adjustsFontSizeToFit={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#333333",
+                    "fontFamily": "DIN2014-Demi",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "lineHeight": 24,
+                    "textAlign": "left",
+                  },
+                  Object {
+                    "marginLeft": 9.615384615384615,
+                  },
+                ]
+              }
+              testID="frame-sticker-id-additional-info"
+            >
+              Size L
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

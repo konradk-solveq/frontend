@@ -8,7 +8,7 @@ exports[`Storyshots components/input/Checkbox Customized 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -126,7 +126,7 @@ exports[`Storyshots components/input/Checkbox Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",

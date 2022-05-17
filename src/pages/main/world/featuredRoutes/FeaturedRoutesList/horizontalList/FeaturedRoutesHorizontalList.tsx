@@ -27,11 +27,7 @@ interface IProps {
     sectionID?: string;
     onPressMore: (state: boolean, mapID: string) => void;
     onPressElement: (mapID?: string) => void;
-    onShowMore: (
-        sectionID: string,
-        data: MapType[],
-        sectionName?: string,
-    ) => void;
+    onShowMore: (sectionID: string, sectionName?: string) => void;
     sectionHeader?: string;
 }
 
@@ -45,7 +41,6 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
 }: IProps) => {
     const {t} = useMergedTranslation('MainWorld.FeaturedRoutes');
 
-
     const onPressHandler = (state: boolean, mapID?: string) => {
         if (onPressMore && mapID) {
             onPressMore(state, mapID);
@@ -54,7 +49,7 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
 
     const onShowMoreHandler = () => {
         if (sectionID) {
-            onShowMore(sectionID, sectionHeader, data);
+            onShowMore(sectionID, sectionHeader);
         }
     };
 
@@ -65,13 +60,11 @@ const FeaturedRoutesHorizontalList: React.FC<IProps> = ({
 
         const middleTiles =
             index !== 2 ? horizontalStyles.middleTile : undefined;
-        const images = getImagesThumbs(item?.pictures);
 
         return (
             <View key={item.id} style={[styles.tileWrapper, middleTiles]}>
                 <ListTile
                     mapData={item}
-                    images={images}
                     onPress={onPressHandler}
                     onPressTile={onPressElement}
                     tilePressable

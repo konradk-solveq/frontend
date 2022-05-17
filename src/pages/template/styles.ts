@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-import colors from '@theme/colors';
-
 const style = StyleSheet.create({
     safeAreContainer: {
         flex: 1,
@@ -10,7 +8,6 @@ const style = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: colors.backgroundPrimary,
     },
 });
 

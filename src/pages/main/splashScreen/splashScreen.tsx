@@ -1,12 +1,22 @@
 import React, {useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, Image, View, StyleSheet} from 'react-native';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
+
 import {TermsAndConditionsType} from '@models/regulations.model';
 import {setAppCurrentTerms} from '@storage/actions';
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 import {getIsNewVersion} from '@helpers/appVersion';
 import {SplashScreenRouteT} from '@type/rootStack';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import colors from '@theme/colors';
+
 import {AnimatedKrossLogoContainer} from '@containers/Splash';
+import {OpacityAnimation} from '@components/animations';
+
+import KROOS_LOGO from '@assets/images/logo/kross_logo_horizontal.png';
 
 interface Props {
     navigation: any;
@@ -118,10 +128,31 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
 
     return (
         <>
-            <StatusBar hidden />
+            <StatusBar
+                backgroundColor={colors.backgroundPrimary}
+                barStyle="light-content"
+            />
             <AnimatedKrossLogoContainer />
+            <OpacityAnimation>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.image} source={KROOS_LOGO} />
+                </View>
+            </OpacityAnimation>
         </>
     );
 };
+
+const styles = StyleSheet.create({
+    imageContainer: {
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: getFVerticalPx(48),
+    },
+    image: {
+        width: getFHorizontalPx(282),
+        height: getFVerticalPx(44),
+    },
+});
 
 export default SplashScreen;

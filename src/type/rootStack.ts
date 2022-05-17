@@ -169,6 +169,11 @@ export type WarantyNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,
     'WarrantyDetails'
 >;
+export type ReviewDetailsRouteT = RouteProp<BikeParamsListT, 'ReviewsDetails'>;
+export type ReviewDetailsNavigationPropT = MainNavigationCompositePropT<
+    BikeParamsListT,
+    'ReviewsDetails'
+>;
 export type AddingInfoRouteT = RouteProp<BikeParamsListT, 'AddingInfo'>;
 export type AddingInfoNavigationPropT = MainNavigationCompositePropT<
     BikeParamsListT,

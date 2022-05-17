@@ -8,7 +8,7 @@ import {
     Text,
 } from 'react-native';
 
-import StackHeader from '../navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 
 import {
     setObjSize,
@@ -135,11 +135,7 @@ const ListPageInput: React.FC<Props> = (props: Props) => {
                 </ScrollView>
             </View>
 
-            <StackHeader
-                onpress={() => props.navigation.goBack()}
-                inner={header}
-                getHeight={setHeadHeightt}
-            />
+            <NavigationHeader title={header} getHeaderHeight={setHeadHeightt} />
         </SafeAreaView>
     );
 };

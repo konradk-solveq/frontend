@@ -1,5 +1,10 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {View, FlatList} from 'react-native';
+import {
+    View,
+    FlatList,
+    NativeSyntheticEvent,
+    NativeScrollEvent,
+} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {
@@ -14,7 +19,6 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {getImagesThumbs} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
-import Loader from '@components/svg/loader/loader';
 import {Loader as NativeLoader} from '@components/loader';
 import {Backdrop} from '@components/backdrop';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
@@ -26,6 +30,7 @@ import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import {
     nextPlannedPaginationCoursor,
     mapsCountSelector,
+    plannedMapsListErrorSelector,
 } from '@storage/selectors/map';
 import {fetchPlannedMapsList, fetchPlannedMapsCount} from '@storage/actions';
 import {
@@ -44,6 +49,7 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {BikePin} from '@components/svg';
 import {isIOS} from '@utils/platform';
+import InfiniteScrollError from '@components/error/InfiniteScrollError';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -72,7 +78,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         () => getPlannedRoutesDropdownList(t),
         [t],
     );
-
+    const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
     /**
      * Navigate to map button bottom position modifier
@@ -165,10 +171,10 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     };
 
     const onEndReachedHandler = useCallback(() => {
-        if (!isLoading && !isRefreshing) {
+        if (!isLoading && !isRefreshing && nextCoursor) {
             onLoadMoreHandler(onLoadMore);
         }
-    }, [isLoading, isRefreshing, onLoadMoreHandler, onLoadMore]);
+    }, [isLoading, isRefreshing, nextCoursor, onLoadMoreHandler, onLoadMore]);
 
     const renderItem = ({item, index}: RenderItem) => {
         const lastItemStyle =
@@ -201,12 +207,21 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
-    const changeSortButtonName = useCallback((buttoName?: string) => {
-        if (buttoName) {
-            setSortButtonName(buttoName);
-        }
-    }, []);
     const {onScroll, shouldHide} = useHideOnScrollDirection();
+
+    const onErrorScrollHandler = useCallback(
+        (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+            if (
+                listError &&
+                !isLoading &&
+                event.nativeEvent.contentOffset.y >
+                    getItemLayout(undefined, favouriteMaps.length - 1).offset
+            ) {
+                onLoadMore();
+            }
+        },
+        [favouriteMaps.length, isLoading, listError, onLoadMore],
+    );
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = plannedRoutesDropdownList[0];
@@ -214,12 +229,12 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 plannedRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
 
-            changeSortButtonName(sortTypeId ? sortBy?.text : '');
+            setSortButtonName(sortTypeId ? sortBy?.text : '');
             setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
-        [changeSortButtonName, plannedRoutesDropdownList],
+        [plannedRoutesDropdownList],
     );
 
     /**
@@ -253,13 +268,22 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [dispatch, navigation, activeMapID],
     );
 
-    const renderListLoader = () => {
-        if (!showListLoader && isLoading && favouriteMaps.length > 3) {
-            return (
-                <View style={styles.loaderContainer}>
-                    <Loader />
-                </View>
-            );
+    const renderListFooter = useCallback(() => {
+        if (!showListLoader && favouriteMaps.length > 3) {
+            if (isLoading) {
+                return (
+                    <View style={styles.loaderContainer}>
+                        <NativeLoader />
+                    </View>
+                );
+            }
+            if (listError) {
+                return (
+                    <View style={styles.loaderContainer}>
+                        <InfiniteScrollError />
+                    </View>
+                );
+            }
         }
 
         if (isLoading && showListLoader) {
@@ -271,7 +295,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         }
 
         return null;
-    };
+    }, [favouriteMaps.length, isLoading, listError, showListLoader]);
 
     return (
         <View style={styles.background}>
@@ -306,6 +330,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 <FlatList
                     keyExtractor={item => item.id}
                     onScroll={onScroll}
+                    onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
                         <Header2 style={styles.header}>
                             {userName || t('defaultUserName')}
@@ -320,7 +345,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     removeClippedSubviews={!isIOS}
                     onEndReached={onEndReachedHandler}
                     onEndReachedThreshold={0.5}
-                    ListFooterComponent={renderListLoader}
+                    ListFooterComponent={renderListFooter}
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefresh}
                 />

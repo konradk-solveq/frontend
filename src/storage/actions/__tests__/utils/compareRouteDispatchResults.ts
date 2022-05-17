@@ -152,8 +152,10 @@ export const compareResultsWhenOnlineFirstCase = (actionsLog: any[]) => {
     expect(actionsLog[11]).toEqual(synchRecordingExpectedActions[11]);
     /* clear maps error */
     expect(actionsLog[12]).toEqual(synchRecordingExpectedActions[12]);
-    /* loading maps - stop */
+    /* clear private maps error */
     expect(actionsLog[13]).toEqual(synchRecordingExpectedActions[13]);
+    /* loading maps - stop */
+    expect(actionsLog[14]).toEqual(synchRecordingExpectedActions[14]);
 };
 
 export const compareResultsWhenOnlineSecondCase = (actionsLog: any[]) => {
@@ -209,9 +211,13 @@ export const compareResultsWhenOnlineSecondCase = (actionsLog: any[]) => {
     expect(actionsLog[12]).toEqual(
         synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[12],
     );
-    /* loading maps - stop */
+    /* clear private maps error */
     expect(actionsLog[13]).toEqual(
         synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[13],
+    );
+    /* loading maps - stop */
+    expect(actionsLog[14]).toEqual(
+        synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[14],
     );
 };
 

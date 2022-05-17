@@ -415,26 +415,27 @@ export class Map {
         return this.optionsEnums;
     }
 
-    public get imageThumbsUrls() {
-        if (!this.images && !this.thumbnails) {
+    public get images() {
+        if (!this.pictures) {
             return;
         }
 
         return getImagesThumbs(this.pictures);
     }
 
-    public get mapImageUrl() {
-        if (!this.imageThumbsUrls?.mapImg) {
+    public get mapsImages() {
+        if (!this.images?.mapImages) {
             return;
         }
-        return this.imageThumbsUrls.mapImg;
+
+        return this.images.mapImages;
     }
 
     public get mapShareImageUrl() {
-        if (!this.imageThumbsUrls?.shareMapImgUrl) {
+        if (!this.images?.shareMapImgUrl) {
             return;
         }
-        return this.imageThumbsUrls.shareMapImgUrl;
+        return this.images.shareMapImgUrl;
     }
 }
 
@@ -448,6 +449,11 @@ export interface MapsData {
 
 export interface MapsCountData {
     total: string;
+}
+
+export interface MapsListError {
+    error: string;
+    statusCode: number;
 }
 
 export type FeaturedMapType = {

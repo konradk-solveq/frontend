@@ -95,7 +95,7 @@ describe('<ShareRouteScreen />', () => {
         });
 
         afterEach(() => {
-            jest.resetModules();
+            jest.restoreAllMocks();
         });
     });
 });

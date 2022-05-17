@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
         margin: 0,
     },
     leftActionButton: {
-        marginRight: getHorizontalPx(20),
+        marginRight: getHorizontalPx(10),
     },
     content: {
         marginHorizontal: getHorizontalPx(40),

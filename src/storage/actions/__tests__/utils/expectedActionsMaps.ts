@@ -63,6 +63,9 @@ export const PUBLIC_MAP_EXPECTED_ACTIONS = {
             type: actionTypes.CLEAR_MAPS_ERROR,
         },
         {
+            type: actionTypes.CLEAR_PLANNED_MAPS_LIST_ERROR,
+        },
+        {
             type: actionTypes.CLEAR_MAPS_ERROR,
         },
         {
@@ -103,6 +106,9 @@ export const PUBLIC_MAP_EXPECTED_ACTIONS = {
         },
         {
             type: actionTypes.CLEAR_MAPS_ERROR,
+        },
+        {
+            type: actionTypes.CLEAR_PLANNED_MAPS_LIST_ERROR,
         },
         {
             type: actionTypes.CLEAR_MAPS_ERROR,

@@ -1,6 +1,6 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {StyleSheet} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {MaterialTab} from '@navigation/stack';
 
@@ -9,31 +9,23 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import BikeMap from '@pages/main/world/bikeMap/bikeMap';
 import MyRoutes from '@pages/main/world/myRoutes/myRoutes';
 import PlannedRoutes from '@pages/main/world/plannedRoutes/plannedRoutes';
-import {getFFontSize} from '@theme/utils/appLayoutDimensions';
+import {getFFontSize, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
-import {getAppLayoutConfig} from '@theme/appLayoutConfig';
-import {navBarHeight} from '@theme/commonStyle';
+const MATERIAL_TAB_HEIGHT = getFVerticalPx(98);
 
 const World = () => {
     const {t} = useMergedTranslation('MainWorld');
-
-    /**
-     * Tabs height
-     */
-    const statusBarHeigh = getAppLayoutConfig.statusBarH();
-    /**
-     * Tab bars height
-     */
-    const headerHeightModifier = useMemo(() => navBarHeight - statusBarHeigh, [
-        statusBarHeigh,
-    ]);
+    const {top} = useSafeAreaInsets();
 
     return (
         <SafeAreaView style={styles.container}>
             <MaterialTab.Navigator
                 tabBarOptions={{
                     tabStyle: {
-                        height: headerHeightModifier,
+                        height: MATERIAL_TAB_HEIGHT,
+                        paddingBottom: getFVerticalPx(16),
+                        marginTop: -top,
+                        justifyContent: 'flex-end',
                     },
                     indicatorStyle: {backgroundColor: 'red'},
                     labelStyle: {
@@ -41,6 +33,7 @@ const World = () => {
                         fontFamily: 'DIN2014-Demi',
                         fontSize: getFFontSize(18),
                         lineHeight: getFFontSize(24),
+                        marginBottom: 0,
                     },
                 }}>
                 <MaterialTab.Screen

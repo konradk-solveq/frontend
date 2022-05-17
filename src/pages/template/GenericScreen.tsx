@@ -6,11 +6,12 @@ import {
     useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import {navBarHeight} from '@theme/commonStyle';
 import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 
 import styles from './styles';
+import colors from '@theme/colors';
 
 interface IProps {
     screenTitle?: string;
@@ -23,6 +24,7 @@ interface IProps {
     noHeader?: boolean /* doesn't render the header */;
     showCross?: boolean /* Shows cross instead of back arrow */;
     statusBarBackgroundColor?: string;
+    backgroundColor?: string;
 }
 
 const GenericScreen: React.FC<IProps> = ({
@@ -36,6 +38,7 @@ const GenericScreen: React.FC<IProps> = ({
     noHeader = false,
     showCross = false,
     statusBarBackgroundColor = 'transparent',
+    backgroundColor = colors.backgroundPrimary,
 }: IProps) => {
     const statusBarHeigh = getAppLayoutConfig.statusBarH();
     const {top} = useSafeAreaInsets();
@@ -45,6 +48,7 @@ const GenericScreen: React.FC<IProps> = ({
     );
     /**
      * Other screens which use header have no SaveAreView used
+     * TODO: after we migrate all screens to use GenericScreen we can remove this modifier probably
      */
     const headerHeightModifier = useMemo(
         () => navBarHeight - statusBarHeigh + paddingTopWihtoutStatusBar,
@@ -81,10 +85,15 @@ const GenericScreen: React.FC<IProps> = ({
                 ) : (
                     <StatusBar backgroundColor={statusBarBackgroundColor} />
                 )}
-                <View style={[styles.container, paddingTop]}>
+                <View
+                    style={[
+                        styles.container,
+                        paddingTop,
+                        {backgroundColor: backgroundColor},
+                    ]}>
                     {!noHeader && (
-                        <StackHeader
-                            inner={title}
+                        <NavigationHeader
+                            title={title}
                             style={{height: headerHeightModifier}}
                             rightActions={actionElement}
                             hideBackArrow={hideBackArrow}

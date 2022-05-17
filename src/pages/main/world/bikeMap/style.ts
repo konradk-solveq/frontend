@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
         height: getFHorizontalPx(50),
         width: '100%',
         marginTop: -getFVerticalPx(120),
-        marginBottom: getFVerticalPx(150),
+        marginBottom: getFVerticalPx(200),
     },
     backdrop: {
         marginTop: -getFVerticalPx(250),
     },
     listHeader: {
-        paddingTop: getFVerticalPx(24),
+        paddingTop: getFVerticalPx(52),
     },
     fullscreenBackdrop: {
         top: getFVerticalPx(52),

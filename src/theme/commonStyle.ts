@@ -1,14 +1,20 @@
 import {Dimensions, StyleSheet} from 'react-native';
 
 import {getAppLayoutConfig as get} from '@theme/appLayoutConfig';
-import {getVerticalPx, getHorizontalPx} from '@helpers/layoutFoo';
 import {isIOS} from '@utils/platform';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import {LAYOUT_HORIZONTAL_MARGIN} from '@theme/layout';
 
 const {width, height} = Dimensions.get('screen');
 
-export const navBarHeight = getVerticalPx(100);
-export const appContainerHorizontalMargin = getHorizontalPx(16);
-export const appBottomMargin = getVerticalPx(40);
+export const navBarHeight = getFVerticalPx(88);
+export const appContainerHorizontalMargin = getFHorizontalPx(
+    LAYOUT_HORIZONTAL_MARGIN,
+);
+export const appBottomMargin = getFVerticalPx(40);
 export const screenWidth = width;
 export const screenHeight = height;
 export const SMALL_SCREEN_HEIGHT = 670;
@@ -22,7 +28,7 @@ export const commonStyle = StyleSheet.create({
     scroll: {
         position: 'absolute',
         width: '100%',
-        height: getVerticalPx(796) + (isIOS ? 0 : get.statusBarH()),
+        height: getFVerticalPx(796) + (isIOS ? 0 : get.statusBarH()),
         top: navBarHeight,
     },
 });

@@ -7,7 +7,7 @@ import GenericScreen from '../GenericScreen';
 
 const SCREEN_TITLE = 'Generic Screen Test';
 const CHILD_TEST_ID = 'GenericScreenChildTestComponent';
-const BACK_ARROW_ID = 'TopBackBtn';
+const BACK_ARROW_ID = 'navigation-header-test-id-back-button';
 
 const mockedNavigate = jest.fn();
 const mockedGoBack = jest.fn();
