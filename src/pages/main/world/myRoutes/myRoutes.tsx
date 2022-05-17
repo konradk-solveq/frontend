@@ -216,7 +216,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
-    const [sortButtonName, setSortButtonName] = useState<string>();
+    const [sortButtonName, setSortButtonName] = useState<string>('');
     const sButtonName = useMemo(() => sortButtonName || mwt('btnSort'), [
         sortButtonName,
         mwt,
@@ -227,12 +227,6 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
-    const changeSortButtonName = useCallback((buttoName?: string) => {
-        if (buttoName) {
-            setSortButtonName(buttoName);
-        }
-    }, []);
-
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = privateRoutesDropdownList[0];
@@ -240,12 +234,12 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 privateRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
 
-            changeSortButtonName(sortTypeId ? sortBy?.text : '');
+            setSortButtonName(sortTypeId ? sortBy?.text : '');
             setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
-        [changeSortButtonName, privateRoutesDropdownList],
+        [privateRoutesDropdownList],
     );
 
     /**

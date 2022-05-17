@@ -207,11 +207,6 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
-    const changeSortButtonName = useCallback((buttoName?: string) => {
-        if (buttoName) {
-            setSortButtonName(buttoName);
-        }
-    }, []);
     const {onScroll, shouldHide} = useHideOnScrollDirection();
 
     const onErrorScrollHandler = useCallback(
@@ -234,12 +229,12 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 plannedRoutesDropdownList.find(el => el.id === sortTypeId) ||
                 firstEl;
 
-            changeSortButtonName(sortTypeId ? sortBy?.text : '');
+            setSortButtonName(sortTypeId ? sortBy?.text : '');
             setShowListLoader(true);
 
             setSavedMapFilters(prev => getSorByFilters(prev, sortBy));
         },
-        [changeSortButtonName, plannedRoutesDropdownList],
+        [plannedRoutesDropdownList],
     );
 
     /**
