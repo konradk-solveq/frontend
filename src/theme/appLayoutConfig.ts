@@ -1,5 +1,5 @@
 import {getStatusBarHeight} from '@utils/detectIOSDevice';
-import {getHorizontalPx} from '@helpers/layoutFoo';
+import {navBarHeight} from '@theme/commonStyle';
 
 interface ConfigI {
     statusBarH: number | undefined;
@@ -14,12 +14,12 @@ export const initConfig = async () => {
     if (!config) {
         config = {
             statusBarH,
-            headerH: getHorizontalPx(100) - statusBarH,
+            headerH: navBarHeight - statusBarH,
         };
     }
 };
 
 export const getAppLayoutConfig = {
     statusBarH: () => (config?.statusBarH ? config.statusBarH : 0),
-    headerH: () => (config?.headerH ? config.headerH : getHorizontalPx(100)),
+    headerH: () => (config?.headerH ? config.headerH : navBarHeight),
 };
