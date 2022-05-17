@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         marginTop: -getFVerticalPx(250),
     },
     listHeader: {
-        paddingTop: getFVerticalPx(24),
+        paddingTop: getFVerticalPx(52),
     },
     fullscreenBackdrop: {
         top: getFVerticalPx(52),
