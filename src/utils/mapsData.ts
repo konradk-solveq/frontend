@@ -1,5 +1,7 @@
 import {FeaturedMapType, MapType, ReactionsType} from '@models/map.model';
 import deepCopy from '@src/helpers/deepCopy';
+import {RootState} from '@storage/storage';
+import {IMapsListError} from '@storage/reducers/maps';
 
 export const updateReactionsInMap = (
     maps: MapType[],
@@ -137,3 +139,21 @@ export const updateIsUserFavouriteInMap = (
         return maps;
     }
 };
+
+export const updateListErrorState = (
+    state: RootState,
+    error: string,
+    statusCode: number,
+    type: keyof IMapsListError,
+) => ({
+    ...state,
+    loading: false,
+    refresh: false,
+    mapsListError: {
+        ...state.mapsListError,
+        [type]: {
+            error: error,
+            statusCode: statusCode,
+        },
+    },
+});

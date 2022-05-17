@@ -39,8 +39,8 @@ import {DebugRouteInstance} from '@debugging/debugRoute';
 import {batch} from 'react-redux';
 import {AuthState} from '../reducers/auth';
 import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
-import {getControlSumService} from '@src/services/uiTranslation';
 import {fetchBikesConfig} from '@storage/actions';
+import {checkIfNewTranslationExists} from '@storage/actions/utils/app';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -157,6 +157,7 @@ export const fetchAppConfig = (
             dispatch(setSyncError(response.error, response.status));
             return;
         }
+        const {config}: AppState = getState().app;
 
         if (response.data.uiTranslations.controlSums.length === 0) {
             response.data.uiTranslations.controlSums = [
@@ -167,33 +168,19 @@ export const fetchAppConfig = (
             ];
         }
 
-        const responseControlSum = await getControlSumService();
-
-        if (!responseControlSum.data) {
-            console.log(`[getControlSumService] - ${responseControlSum.error}`);
-            const err = convertToApiError(responseControlSum.error);
-
-            loggErrorWithScope(err, 'getControlSumService');
-
-            const errorMessage = i18next.t('dataAction.apiError');
-            dispatch(setSyncError(errorMessage, 500));
-        }
-
-        const {config}: AppState = getState().app;
-
-        const lang = response.data.lang;
-        const currentControlSums = responseControlSum.data?.controlSum;
-        const memoriedControlSums = config.uiTranslations?.controlSums?.find(
-            e => e.code === lang,
-        )?.controlSum;
+        const shouldUpdateTranslation = await checkIfNewTranslationExists(
+            response.data,
+            config.lang,
+        );
+        const updateLanguage = shouldUpdateTranslation.status === 'update';
 
         batch(() => {
-            dispatch(fetchLanguagesList(true));
             dispatch(setAppConfig(response.data));
-            dispatch(clearAppError());
-            if (currentControlSums !== memoriedControlSums) {
+            dispatch(fetchLanguagesList(true));
+            if (updateLanguage) {
                 dispatch(fetchUiTranslation(true));
             }
+            dispatch(clearAppError());
         });
 
         if (!noLoader) {

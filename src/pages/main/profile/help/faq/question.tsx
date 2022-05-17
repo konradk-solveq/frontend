@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Linking} from 'react-native';
+import {StyleSheet, View, Linking} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import Hyperlink from 'react-native-hyperlink';
 
@@ -7,13 +7,12 @@ import DropDownItem from './dropDownItem';
 import ArrowDown from './arrowDown';
 import ArrowUp from './arrowUp';
 
+import {BodyPrimary, Paragraph} from '@components/texts/texts';
+import colors from '@theme/colors';
 import {
-    setObjSize,
-    getWidthPx,
-    getVerticalPx,
-    getHorizontalPx,
-    getFontSize,
-} from '@helpers/layoutFoo';
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
 
 interface IProps {
     data: {
@@ -25,46 +24,20 @@ interface IProps {
 const Question: React.FC<IProps> = ({data}: IProps) => {
     const {t} = useMergedTranslation('');
 
-    setObjSize(334, 50);
     const styles = StyleSheet.create({
         wrap: {
-            paddingTop: getVerticalPx(16),
-            paddingBottom: getVerticalPx(16),
-            width: getWidthPx(),
-            borderTopColor: '#eee',
-            borderTopWidth: 1,
-        },
-        question: {
-            width: getWidthPx() - getHorizontalPx(40),
-            textAlign: 'left',
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(18),
-            lineHeight: getFontSize(30),
-            color: '#3587ea',
+            paddingTop: getFVerticalPx(16),
+            paddingBottom: getFVerticalPx(16),
         },
         arrow: {
-            position: 'absolute',
-            right: getVerticalPx(5),
-            top: getHorizontalPx(11),
-            width: getHorizontalPx(15),
-            height: getHorizontalPx(9),
-        },
-        answer: {
-            textAlign: 'left',
-            fontFamily: 'DIN2014Narrow-Light',
-            fontSize: getFontSize(18),
-            lineHeight: getFontSize(30),
-            color: '#313131',
+            width: getFHorizontalPx(15),
+            height: getFHorizontalPx(9),
         },
     });
 
     return (
         <View style={styles.wrap}>
             <DropDownItem
-                backgroundColor={'transparent'}
-                titleBackground={'transparent'}
-                contentBackground={'transparent'}
-                underlineColor={'transparent'}
                 contentVisible={false}
                 invisibleImage={
                     <View style={styles.arrow}>
@@ -76,9 +49,13 @@ const Question: React.FC<IProps> = ({data}: IProps) => {
                         <ArrowUp />
                     </View>
                 }
-                header={<Text style={styles.question}>{data.question}</Text>}>
+                header={
+                    <BodyPrimary style={{marginRight: getFHorizontalPx(25)}}>
+                        {data.question}
+                    </BodyPrimary>
+                }>
                 <Hyperlink
-                    linkStyle={{color: '#3587ea'}}
+                    linkStyle={{color: colors.red}}
                     linkText={(url: string) => {
                         const trans: {url: string; hyper: string}[] = t(
                             'Urls',
@@ -96,7 +73,7 @@ const Question: React.FC<IProps> = ({data}: IProps) => {
                     onPress={(url: string) => {
                         Linking.openURL(url);
                     }}>
-                    <Text style={styles.answer}>{data.answer}</Text>
+                    <Paragraph>{data.answer}</Paragraph>
                 </Hyperlink>
             </DropDownItem>
         </View>

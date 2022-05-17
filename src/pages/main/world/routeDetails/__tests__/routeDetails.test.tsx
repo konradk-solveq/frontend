@@ -2,6 +2,7 @@ import 'react-native';
 import React from 'react';
 import RN from 'react-native';
 import {fireEvent} from '@testing-library/react-native';
+import ReactNavigationCore from '@react-navigation/core';
 import renderComponent from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';
 import {initAppSize} from '@helpers/layoutFoo';
@@ -23,8 +24,6 @@ import {
     sharedFeaturedMapDataRoute,
     sharedMapDataInitialState,
 } from '@pages/main/world/routeDetails/__tests__/mocks/mapDataMock';
-import ReactNavigationCore from '@react-navigation/core';
-import {Map} from '@models/map.model';
 
 const mockedNavigate = jest.fn();
 const mockedCanGoBack = jest.fn();
@@ -101,7 +100,7 @@ describe('Route details', () => {
         await jest
             .spyOn(ReactNavigationCore, 'useRoute')
             .mockReturnValue(sharedFeaturedMapDataRoute);
-        await postApiCallMock<Map>(MOCK_MAP_RESPONSE, 'get');
+        await postApiCallMock(MOCK_MAP_RESPONSE, 'get');
         const component = await asyncEvent(
             renderComponent(
                 <RouteDetails />,

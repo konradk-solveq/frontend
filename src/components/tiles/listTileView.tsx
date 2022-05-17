@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Image, Pressable} from 'react-native';
 import {
     BodySecondary,
@@ -13,10 +13,12 @@ import {styles} from './style';
 import {TextIcon} from '../icons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import {isIOS} from '@src/utils/platform';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
-    imagesToDisplay: string;
+    imageToDisplay?: string;
     name: string;
     distanceAndTime: string;
     distanceToStart: string;
@@ -26,7 +28,7 @@ interface PropsI {
     checkLike: boolean;
     numberOfLikes: number;
     likePressOn: (state: boolean) => void;
-    addToFavoritesPressOn: () => void;
+    toggleFavoritePressOn: (state: boolean) => void;
     editPressOn: () => void;
     detailsPressOn: () => void;
     onPressShare?: () => void;
@@ -37,7 +39,7 @@ interface PropsI {
 const ListTileView: React.FC<PropsI> = ({
     tilePressOn,
     fullDate,
-    imagesToDisplay,
+    imageToDisplay,
     name,
     distanceAndTime,
     distanceToStart,
@@ -47,7 +49,7 @@ const ListTileView: React.FC<PropsI> = ({
     checkLike,
     numberOfLikes,
     likePressOn,
-    addToFavoritesPressOn,
+    toggleFavoritePressOn,
     editPressOn,
     detailsPressOn,
     onPressShare,
@@ -66,10 +68,14 @@ const ListTileView: React.FC<PropsI> = ({
         setLikeChecked(state);
     };
 
+    useEffect(() => {
+        setSaveChecked(checkUserFavorite);
+    }, [checkUserFavorite]);
+
     const handleSaveOnPress = () => {
         const state = !saveChecked;
-        if (addToFavoritesPressOn) {
-            addToFavoritesPressOn();
+        if (toggleFavoritePressOn) {
+            toggleFavoritePressOn(state);
         }
         setSaveChecked(state);
     };
@@ -80,18 +86,22 @@ const ListTileView: React.FC<PropsI> = ({
         }
     };
 
+    const PressableComponent = isIOS ? TouchableWithoutFeedback : Pressable;
+
     return (
-        <Pressable onPress={tilePressOn} testID={testID || 'list-tile'}>
+        <PressableComponent
+            onPress={tilePressOn}
+            testID={testID || 'list-tile'}>
             <View
                 style={mode === 'featured' ? styles.wrapFeatured : styles.wrap}>
                 {mode === 'my' && <Demi14h48>{fullDate}</Demi14h48>}
                 <View style={mode === 'my' ? styles.areaMy : styles.area}>
                     <View style={styles.tile}>
                         <View style={styles.imageWrapper}>
-                            {imagesToDisplay ? (
+                            {imageToDisplay ? (
                                 <Image
                                     source={{
-                                        uri: imagesToDisplay,
+                                        uri: imageToDisplay,
                                     }}
                                     style={styles.image}
                                     resizeMode="cover"
@@ -119,7 +129,7 @@ const ListTileView: React.FC<PropsI> = ({
 
                             <View style={styles.reactions}>
                                 {mode !== 'my' && (
-                                    <Pressable onPress={handleLikeOnPress}>
+                                    <PressableComponent onPress={handleLikeOnPress}>
                                         <View style={styles.iconWrap}>
                                             <TextIcon
                                                 icon={
@@ -133,12 +143,12 @@ const ListTileView: React.FC<PropsI> = ({
                                                 {numberOfLikes}
                                             </Header2>
                                         </View>
-                                    </Pressable>
+                                    </PressableComponent>
                                 )}
 
                                 {(mode === 'public' || mode === 'featured') && (
                                     <View style={styles.reactionWrap}>
-                                        <Pressable onPress={handleSaveOnPress}>
+                                        <PressableComponent onPress={handleSaveOnPress}>
                                             <TextIcon
                                                 icon={
                                                     saveChecked
@@ -147,50 +157,50 @@ const ListTileView: React.FC<PropsI> = ({
                                                 }
                                                 style={styles.icon}
                                             />
-                                        </Pressable>
+                                        </PressableComponent>
                                     </View>
                                 )}
 
                                 {mode !== 'my' && (
-                                    <Pressable onPress={onPressShareHandler}>
+                                    <PressableComponent onPress={onPressShareHandler}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_ALT_SHARE
                                             }
                                             style={styles.icon}
                                         />
-                                    </Pressable>
+                                    </PressableComponent>
                                 )}
 
                                 {mode === 'my' && (
-                                    <Pressable onPress={editPressOn}>
+                                    <PressableComponent onPress={editPressOn}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_EDIT
                                             }
                                             style={styles.icon}
                                         />
-                                    </Pressable>
+                                    </PressableComponent>
                                 )}
                             </View>
 
                             {mode !== 'public' && (
                                 <View style={styles.edit}>
-                                    <Pressable onPress={detailsPressOn}>
+                                    <PressableComponent onPress={detailsPressOn}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_MORE
                                             }
                                             style={styles.icon}
                                         />
-                                    </Pressable>
+                                    </PressableComponent>
                                 </View>
                             )}
                         </View>
                     </View>
                 </View>
             </View>
-        </Pressable>
+        </PressableComponent>
     );
 };
 

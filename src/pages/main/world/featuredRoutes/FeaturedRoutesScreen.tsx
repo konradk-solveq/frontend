@@ -18,7 +18,7 @@ import {
     selectorMapTypeEnum,
 } from '@storage/selectors/map';
 
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import Loader from '@sharedComponents/loader/loader';
 
 import ShowMoreModal from '../components/showMoreModal/showMoreModal';
@@ -149,9 +149,9 @@ const FeaturedRoutesScreen: React.FC = () => {
 
     return (
         <>
-            <StackHeader
-                inner={sectionName}
-                onpress={returnToPreviousScreen}
+            <NavigationHeader
+                title={sectionName}
+                onPress={returnToPreviousScreen}
                 style={styles.navHeader}
             />
 

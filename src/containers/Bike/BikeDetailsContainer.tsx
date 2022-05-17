@@ -3,7 +3,6 @@ import {Pressable, View, StyleSheet, Image} from 'react-native';
 import {BodyPrimary, Header1, Subtitle} from '@components/texts/texts';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Warranty from '@pages/main/bike/components/warranty';
-import {countDaysToEnd} from '@helpers/warranty';
 import Reviews from '@pages/main/bike/components/reviews';
 import ServicePointsTile from '@pages/main/bike/components/tiles/ServicePointsTile';
 import {SecondaryButton} from '@components/buttons';
@@ -161,27 +160,11 @@ const BikeDetailsContainer = ({
                                 </Pressable>
                             )}
                         </View>
-
                         {bike?.warranty && (
                             <Warranty
-                                type={warrantyData?.info || ''}
-                                nextOverview={
-                                    bike?.warranty
-                                        ? warrantyData?.overviews[0]?.date
-                                            ? countDaysToEnd(
-                                                warrantyData.overviews[0]
-                                                    .date,
-                                            )
-                                            : null
-                                        : undefined
-                                }
-                                warranty={t('warranty', {
-                                    returnObjects: true,
-                                })}
-                                details={{
-                                    description: bike?.description,
-                                    warranty: warrantyData,
-                                }}
+                                info={warrantyData?.info || ''}
+                                type={warrantyData?.type || ''}
+                                endDate={warrantyData?.end}
                             />
                         )}
 
@@ -189,10 +172,6 @@ const BikeDetailsContainer = ({
                             <Reviews
                                 style={styles.reviews}
                                 list={warrantyData.overviews}
-                                details={{
-                                    description: bike?.description,
-                                    warranty: warrantyData,
-                                }}
                                 description={t('warranty.reviews', {
                                     returnObjects: true,
                                 })}
@@ -201,6 +180,7 @@ const BikeDetailsContainer = ({
                         )}
                         <View style={styles.servicesTile}>
                             <ServicePointsTile
+                                showImage
                                 onPressTile={handleServicesMap}
                             />
                         </View>

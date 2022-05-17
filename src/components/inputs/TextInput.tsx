@@ -85,12 +85,20 @@ const TextInput: React.FC<IProps> = ({
                 testID={`${testID}-input-value`}
             />
             {!!icon && (
-                <View style={styles.iconContainer}>
+                <View
+                    style={styles.iconContainer}
+                    testID={`${testID}-input-icon`}>
                     <TextIcon icon={icon} iconColor={colors.black} />
                 </View>
             )}
             <View style={styles.inputHint} testID={`${testID}-input-hint`}>
-                {!!hint && <Subtitle color={colors.darkGrey}>{hint}</Subtitle>}
+                {!!hint && (
+                    <Subtitle
+                        testID={`${testID}-input-hint-text`}
+                        color={colors.darkGrey}>
+                        {hint}
+                    </Subtitle>
+                )}
             </View>
         </View>
     );

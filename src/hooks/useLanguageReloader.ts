@@ -41,12 +41,13 @@ const useLanguageReloader = () => {
             dispatch(setLanguage(newLanguage));
             setLanguageHeader(newLanguage);
 
-            const controlSym = controlSumsList.find(e => e.code === newLanguage)
+            const controlSum = controlSumsList.find(e => e.code === newLanguage)
                 ?.controlSum;
 
             if (
-                typeof translations[language] === 'undefined' ||
-                translations[language].controlSum !== controlSym
+                controlSum &&
+                (typeof translations[language] === 'undefined' ||
+                    translations[language].controlSum !== controlSum)
             ) {
                 dispatch(fetchUiTranslation(true));
             }

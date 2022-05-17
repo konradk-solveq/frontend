@@ -26,11 +26,13 @@ const FeaturedRoutes: React.FC = () => {
             mountedRef.current = true;
             dispatch(fetchFeaturedMapsList());
         }
+    }, [dispatch, featuredMaps?.length]);
 
+    useEffect(() => {
         return () => {
             mountedRef.current = false;
         };
-    }, [dispatch, featuredMaps?.length]);
+    }, []);
 
     const onPressHandler = (state: boolean, mapID?: string) => {
         setShowModal(state);

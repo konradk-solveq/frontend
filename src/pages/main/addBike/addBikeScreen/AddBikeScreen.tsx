@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {Image} from 'react-native';
 
 import {removeBikeByNumber, setBikesListByFrameNumber} from '@storage/actions';
 import {bikeByFrameNumberSelector} from '@storage/selectors';
@@ -14,10 +13,6 @@ import ScanModal from '@components/modals/ScanModal.android';
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';
-
-import DefaultImage from '@assets/images/bike_placeholder.png';
-
-const IMAGE_URL = Image.resolveAssetSource(DefaultImage).uri;
 
 const AddBikeScreen: React.FC = () => {
     const navigation = useAppNavigation();
@@ -35,7 +30,7 @@ const AddBikeScreen: React.FC = () => {
     const bd = useMemo(
         () => ({
             bikeName: bikeData?.description.name || '',
-            imageUrl: bikeData?.images?.[0] || IMAGE_URL,
+            imageUrl: bikeData?.images?.[0],
             frameNumber: frameNumber,
         }),
         [bikeData?.description, bikeData?.images, frameNumber],

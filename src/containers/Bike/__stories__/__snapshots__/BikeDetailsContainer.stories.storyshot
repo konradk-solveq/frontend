@@ -346,7 +346,9 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 ]
               }
               testID="body-primary-test-id"
-            />
+            >
+              MainBike.warranty.state
+            </Text>
             <Text
               adjustsFontSizeToFit={false}
               style={
@@ -416,7 +418,9 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 ]
               }
               testID="body-primary-test-id"
-            />
+            >
+              MainBike.warranty.toEnd
+            </Text>
             <Text
               adjustsFontSizeToFit={false}
               style={
@@ -437,7 +441,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               }
               testID="body-primary-test-id"
             >
-              3 undefined
+              1099 MainBike.warranty.days
             </Text>
           </View>
         </View>
@@ -528,6 +532,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -556,65 +561,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                         "top": 18.966824644549764,
                       }
                     }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
-                      fill="none"
-                      focusable={false}
-                      height="24"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          Object {
-                            "flex": 0,
-                            "height": 24,
-                            "width": 24,
-                          },
-                        ]
-                      }
-                      vbHeight={32}
-                      vbWidth={32}
-                      width="24"
-                    >
-                      <RNSVGGroup
-                        fill={null}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      >
-                        <RNSVGCircle
-                          cx="16"
-                          cy="16"
-                          fill={4293908696}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                          r="12"
-                        />
-                        <RNSVGPath
-                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
-                          fill={4291180339}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                        />
-                      </RNSVGGroup>
-                    </RNSVGSvgView>
-                  </View>
+                  />
                   <Text
                     adjustsFontSizeToFit={false}
                     style={
@@ -692,6 +639,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -720,65 +668,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                         "top": 18.966824644549764,
                       }
                     }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
-                      fill="none"
-                      focusable={false}
-                      height="24"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          Object {
-                            "flex": 0,
-                            "height": 24,
-                            "width": 24,
-                          },
-                        ]
-                      }
-                      vbHeight={32}
-                      vbWidth={32}
-                      width="24"
-                    >
-                      <RNSVGGroup
-                        fill={null}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      >
-                        <RNSVGCircle
-                          cx="16"
-                          cy="16"
-                          fill={4293908696}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                          r="12"
-                        />
-                        <RNSVGPath
-                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
-                          fill={4291180339}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                        />
-                      </RNSVGGroup>
-                    </RNSVGSvgView>
-                  </View>
+                  />
                   <Text
                     adjustsFontSizeToFit={false}
                     style={
@@ -857,50 +747,47 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
+            testID="services-tile-test-id"
           >
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 18.966824644549764,
-                  "height": 379.33649289099526,
-                  "marginBottom": 25.28909952606635,
-                  "paddingVertical": 37.93364928909953,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 18.966824644549764,
+                    "marginBottom": 25.28909952606635,
+                    "paddingTop": 37.93364928909953,
+                  },
+                  Object {
+                    "paddingTop": 12.644549763033176,
+                  },
+                ]
               }
             >
               <View
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "black",
-                    "borderRadius": 50,
-                    "height": 88.51184834123222,
-                    "justifyContent": "center",
-                    "marginBottom": 25.28909952606635,
-                    "width": 88.51184834123222,
+                    "paddingHorizontal": 15.384615384615385,
+                    "width": "100%",
                   }
                 }
               >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#FFFFFF",
-                        "fontSize": 20,
-                      },
-                      undefined,
-                    ]
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/assets/images/services/serviceMap.png",
+                    }
                   }
-                  testID="text-icon-test-id"
-                >
-                  0
-                </Text>
+                  style={
+                    Object {
+                      "borderRadius": 12.644549763033176,
+                      "marginBottom": 25.28909952606635,
+                      "width": "100%",
+                    }
+                  }
+                />
               </View>
               <View
                 style={
@@ -916,6 +803,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               >
                 <Text
                   adjustsFontSizeToFit={false}
+                  numberOfLines={0}
                   style={
                     Array [
                       Object {
@@ -1411,7 +1299,9 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 ]
               }
               testID="body-primary-test-id"
-            />
+            >
+              MainBike.warranty.state
+            </Text>
             <Text
               adjustsFontSizeToFit={false}
               style={
@@ -1481,7 +1371,9 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 ]
               }
               testID="body-primary-test-id"
-            />
+            >
+              MainBike.warranty.toEnd
+            </Text>
             <Text
               adjustsFontSizeToFit={false}
               style={
@@ -1502,7 +1394,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               }
               testID="body-primary-test-id"
             >
-              3 undefined
+              1099 MainBike.warranty.days
             </Text>
           </View>
         </View>
@@ -1593,6 +1485,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -1621,65 +1514,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                         "top": 18.966824644549764,
                       }
                     }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
-                      fill="none"
-                      focusable={false}
-                      height="24"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          Object {
-                            "flex": 0,
-                            "height": 24,
-                            "width": 24,
-                          },
-                        ]
-                      }
-                      vbHeight={32}
-                      vbWidth={32}
-                      width="24"
-                    >
-                      <RNSVGGroup
-                        fill={null}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      >
-                        <RNSVGCircle
-                          cx="16"
-                          cy="16"
-                          fill={4293908696}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                          r="12"
-                        />
-                        <RNSVGPath
-                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
-                          fill={4291180339}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                        />
-                      </RNSVGGroup>
-                    </RNSVGSvgView>
-                  </View>
+                  />
                   <Text
                     adjustsFontSizeToFit={false}
                     style={
@@ -1757,6 +1592,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                 >
                   <Text
                     adjustsFontSizeToFit={false}
+                    numberOfLines={0}
                     style={
                       Array [
                         Object {
@@ -1785,65 +1621,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                         "top": 18.966824644549764,
                       }
                     }
-                  >
-                    <RNSVGSvgView
-                      align="xMidYMid"
-                      bbHeight="24"
-                      bbWidth="24"
-                      fill="none"
-                      focusable={false}
-                      height="24"
-                      meetOrSlice={0}
-                      minX={0}
-                      minY={0}
-                      style={
-                        Array [
-                          Object {
-                            "backgroundColor": "transparent",
-                            "borderWidth": 0,
-                          },
-                          Object {
-                            "flex": 0,
-                            "height": 24,
-                            "width": 24,
-                          },
-                        ]
-                      }
-                      vbHeight={32}
-                      vbWidth={32}
-                      width="24"
-                    >
-                      <RNSVGGroup
-                        fill={null}
-                        propList={
-                          Array [
-                            "fill",
-                          ]
-                        }
-                      >
-                        <RNSVGCircle
-                          cx="16"
-                          cy="16"
-                          fill={4293908696}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                          r="12"
-                        />
-                        <RNSVGPath
-                          d="M16.0484 17.952C16.5308 17.952 16.8985 17.8138 17.1515 17.5372C17.4104 17.2607 17.5486 16.8695 17.5663 16.3635L17.7428 10.1445C17.7487 10.068 17.7516 9.99154 17.7516 9.91506C17.7516 9.83857 17.7516 9.76797 17.7516 9.70325C17.7516 9.16786 17.6016 8.75014 17.3015 8.45008C17.0015 8.15003 16.5838 8 16.0484 8C15.5188 8 15.0982 8.15003 14.7864 8.45008C14.4804 8.75014 14.3275 9.16786 14.3275 9.70325C14.3275 9.76797 14.3275 9.83857 14.3275 9.91506C14.3275 9.99154 14.3304 10.068 14.3363 10.1445L14.5216 16.3635C14.5334 16.8695 14.6658 17.2607 14.9187 17.5372C15.1717 17.8138 15.5483 17.952 16.0484 17.952ZM16.0395 23C16.3867 23 16.7044 22.9176 16.9926 22.7529C17.2809 22.594 17.5104 22.3764 17.681 22.0998C17.8516 21.8292 17.9369 21.5262 17.9369 21.1908C17.9369 20.8555 17.8516 20.5525 17.681 20.2819C17.5104 20.0053 17.2809 19.7876 16.9926 19.6288C16.7044 19.4641 16.3867 19.3817 16.0395 19.3817C15.6865 19.3817 15.3659 19.4641 15.0776 19.6288C14.7893 19.7876 14.5598 20.0053 14.3892 20.2819C14.2186 20.5525 14.1333 20.8555 14.1333 21.1908C14.1333 21.5262 14.2186 21.8292 14.3892 22.0998C14.5598 22.3764 14.7893 22.594 15.0776 22.7529C15.3659 22.9176 15.6865 23 16.0395 23Z"
-                          fill={4291180339}
-                          propList={
-                            Array [
-                              "fill",
-                            ]
-                          }
-                        />
-                      </RNSVGGroup>
-                    </RNSVGSvgView>
-                  </View>
+                  />
                   <Text
                     adjustsFontSizeToFit={false}
                     style={
@@ -1922,50 +1700,47 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
             onResponderTerminate={[Function]}
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
+            testID="services-tile-test-id"
           >
             <View
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "#FFFFFF",
-                  "borderRadius": 18.966824644549764,
-                  "height": 379.33649289099526,
-                  "marginBottom": 25.28909952606635,
-                  "paddingVertical": 37.93364928909953,
-                }
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderRadius": 18.966824644549764,
+                    "marginBottom": 25.28909952606635,
+                    "paddingTop": 37.93364928909953,
+                  },
+                  Object {
+                    "paddingTop": 12.644549763033176,
+                  },
+                ]
               }
             >
               <View
                 style={
                   Object {
                     "alignItems": "center",
-                    "backgroundColor": "black",
-                    "borderRadius": 50,
-                    "height": 88.51184834123222,
-                    "justifyContent": "center",
-                    "marginBottom": 25.28909952606635,
-                    "width": 88.51184834123222,
+                    "paddingHorizontal": 15.384615384615385,
+                    "width": "100%",
                   }
                 }
               >
-                <Text
-                  style={
-                    Array [
-                      Object {
-                        "fontFamily": "mykross",
-                        "textAlign": "center",
-                      },
-                      Object {
-                        "color": "#FFFFFF",
-                        "fontSize": 20,
-                      },
-                      undefined,
-                    ]
+                <Image
+                  source={
+                    Object {
+                      "testUri": "../../../src/assets/images/services/serviceMap.png",
+                    }
                   }
-                  testID="text-icon-test-id"
-                >
-                  0
-                </Text>
+                  style={
+                    Object {
+                      "borderRadius": 12.644549763033176,
+                      "marginBottom": 25.28909952606635,
+                      "width": "100%",
+                    }
+                  }
+                />
               </View>
               <View
                 style={
@@ -1981,6 +1756,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               >
                 <Text
                   adjustsFontSizeToFit={false}
+                  numberOfLines={0}
                   style={
                     Array [
                       Object {

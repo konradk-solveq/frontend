@@ -1,0 +1,1 @@
+import './ThankYouPageContainer.stories';

@@ -1,4 +1,4 @@
-import {Dimensions, PixelRatio} from 'react-native';
+import {PixelRatio} from 'react-native';
 import {levelFilter, pavementFilter, tagsFilter} from '@enums/mapsFilters';
 import {LocationDataI} from '@interfaces/geolocation';
 import {
@@ -32,8 +32,6 @@ import {
     removeLessAccuratePointsLocations,
     removeLessAccuratePoints,
 } from './locationData';
-
-const {width} = Dimensions.get('window');
 
 export const getTimeInUTCMilliseconds = (
     date: string | number,
@@ -473,12 +471,27 @@ export const mapDataToFormData = (mapData: Map): FormData => {
 
 export type ImagesUrlsToDisplay = {
     images: string[];
-    mapImg: string;
+    mapImages: Thumbnails[];
     fullSizeImages?: string[];
-    verticalMapImgUrl?: string;
-    horizontalMapImgUrl?: string;
     shareMapImgUrl?: string;
     sliverImg?: string;
+};
+
+const getCorrectImageSize = (thumbnails: Thumbnails[]) => {
+    if (!thumbnails.length) {
+        return;
+    }
+
+    const ratio = PixelRatio.get();
+    const defaultThumb = thumbnails[0];
+    if (ratio >= 3) {
+        return thumbnails?.[2] || defaultThumb;
+    }
+    if (ratio >= 2) {
+        return thumbnails?.[1] || defaultThumb;
+    }
+
+    return defaultThumb;
 };
 
 export const getImagesThumbs = (
@@ -492,25 +505,26 @@ export const getImagesThumbs = (
 ): ImagesUrlsToDisplay => {
     const imgsUrls: string[] = [];
     const fullSizeImgsUrls: string[] = [];
-    let mapImgUrl = '';
-    let verticalMapImgUrl = '';
-    let horizontalMapImgUrl = '';
-    let shareMapImgUrl = '';
     let sliverImgUrl = '';
 
     if (!pictures) {
         return {
             images: imgsUrls,
-            mapImg: mapImgUrl,
+            mapImages: [],
         };
     }
 
     const {images, thumbnails} = pictures; // TODO add photos when photos will be enable
+    /**
+     * Rendered maps thumbnails
+     */
+    const mapImgs = thumbnails;
+    const shareMapImgUrl = getCorrectImageSize(mapImgs)?.url;
 
     if (images.length === 0 && thumbnails.length === 0) {
         return {
             images: imgsUrls,
-            mapImg: mapImgUrl,
+            mapImages: mapImgs,
         };
     }
 
@@ -538,29 +552,12 @@ export const getImagesThumbs = (
         }
     });
 
-    if (thumbnails.length > 0) {
-        const ratio = PixelRatio.get();
-        const originWidth = width * ratio;
-        for (let i = 0; i < thumbnails.length; i++) {
-            const thumbnail = thumbnails[i];
-            if (thumbnail.width > originWidth) {
-                imgsUrls.push(thumbnail.url);
-                break;
-            }
-            if (i === thumbnails.length - 1) {
-                imgsUrls.push(thumbnail.url);
-            }
-        }
-    }
-
     // TODO iterate by photos like by thumbnails, when photos will be enable
 
     return {
         images: imgsUrls,
         fullSizeImages: fullSizeImgsUrls,
-        mapImg: mapImgUrl,
-        verticalMapImgUrl: verticalMapImgUrl,
-        horizontalMapImgUrl: horizontalMapImgUrl,
+        mapImages: mapImgs,
         shareMapImgUrl: shareMapImgUrl,
         sliverImg: sliverImgUrl,
     };
@@ -658,16 +655,18 @@ export const getRoutesDataFromSQL = async (
     }
 };
 
-export const getImageToDisplay = (images: ImagesUrlsToDisplay) => {
-    const img = images?.images?.length && images.images?.[0];
-    const mapImg = images?.mapImg;
+export const getMapImageToDisplay = (images?: Thumbnails[]) => {
+    if (!images || !images.length) {
+        return;
+    }
+    const img = images?.[2] || images?.[0];
 
-    return img || mapImg;
+    return img;
 };
 
 export const getSliverImageToDisplay = (images: ImagesUrlsToDisplay) => {
     const img = images?.sliverImg;
-    const mapImg = images?.verticalMapImgUrl;
+    const mapImg = images?.images?.[2];
 
     return img || mapImg;
 };

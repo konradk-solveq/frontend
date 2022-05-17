@@ -8,7 +8,7 @@ exports[`Storyshots components/modals/ModalHeader Customized 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -94,6 +94,7 @@ exports[`Storyshots components/modals/ModalHeader Customized 1`] = `
     </View>
     <Text
       adjustsFontSizeToFit={false}
+      numberOfLines={0}
       style={
         Array [
           Object {
@@ -123,7 +124,7 @@ exports[`Storyshots components/modals/ModalHeader Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -209,6 +210,7 @@ exports[`Storyshots components/modals/ModalHeader Default 1`] = `
     </View>
     <Text
       adjustsFontSizeToFit={false}
+      numberOfLines={0}
       style={
         Array [
           Object {

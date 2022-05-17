@@ -8,7 +8,7 @@ exports[`Storyshots components/input/TextInput Customized 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -105,7 +105,7 @@ exports[`Storyshots components/input/TextInput Customized 1`] = `
               undefined,
             ]
           }
-          testID="subtitle-test-id"
+          testID="text-input-test-id-input-hint-text"
         >
           Enter characters
         </Text>
@@ -123,7 +123,7 @@ exports[`Storyshots components/input/TextInput Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -220,7 +220,7 @@ exports[`Storyshots components/input/TextInput Default 1`] = `
               undefined,
             ]
           }
-          testID="subtitle-test-id"
+          testID="text-input-test-id-input-hint-text"
         >
           Enter characters
         </Text>

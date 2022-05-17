@@ -10,6 +10,7 @@ import {
     RegulationType,
     TermsAndConditionsType,
 } from '@models/regulations.model';
+import {MAJOR_LANGUAGE} from '@helpers/global';
 
 const getVersion = (v: string) => {
     if (typeof v !== 'string') {
@@ -72,7 +73,7 @@ const initialState: AppState = {
     statusCode: 200,
     config: {
         name: '',
-        lang: '',
+        lang: MAJOR_LANGUAGE,
         langs: [],
         tags: [],
         surfaces: [],
@@ -115,7 +116,6 @@ const appReducer = (state = initialState, action: any) => {
             };
         case actionTypes.SET_APP_CONFIG:
             const config = action.config;
-            config.lang = 'en';
             return {
                 ...state,
                 config: config,

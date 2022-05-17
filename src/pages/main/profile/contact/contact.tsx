@@ -1,16 +1,13 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    Linking,
-    Platform,
-} from 'react-native';
+import {StyleSheet, View, Text, Linking, Platform} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
-import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import { appContainerHorizontalMargin } from '@src/theme/commonStyle';
-import { Header2, Header3, Paragraph, TextLink } from '@src/components/texts/texts';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
+import {Header2, Header3, Paragraph} from '@src/components/texts/texts';
 import colors from '@src/theme/colors';
 import {ContactSvg, ContactTypeSvg} from '@components/svg';
 import {LinkButton, PrimaryButton} from '@components/buttons';
@@ -32,10 +29,10 @@ const Contact: React.FC = () => {
         imageContainer: {
             marginTop: getFVerticalPx(33),
             marginBottom: getFVerticalPx(24),
-            alignItems: 'center'
+            alignItems: 'center',
         },
         subtitle: {
-          marginBottom: getFVerticalPx(32),
+            marginBottom: getFVerticalPx(32),
         },
         subtitleContainer: {
             flexDirection: 'row',
@@ -93,7 +90,9 @@ const Contact: React.FC = () => {
                     {t('contactCaption')}
                 </Header2>
 
-                <Header3 style={styles.paragraphMargin}>{t('officeTitle')}</Header3>
+                <Header3 style={styles.paragraphMargin}>
+                    {t('officeTitle')}
+                </Header3>
 
                 <View style={styles.subtitleContainer}>
                     <Paragraph>{t('officeSubtitle')}</Paragraph>
@@ -102,27 +101,37 @@ const Contact: React.FC = () => {
 
                 <View style={styles.contactTile}>
                     <View style={styles.tileGroup}>
-                        <ContactTypeSvg style={styles.icon} type={"phone"} />
+                        <ContactTypeSvg style={styles.icon} type={'phone'} />
                         <Text>{t('phoneTitle')}</Text>
                     </View>
 
                     <View style={styles.tileGroup}>
-                        <LinkButton style={styles.contactLink} text={t('phone')} onPress={() => Linking.openURL(handlePhone())} />
+                        <LinkButton
+                            style={styles.contactLink}
+                            text={t('phone')}
+                            onPress={() => Linking.openURL(handlePhone())}
+                        />
                     </View>
                 </View>
-                
+
                 <View style={styles.contactTile}>
                     <View style={styles.tileGroup}>
-                        <ContactTypeSvg style={styles.icon} type={"email"} />
+                        <ContactTypeSvg style={styles.icon} type={'email'} />
                         <Text>{t('emailTitle')}</Text>
                     </View>
 
                     <View style={styles.tileGroup}>
-                        <LinkButton style={styles.contactLink} text={t('email')} onPress={() => Linking.openURL(`mailto:${t('email')}`)} />
+                        <LinkButton
+                            style={styles.contactLink}
+                            text={t('email')}
+                            onPress={() =>
+                                Linking.openURL(`mailto:${t('email')}`)
+                            }
+                        />
                     </View>
                 </View>
 
-                <PrimaryButton 
+                <PrimaryButton
                     text={t('btn')}
                     onPress={() => Linking.openURL('http://kross.eu')}
                     style={styles.btn}

@@ -5,7 +5,7 @@ import {number, color, object} from '@storybook/addon-knobs';
 import {Pagination} from '@components/pagination';
 import colors from '@theme/colors';
 
-storiesOf('components/pagination/PaginationDot', module)
+storiesOf('components/pagination/Pagination', module)
     .addDecorator(getStory => <LayoutCenter>{getStory()}</LayoutCenter>)
     .add('Default', () => <Pagination maxIndex={5} activeIndex={2} />)
     .add('Custom', () => (

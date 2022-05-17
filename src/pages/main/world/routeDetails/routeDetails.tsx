@@ -14,7 +14,7 @@ import {
     selectorMapTypeEnum,
     userIdSelector,
 } from '@storage/selectors';
-import {getImagesThumbs, getSliverImageToDisplay} from '@utils/transformData';
+import {getSliverImageToDisplay} from '@utils/transformData';
 import useStatusBarHeight from '@hooks/statusBarHeight';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {RouteDetailsRouteT} from '@type/rootStack';
@@ -28,7 +28,7 @@ import {
     EditBtn,
     ShareBtn,
 } from '@sharedComponents/buttons';
-import StackHeader from '@sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import SliverTopBar from '@sharedComponents/sliverTopBar/sliverTopBar';
 import BottomModal from '@sharedComponents/modals/bottomModal/bottomModal';
 import Description from './description/description';
@@ -84,13 +84,8 @@ const RouteDetails = () => {
         ?.name;
 
     const userID = useAppSelector(userIdSelector);
-    const images = getImagesThumbs({
-        images:
-            (shareID && !mapData
-                ? sharedMapData?.pictures.images
-                : mapData?.pictures.images) || [],
-        thumbnails: [],
-    });
+    const images =
+        shareID && !mapData ? sharedMapData?.images : mapData?.images;
     /**
      * We use the last image from an array because it contains images that have progressively better quality
      */
@@ -102,7 +97,7 @@ const RouteDetails = () => {
                   ]
                 : mapData?.pictures.thumbnails?.[
                       mapData?.pictures.thumbnails.length - 1
-                  ] || [],
+                  ],
         [mapData, shareID, sharedMapData?.pictures.thumbnails],
     );
 
@@ -153,7 +148,6 @@ const RouteDetails = () => {
         } else {
             navigation.navigate(RegularStackRoute.CONTACT_SCREEN);
         }
-        console.log('create ticket');
         /* TODO: user can delete if creted route. For public routes can only make ticket */
     };
 
@@ -171,7 +165,7 @@ const RouteDetails = () => {
         setShowBottomModal(false);
     };
 
-    const sliverImage = getSliverImageToDisplay(images);
+    const sliverImage = images && getSliverImageToDisplay(images);
 
     const onPressStartRouteHandler = () => {
         navigation.navigate({
@@ -220,11 +214,10 @@ const RouteDetails = () => {
                     safeAreaBackgroundStyle,
                 ]}>
                 <View style={[styles.container, containerStyle]}>
-                    <StackHeader
+                    <NavigationHeader
                         forceBackArrow={cameFromSharedLink}
-                        onpress={onBackHandler}
-                        inner=""
-                        style={styles.header}
+                        onPress={onBackHandler}
+                        title=""
                         rightActions={
                             <View style={styles.actionButtonsContainer}>
                                 {userID ===
@@ -267,7 +260,10 @@ const RouteDetails = () => {
                                             ? sharedMapData
                                             : mapData
                                     }
-                                    images={images}
+                                    images={{
+                                        images: images?.images || [],
+                                        fullSizeImages: images?.fullSizeImages,
+                                    }}
                                     thumbnail={thumbnail}
                                     isPrivateView={privateMap}
                                     isFavView={favouriteMap}

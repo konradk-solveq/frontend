@@ -8,7 +8,7 @@ exports[`Storyshots components/buttons/RadioButton Customized 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -68,7 +68,7 @@ exports[`Storyshots components/buttons/RadioButton Customized 1`] = `
               undefined,
             ]
           }
-          testID="body-primary-test-id"
+          testID="radio-button-test-id-body"
         >
           Radio button
         </Text>
@@ -104,7 +104,7 @@ exports[`Storyshots components/buttons/RadioButton Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "backgroundColor": "#ededed",
@@ -162,7 +162,7 @@ exports[`Storyshots components/buttons/RadioButton Default 1`] = `
               undefined,
             ]
           }
-          testID="body-primary-test-id"
+          testID="radio-button-test-id-body"
         >
           Radio button
         </Text>

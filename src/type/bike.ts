@@ -1,6 +1,6 @@
 export type BikeTypesT = {
-    options: BikeType[];
-    values: string[];
+    options?: BikeType[];
+    values?: string[];
 };
 
 export type BikeType = {

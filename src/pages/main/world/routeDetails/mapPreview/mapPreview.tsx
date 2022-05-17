@@ -9,7 +9,7 @@ import {
 } from '../../../../../storage/selectors/map';
 import {Coords, CoordsType} from '../../../../../models/map.model';
 
-import StackHeader from '../../../../../sharedComponents/navi/stackHeader/stackHeader';
+import {NavigationHeader} from '@components/navigation';
 import AnimSvg from '../../../../../helpers/animSvg';
 import mapStyle from '../../../../../sharedComponents/maps/styles';
 import gradient from './gradientSvg';
@@ -60,9 +60,6 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const heandleGoBackClick = () => {
-        navigation.goBack();
-    };
     return (
         <>
             <View style={styles.innerContainer}>
@@ -118,9 +115,8 @@ const MapPreview: React.FC<Props> = ({navigation, route}: Props) => {
                     </MapView>
                 )}
 
-                <StackHeader
-                    onpress={heandleGoBackClick}
-                    inner=""
+                <NavigationHeader
+                    title=""
                     style={{
                         zIndex: 1,
                     }}

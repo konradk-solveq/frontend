@@ -8,7 +8,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       Object {
         "paddingHorizontal": 0,
@@ -22,7 +22,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "height": "100%",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
         "width": "100%",
       }
     }
@@ -475,6 +475,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -504,7 +505,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         style={
           Array [
             Object {
-              "alignItems": "flex-start",
+              "alignItems": "center",
               "backgroundColor": "#EFF7D1",
               "borderRadius": 15.384615384615385,
               "display": "flex",
@@ -520,6 +521,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
             },
           ]
         }
+        testID="saving-panel-wrapper"
       >
         <View
           style={
@@ -527,12 +529,13 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
               "alignItems": "center",
               "backgroundColor": "#FFFFFF",
               "borderRadius": 46.15384615384615,
-              "height": 75.86729857819905,
+              "height": 92.3076923076923,
               "justifyContent": "center",
               "marginRight": 30.76923076923077,
               "width": 92.3076923076923,
             }
           }
+          testID="saving-panel-icon"
         >
           <RNSVGSvgView
             align="xMidYMid"
@@ -615,7 +618,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
         style={
           Array [
             Object {
-              "alignItems": "flex-start",
+              "alignItems": "center",
               "backgroundColor": "#E7F0FA",
               "borderRadius": 15.384615384615385,
               "display": "flex",
@@ -631,6 +634,7 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
             },
           ]
         }
+        testID="saving-panel-wrapper"
       >
         <View
           style={
@@ -638,12 +642,13 @@ exports[`Storyshots containers/World/ThankYouPageContainer Default 1`] = `
               "alignItems": "center",
               "backgroundColor": "#FFFFFF",
               "borderRadius": 46.15384615384615,
-              "height": 75.86729857819905,
+              "height": 92.3076923076923,
               "justifyContent": "center",
               "marginRight": 30.76923076923077,
               "width": 92.3076923076923,
             }
           }
+          testID="saving-panel-icon"
         >
           <RNSVGSvgView
             align="xMidYMid"

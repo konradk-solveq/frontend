@@ -4,6 +4,7 @@ import {
     StyleSheet,
     GestureResponderEvent,
     ViewStyle,
+    Image,
 } from 'react-native';
 import {TextIcon} from '@components/icons';
 import {IconFont} from '@theme/enums/iconFonts';
@@ -19,20 +20,40 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 interface IProps {
     onPressTile: (e: GestureResponderEvent) => void;
     style?: ViewStyle;
+    showImage?: boolean;
+    testID?: string;
 }
 
-export default ({onPressTile, style}: IProps) => {
+export default ({
+    onPressTile,
+    style,
+    showImage,
+    testID = 'services-tile-test-id',
+}: IProps) => {
     const {t} = useMergedTranslation('MainBike.noBikes');
     return (
         <View style={[styles.tileContainer, style]}>
-            <Pressable onPress={onPressTile}>
-                <View style={styles.tile}>
-                    <View style={styles.serviceImageContainer}>
-                        <TextIcon
-                            icon={IconFont.FONT_ICON_MAP_SERVICES}
-                            iconColor={colors.white}
-                        />
-                    </View>
+            <Pressable onPress={onPressTile} testID={testID}>
+                <View
+                    style={[
+                        styles.tile,
+                        showImage && {paddingTop: getFVerticalPx(8)},
+                    ]}>
+                    {showImage ? (
+                        <View style={styles.imageContainer}>
+                            <Image
+                                source={require('@assets/images/services/serviceMap.png')}
+                                style={styles.image}
+                            />
+                        </View>
+                    ) : (
+                        <View style={styles.serviceImageContainer}>
+                            <TextIcon
+                                icon={IconFont.FONT_ICON_MAP_SERVICES}
+                                iconColor={colors.white}
+                            />
+                        </View>
+                    )}
                     <View
                         style={[styles.upperTextWrapper, styles.bottomPadding]}>
                         <Header2 algin="center">
@@ -64,10 +85,9 @@ const styles = StyleSheet.create({
     tile: {
         alignItems: 'center',
         backgroundColor: colors.white,
-        paddingVertical: getFVerticalPx(24),
+        paddingTop: getFVerticalPx(24),
         borderRadius: getFVerticalPx(12),
         marginBottom: getFVerticalPx(16),
-        height: getFVerticalPx(240),
     },
     upperTextWrapper: {
         marginHorizontal: getFHorizontalPx(12),
@@ -83,5 +103,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: getFVerticalPx(16),
+    },
+    imageContainer: {
+        paddingHorizontal: getFHorizontalPx(8),
+        width: '100%',
+        alignItems: 'center',
+    },
+    image: {
+        marginBottom: getFVerticalPx(16),
+        borderRadius: getFVerticalPx(8),
+        width: '100%',
     },
 });

@@ -1,3 +1,4 @@
+import FrameSticker from './FrameSticker';
 import RadioListItem from './RadioListItem';
 
-export {RadioListItem};
+export {FrameSticker, RadioListItem};

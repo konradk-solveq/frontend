@@ -1,5 +1,8 @@
 import {CounterTimeT} from '@type/dateTime';
-import {convertToCounterFormat} from '../dateTime';
+import {convertToCounterFormat, isInPast} from '../dateTime';
+const mockDateToday = '2021-10-06';
+const mockDateNotPast = '2021-10-07';
+const mockDatePast = '2021-10-05';
 
 describe('Converts time to desirable values -- utils', () => {
     describe('[convertToCounterFormat] - converts seconds as counter string values', () => {
@@ -67,5 +70,30 @@ describe('Converts time to desirable values -- utils', () => {
         afterEach(() => {
             jest.restoreAllMocks();
         });
+    });
+    describe('[isInPast] - checks if the given date has already passed', () => {
+        const counterStartTime = 1633504705000; //2021-10-06T07:18:25.000Z
+
+        beforeEach(() => {
+            jest.spyOn(global.Date, 'now').mockReturnValue(counterStartTime);
+        });
+
+        it.each([
+            [mockDateToday, true],
+            [mockDateNotPast, false],
+            [mockDatePast, true],
+            [new Date(mockDateToday), true],
+            [new Date(mockDateNotPast), false],
+            [new Date(mockDatePast), true],
+        ])(
+            'Timestamp %s should return %s',
+            (date: string | Date, result: boolean) => {
+                expect(isInPast(date)).toEqual(result);
+            },
+        );
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
     });
 });

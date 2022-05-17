@@ -23,10 +23,20 @@ const uiTranslationReducer = (state = initialState, action: any) => {
                 ...state,
                 translations: action.translations,
             };
-        case actionTypes.GET_LANGUAGES_LIST:
+        case actionTypes.SET_TRANSLATION_LANGUAGES_LIST:
             return {
                 ...state,
                 languagesList: action.languagesList,
+            };
+        case actionTypes.SET_TRANSLATION_CONTROL_SUM:
+            return {
+                ...state,
+                controlSum: action.translationControlSum,
+            };
+        case actionTypes.CLEAR_TRANSLATION_CONTROL_SUM:
+            return {
+                ...state,
+                controlSum: undefined,
             };
     }
     return state;
@@ -35,7 +45,7 @@ const uiTranslationReducer = (state = initialState, action: any) => {
 const persistConfig = {
     key: 'uiTranslation',
     storage: AsyncStorage,
-    whitelist: ['translations', 'languagesList'],
+    whitelist: ['translations', 'languagesList', 'controlSum'],
     timeout: 20000,
 };
 

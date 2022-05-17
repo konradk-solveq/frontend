@@ -8,7 +8,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         "alignItems": "center",
         "flex": 1,
         "justifyContent": "center",
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
       },
       undefined,
     ]
@@ -23,7 +23,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         "height": "100%",
         "justifyContent": "center",
         "paddingBottom": 63.22274881516588,
-        "paddingHorizontal": 28.985507246376812,
+        "paddingHorizontal": 30.76923076923077,
         "width": 750,
       }
     }
@@ -240,6 +240,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -479,50 +480,47 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
         onResponderTerminate={[Function]}
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
+        testID="services-tile-test-id"
       >
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#FFFFFF",
-              "borderRadius": 18.966824644549764,
-              "height": 379.33649289099526,
-              "marginBottom": 25.28909952606635,
-              "paddingVertical": 37.93364928909953,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 18.966824644549764,
+                "marginBottom": 25.28909952606635,
+                "paddingTop": 37.93364928909953,
+              },
+              Object {
+                "paddingTop": 12.644549763033176,
+              },
+            ]
           }
         >
           <View
             style={
               Object {
                 "alignItems": "center",
-                "backgroundColor": "black",
-                "borderRadius": 50,
-                "height": 88.51184834123222,
-                "justifyContent": "center",
-                "marginBottom": 25.28909952606635,
-                "width": 88.51184834123222,
+                "paddingHorizontal": 15.384615384615385,
+                "width": "100%",
               }
             }
           >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "fontFamily": "mykross",
-                    "textAlign": "center",
-                  },
-                  Object {
-                    "color": "#FFFFFF",
-                    "fontSize": 20,
-                  },
-                  undefined,
-                ]
+            <Image
+              source={
+                Object {
+                  "testUri": "../../../src/assets/images/services/serviceMap.png",
+                }
               }
-              testID="text-icon-test-id"
-            >
-              0
-            </Text>
+              style={
+                Object {
+                  "borderRadius": 12.644549763033176,
+                  "marginBottom": 25.28909952606635,
+                  "width": "100%",
+                }
+              }
+            />
           </View>
           <View
             style={
@@ -538,6 +536,7 @@ exports[`Storyshots containers/Bike/NoBikesContainer Default 1`] = `
           >
             <Text
               adjustsFontSizeToFit={false}
+              numberOfLines={0}
               style={
                 Array [
                   Object {

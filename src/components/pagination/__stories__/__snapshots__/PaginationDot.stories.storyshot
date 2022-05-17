@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/pagination/PaginationDot Custom 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 4,
+          "height": 8,
+          "width": 8,
+        },
+        [Function],
+        Object {},
+      ]
+    }
+  />
+</View>
+`;
+
+exports[`Storyshots components/pagination/PaginationDot Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 7.6923076923076925,
+          "height": 15.384615384615385,
+          "width": 15.384615384615385,
+        },
+        [Function],
+        undefined,
+      ]
+    }
+  />
+</View>
+`;

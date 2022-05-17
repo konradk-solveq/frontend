@@ -630,7 +630,11 @@ function initMap() {
 
 const setMarks = places => {
     for (let p of places) {
-        let id = p.details.name.replace(/[\.\s]/g, '_');
+        if(!p){
+            continue;
+        }
+
+        let id = p.details.name.replace(/[.s]/g, '_');
         let type = p.markerTypes.join('');
         if (typeof marks[type] == 'undefined') marks[type] = [];
         if (marks[type].some(e => e.id == id)) continue;
@@ -643,11 +647,18 @@ const setMarks = places => {
             details: p.details,
         });
 
+        if(!mark){
+            continue;
+        }
+
         marks[type].push(mark);
 
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
-            window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark?.details, ''));
+            // null-safty (optional chaining) operator causes silent error on Android 9 devices
+            if(mark && mark.details){
+                window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark.details, ''));
+            }
         });
 
         switch (type) {

@@ -35,6 +35,7 @@ const Pagination = ({
                     style={{marginLeft: index && (spacing ?? dotSize)}}
                     activeColor={activeColor}
                     inactiveColor={inactiveColor}
+                    key={`pagination-dot-${index}`}
                 />
             ))}
         </View>

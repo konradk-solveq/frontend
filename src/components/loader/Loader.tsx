@@ -18,6 +18,7 @@ const Loader: React.FC<IProps> = ({
     androidSize = 24,
     testID = 'loader-test-id',
 }: IProps) => {
+
     return (
         <ActivityIndicator
             size={isIOS ? iosSize : getFHorizontalPx(androidSize)}

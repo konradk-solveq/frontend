@@ -71,10 +71,16 @@ export const publicMapsResultCases = {
                 .addToFavouritesSuccessExpectedActions[4],
         );
 
-        /* loading - end */
+        /* clear planed maps errors */
         expect(actionsLog[5]).toEqual(
             PUBLIC_MAP_EXPECTED_ACTIONS
                 .addToFavouritesSuccessExpectedActions[5],
+        );
+
+        /* loading - end */
+        expect(actionsLog[6]).toEqual(
+            PUBLIC_MAP_EXPECTED_ACTIONS
+                .addToFavouritesSuccessExpectedActions[6],
         );
     },
     compareResultsWhenOnlineFirstFailCase: (actionsLog: any[]) => {
@@ -126,10 +132,16 @@ export const publicMapsResultCases = {
                 .removeFromFavouritesSuccessExpectedActions[5],
         );
 
-        /* loading - end */
+        /* clear public maps errors */
         expect(actionsLog[6]).toEqual(
             PUBLIC_MAP_EXPECTED_ACTIONS
                 .removeFromFavouritesSuccessExpectedActions[6],
+        );
+
+        /* loading - end */
+        expect(actionsLog[7]).toEqual(
+            PUBLIC_MAP_EXPECTED_ACTIONS
+                .removeFromFavouritesSuccessExpectedActions[7],
         );
     },
     compareResultsWhenOnlineFailSecondCase: (actionsLog: any[]) => {

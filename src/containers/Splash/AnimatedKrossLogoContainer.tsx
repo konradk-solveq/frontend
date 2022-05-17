@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
         width: getFHorizontalPx(180),
         height: getFVerticalPx(200),
         marginTop: getFVerticalPx(280),
+        alignItems: 'center',
     },
 });
