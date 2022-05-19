@@ -84,7 +84,7 @@ export const getRoute = async (
     if (location) {
         url = `${url}?lat=${location.latitude}&lng=${
             location.longitude
-        }&detailed=true&path=${!!withPath}`;
+        }&distance=true&path=${!!withPath}`;
     }
 
     return await axiosGet(url);
