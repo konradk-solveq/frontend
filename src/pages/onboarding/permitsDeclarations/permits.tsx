@@ -8,6 +8,7 @@ import {Header2, Header3, Paragraph} from '@components/texts/texts';
 import GenericScreen from '@pages/template/GenericScreen';
 import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
 import {PrimaryButton} from '@components/buttons';
+import colors from '@theme/colors';
 
 interface Props {
     navigation: any;
@@ -75,7 +76,7 @@ const Permits: React.FC<Props> = (props: Props) => {
                             </Header3>
 
                             <Hyperlink
-                                linkStyle={{color: '#3587ea'}}
+                                linkStyle={{color: colors.red}}
                                 linkText={(url: string) => {
                                     if (url === t('urlRegulations')) {
                                         return t('hiperRegulations');
