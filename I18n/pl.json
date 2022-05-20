@@ -708,7 +708,13 @@
         "endText": "Czy chcesz zakończyć nagrywanie trasy?",
         "btnCancel": "ANULUJ",
         "btnBreak": "PRZERWIJ",
-        "bikeChanged": "Zmieniono rower na {{name}}"
+        "bikeChanged": "Zmieniono rower na {{name}}",
+        "alerts": {
+            "tooShort": {
+                "message": "Przejechany dystans jest \n zbyt krótki. Minimalna długość \n trasy do zapisania to 100m",
+                "action": "Zamknij"
+            }
+        }
     },
     "CounterThankYouPage": {
         "title": "{{name}}, brawo!",
