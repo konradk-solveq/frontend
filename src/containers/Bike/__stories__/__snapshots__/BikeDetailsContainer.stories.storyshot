@@ -369,7 +369,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               }
               testID="body-primary-test-id"
             >
-              brak informacji
+              MainBike.warranty.noInfo
             </Text>
           </View>
           <View
@@ -419,30 +419,48 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               }
               testID="body-primary-test-id"
             >
-              MainBike.warranty.toEnd
+              MainBike.warranty.missingToEnd
             </Text>
-            <Text
-              adjustsFontSizeToFit={false}
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#333333",
-                    "textAlign": "right",
-                    "width": "50%",
-                  },
-                ]
+                Object {
+                  "color": "#333333",
+                  "textAlign": "right",
+                  "width": "50%",
+                }
               }
-              testID="body-primary-test-id"
             >
-              1099 MainBike.warranty.days
-            </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "right",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                MainBike.warranty.missingToEndAction
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -1322,7 +1340,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               }
               testID="body-primary-test-id"
             >
-              brak informacji
+              MainBike.warranty.noInfo
             </Text>
           </View>
           <View
@@ -1372,30 +1390,48 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               }
               testID="body-primary-test-id"
             >
-              MainBike.warranty.toEnd
+              MainBike.warranty.missingToEnd
             </Text>
-            <Text
-              adjustsFontSizeToFit={false}
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#333333",
-                    "textAlign": "right",
-                    "width": "50%",
-                  },
-                ]
+                Object {
+                  "color": "#333333",
+                  "textAlign": "right",
+                  "width": "50%",
+                }
               }
-              testID="body-primary-test-id"
             >
-              1099 MainBike.warranty.days
-            </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "right",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                MainBike.warranty.missingToEndAction
+              </Text>
+            </View>
           </View>
         </View>
       </View>
