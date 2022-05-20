@@ -1,5 +1,11 @@
 import {ScrollView} from 'react-native-gesture-handler';
-import {Pressable, View, StyleSheet, Image} from 'react-native';
+import {
+    Pressable,
+    View,
+    StyleSheet,
+    Image,
+    GestureResponderEvent,
+} from 'react-native';
 import {BodyPrimary, Header1, Subtitle} from '@components/texts/texts';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import Warranty from '@pages/main/bike/components/warranty';
@@ -25,6 +31,7 @@ interface IProps {
     onChangeBikeHandler: () => void;
     showBikeChangeButton: boolean;
     onReviewPress: (e: Overview) => void;
+    onContactPress: (e: GestureResponderEvent) => void;
     bikeType?: string;
 }
 
@@ -38,6 +45,7 @@ const BikeDetailsContainer = ({
     onChangeBikeHandler,
     showBikeChangeButton,
     onReviewPress,
+    onContactPress,
     bikeType,
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike');
@@ -160,13 +168,13 @@ const BikeDetailsContainer = ({
                                 </Pressable>
                             )}
                         </View>
-                        {bike?.warranty && (
-                            <Warranty
-                                info={warrantyData?.info || ''}
-                                type={warrantyData?.type || ''}
-                                endDate={warrantyData?.end}
-                            />
-                        )}
+
+                        <Warranty
+                            info={warrantyData?.info || ''}
+                            type={warrantyData?.type || ''}
+                            endDate={warrantyData?.end}
+                            onPress={onContactPress}
+                        />
 
                         {warrantyData?.overviews && (
                             <Reviews

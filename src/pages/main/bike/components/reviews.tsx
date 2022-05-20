@@ -15,6 +15,7 @@ import {isInPast} from '@utils/dateTime';
 import {checkPeriodic, checkWarranty} from '@utils/bike/warranty';
 import Approved from '@components/icons/Approved';
 import Warning from '@components/icons/Warning';
+import {jsonStringify} from '@src/utils/transformJson';
 
 interface Props {
     style?: any;
@@ -87,6 +88,7 @@ const Reviews: React.FC<Props> = ({
                 <View style={styles.list}>
                     {list.map((overview: Overview, index: number) => (
                         <Review
+                            key={'review_' + jsonStringify(overview.date)}
                             onReviewPress={onReviewPress}
                             overview={overview}
                             index={index}

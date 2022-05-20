@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`warranty - pages/main/bikeutils getWarrantyStatusInfo() should return contact info 1`] = `"MainBike.warranty.missingToEnd"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyStatusInfo() should return warranty status info 1`] = `"MainBike.warranty.toEnd"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyStatusInfoText() should return "daysToEnd" status info text when "type" is euqal to "basic" 1`] = `"2 MainBike.warranty.days"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyStatusInfoText() should return "lietime" status info text when "type" is euqal to "extended" 1`] = `"MainBike.warranty.lifetime"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyStatusInfoText() should return contact info text when "type" is euqal to "no-info" 1`] = `"MainBike.warranty.missingToEndAction"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyTypeText() should return "expired" warranty type text when "caontainsInfo" is equal to "true" and "withInfo" is equal to "false" 1`] = `"MainBike.warranty.expired"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyTypeText() should return "no info" warranty type text when "caontainsInfo" is equal to "false" 1`] = `"MainBike.warranty.noInfo"`;
+
+exports[`warranty - pages/main/bikeutils getWarrantyTypeText() should return warranty type text when "caontainsInfo" is equal to "true" 1`] = `"warranty info"`;

@@ -627,8 +627,11 @@
         "warranty": {
             "state": "Status gwarancji",
             "toEnd": "Do końca gwarancji",
+            "missingToEnd": "Skontaktuj się z nami",
+            "missingToEndAction": "kontakt",
             "lifetime": "dożywotnia ochrona ramy",
             "expired": "wygasła",
+            "noInfo": "brak informacji w systemie",
             "days_0": "dzień",
             "days_1": "dni",
             "days_2": "dni",
