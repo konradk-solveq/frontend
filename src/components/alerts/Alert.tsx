@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Modal, StyleSheet, View} from 'react-native';
+import {Modal, StyleSheet, View, ViewStyle} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import colors from '@theme/colors';
@@ -13,11 +13,13 @@ import {Header3} from '@components/texts/texts';
 
 interface IProps {
     onPress: () => void;
-    onCancel: () => void;
+    onCancel?: () => void;
+    noCancel?: boolean;
     text?: string;
     pressText?: string;
     cancelText?: string;
     show?: boolean;
+    contentStyle?: ViewStyle;
     testID?: string;
 }
 
@@ -25,9 +27,11 @@ const Alert: React.FC<IProps> = ({
     show = false,
     onPress,
     onCancel,
+    noCancel = false,
     pressText = '',
     cancelText = '',
     text = '',
+    contentStyle,
     testID = 'alert-id',
 }: IProps) => {
     const {t} = useMergedTranslation('Alert');
@@ -48,7 +52,7 @@ const Alert: React.FC<IProps> = ({
     return (
         <Modal transparent animationType="fade" visible={show} testID={testID}>
             <View style={styles.container}>
-                <View style={styles.tile}>
+                <View style={[styles.tile, contentStyle]}>
                     <HorizontalSpacer height={29.5} />
                     <WarningSvg />
                     <HorizontalSpacer height={13.5} />
@@ -64,14 +68,18 @@ const Alert: React.FC<IProps> = ({
                             withoutShadow
                             testID={`${testID}-positive-button`}
                         />
-                        <HorizontalSpacer height={16} />
-                        <SecondaryButton
-                            onPress={onCancel}
-                            text={onCancelText}
-                            style={styles.button}
-                            withoutShadow
-                            testID={`${testID}-negative-button`}
-                        />
+                        {!noCancel && onCancel && (
+                            <>
+                                <HorizontalSpacer height={16} />
+                                <SecondaryButton
+                                    onPress={onCancel}
+                                    text={onCancelText}
+                                    style={styles.button}
+                                    withoutShadow
+                                    testID={`${testID}-negative-button`}
+                                />
+                            </>
+                        )}
                     </View>
                     <HorizontalSpacer height={24} />
                 </View>

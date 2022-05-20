@@ -7,6 +7,7 @@ import {
     StatusBar,
     SafeAreaView,
 } from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -20,6 +21,7 @@ import useLocalizationTracker from '@hooks/useLocalizationTracker';
 import {
     setCurrentRoutePauseTime,
     setRouteMapVisibility,
+    abortSyncCurrentRouteData,
 } from '@storage/actions/routes';
 
 import StackHeader from './stackHeader/stackHeader';
@@ -30,6 +32,7 @@ import {
     trackerPauseTimeSelector,
     trackerStartTimeSelector,
 } from '@storage/selectors/routes';
+import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import useCustomSwipeBackNav from '@hooks/useCustomSwipeBackNav';
 import ErrorBoundary from '@providers/errorBoundary/ErrorBoundary';
@@ -42,7 +45,7 @@ import NativeCounter from './nativeCounter/nativeCounter';
 import {CounterDataContext} from './nativeCounter/counterContext/counterContext';
 import Apla from './apla';
 import DataPreview from '@sharedComponents/dataPreview/dataPreview';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Alert as CustomAlert} from '@components/alerts';
 
 import {TESTING_MODE} from '@env';
 
@@ -88,6 +91,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         total: 0,
     });
     const [beforeRecording, setBeforeRecording] = useState<boolean>(true);
+
+    /* Shows alert with error when recorded route is shorter than 100 m */
+    const [showToShortRouteAlert, setShowToShortRouteAlert] = useState(false);
 
     const {top} = useSafeAreaInsets();
 
@@ -211,9 +217,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 trackerData?.odometer === undefined ||
                 trackerData?.odometer <= 100
             ) {
-                navigation.navigate({
-                    name: RegularStackRoute.SHORT_ROUTE_SCREEN,
-                });
+                setShowToShortRouteAlert(true);
                 return;
             }
 
@@ -463,6 +467,11 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         },
     });
 
+    const onCloseShortRouteAlertHandler = useCallback(() => {
+        dispatch(abortSyncCurrentRouteData(true, true));
+        navigation.goBack();
+    }, [dispatch, navigation]);
+
     return (
         <SafeAreaView>
             <StatusBar backgroundColor="#fff" />
@@ -566,6 +575,18 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             beforeRecording={beforeRecording}
                         />
                     )}
+
+                    <CustomAlert
+                        show={showToShortRouteAlert}
+                        onPress={onCloseShortRouteAlertHandler}
+                        text={t('alerts.tooShort.message')}
+                        pressText={t('alerts.tooShort.action')}
+                        noCancel
+                        contentStyle={{
+                            height: getFHorizontalPx(244),
+                            paddingHorizontal: getFHorizontalPx(20),
+                        }}
+                    />
 
                     {TESTING_MODE === 'true' && (
                         <DataPreview
