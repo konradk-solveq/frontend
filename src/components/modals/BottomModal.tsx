@@ -7,10 +7,15 @@ import {
     ViewStyle,
 } from 'react-native';
 import Animated, {
+    useAnimatedGestureHandler,
     useAnimatedStyle,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
+import {
+    PanGestureHandler,
+    PanGestureHandlerGestureEvent,
+} from 'react-native-gesture-handler';
 
 import {
     getFHorizontalPx,
@@ -26,10 +31,38 @@ interface IProps {
     show?: boolean;
     openModal?: boolean;
     enableScroll?: boolean;
+    /**
+     * Height of open modal (start point)
+     */
     openModalHeight?: number;
+    /**
+     * Height of fully open modal (end point) - eg. height of entire screen
+     */
     openModalFullHeight?: number;
     children?: ReactNode;
     header?: ReactNode;
+    /**
+     * It allows the user to smoothly change the height of the component when using the swipe gesture
+     */
+    isSwipeable?: boolean;
+    /**
+     * It defines if component react on swipe gesture
+     */
+    isReactive?: boolean;
+    /**
+     * The component will auto open or close with desired dimension
+     */
+    autoClose?: boolean;
+    /**
+     * Determines the point at which an auto-close starts opening the component
+     */
+    autoCloseTop?: number;
+    /**
+     * Determines the point at which an auto-close starts slosing the component
+     */
+    autoCloseBottom?: number;
+    openDuration?: number;
+    closeDuration?: number;
     style?: ViewStyle;
     testID?: string;
 }
@@ -42,6 +75,13 @@ const BottomModal: React.FC<IProps> = ({
     openModalFullHeight = height,
     children,
     header,
+    isSwipeable = false,
+    isReactive = false,
+    autoClose = false,
+    autoCloseTop,
+    autoCloseBottom,
+    openDuration = 750,
+    closeDuration = 750,
     style,
     testID = 'bottom-modal-test-id',
 }: IProps) => {
@@ -52,12 +92,20 @@ const BottomModal: React.FC<IProps> = ({
         openModalFullHeight,
         statusBarHeight,
     ]);
+    const autoCloseTopLimit = useMemo(() => autoCloseTop || 0.65 * openModalH, [
+        autoCloseTop,
+        openModalH,
+    ]);
+    const autoCloseBottomLimit = useMemo(
+        () => autoCloseBottom || 0.7 * openModalH,
+        [autoCloseBottom, openModalH],
+    );
 
     const modalHeight = useSharedValue(0);
     const modalHeaderOpacity = useSharedValue(0);
 
     const modalAnimation = useAnimatedStyle(() => ({
-        height: withTiming(modalHeight.value, {duration: 750}),
+        height: modalHeight.value,
     }));
     /**
      * Animate header
@@ -82,9 +130,20 @@ const BottomModal: React.FC<IProps> = ({
 
     useEffect(() => {
         if (isVisible) {
-            modalHeight.value = isOpen ? openModalH : openModalHeight;
+            modalHeight.value = withTiming(
+                isOpen ? openModalH : openModalHeight,
+                {duration: isOpen ? openDuration : closeDuration},
+            );
         }
-    }, [isOpen, isVisible, openModalH, modalHeight, openModalHeight]);
+    }, [
+        isOpen,
+        isVisible,
+        openModalH,
+        modalHeight,
+        openModalHeight,
+        openDuration,
+        closeDuration,
+    ]);
 
     /**
      * Set full height of modal
@@ -93,21 +152,82 @@ const BottomModal: React.FC<IProps> = ({
         setIsOpen(openModal);
     }, [openModal]);
 
+    const panGestureEventHandler = useAnimatedGestureHandler<
+        PanGestureHandlerGestureEvent,
+        {x: number; y: number}
+    >({
+        onStart: (_, ctx) => {
+            ctx.y = modalHeight.value;
+        },
+        onActive: ({translationY}, ctx) => {
+            if (!isSwipeable || !isReactive) {
+                return;
+            }
+            const currentHeight = ctx.y - translationY;
+            /**
+             * Doon't change dimensions if max or min height is reached
+             */
+            if (
+                currentHeight <= openModalHeight ||
+                currentHeight >= openModalH
+            ) {
+                return;
+            } else {
+                modalHeight.value = ctx.y - translationY;
+            }
+        },
+        onEnd: ({translationY}) => {
+            if (!isReactive) {
+                return;
+            }
+
+            /**
+             * Start opening the modal if swipe translationY is smaller than 0
+             */
+            if (
+                (modalHeight.value >= autoCloseTopLimit ||
+                    !isSwipeable ||
+                    autoClose) &&
+                translationY < 0
+            ) {
+                modalHeight.value = withTiming(openModalH, {
+                    duration: openDuration,
+                });
+            } else if (
+                /**
+                 * Start closing the modal if swipe translationY is bigger or equal to 0
+                 */
+                (modalHeight.value <= autoCloseBottomLimit ||
+                    !isSwipeable ||
+                    autoClose) &&
+                translationY >= 0
+            ) {
+                modalHeight.value = withTiming(openModalHeight, {
+                    duration: closeDuration,
+                });
+            }
+        },
+    });
+
     return (
-        <Animated.View
-            style={[styles.container, modalAnimation, style]}
-            testID={testID}>
-            <View style={styles.innerContainer}>
-                <Animated.View style={modalHeaderAnimation}>
-                    {header}
-                </Animated.View>
-                <ScrollView
-                    scrollEnabled={isOpen || enableScroll}
-                    showsVerticalScrollIndicator={false}>
-                    {children}
-                </ScrollView>
-            </View>
-        </Animated.View>
+        <PanGestureHandler
+            onGestureEvent={panGestureEventHandler}
+            enabled={isReactive}>
+            <Animated.View
+                style={[styles.container, modalAnimation, style]}
+                testID={testID}>
+                <View style={styles.innerContainer}>
+                    <Animated.View style={modalHeaderAnimation}>
+                        {header}
+                    </Animated.View>
+                    <ScrollView
+                        scrollEnabled={isOpen || enableScroll}
+                        showsVerticalScrollIndicator={false}>
+                        {children}
+                    </ScrollView>
+                </View>
+            </Animated.View>
+        </PanGestureHandler>
     );
 };
 

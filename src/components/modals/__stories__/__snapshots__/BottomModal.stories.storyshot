@@ -17,6 +17,9 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
   }
 >
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={
       Array [
         Object {
@@ -75,6 +78,9 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
   }
 >
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={
       Array [
         Object {

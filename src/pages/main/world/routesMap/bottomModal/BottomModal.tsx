@@ -35,6 +35,9 @@ const BottomModal: React.FC<IProps> = ({
         <BM
             show={show}
             openModal={isOpen}
+            autoClose
+            isSwipeable
+            isReactive={canOpen}
             header={
                 <>
                     <SwipeButton
