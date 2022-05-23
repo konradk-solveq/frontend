@@ -1,34 +1,30 @@
 import React from 'react';
-import {StyleSheet, Text, Linking} from 'react-native';
+import {StyleSheet, Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Hyperlink from 'react-native-hyperlink';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import {Paragraph} from '@components/texts/texts';
 
-import {getFontSize, getVerticalPx} from '@helpers/layoutFoo';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import colors from '@theme/colors';
 
 interface Props {
-    marginTop: any;
-    font?: any;
-    text: any;
+    marginTop: number;
+    font?: 'light' | 'regular';
+    text: string
+        | Array<{
+              phrase: string;
+              bold: string;
+          }>;
     num: number;
     regulationsScreenRouteName: string;
 }
 
-const Paragraph: React.FC<Props> = (props: Props) => {
+const JsonParagraph: React.FC<Props> = (props: Props) => {
     const navigation = useNavigation();
-
     const {t} = useMergedTranslation('');
 
     const styles = StyleSheet.create({
-        paragraph: {
-            textAlign: 'left',
-            fontSize: getFontSize(18),
-            lineHeight: getFontSize(24),
-            color: '#555555',
-        },
-        regular: {
-            fontFamily: 'DIN2014Narrow-Regular',
-        },
         light: {
             fontFamily: 'DIN2014Narrow-Light',
         },
@@ -36,7 +32,7 @@ const Paragraph: React.FC<Props> = (props: Props) => {
 
     return (
         <Hyperlink
-            linkStyle={{color: '#3587ea'}}
+            linkStyle={{color: colors.red}}
             linkText={(url: string) => {
                 const trans: {url: string; hyper: string}[] = t('Urls', {
                     returnObjects: true,
@@ -56,35 +52,30 @@ const Paragraph: React.FC<Props> = (props: Props) => {
                 }
             }}>
             {typeof props.text === 'string' ? (
-                <Text
+                <Paragraph
                     style={[
-                        styles.paragraph,
-                        props.font === 'regular' && styles.regular,
                         props.font === 'light' && styles.light,
-                        {marginTop: getVerticalPx(props.marginTop)},
+                        {marginTop: getFVerticalPx(props.marginTop)},
                     ]}>
                     {props.text}
-                </Text>
+                </Paragraph>
             ) : (
-                <Text
+                <Paragraph
                     style={[
-                        styles.paragraph,
                         styles.light,
-                        {marginTop: getVerticalPx(props.marginTop)},
+                        {marginTop: getFVerticalPx(props.marginTop)},
                     ]}>
                     {props.text.map((e, i) => (
-                        <Text
-                            style={
-                                e.bold && {fontFamily: 'DIN2014Narrow-Regular'}
-                            }
+                        <Paragraph
+                            style={!e.bold && styles.light}
                             key={'p_' + props.num + '_' + i}>
                             {e.phrase}
-                        </Text>
+                        </Paragraph>
                     ))}
-                </Text>
+                </Paragraph>
             )}
         </Hyperlink>
     );
 };
 
-export default Paragraph;
+export default JsonParagraph;
