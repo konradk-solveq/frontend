@@ -414,6 +414,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
     </View>
   </View>
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={
       Array [
         Object {
@@ -1688,6 +1691,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
     </View>
   </View>
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={
       Array [
         Object {
