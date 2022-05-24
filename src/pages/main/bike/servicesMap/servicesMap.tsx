@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {WebView} from 'react-native-webview';
 
-import {StyleSheet, Dimensions, View, Platform} from 'react-native';
+import {StyleSheet, View, Platform} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
@@ -10,21 +10,29 @@ import {fetchPlacesData} from '@storage/actions';
 import {markerTypes, Place, PointDetails} from '@models/places.model';
 import {BasicCoordsType} from '@type/coords';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
-import {setObjSize, getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
 import {getMapInitLocation} from '@utils/webView';
 import {jsonParse, jsonStringify} from '@utils/transformJson';
 
-import AnimSvg from '@helpers/animSvg';
-import {FindMeButton, TypicalRedBtn} from '@sharedComponents/buttons';
-import gradient from './gradientSvg';
 import AddressBox from './addressBox/addressBox';
 import mapSource from './servicesMapHtml';
 import GenericScreen from '@src/pages/template/GenericScreen';
+import {Button, IconButton, SecondaryButton} from '@src/components/buttons';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
+import colors from '@theme/colors';
+import {MykrossIconFont} from '@src/theme/enums/iconFonts';
+import {useNavigation} from '@react-navigation/native';
+import {BottomModal} from '@components/modals';
 
-const {width, height} = Dimensions.get('window');
+import {AnimatedContainerPosition} from '@src/containers/World/components';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
+    const navigation = useNavigation();
+
     const {t} = useMergedTranslation('ServicesMap');
 
     const {location} = useLocationProvider();
@@ -68,7 +76,7 @@ const ServicesMap: React.FC = () => {
     const setJs = (foo: string) => mapRef?.current?.injectJavaScript(foo);
 
     /* TODO: extract as helper method */
-    const heandleShops = () => {
+    const handleShops = () => {
         if (!markersFilters?.includes(markerTypes.SERVICE)) {
             return;
         }
@@ -85,7 +93,7 @@ const ServicesMap: React.FC = () => {
         });
     };
 
-    const heandleServices = () => {
+    const handleServices = () => {
         if (!markersFilters?.includes(markerTypes.SHOP)) {
             return;
         }
@@ -149,7 +157,7 @@ const ServicesMap: React.FC = () => {
         }
     };
 
-    const hendleFindMyLocation = () => {
+    const handleFindMyLocation = () => {
         if (location) {
             let pos = {
                 latitude: location.latitude,
@@ -163,7 +171,7 @@ const ServicesMap: React.FC = () => {
     };
 
     const heandleMapLoaded = () => {
-        hendleFindMyLocation();
+        handleFindMyLocation();
         setMapLoaded(true);
     };
 
@@ -176,25 +184,18 @@ const ServicesMap: React.FC = () => {
         }
     }, [places, mapLoaded]);
 
-    setObjSize(350, 23);
+    const buttonProps = (markerType: markerTypes) => {
+        return {
+            textColor: markersFilters?.includes(markerType)
+                ? colors.white
+                : colors.black,
+            color: markersFilters?.includes(markerType)
+                ? colors.red
+                : colors.white,
+        };
+    };
+
     const styles = StyleSheet.create({
-        container: {
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '100%',
-            height: getVerticalPx(896 * 1.1),
-            backgroundColor: '#fff',
-            flex: 1,
-        },
-        innerContainer: {
-            flex: 1,
-        },
-        wrap: {
-            ...StyleSheet.absoluteFillObject,
-            width: width,
-            height: height,
-        },
         fullView: {
             position: 'absolute',
             left: 0,
@@ -202,40 +203,26 @@ const ServicesMap: React.FC = () => {
             right: 0,
             bottom: 0,
             width: '100%',
-            height: getVerticalPx(896 * 1.1),
         },
-        gradient: {
+        buttonsContainer: {
             position: 'absolute',
-            width: width,
-            height: width,
-            top: 0,
-            left: 0,
-        },
-        btns: {
-            position: 'absolute',
-            left: getHorizontalPx(40),
-            top: getVerticalPx(108),
-            height: getHorizontalPx(41),
+            top: getFVerticalPx(60),
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'flex-start',
+            justifyContent: 'space-between',
+            paddingHorizontal: appContainerHorizontalMargin,
+            width: '100%',
+            zIndex: 1,
         },
         btn: {
-            marginRight: getHorizontalPx(5),
-        },
-        findWrap: {
-            position: 'absolute',
-            right: getHorizontalPx(40),
-            width: getHorizontalPx(41),
-            height: getHorizontalPx(41),
+            width: getFHorizontalPx(175),
+            height: getFVerticalPx(40),
         },
     });
 
     const initMapPos = getMapInitLocation(initLocation);
-    const withHours = adress?.openHours ? 414 * 0.57 + 16 : 414 * 0.49 + 16;
-
     return (
-        <GenericScreen screenTitle={t('title')}>
+        <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
             <View style={styles.fullView}>
                 <WebView
                     style={styles.fullView}
@@ -263,36 +250,49 @@ const ServicesMap: React.FC = () => {
                 />
             </View>
 
-            <AnimSvg style={styles.gradient} source={gradient} />
-
-            <View style={styles.btns}>
-                <TypicalRedBtn
+            <View style={styles.buttonsContainer}>
+                <Button
                     style={styles.btn}
-                    title={t('services')}
-                    active={markersFilters?.includes(markerTypes.SERVICE)}
-                    onpress={heandleServices}
+                    text={t('services')}
+                    {...buttonProps(markerTypes.SERVICE)}
+                    onPress={handleServices}
                 />
-                <TypicalRedBtn
+                <Button
                     style={styles.btn}
-                    title={t('shops')}
-                    active={markersFilters?.includes(markerTypes.SHOP)}
-                    onpress={heandleShops}
+                    text={t('shops')}
+                    {...buttonProps(markerTypes.SHOP)}
+                    onPress={handleShops}
                 />
             </View>
 
-            {adress && <AddressBox address={adress} />}
-
-            <FindMeButton
-                style={[
-                    styles.findWrap,
-                    {
-                        bottom: adress
-                            ? getHorizontalPx(withHours)
-                            : getHorizontalPx(40),
-                    },
-                ]}
-                onpress={hendleFindMyLocation}
-            />
+            {
+                <BottomModal
+                    show={!!adress}
+                    openModalHeight={getFVerticalPx(200)}
+                    style={{
+                        backgroundColor: colors.white,
+                    }}>
+                    {adress ? <AddressBox address={adress} /> : null}
+                </BottomModal>
+            }
+            <AnimatedContainerPosition
+                toggle={!!adress}
+                height={getFVerticalPx(220)}>
+                <SecondaryButton
+                    text={t('closeButton')}
+                    icon={MykrossIconFont.MYKROSS_ICON_EXIT}
+                    textColor={colors.black}
+                    onPress={() => navigation.goBack()}
+                    style={{
+                        width: getFHorizontalPx(115),
+                        height: getFHorizontalPx(44),
+                    }}
+                />
+                <IconButton
+                    icon={MykrossIconFont.MYKROSS_ICON_USER}
+                    onPress={handleFindMyLocation}
+                />
+            </AnimatedContainerPosition>
         </GenericScreen>
     );
 };
