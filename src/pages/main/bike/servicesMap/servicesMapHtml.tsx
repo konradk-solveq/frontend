@@ -81,7 +81,7 @@ let marks = {};
 let clusterShops = null;
 let clusterService = null;
 let clusterServiceShops = null;
-
+let clickedMarker = {};
 const setPosOnMap = position => {
     let latLng = new google.maps.LatLng(position.latitude, position.longitude);
 
@@ -95,7 +95,6 @@ const setPosOnMap = position => {
 
 const getRgion = () => {
     const bounds = map.getBounds();
-
     window.ReactNativeWebView.postMessage("changeRegion#$#"+customJsonStringify(bounds, ''));
 }
 
@@ -464,6 +463,7 @@ function initMap() {
     // dla chowania apli z adresem
     map.addListener('click', () => {
         window.ReactNativeWebView.postMessage("clickMap");
+        if (clickedMarker.element) resetMarkerSize(clickedMarker);
     });
 
     // dla zmiany pozycji regionu
@@ -656,8 +656,14 @@ const setMarks = places => {
         // do pokazywania alpi z adresem
         google.maps.event.addDomListener(mark, 'click', function() {
             // null-safty (optional chaining) operator causes silent error on Android 9 devices
+
+            if (clickedMarker.element) resetMarkerSize(clickedMarker);
+
             if(mark && mark.details){
                 window.ReactNativeWebView.postMessage("clickMarker#$#"+customJsonStringify(mark.details, ''));
+                mark.setIcon({ url: type + '_marker.png', scaledSize: new google.maps.Size(60, 60)});
+                clickedMarker.element = mark;
+                clickedMarker.type = type;
             }
         });
 
@@ -669,6 +675,10 @@ const setMarks = places => {
     }
 }
 
+const resetMarkerSize = marker => {
+    marker.element.setIcon({ url: marker.type + '_marker.png' , scaledSize: new google.maps.Size(44, 44)});
+    clickedMarker = {};
+}
 
 const setShops = visibility => {
     marks.shop.forEach(e => e.setVisible(visibility));

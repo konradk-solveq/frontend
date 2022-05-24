@@ -741,7 +741,7 @@
     "ServicesMap": {
         "services": "Serwisy",
         "shops": "Sklepy",
-        "title": "Znajdź sklep lub serwis"
+        "closeButton": "Wyjdź"
     },
     "MainProfile": {
         "header": "Twoje Konto",
