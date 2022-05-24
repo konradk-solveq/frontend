@@ -24,6 +24,7 @@
             "@interfaces*": ["src/interfaces*"],
             "@models*": ["src/models*"],
             "@navigation*": ["src/navigation*"],
+            "@notifications*": ["src/notifications*"],
             "@pages*": ["src/pages*"],
             "@providers*": ["src/providers*"],
             "@services*": ["src/services*"],

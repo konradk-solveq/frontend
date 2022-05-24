@@ -988,5 +988,12 @@
     "Alert": {
         "positive": "Potwierdź",
         "negative": "Anuluj"
+    },
+    "Notifications": {
+        "location": {
+            "searchSignal": {
+                "title": "Szukanie sygnału GPS"
+            }
+        }
     }
 }
