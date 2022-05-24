@@ -107,4 +107,8 @@ module.exports = [
         rootPathSuffix: './storybook',
         rootPathPrefix: '@sb',
     },
+    {
+        rootPathSuffix: './src/notifications',
+        rootPathPrefix: '@notifications',
+    },
 ];

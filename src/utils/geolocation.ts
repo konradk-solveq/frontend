@@ -4,6 +4,7 @@ import BackgroundGeolocation, {
     Location,
     LocationError,
     State,
+    ProviderChangeEvent,
 } from 'react-native-background-geolocation-android';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
@@ -921,5 +922,27 @@ export const getGeolocationLogs = async (start?: string, end?: string) => {
         console.log('[geolocation - getGeolocationLogs - error]', e);
 
         loggErrorWithScope(e, 'geolocation-getGeolocationLogs');
+    }
+};
+
+export const getProviderState = async () => {
+    try {
+        return await BackgroundGeolocation.getProviderState();
+    } catch (e) {
+        console.log('[getProviderState - error]', e);
+
+        loggErrorWithScope(e, 'getProviderState');
+    }
+};
+
+export const onProviderChangeListener = (
+    callback: (event: ProviderChangeEvent) => void,
+) => {
+    try {
+        return BackgroundGeolocation.onProviderChange(callback);
+    } catch (e) {
+        console.log('[onProviderChangeListener - error]', e);
+
+        loggErrorWithScope(e, 'onProviderChangeListener');
     }
 };
