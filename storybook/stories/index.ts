@@ -10,6 +10,7 @@ import '@components/icons/__stories__';
 import '@components/inputs/__stories__';
 import '@components/modals/__stories__';
 import '@components/navigation/__stories__';
+import '@components/notifications/__stories__';
 import '@components/pagination/__stories__';
 import '@components/placeholders/__stories__';
 import '@components/slider/__stories__';

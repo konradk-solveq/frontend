@@ -388,7 +388,9 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
           Object {
             "zIndex": 20,
           },
-          [Function],
+          Object {
+            "opacity": 0,
+          },
         ]
       }
     >
@@ -809,7 +811,9 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
           Object {
             "zIndex": 20,
           },
-          [Function],
+          Object {
+            "opacity": 0,
+          },
         ]
       }
     >
@@ -1230,7 +1234,9 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
           Object {
             "zIndex": 20,
           },
-          [Function],
+          Object {
+            "opacity": 0,
+          },
         ]
       }
     >
@@ -1553,7 +1559,9 @@ exports[`Storyshots components/alerts/alert Without cancel button 1`] = `
           Object {
             "zIndex": 20,
           },
-          [Function],
+          Object {
+            "opacity": 0,
+          },
         ]
       }
     >

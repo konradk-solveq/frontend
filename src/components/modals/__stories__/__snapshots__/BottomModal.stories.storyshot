@@ -34,7 +34,9 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
           "right": 0,
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 0,
+        },
         undefined,
       ]
     }
@@ -48,7 +50,11 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
       }
     >
       <View
-        style={[Function]}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
       />
       <RCTScrollView
         scrollEnabled={false}
@@ -95,7 +101,9 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
           "right": 0,
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 0,
+        },
         undefined,
       ]
     }
@@ -109,7 +117,11 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
       }
     >
       <View
-        style={[Function]}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
       />
       <RCTScrollView
         scrollEnabled={false}

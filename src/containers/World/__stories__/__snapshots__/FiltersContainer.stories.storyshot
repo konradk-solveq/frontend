@@ -21,7 +21,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
             "position": "absolute",
             "width": "100%",
           },
-          [Function],
+          Object {
+            "paddingTop": 12.644549763033176,
+          },
         ]
       }
     >
