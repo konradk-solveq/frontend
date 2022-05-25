@@ -39,7 +39,13 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
           Object {
             "width": 2630.769230769231,
           },
-          [Function],
+          Object {
+            "transform": Array [
+              Object {
+                "translateX": 986.5384615384617,
+              },
+            ],
+          },
         ]
       }
     >
@@ -415,7 +421,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 0,
             },
@@ -430,7 +438,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 15.384615384615385,
             },
@@ -445,7 +455,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 15.384615384615385,
             },
@@ -460,7 +472,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 15.384615384615385,
             },
@@ -731,7 +745,13 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
           Object {
             "width": 2630.769230769231,
           },
-          [Function],
+          Object {
+            "transform": Array [
+              Object {
+                "translateX": 986.5384615384617,
+              },
+            ],
+          },
         ]
       }
     >
@@ -1107,7 +1127,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 0,
             },
@@ -1122,7 +1144,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 15.384615384615385,
             },
@@ -1137,7 +1161,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 15.384615384615385,
             },
@@ -1152,7 +1178,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
               "height": 15.384615384615385,
               "width": 15.384615384615385,
             },
-            [Function],
+            Object {
+              "backgroundColor": undefined,
+            },
             Object {
               "marginLeft": 15.384615384615385,
             },

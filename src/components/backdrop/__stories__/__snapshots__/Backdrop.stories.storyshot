@@ -33,7 +33,9 @@ exports[`Storyshots components/backdrop/Backdrop Customized 1`] = `
         Object {
           "backgroundColor": "#C63733",
         },
-        [Function],
+        Object {
+          "opacity": 0,
+        },
       ]
     }
   >
@@ -96,7 +98,9 @@ exports[`Storyshots components/backdrop/Backdrop Default 1`] = `
           "zIndex": 1,
         },
         undefined,
-        [Function],
+        Object {
+          "opacity": 0,
+        },
       ]
     }
   >

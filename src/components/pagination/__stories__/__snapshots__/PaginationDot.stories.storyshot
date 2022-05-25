@@ -22,7 +22,9 @@ exports[`Storyshots components/pagination/PaginationDot Custom 1`] = `
           "height": 8,
           "width": 8,
         },
-        [Function],
+        Object {
+          "backgroundColor": undefined,
+        },
         Object {},
       ]
     }
@@ -52,7 +54,9 @@ exports[`Storyshots components/pagination/PaginationDot Default 1`] = `
           "height": 15.384615384615385,
           "width": 15.384615384615385,
         },
-        [Function],
+        Object {
+          "backgroundColor": undefined,
+        },
         undefined,
       ]
     }

@@ -31,7 +31,9 @@ exports[`Storyshots components/modals/ChangeLanguageModal Default 1`] = `
             "position": "absolute",
             "width": "100%",
           },
-          [Function],
+          Object {
+            "paddingTop": 992.5971563981043,
+          },
         ]
       }
     >

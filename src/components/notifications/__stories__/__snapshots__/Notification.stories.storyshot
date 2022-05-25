@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/notifications/Notification Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "backgroundColor": "#eaeaea",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 25.28909952606635,
+          "marginHorizontal": 15.384615384615385,
+          "marginTop": 25.28909952606635,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 18.966824644549764,
+        },
+        Object {},
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#C63733",
+              "fontSize": 24,
+            },
+            Array [
+              Object {
+                "marginRight": 30.76923076923077,
+              },
+              Object {},
+            ],
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        =
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Object {},
+          ]
+        }
+        testID="header3-test-id"
+      >
+        Example notification
+      </Text>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/notifications/Notification Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "backgroundColor": "#eaeaea",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "backgroundColor": "#FFFFFF",
+          "borderRadius": 25.28909952606635,
+          "marginHorizontal": 15.384615384615385,
+          "marginTop": 25.28909952606635,
+          "paddingHorizontal": 30.76923076923077,
+          "paddingVertical": 18.966824644549764,
+        },
+        undefined,
+      ]
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontFamily": "mykross",
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#C63733",
+              "fontSize": 24,
+            },
+            Array [
+              Object {
+                "marginRight": 30.76923076923077,
+              },
+              Object {},
+            ],
+          ]
+        }
+        testID="text-icon-test-id"
+      >
+        =
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 18,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            undefined,
+          ]
+        }
+        testID="header3-test-id"
+      >
+        Example notification
+      </Text>
+    </View>
+  </View>
+</View>
+`;

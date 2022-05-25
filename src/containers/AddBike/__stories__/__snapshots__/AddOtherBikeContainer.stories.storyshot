@@ -431,7 +431,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           "right": 0,
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 0,
+        },
         Object {
           "backgroundColor": "#FFFFFF",
         },
@@ -447,7 +449,11 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
       }
     >
       <View
-        style={[Function]}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
       >
         <View
           style={
@@ -1247,7 +1253,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           "zIndex": 1,
         },
         undefined,
-        [Function],
+        Object {
+          "opacity": 0,
+        },
       ]
     }
   >
@@ -1708,7 +1716,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           "right": 0,
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 0,
+        },
         Object {
           "backgroundColor": "#FFFFFF",
         },
@@ -1724,7 +1734,11 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
       }
     >
       <View
-        style={[Function]}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
       >
         <View
           style={
@@ -2524,7 +2538,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           "zIndex": 1,
         },
         undefined,
-        [Function],
+        Object {
+          "opacity": 0,
+        },
       ]
     }
   >
