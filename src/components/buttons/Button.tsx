@@ -1,4 +1,4 @@
-import React, {useMemo, useCallback} from 'react';
+import React, {useMemo, useCallback, ReactNode} from 'react';
 import {
     GestureResponderEvent,
     Pressable,
@@ -35,6 +35,8 @@ export interface IProps {
     containerStyle?: ViewStyle | ViewStyle[];
     iconStyle?: ViewStyle | ViewStyle[];
     testID?: string;
+    children?: ReactNode;
+    isFillUp?: boolean;
 }
 
 /* TODO: add font */
@@ -57,6 +59,8 @@ const Button: React.FC<IProps> = ({
     style,
     containerStyle,
     testID = 'button-test-id',
+    children,
+    isFillUp = false,
 }: IProps) => {
     const buttonColor = useMemo(() => (disabled ? disabledColor : color), [
         disabled,
@@ -103,6 +107,9 @@ const Button: React.FC<IProps> = ({
                     {backgroundColor: buttonColor},
                     containerStyle,
                 ]}>
+                {isFillUp && !disabled && !withLoader ? (
+                    <View style={styles.fillUpContainer}>{children}</View>
+                ) : null}
                 {!withLoader ? (
                     <>
                         {!iconRight && <Icon iconStyle={styles.leftIcon} />}
@@ -127,6 +134,15 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         backgroundColor: '#ffffff',
+    },
+    fillUpContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: 'hidden',
+        borderRadius: getFHorizontalPx(16),
     },
     innerContainer: {
         width: '100%',

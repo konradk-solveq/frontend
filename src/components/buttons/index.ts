@@ -5,6 +5,7 @@ import PrimaryButton from './PrimaryButton';
 import RadioButton from './RadioButton';
 import SecondaryButton from './SecondaryButton';
 import TransparentButton from './TransparentButton';
+import FillUpButton from './FillUpButton';
 
 export {
     Button,
@@ -14,4 +15,5 @@ export {
     SecondaryButton,
     PrimaryButton,
     TransparentButton,
+    FillUpButton,
 };
