@@ -56,7 +56,6 @@ const CurvedShape: React.FC<IProps> = ({style}: IProps) => {
             },${ch.value} ${rw / 2},${ch.value} C ${cw},${ch.value} ${lw},${
                 sh.value
             } ${lw},${sh.value} Z`,
-            fill: '#fff',
         };
     });
 
@@ -80,7 +79,11 @@ const CurvedShape: React.FC<IProps> = ({style}: IProps) => {
     return (
         <View style={styles.container}>
             <Svg viewBox={viewBox} style={[styles.svgContainer, style]}>
-                <AnimatedPath animatedProps={animatedProps} stroke="none" />
+                <AnimatedPath
+                    animatedProps={animatedProps}
+                    stroke="none"
+                    fill="#fff"
+                />
             </Svg>
         </View>
     );
