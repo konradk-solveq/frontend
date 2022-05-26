@@ -12,6 +12,7 @@ import colors from '@theme/colors';
 import {NavigationHeader} from '@components/navigation';
 import {IconButton} from '@components/buttons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
 
 const HEADER_TITLE = 'Header title';
 
@@ -81,7 +82,7 @@ const ActionButtons: React.FC<IProps> = ({
             onPress={onPressLeft}
         />
         <IconButton
-            icon={MykrossIconFont.MYKROSS_ICON_ALT_SHARE}
+            icon={MYKROSS_ICON_NATIVE_SHARE_ICON}
             iconColor={colors.black}
             style={styles.actionButton}
             onPress={onPressRight}

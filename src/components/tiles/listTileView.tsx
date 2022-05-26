@@ -15,6 +15,7 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {isIOS} from '@src/utils/platform';
+import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
@@ -165,7 +166,7 @@ const ListTileView: React.FC<PropsI> = ({
                                     <PressableComponent onPress={onPressShareHandler}>
                                         <TextIcon
                                             icon={
-                                                MykrossIconFont.MYKROSS_ICON_ALT_SHARE
+                                                MYKROSS_ICON_NATIVE_SHARE_ICON
                                             }
                                             style={styles.icon}
                                         />

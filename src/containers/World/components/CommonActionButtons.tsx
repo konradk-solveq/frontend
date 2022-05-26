@@ -10,6 +10,7 @@ import {
 
 import {IconButton, PrimaryButton, SecondaryButton} from '@components/buttons';
 import {ButtonsGroup} from '@containers/World/components';
+import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
 
 interface IProps {
     onPressPrimary: (e: GestureResponderEvent) => void;
@@ -69,7 +70,7 @@ const CommonActionButtons: React.FC<IProps> = ({
             />
             <IconButton
                 onPress={onPressIcon}
-                icon={MykrossIconFont.MYKROSS_ICON_SHARE}
+                icon={MYKROSS_ICON_NATIVE_SHARE_ICON}
                 style={{
                     width: getFHorizontalPx(48),
                     height: getFVerticalPx(48),

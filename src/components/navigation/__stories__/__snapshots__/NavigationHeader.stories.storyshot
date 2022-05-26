@@ -452,7 +452,7 @@ exports[`Storyshots components/navigation/NavigationHeader Customized 1`] = `
                                 }
                                 testID="icon-btn-test-id-icon"
                               >
-                                W
+                                V
                               </Text>
                             </View>
                           </View>
@@ -1276,7 +1276,7 @@ exports[`Storyshots components/navigation/NavigationHeader With additional butto
                                 }
                                 testID="icon-btn-test-id-icon"
                               >
-                                W
+                                V
                               </Text>
                             </View>
                           </View>
