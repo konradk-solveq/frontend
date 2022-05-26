@@ -5,6 +5,7 @@ import mockDeviceInfo from 'react-native-device-info/jest/react-native-device-in
 import mockCompasHeding from 'react-native-compass-heading/__mocks__/react-native-compass-heading';
 import mockRNCNetInfo from '@react-native-community/netinfo/jest/netinfo-mock';
 import '@testing-library/jest-dom';
+require('react-native-reanimated/lib/reanimated2/jestUtils').setUpTests();
 // import mockCrashlytics from '@react-native-firebase/';
 
 /** https://stackoverflow.com/a/50793993 */
@@ -47,15 +48,15 @@ jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 jest.mock('react-native-background-geolocation-android/src/NativeModule');
 
 jest.mock('./src/utils/translations/useMergedTranslation', () => ({
-    useMergedTranslation: (val) => {
+    useMergedTranslation: val => {
         return {
-            t: (str) => `${val}.${str}`,
+            t: str => `${val}.${str}`,
         };
     },
 }));
 
 jest.mock('./I18n/i18next', () => ({
-    t: (str) => {
+    t: str => {
         return `${str}`;
     },
 }));

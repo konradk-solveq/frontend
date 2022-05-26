@@ -1,5 +1,5 @@
-import Notification from './Notification';
 import GPSNotification from './GPSNotification';
+import Notification from './Notification';
+import PopUp from './PopUp';
 
-export {Notification, GPSNotification};
-
+export {GPSNotification, Notification, PopUp};
