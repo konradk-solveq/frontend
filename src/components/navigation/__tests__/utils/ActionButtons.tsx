@@ -6,6 +6,7 @@ import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
 import colors from '@theme/colors';
 
 import {IconButton} from '@src/components/buttons';
+import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
 
 const LEFT_ACTION_BUTON_TEST_ID = 'left-action-button-test-id';
 const RIGHT_ACTION_BUTON_TEST_ID = 'right-action-button-test-id';
@@ -30,7 +31,7 @@ const ActionButtons: React.FC<IProps> = ({
             testID={LEFT_ACTION_BUTON_TEST_ID}
         />
         <IconButton
-            icon={MykrossIconFont.MYKROSS_ICON_ALT_SHARE}
+            icon={MYKROSS_ICON_NATIVE_SHARE_ICON}
             iconColor={colors.black}
             style={styles.actionButton}
             onPress={onPressRight}
