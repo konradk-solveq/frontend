@@ -234,8 +234,7 @@
         "header": "Wyślij znajomym",
         "ShareContent": {
             "Route": {
-                "title": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
-                "message": "{{url}}",
+                "title": "Hej! Polecam Ci ciekawą trasę rowerową nagraną w aplikacji myKROSS.",
                 "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
             }
         }

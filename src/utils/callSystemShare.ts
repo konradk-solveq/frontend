@@ -5,6 +5,13 @@ import {isIOS} from '@utils/platform';
 
 type ShareOptionsT = Pick<ShareOptions, 'message' | 'title' | 'subject'>;
 
+const prepareMessage = (text: string | undefined, url: string) => {
+    if (isIOS) {
+        return `${text} ${url}`;
+    }
+    return text;
+};
+
 export const callSystemShare = async (
     url: string,
     shareContent?: ShareOptionsT,
@@ -12,7 +19,7 @@ export const callSystemShare = async (
 ) => {
     try {
         const options: ShareOptions = {
-            message: isIOS ? shareContent?.message : '',
+            message: prepareMessage(shareContent?.message, url),
             title: shareContent?.title,
             url: url,
             subject: shareContent?.subject,
