@@ -11,7 +11,8 @@ import colors from '@theme/colors';
 interface Props {
     marginTop: number;
     font?: 'light' | 'regular';
-    text: string
+    text:
+        | string
         | Array<{
               phrase: string;
               bold: string;
@@ -25,8 +26,11 @@ const JsonParagraph: React.FC<Props> = (props: Props) => {
     const {t} = useMergedTranslation('');
 
     const styles = StyleSheet.create({
-        light: {
-            fontFamily: 'DIN2014Narrow-Light',
+        bold: {
+            fontWeight: '600',
+        },
+        normal: {
+            fontWeight: 'normal',
         },
     });
 
@@ -54,20 +58,16 @@ const JsonParagraph: React.FC<Props> = (props: Props) => {
             {typeof props.text === 'string' ? (
                 <Paragraph
                     style={[
-                        props.font === 'light' && styles.light,
+                        props.font === 'regular' && styles.bold,
                         {marginTop: getFVerticalPx(props.marginTop)},
                     ]}>
                     {props.text}
                 </Paragraph>
             ) : (
-                <Paragraph
-                    style={[
-                        styles.light,
-                        {marginTop: getFVerticalPx(props.marginTop)},
-                    ]}>
+                <Paragraph style={{marginTop: getFVerticalPx(props.marginTop)}}>
                     {props.text.map((e, i) => (
                         <Paragraph
-                            style={!e.bold && styles.light}
+                            style={[e.bold ? styles.bold : styles.normal]}
                             key={'p_' + props.num + '_' + i}>
                             {e.phrase}
                         </Paragraph>
