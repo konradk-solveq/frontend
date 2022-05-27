@@ -630,7 +630,7 @@
             "missingToEndAction": "kontakt",
             "lifetime": "dożywotnia ochrona ramy",
             "expired": "wygasła",
-            "noInfo": "brak informacji w systemie",
+            "noInfo": "brak informacji\n w systemie",
             "days_0": "dzień",
             "days_1": "dni",
             "days_2": "dni",
