@@ -11,7 +11,11 @@ import {
     trackerRouteIdSelector,
     trackerActiveSelector,
 } from '../storage/selectors/routes';
-import {startRecordingRoute, stopCurrentRoute} from '../storage/actions/routes';
+import {
+    setRecordingState,
+    startRecordingRoute,
+    stopCurrentRoute,
+} from '../storage/actions/routes';
 import {
     getCurrentLocation,
     onWatchPostionChangeListener,
@@ -154,6 +158,7 @@ const useLocalizationTracker = (
      * Manual pause. Stops watching locations.
      */
     const onPauseTracker = useCallback(async () => {
+        dispatch(setRecordingState('paused'));
         await pauseTracingLocation(true);
         stopWatchPostionChangeListener();
         setTrackerData(prev => {
@@ -174,6 +179,7 @@ const useLocalizationTracker = (
     }, [dispatch, currentRouteId]);
 
     const onStartTracker = useCallback(async () => {
+        dispatch(setRecordingState('recording'));
         await resumeTracingLocation(currentRouteId);
 
         /* Debug route - start */

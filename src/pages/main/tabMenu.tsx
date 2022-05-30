@@ -2,7 +2,7 @@ import React from 'react';
 import {BottomTabBarOptions} from '@react-navigation/bottom-tabs';
 
 import {Tab} from '@navigation/stack';
-import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import {BOTTOM_TAB_HEIGHT} from '@theme/commonStyle';
 
 import Home from './home/home';
 import World from './world/world';
@@ -35,7 +35,7 @@ const TabMenu: React.FC<Props> = () => {
             left: 0,
             right: 0,
             bottom: 0,
-            height: getFVerticalPx(83),
+            height: BOTTOM_TAB_HEIGHT,
             elevation: 0,
             margin: 0,
             padding: 0,
@@ -73,10 +73,7 @@ const TabMenu: React.FC<Props> = () => {
                 component={Counter}
                 options={{
                     tabBarLabel: '',
-                    tabBarVisible: false,
-                    tabBarIcon: ({focused}) => (
-                        <RecordIcon hideIcon={focused} />
-                    ),
+                    tabBarIcon: () => <RecordIcon />,
                     unmountOnBlur: true,
                 }}
             />

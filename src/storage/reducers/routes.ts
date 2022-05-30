@@ -3,10 +3,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '@storage/actions/actionTypes';
 import {LocationDataI} from '@interfaces/geolocation';
-
+export type RecordingStateT =
+    | 'not-started'
+    | 'recording'
+    | 'paused'
+    | 'stopped';
 export interface CurrentRouteI {
     id: string;
     isActive: boolean;
+    recordingState: RecordingStateT;
     startedAt: Date | undefined;
     endedAt: Date | undefined;
     pauseTime: number;
@@ -37,6 +42,7 @@ const initialStateList: RoutesState = {
     currentRoute: {
         id: '',
         isActive: false,
+        recordingState: 'not-started',
         startedAt: undefined,
         endedAt: undefined,
         pauseTime: 0,
@@ -95,6 +101,7 @@ const routesReducer = (state = initialStateList, action: any) => {
                 route = {
                     ...state.currentRoute,
                     isActive: true,
+                    recordingState: 'recording',
                 };
             }
 
@@ -143,6 +150,15 @@ const routesReducer = (state = initialStateList, action: any) => {
             return {
                 ...state,
                 isMapVisible: action.isMapVisible,
+            };
+        }
+        case actionTypes.SET_RECORDING_STATE: {
+            return {
+                ...state,
+                currentRoute: {
+                    ...state.currentRoute,
+                    recordingState: action.recordingState,
+                },
             };
         }
         case actionTypes.CLEAR_CURRENT_ROUTE: {

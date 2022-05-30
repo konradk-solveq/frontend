@@ -163,6 +163,7 @@ exports[`Storyshots containers/World/EmptyStateContainer Default 1`] = `
     </RNSVGSvgView>
     <Text
       adjustsFontSizeToFit={false}
+      numberOfLines={0}
       style={
         Array [
           Object {

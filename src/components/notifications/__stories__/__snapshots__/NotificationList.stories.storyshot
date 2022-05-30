@@ -24,6 +24,9 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
           "width": "100%",
         },
         Object {
+          "paddingTop": 0,
+        },
+        Object {
           "maxHeight": undefined,
         },
       ]
@@ -51,10 +54,20 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
-                  "marginHorizontal": 15.384615384615385,
+                  "marginHorizontal": 3.8461538461538463,
                   "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
+                },
+                Object {
+                  "elevation": 5,
+                  "shadowColor": "#333333",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 38.46153846153846,
+                  },
+                  "shadowOpacity": 0.07,
+                  "shadowRadius": 15.384615384615385,
                 },
                 undefined,
               ]
@@ -103,7 +116,9 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                       "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    undefined,
+                    Object {
+                      "color": "#C63733",
+                    },
                   ]
                 }
                 testID="header3-test-id"
@@ -204,10 +219,20 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
-                  "marginHorizontal": 15.384615384615385,
+                  "marginHorizontal": 3.8461538461538463,
                   "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
+                },
+                Object {
+                  "elevation": 5,
+                  "shadowColor": "#333333",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 38.46153846153846,
+                  },
+                  "shadowOpacity": 0.07,
+                  "shadowRadius": 15.384615384615385,
                 },
                 undefined,
               ]
@@ -256,7 +281,9 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                       "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    undefined,
+                    Object {
+                      "color": "#C63733",
+                    },
                   ]
                 }
                 testID="header3-test-id"
@@ -336,10 +363,20 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
-                  "marginHorizontal": 15.384615384615385,
+                  "marginHorizontal": 3.8461538461538463,
                   "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
+                },
+                Object {
+                  "elevation": 5,
+                  "shadowColor": "#333333",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 38.46153846153846,
+                  },
+                  "shadowOpacity": 0.07,
+                  "shadowRadius": 15.384615384615385,
                 },
                 undefined,
               ]
@@ -388,7 +425,9 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                       "lineHeight": 24,
                       "textAlign": "left",
                     },
-                    undefined,
+                    Object {
+                      "color": "#C63733",
+                    },
                   ]
                 }
                 testID="header3-test-id"

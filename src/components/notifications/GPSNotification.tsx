@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, ViewStyle} from 'react-native';
+import {LayoutChangeEvent, StyleSheet, View, ViewStyle} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {
@@ -16,19 +16,23 @@ import {TextIcon} from '@components/icons';
 interface IProps {
     title?: string;
     showWhenLocationIsDisabled?: boolean;
-    containerStyle?: ViewStyle;
+    containerStyle?: ViewStyle | ViewStyle[];
+    onLayout?: (event: LayoutChangeEvent) => void;
     style?: ViewStyle;
 }
 
 const GPSNotification: React.FC<IProps> = ({
     title = '',
     containerStyle,
+    onLayout,
     style,
 }: IProps) => {
     const {top} = useSafeAreaInsets();
 
     return (
-        <View style={[styles.container, {top}, containerStyle]}>
+        <View
+            style={[styles.container, {top}, containerStyle]}
+            onLayout={onLayout}>
             <View style={[styles.notificationContainer, style]}>
                 <TextIcon
                     icon={MykrossIconFont.MYKROSS_ICON_SIGNAL}
@@ -50,7 +54,6 @@ const styles = StyleSheet.create({
         zIndex: 1000,
     },
     notificationContainer: {
-        marginHorizontal: appContainerHorizontalMargin,
         paddingHorizontal: getFHorizontalPx(18),
         flexDirection: 'row',
         backgroundColor: colors.white,

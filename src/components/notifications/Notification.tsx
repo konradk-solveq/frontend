@@ -26,6 +26,7 @@ interface IProps extends NotificationI {
     titleStyle?: TextStyle;
     subtitleStyle?: TextStyle;
     actionStyle?: TextStyle;
+    withoutShadow?: boolean;
 }
 
 const Notification = ({
@@ -38,14 +39,20 @@ const Notification = ({
     iconColor = colors.red,
     iconSize = getFFontSize(24),
     iconStyle = {},
-    titleStyle,
+    titleStyle = {color: colors.red},
     subtitleStyle,
     actionStyle,
+    withoutShadow = false,
 }: IProps) => {
     const showButton = !!(actionText && action);
     const renderBottomRow = showButton || !!subtitle;
     return (
-        <View style={[styles.container, containerStyle]}>
+        <View
+            style={[
+                styles.container,
+                !withoutShadow && styles.shadow,
+                containerStyle,
+            ]}>
             <View style={styles.row}>
                 <TextIcon
                     icon={icon}
@@ -89,11 +96,18 @@ export default Notification;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
+        marginHorizontal: getFHorizontalPx(2),
         paddingHorizontal: getFHorizontalPx(16),
         paddingVertical: getFVerticalPx(12),
-        marginHorizontal: getFHorizontalPx(8),
         marginTop: getFVerticalPx(16),
         borderRadius: getFVerticalPx(16),
+    },
+    shadow: {
+        shadowColor: colors.black,
+        shadowRadius: getFHorizontalPx(8),
+        shadowOffset: {height: 0, width: getFHorizontalPx(20)},
+        shadowOpacity: 0.07,
+        elevation: 5,
     },
     icon: {
         marginRight: getFHorizontalPx(16),

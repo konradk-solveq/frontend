@@ -22,7 +22,15 @@ const useLocationProvider = () => {
     const {permissionGranted} = useCheckLocationType();
 
     const checkLocationAccuracy = useCallback(() => {
-        getCurrentLocation(undefined, 4, 10, true).then(location => {
+        getCurrentLocation(
+            undefined,
+            4,
+            LOCATION_ACCURACY - 10,
+            true,
+            undefined,
+            undefined,
+            true,
+        ).then(location => {
             /**
              * Check if accuracy is defined and is high enough
              */

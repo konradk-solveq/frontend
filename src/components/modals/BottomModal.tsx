@@ -1,4 +1,10 @@
-import React, {ReactNode, useEffect, useMemo, useState} from 'react';
+import React, {
+    ReactNode,
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+} from 'react';
 import {
     View,
     StyleSheet,
@@ -7,6 +13,7 @@ import {
     ViewStyle,
 } from 'react-native';
 import Animated, {
+    runOnJS,
     useAnimatedGestureHandler,
     useAnimatedStyle,
     useSharedValue,
@@ -17,12 +24,13 @@ import {
     PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
 
+import useStatusBarHeight from '@hooks/statusBarHeight';
+import {StateType} from '@type/components/bottomModal';
 import {
     getFHorizontalPx,
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
 import colors from '@theme/colors';
-import useStatusBarHeight from '@hooks/statusBarHeight';
 
 const {height} = Dimensions.get('window');
 const containerHeight = getFVerticalPx(270);
@@ -30,6 +38,10 @@ const containerHeight = getFVerticalPx(270);
 interface IProps {
     show?: boolean;
     openModal?: boolean;
+    /**
+     * Retrun state of modal
+     */
+    onChangeState?: (type: StateType, position?: number) => void;
     enableScroll?: boolean;
     /**
      * Height of open modal (start point)
@@ -63,6 +75,10 @@ interface IProps {
     autoCloseBottom?: number;
     openDuration?: number;
     closeDuration?: number;
+    /**
+     * Calculate the height of the component without statusBar height
+     */
+    drawUnderStatusBar?: boolean;
     style?: ViewStyle;
     testID?: string;
 }
@@ -70,6 +86,7 @@ interface IProps {
 const BottomModal: React.FC<IProps> = ({
     show,
     openModal = false,
+    onChangeState,
     enableScroll = false,
     openModalHeight = containerHeight,
     openModalFullHeight = height,
@@ -82,16 +99,19 @@ const BottomModal: React.FC<IProps> = ({
     autoCloseBottom,
     openDuration = 750,
     closeDuration = 750,
+    drawUnderStatusBar = false,
     style,
     testID = 'bottom-modal-test-id',
 }: IProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const statusBarHeight = useStatusBarHeight();
-    const openModalH = useMemo(() => openModalFullHeight - statusBarHeight, [
-        openModalFullHeight,
-        statusBarHeight,
-    ]);
+    const openModalH = useMemo(
+        () =>
+            openModalFullHeight -
+            (!drawUnderStatusBar ? statusBarHeight : -statusBarHeight),
+        [openModalFullHeight, statusBarHeight, drawUnderStatusBar],
+    );
     const autoCloseTopLimit = useMemo(() => autoCloseTop || 0.65 * openModalH, [
         autoCloseTop,
         openModalH,
@@ -101,8 +121,28 @@ const BottomModal: React.FC<IProps> = ({
         [autoCloseBottom, openModalH],
     );
 
+    /**
+     * Trigger when user open or close modal
+     */
+    const onChangeStateHandler = useCallback(
+        (state?: boolean) => {
+            onChangeState && onChangeState(state ? 'open' : 'closed');
+        },
+        [onChangeState],
+    );
+    /**
+     * Trigger when user is swiping modal
+     */
+    const onActiveStateHandler = useCallback(
+        (position: number) => {
+            onChangeState && onChangeState('active', position);
+        },
+        [onChangeState],
+    );
+
     const modalHeight = useSharedValue(0);
     const modalHeaderOpacity = useSharedValue(0);
+    const modalIsOpened = useSharedValue(false);
 
     const modalAnimation = useAnimatedStyle(() => ({
         height: modalHeight.value,
@@ -126,7 +166,14 @@ const BottomModal: React.FC<IProps> = ({
             modalHeaderOpacity.value = 0;
             setIsVisible(false);
         }
-    }, [show, isVisible, modalHeight, openModalHeight, modalHeaderOpacity]);
+    }, [
+        show,
+        isVisible,
+        modalHeight,
+        openModalHeight,
+        modalHeaderOpacity,
+        onChangeStateHandler,
+    ]);
 
     useEffect(() => {
         if (isVisible) {
@@ -150,7 +197,7 @@ const BottomModal: React.FC<IProps> = ({
      */
     useEffect(() => {
         setIsOpen(openModal);
-    }, [openModal]);
+    }, [openModal, modalIsOpened]);
 
     const panGestureEventHandler = useAnimatedGestureHandler<
         PanGestureHandlerGestureEvent,
@@ -174,6 +221,11 @@ const BottomModal: React.FC<IProps> = ({
                 return;
             } else {
                 modalHeight.value = ctx.y - translationY;
+
+                /**
+                 * Inform parent that modal is active
+                 */
+                runOnJS(onActiveStateHandler)(modalHeight.value);
             }
         },
         onEnd: ({translationY}) => {
@@ -190,9 +242,15 @@ const BottomModal: React.FC<IProps> = ({
                     autoClose) &&
                 translationY < 0
             ) {
+                modalIsOpened.value = true;
                 modalHeight.value = withTiming(openModalH, {
                     duration: openDuration,
                 });
+
+                /**
+                 * Inform parent that modal is opened
+                 */
+                runOnJS(onChangeStateHandler)(true);
             } else if (
                 /**
                  * Start closing the modal if swipe translationY is bigger or equal to 0
@@ -202,9 +260,15 @@ const BottomModal: React.FC<IProps> = ({
                     autoClose) &&
                 translationY >= 0
             ) {
+                modalIsOpened.value = false;
                 modalHeight.value = withTiming(openModalHeight, {
                     duration: closeDuration,
                 });
+
+                /**
+                 * Inform parent that modal is closed
+                 */
+                runOnJS(onChangeStateHandler)(false);
             }
         },
     });

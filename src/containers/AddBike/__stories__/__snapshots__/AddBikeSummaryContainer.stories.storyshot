@@ -209,6 +209,7 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Customized 1`] = 
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -543,6 +544,7 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Default 1`] = `
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {

@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
-import {StyleSheet, Platform, Dimensions, View} from 'react-native';
+import {StyleSheet, Platform, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
 
 import useAppState from '@hooks/useAppState';
@@ -9,9 +9,7 @@ import {getCurrentLocation} from '../../../../utils/geolocation';
 import {DataI} from '@hooks/useLocalizationTracker';
 
 import mapStyle from '../../../../sharedComponents/maps/styles';
-import AnimSvg from '../../../../helpers/animSvg';
 
-import GradientSvg from './gradientSvg';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
@@ -19,8 +17,6 @@ import {useLocationProvider} from '@providers/staticLocationProvider/staticLocat
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {getCenterCameraCoords} from '@src/utils/mapCameraAnimation';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {getAppLayoutConfig} from '@theme/appLayoutConfig';
 
 type latType = {latitude: number; longitude: number};
 
@@ -100,11 +96,9 @@ const Map: React.FC<IProps> = ({
     const globalLocation = useLocationProvider()?.location;
 
     const {appStateVisible, appPrevStateVisible} = useAppState();
-    const [showWebView, setShowWebView] = useState(false);
     const [showMap, setShowMap] = useState(false);
 
     const [cameraAnimCooldown, setCameraAnimCooldown] = useState(false);
-    const {bottom} = useSafeAreaInsets();
 
     useEffect(() => {
         mountedRef.current = true;
@@ -319,11 +313,6 @@ const Map: React.FC<IProps> = ({
     /* TODO: error boundary */
     return showMap ? (
         <View>
-            {showWebView && (
-                <GradientSvg
-                    style={[{top: -(getAppLayoutConfig.statusBarH() + bottom)}]}
-                />
-            )}
             <MapView
                 ref={mapRef}
                 provider={PROVIDER_GOOGLE}
@@ -336,9 +325,6 @@ const Map: React.FC<IProps> = ({
                 zoomTapEnabled={true}
                 showsCompass={false}
                 onPanDrag={handleCameraChange}
-                onMapLoaded={() => {
-                    setShowWebView(true);
-                }}
                 {...(!isIOS && {
                     initialCamera: cameraInitObj,
                 })}
@@ -367,7 +353,7 @@ const Map: React.FC<IProps> = ({
                         }
                         location={location}
                         headingOn={headingOn}
-                        compassHeading={headingOn ? compassHeading : 0}
+                        compassHeading={compassHeading || 0}
                     />
                 ) : null}
                 {!beforeRecording && trackerData?.coords ? (

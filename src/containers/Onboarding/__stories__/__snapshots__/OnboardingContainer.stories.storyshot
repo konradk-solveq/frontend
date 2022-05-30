@@ -70,6 +70,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -158,6 +159,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -246,6 +248,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -334,6 +337,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -776,6 +780,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -864,6 +869,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -952,6 +958,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -1040,6 +1047,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {

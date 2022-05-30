@@ -138,10 +138,11 @@ export const getCurrentLocation = async (
     notPersist?: boolean,
     timeout?: number,
     maximumAge?: number,
+    forceGettingLocation?: boolean
 ) => {
     try {
         const state = await getBackgroundGeolocationState();
-        if (!state?.enabled) {
+        if (!state?.enabled && !forceGettingLocation) {
             return;
         }
 
