@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
-import {Notification} from '@components/notifications/index';
 import {NotificationI} from '@components/notifications/Notification';
 import Animated, {FadeIn, Layout, FadeOut} from 'react-native-reanimated';
 import {getFVerticalPx} from '@helpers/appLayoutDimensions';
@@ -10,27 +9,27 @@ export interface NotificationListItemI extends NotificationI {
 }
 
 interface IProps {
-    notifications: NotificationListItemI[];
+    children: JSX.Element[];
     maxHeight?: number;
 }
 
-const renderItem = (item: NotificationListItemI) => (
+const renderItem = (item: JSX.Element) => (
     <Animated.View
         entering={FadeIn.delay(300)}
         layout={Layout.damping(1).delay(150)}
         exiting={FadeOut}
         key={item.key}>
-        <Notification {...item} />
+        {item}
     </Animated.View>
 );
 
-const NotificationList = ({notifications, maxHeight}: IProps) => {
+const NotificationList = ({children, maxHeight}: IProps) => {
     return (
         <View style={[styles.container, {maxHeight: maxHeight}]}>
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={styles.content}>
-                {notifications.map(renderItem)}
+                {children.map(renderItem)}
             </ScrollView>
         </View>
     );
@@ -41,6 +40,7 @@ export default NotificationList;
 const styles = StyleSheet.create({
     container: {
         height: '100%',
+        width: '100%',
     },
     content: {
         /**
