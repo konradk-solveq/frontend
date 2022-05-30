@@ -4,6 +4,7 @@ import BrokenBike from './brokenBike';
 import BlueBikeSvg from './BlueBikeSvg';
 import CameraSvg from './CameraSvg';
 import BubbleSvg from './BubbleSvg';
+import ChevronUp from './icons/ChevronUpSvg';
 import HandSvg from './HandSvg';
 import LeafSvg from './LeafSvg';
 import MoneySvg from './MoneySvg';
@@ -21,6 +22,7 @@ export {
     BlueBikeSvg,
     BubbleSvg,
     CameraSvg,
+    ChevronUp,
     ContactSvg,
     ContactTypeSvg,
     FinishLine,

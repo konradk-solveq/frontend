@@ -54,6 +54,7 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Customizable 1`] 
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -126,6 +127,7 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Default 1`] = `
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {

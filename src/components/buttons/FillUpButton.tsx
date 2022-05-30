@@ -1,11 +1,10 @@
 import React, {useRef} from 'react';
-import {StyleSheet, ViewStyle, Animated} from 'react-native';
+import {StyleSheet, ViewStyle, Animated, Pressable} from 'react-native';
 
 import colors from '@theme/colors';
-import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
-import Button from './Button';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {Button} from '@components/buttons';
 
 interface IProps {
     onFilledAction: () => void;
@@ -21,6 +20,7 @@ interface IProps {
     withLoader?: boolean;
     withoutShadow?: boolean;
     style?: ViewStyle;
+    containerStyle?: ViewStyle;
     testID?: string;
 }
 
@@ -29,7 +29,7 @@ const FillUpButton: React.FC<IProps> = ({
     onReleaseAction = () => {},
     text,
     backgroundColor,
-    textColor,
+    textColor = colors.red,
     icon,
     fillColor = colors.lightRed,
     pressDuration = 3000,
@@ -38,6 +38,7 @@ const FillUpButton: React.FC<IProps> = ({
     withLoader = false,
     withoutShadow = false,
     style,
+    containerStyle,
     testID = 'fill-up-btn-test-id',
 }: IProps) => {
     const backgroundWidthRef = useRef(new Animated.Value(0)).current;
@@ -87,10 +88,10 @@ const FillUpButton: React.FC<IProps> = ({
     };
 
     return (
-        <TouchableWithoutFeedback
+        <Pressable
             onPressIn={handleOnPressIn}
             onPressOut={handleOnPressOut}
-            style={styles.container}
+            style={[styles.container, containerStyle]}
             testID={`${testID}-touchable`}>
             <Button
                 text={text}
@@ -99,6 +100,7 @@ const FillUpButton: React.FC<IProps> = ({
                 disabledColor={colors.lightRed}
                 icon={icon}
                 disabled={disabled}
+                disableTouch
                 withLoader={withLoader}
                 testID={testID}
                 textColor={textColor}
@@ -115,7 +117,7 @@ const FillUpButton: React.FC<IProps> = ({
                     ]}
                 />
             </Button>
-        </TouchableWithoutFeedback>
+        </Pressable>
     );
 };
 

@@ -27,6 +27,7 @@ export const transformMetersToKilometersString = (
     meters: number | undefined,
     fixedNumber?: number,
     emptyFalse?: boolean,
+    replaceSeparator?: string,
 ): string => {
     if (meters === undefined || meters === null || isNaN(meters)) {
         if (emptyFalse) {
@@ -37,7 +38,9 @@ export const transformMetersToKilometersString = (
 
     const km = getKilometersFromMeteres(meters).toFixed(fixedNumber || 2);
     const kmDot = km.lastIndexOf('.');
-    const kmSuffix = km.substr(kmDot, km.length).replace('.', ',');
+    const kmSuffix = km
+        .substr(kmDot, km.length)
+        .replace('.', replaceSeparator || ',');
     const kmPrefix = km.substr(0, kmDot);
 
     const transformedKm = putSeparatorIntoNum(kmPrefix, ' ', 3, true);

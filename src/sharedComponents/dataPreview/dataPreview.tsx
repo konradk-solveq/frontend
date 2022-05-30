@@ -1,18 +1,19 @@
-import {getFontSize, getHorizontalPx, getVerticalPx} from '@src/helpers/layoutFoo';
-import React, {useState, useContext, useRef} from 'react';
+import {
+    getFontSize,
+    getHorizontalPx,
+    getVerticalPx,
+} from '@src/helpers/layoutFoo';
+import React, {useState, useContext, useEffect} from 'react';
 import {
     StyleSheet,
     View,
     Text,
-    TextStyle,
     ViewStyle,
     TouchableOpacity,
-    Platform,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {getAverageSpeedFromDistanceAndTime} from '@src/utils/speed';
-import {CounterDataContext} from '@src/pages/main/recording/counter/nativeCounter/counterContext/counterContext';
-import {useEffect} from 'react';
+import {CounterDataContext} from '@pages/main/recording/counter/context/counterContext';
 
 interface Props {
     title: string;
@@ -28,7 +29,7 @@ const DataPreview: React.FC<Props> = ({
     style,
     trackerStartTime,
     reduxData,
-}: IProps) => {
+}: Props) => {
     const [opacity, setOpacity] = useState(0.8);
     const [show, setShow] = useState(false);
     const [scrollAble, setscrollAble] = useState(false);

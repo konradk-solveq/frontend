@@ -28,6 +28,10 @@ export interface IProps {
     iconSize?: number;
     iconColor?: string;
     disabled?: boolean;
+    /**
+     * Disable onPress events
+     */
+    disableTouch?: boolean;
     withLoader?: boolean;
     loaderColor?: string;
     withoutShadow?: boolean;
@@ -53,6 +57,7 @@ const Button: React.FC<IProps> = ({
     iconSize = 20,
     iconRight = false,
     disabled = false,
+    disableTouch = false,
     loaderColor,
     withLoader,
     withoutShadow = false,
@@ -98,7 +103,7 @@ const Button: React.FC<IProps> = ({
         <Pressable
             onPress={onPress}
             testID={testID}
-            disabled={disabled}
+            disabled={disabled || disableTouch}
             style={[styles.innerContainer, shadowStyle, style]}>
             <View
                 testID={`${testID}-container`}

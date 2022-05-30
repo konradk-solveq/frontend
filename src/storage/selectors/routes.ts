@@ -1,5 +1,5 @@
 import {LocationDataI} from '@interfaces/geolocation';
-import {RoutesI} from '@storage/reducers/routes';
+import {RecordingStateT, RoutesI} from '@storage/reducers/routes';
 import {RootState} from '@storage/storage';
 
 export const trackerFollowedRouteIdSelector = (state: RootState): string =>
@@ -10,6 +10,10 @@ export const trackerRouteIdSelector = (state: RootState): string | undefined =>
 
 export const trackerActiveSelector = (state: RootState): boolean =>
     state.routes.currentRoute.isActive;
+
+export const trackerRecordingStateSelector = (
+    state: RootState,
+): RecordingStateT => state.routes.currentRoute.recordingState;
 
 export const trackerStartTimeSelector = (state: RootState): Date | undefined =>
     state.routes.currentRoute.startedAt

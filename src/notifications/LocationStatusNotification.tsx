@@ -1,15 +1,44 @@
-import React, {useMemo} from 'react';
-import {ViewStyle} from 'react-native';
+import React, {useEffect, useMemo} from 'react';
+import {LayoutChangeEvent, ViewStyle} from 'react-native';
 
 import {useLocationProvider} from '@hooks/';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {GPSNotification} from '@components/notifications';
 
+const defaultLayoutEvent = {
+    nativeEvent: {layout: {height: 0, x: 0, y: 0, width: 0}},
+    currentTarget: 0,
+    target: 0,
+    bubbles: false,
+    cancelable: false,
+    defaultPrevented: false,
+    eventPhase: 0,
+    isTrusted: false,
+    preventDefault: function (): void {
+        throw new Error('Function not implemented.');
+    },
+    isDefaultPrevented: function (): boolean {
+        throw new Error('Function not implemented.');
+    },
+    stopPropagation: function (): void {
+        throw new Error('Function not implemented.');
+    },
+    isPropagationStopped: function (): boolean {
+        throw new Error('Function not implemented.');
+    },
+    persist: function (): void {
+        throw new Error('Function not implemented.');
+    },
+    timeStamp: 0,
+    type: '',
+};
+
 interface IProps {
     title?: string;
     showWhenLocationIsDisabled?: boolean;
-    containerStyle?: ViewStyle;
+    containerStyle?: ViewStyle | ViewStyle[];
+    onLayout?: (event: LayoutChangeEvent) => void;
     style?: ViewStyle;
 }
 
@@ -17,6 +46,7 @@ const LocationStatusNotification: React.FC<IProps> = ({
     title = '',
     showWhenLocationIsDisabled = false,
     containerStyle,
+    onLayout,
     style,
 }: IProps) => {
     const {t} = useMergedTranslation('Notifications.location');
@@ -45,11 +75,18 @@ const LocationStatusNotification: React.FC<IProps> = ({
         [initialized, gpsAvailable, highDesiredAccuracy, locationEnabled],
     );
 
+    useEffect(() => {
+        if (!showNotification && !whenLocationIsDsiabled) {
+            onLayout && onLayout(defaultLayoutEvent);
+        }
+    }, [showNotification, whenLocationIsDsiabled, onLayout]);
+
     return showNotification || whenLocationIsDsiabled ? (
         <GPSNotification
             title={title || t('searchSignal.title')}
             containerStyle={containerStyle}
             style={style}
+            onLayout={onLayout}
         />
     ) : null;
 };

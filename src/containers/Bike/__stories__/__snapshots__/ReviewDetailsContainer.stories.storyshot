@@ -53,6 +53,7 @@ exports[`Storyshots containers/Bike/ReviewDetailsContainer Customized 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -549,6 +550,7 @@ exports[`Storyshots containers/Bike/ReviewDetailsContainer Default 1`] = `
         >
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {

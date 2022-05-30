@@ -720,30 +720,34 @@
         "noData": "Brak danych"
     },
     "MainCounter": {
-        "headerStart": "Rozpocznij nagrywanie",
-        "headerRecord": "Trwa nagrywanie",
-        "headerPause": "Pauza",
-        "distance": "Dystans",
-        "distanceUnit": "km",
-        "time": "Czas",
-        "speed": "Prędkość",
-        "speedUnit": "km/h",
-        "averageSpeed": "Średnia prędkość",
-        "averageSpeedUnit": "km/h",
-        "btnStart": "START",
-        "btnPauza": "PAUZA",
-        "btnPauzaOff": "WZNÓW",
-        "btnEnd": "ZAKOŃCZ",
-        "cancelText": "Czy chcesz przerwać nagrywanie trasy bez jej zapisywania?",
-        "endText": "Czy chcesz zakończyć nagrywanie trasy?",
-        "btnCancel": "ANULUJ",
-        "btnBreak": "PRZERWIJ",
-        "bikeChanged": "Zmieniono rower na {{name}}",
         "alerts": {
             "tooShort": {
                 "message": "Przejechany dystans jest \n zbyt krótki. Minimalna długość \n trasy do zapisania to 100m",
                 "action": "Zamknij"
+            },
+            "pressLongToFinish": {
+                "message": "Przytrzymaj przez 3 sek.\naby zakończyć"
             }
+        },
+        "metrics": {
+            "short": {
+                "time": "czas",
+                "distance": "km",
+                "speed": "km/h",
+                "averageSpeed": "śr. km/h"
+            },
+            "full": {
+                "time": "czas",
+                "distance": "dystans",
+                "speed": "prędkość km/h",
+                "averageSpeed": "śr. prędkość km/h"
+            }
+        },
+        "actions": {
+            "startRecording": "Rozpocznij nagrywanie",
+            "pauseRecording": "Pauza",
+            "resumeRecording": "Wznów",
+            "stopRecording": "Zakończ"
         }
     },
     "CounterThankYouPage": {
