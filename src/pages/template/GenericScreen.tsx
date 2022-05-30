@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {View, Text, StatusBar} from 'react-native';
+import {View, Text, StatusBar, GestureResponderEvent} from 'react-native';
 import {
     Edge,
     SafeAreaView,
@@ -25,6 +25,7 @@ interface IProps {
     showCross?: boolean /* Shows cross instead of back arrow */;
     statusBarBackgroundColor?: string;
     backgroundColor?: string;
+    onArrowPress?: (e: GestureResponderEvent) => void;
 }
 
 const GenericScreen: React.FC<IProps> = ({
@@ -39,6 +40,7 @@ const GenericScreen: React.FC<IProps> = ({
     showCross = false,
     statusBarBackgroundColor = 'transparent',
     backgroundColor = colors.backgroundPrimary,
+    onArrowPress,
 }: IProps) => {
     const statusBarHeigh = getAppLayoutConfig.statusBarH();
     const {top} = useSafeAreaInsets();
@@ -98,6 +100,7 @@ const GenericScreen: React.FC<IProps> = ({
                             rightActions={actionElement}
                             hideBackArrow={hideBackArrow}
                             showCross={showCross}
+                            onPress={onArrowPress}
                         />
                     )}
                     {children ? children : <Text>Generic Screen</Text>}

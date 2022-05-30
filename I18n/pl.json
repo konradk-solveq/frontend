@@ -571,19 +571,23 @@
                 "button": "Przejdź do strony głównej"
             }
         },
-        "EditScreen": {
-            "tagsTitle": "Tagi",
-            "nameInput": "Tytuł",
-            "intro": "Opis trasy",
-            "description": "Szczegółowy opis trasy",
-            "publishButton": "Upublicznij",
-            "updateButton": "Aktualizuj",
+        "form": {
+            "required": "Pole wymagane",
+            "publishButton": "Opublikuj",
             "saveButton": "Zapisz",
-            "imagesTitle": "Zdjęcia z trasy",
-            "removeRouteBtn": "Tak, usuń",
-            "cancelRemoveRouteBtn": "Anuluj",
-            "defaultUser": "Rowerzysta",
-            "publishAs": "Opublikuj jako",
+            "publishAsAnonymous": {
+                "label": "Opublikuj anonimowo"
+            },
+            "photos": {
+                "label": "Zdjęcia",
+                "placeholder": "Dodaj zdjęcie"
+            },
+            "title": {
+                "placeholder": "Tytuł"
+            },
+            "description": {
+                "placeholder": "Opis trasy"
+            },
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",
@@ -614,8 +618,35 @@
                         "dla dzieci"
                     ]
                 }
-            }
         }
+        },
+        "EditScreen": {
+            "header": "Edycja trasy",
+            "publishHeader": "Opublikuj trasę",
+            "save": "Zapisz",
+            "publish": "Publikuj",
+            "publishDescription": "Przed opublikowaniem trasy, prosimy o wypełnienie wszystkich pól",
+            "alertEdit": {
+                "text": "Wychodzisz z ekranu edycji trasy prywatnej",
+                "approve": "Zapisz i wyjdź",
+                "cancel": "Wyjdź bez zapisywania"
+            },
+            "alertPublish": {
+                "text": "Wychodzisz z ekranu publikacji trasy",
+                "approve": "Wróć do formularza",
+                "cancel": "Wyjdź"
+            },
+            "tagsTitle": "Tagi",
+            "nameInput": "Tytuł",
+            "intro": "Opis trasy",
+            "description": "Szczegółowy opis trasy",
+            "updateButton": "Aktualizuj",
+            "imagesTitle": "Zdjęcia z trasy",
+            "removeRouteBtn": "Tak, usuń",
+            "cancelRemoveRouteBtn": "Anuluj",
+            "defaultUser": "Rowerzysta"
+        }
+
     },
     "MainBike": {
         "header": "Rower",

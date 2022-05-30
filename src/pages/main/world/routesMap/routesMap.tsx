@@ -258,9 +258,16 @@ const RoutesMap: React.FC = () => {
                         mapType: routeInfo.mapType,
                     });
                     break;
-                case 'edit' || 'publish':
+                case 'edit':
                     navigation.navigate('EditDetails', {
                         mapID: mapId,
+                        private: isCreatedByUser,
+                    });
+                    break;
+                case 'publish':
+                    navigation.navigate('EditDetails', {
+                        mapID: mapId,
+                        publish: true,
                         private: isCreatedByUser,
                     });
                     break;

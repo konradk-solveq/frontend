@@ -66,7 +66,7 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                 ) : (
                     <PrivateActionButtons
                         onPressPrimary={() =>
-                            onPressAction(isPublished ? 'share' : 'edit')
+                            onPressAction(isPublished ? 'share' : 'publish')
                         } /* Now we can piublish only from edit page */
                         onPressSecondary={() => onPressAction('edit')}
                         onPressIcon={() => onPressAction('do_more')}

@@ -1,8 +1,4 @@
-import {
-    levelFilter,
-    pavementFilter,
-    tagsFilter,
-} from '../../../../../enums/mapsFilters';
+import {levelFilter, pavementFilter, tagsFilter} from '@enums/mapsFilters';
 
 export type OptionFilterType = levelFilter | pavementFilter | tagsFilter;
 
@@ -23,7 +19,6 @@ export const attributes: FilterI = {
     pavement: {
         name: 'pavement',
         options: [
-            pavementFilter.gravel,
             pavementFilter.asphalt,
             pavementFilter.paved,
             pavementFilter.unsealed,

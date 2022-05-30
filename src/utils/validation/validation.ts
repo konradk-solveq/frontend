@@ -11,8 +11,8 @@ import {
     isBoolean,
     isArray,
 } from 'class-validator';
-import {UseFormSetError} from 'react-hook-form';
-import {MapFormData, MapFormDataResult} from '../../interfaces/form';
+import {UseFormSetError, FieldValues} from 'react-hook-form';
+
 import validationRules from './validationRules';
 
 const containsRule = (rule: string, k: string) => {
@@ -92,9 +92,9 @@ export const validateData = (rules: any[] | undefined, value: any) => {
 };
 
 export const reValidateMapMetadataManually = (
-    data: MapFormDataResult,
+    data: FieldValues,
     validationMessages: string[],
-    onError: UseFormSetError<MapFormData>,
+    onError: UseFormSetError<FieldValues>,
     skip?: string[],
 ) => {
     let isValid = true;
@@ -103,7 +103,7 @@ export const reValidateMapMetadataManually = (
             return;
         }
 
-        const el = data?.[d as keyof MapFormDataResult];
+        const el = data?.[d as keyof FieldValues];
         const isEmptyString = isString(el) && isEmpty(el.trim());
         const emptyArray = isArray(el) && !el?.length;
 

@@ -4,13 +4,13 @@ import {
     Image,
     StyleSheet,
     ViewStyle,
-    ImageProps,
     View,
     Pressable,
     ImageStyle,
 } from 'react-native';
 
 import {RemoveBtn} from '../buttons';
+import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
 
 interface IProps {
     images: string[];
@@ -61,25 +61,20 @@ const ImageSwiper: React.FC<IProps> = ({
 };
 
 const styles = StyleSheet.create({
-    scrollView: {
-        height: 150,
-    },
     container: {
         flexDirection: 'row',
     },
     image: {
         backgroundColor: '#ededed',
-        width: 125,
-        height: 125,
-        marginRight: 15,
-        borderRadius: 16,
+        width: getFHorizontalPx(109),
+        height: getFVerticalPx(81),
+        marginRight: getFHorizontalPx(8),
+        borderRadius: getFVerticalPx(10),
     },
     buttonContainer: {
-        width: '100%',
         position: 'absolute',
-        alignItems: 'center',
-        paddingRight: 15,
-        bottom: 0,
+        right: getFHorizontalPx(16),
+        top: getFVerticalPx(8),
     },
 });
 

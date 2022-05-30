@@ -76,7 +76,10 @@ const CounterThankYouPage: React.FC = () => {
             if (goForward === Action.next && !prev) {
                 navigation.navigate({
                     name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-                    params: {redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN},
+                    params: {
+                        redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN,
+                        publish: true,
+                    },
                 });
                 return;
             }

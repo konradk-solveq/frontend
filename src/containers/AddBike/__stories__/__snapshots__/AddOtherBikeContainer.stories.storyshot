@@ -59,6 +59,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
               style={
                 Object {
                   "marginBottom": 6.322274881516588,
+                  "marginLeft": 30.76923076923077,
                 }
               }
               testID="add-other-bike-container-id-button-input-input-name"
@@ -105,6 +106,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                     "paddingVertical": 0,
                   },
                   Object {},
+                  false,
                 ]
               }
               testID="add-other-bike-container-id-button-input-input-value"
@@ -160,6 +162,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-name"
@@ -206,6 +209,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-value"
@@ -247,6 +251,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-name"
@@ -293,6 +298,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-value"
@@ -1344,6 +1350,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
               style={
                 Object {
                   "marginBottom": 6.322274881516588,
+                  "marginLeft": 30.76923076923077,
                 }
               }
               testID="add-other-bike-container-id-button-input-input-name"
@@ -1390,6 +1397,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                     "paddingVertical": 0,
                   },
                   Object {},
+                  false,
                 ]
               }
               testID="add-other-bike-container-id-button-input-input-value"
@@ -1445,6 +1453,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-name"
@@ -1491,6 +1500,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-value"
@@ -1532,6 +1542,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-name"
@@ -1578,6 +1589,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-value"

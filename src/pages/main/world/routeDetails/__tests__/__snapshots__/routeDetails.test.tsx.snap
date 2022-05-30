@@ -75,7 +75,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           />
@@ -85,7 +85,7 @@ Array [
                 "alignItems": "center",
                 "height": 44.25592417061611,
                 "justifyContent": "center",
-                "width": 496.1538461538462,
+                "width": 457.6923076923077,
               }
             }
           >
@@ -117,7 +117,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           >
@@ -1078,9 +1078,7 @@ viewBox=\\"0 0 414 414\\">
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
-                      Object {
-                        "height": 150,
-                      },
+                      undefined,
                       undefined,
                     ]
                   }
@@ -1118,10 +1116,10 @@ viewBox=\\"0 0 414 414\\">
                             Array [
                               Object {
                                 "backgroundColor": "#ededed",
-                                "borderRadius": 16,
-                                "height": 125,
-                                "marginRight": 15,
-                                "width": 125,
+                                "borderRadius": 15.80568720379147,
+                                "height": 128.0260663507109,
+                                "marginRight": 15.384615384615385,
+                                "width": 209.6153846153846,
                               },
                               undefined,
                             ]
@@ -2038,7 +2036,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           />
@@ -2048,7 +2046,7 @@ Array [
                 "alignItems": "center",
                 "height": 44.25592417061611,
                 "justifyContent": "center",
-                "width": 496.1538461538462,
+                "width": 457.6923076923077,
               }
             }
           >
@@ -2080,7 +2078,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           >
@@ -3041,9 +3039,7 @@ viewBox=\\"0 0 414 414\\">
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
-                      Object {
-                        "height": 150,
-                      },
+                      undefined,
                       undefined,
                     ]
                   }
@@ -3081,10 +3077,10 @@ viewBox=\\"0 0 414 414\\">
                             Array [
                               Object {
                                 "backgroundColor": "#ededed",
-                                "borderRadius": 16,
-                                "height": 125,
-                                "marginRight": 15,
-                                "width": 125,
+                                "borderRadius": 15.80568720379147,
+                                "height": 128.0260663507109,
+                                "marginRight": 15.384615384615385,
+                                "width": 209.6153846153846,
                               },
                               undefined,
                             ]
@@ -4040,7 +4036,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           />
@@ -4050,7 +4046,7 @@ Array [
                 "alignItems": "center",
                 "height": 44.25592417061611,
                 "justifyContent": "center",
-                "width": 496.1538461538462,
+                "width": 457.6923076923077,
               }
             }
           >
@@ -4082,7 +4078,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           >
@@ -5121,9 +5117,7 @@ viewBox=\\"0 0 414 414\\">
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
-                      Object {
-                        "height": 150,
-                      },
+                      undefined,
                       undefined,
                     ]
                   }
@@ -5161,10 +5155,10 @@ viewBox=\\"0 0 414 414\\">
                             Array [
                               Object {
                                 "backgroundColor": "#ededed",
-                                "borderRadius": 16,
-                                "height": 125,
-                                "marginRight": 15,
-                                "width": 125,
+                                "borderRadius": 15.80568720379147,
+                                "height": 128.0260663507109,
+                                "marginRight": 15.384615384615385,
+                                "width": 209.6153846153846,
                               },
                               undefined,
                             ]
@@ -6081,7 +6075,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           />
@@ -6091,7 +6085,7 @@ Array [
                 "alignItems": "center",
                 "height": 44.25592417061611,
                 "justifyContent": "center",
-                "width": 496.1538461538462,
+                "width": 457.6923076923077,
               }
             }
           >
@@ -6123,7 +6117,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           >
@@ -7084,9 +7078,7 @@ viewBox=\\"0 0 414 414\\">
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
-                      Object {
-                        "height": 150,
-                      },
+                      undefined,
                       undefined,
                     ]
                   }
@@ -7124,10 +7116,10 @@ viewBox=\\"0 0 414 414\\">
                             Array [
                               Object {
                                 "backgroundColor": "#ededed",
-                                "borderRadius": 16,
-                                "height": 125,
-                                "marginRight": 15,
-                                "width": 125,
+                                "borderRadius": 15.80568720379147,
+                                "height": 128.0260663507109,
+                                "marginRight": 15.384615384615385,
+                                "width": 209.6153846153846,
                               },
                               undefined,
                             ]
@@ -8044,7 +8036,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           >
@@ -8110,7 +8102,7 @@ Array [
                 "alignItems": "center",
                 "height": 44.25592417061611,
                 "justifyContent": "center",
-                "width": 496.1538461538462,
+                "width": 457.6923076923077,
               }
             }
           >
@@ -8142,7 +8134,7 @@ Array [
                 "flexDirection": "row",
                 "height": 44.25592417061611,
                 "paddingRight": 3.8461538461538463,
-                "width": 96.15384615384616,
+                "width": 115.38461538461539,
               }
             }
           >
@@ -9103,9 +9095,7 @@ viewBox=\\"0 0 414 414\\">
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
-                      Object {
-                        "height": 150,
-                      },
+                      undefined,
                       undefined,
                     ]
                   }
@@ -9143,10 +9133,10 @@ viewBox=\\"0 0 414 414\\">
                             Array [
                               Object {
                                 "backgroundColor": "#ededed",
-                                "borderRadius": 16,
-                                "height": 125,
-                                "marginRight": 15,
-                                "width": 125,
+                                "borderRadius": 15.80568720379147,
+                                "height": 128.0260663507109,
+                                "marginRight": 15.384615384615385,
+                                "width": 209.6153846153846,
                               },
                               undefined,
                             ]
