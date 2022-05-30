@@ -11,7 +11,7 @@ import {HorizontalSpacer} from '@components/divider';
 import {WarningSvg} from '@components/svg';
 import {Header3} from '@components/texts/texts';
 
-interface IProps {
+export interface IProps {
     onPress: () => void;
     onCancel?: () => void;
     noCancel?: boolean;

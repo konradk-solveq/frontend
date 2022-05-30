@@ -2,6 +2,7 @@ import BikePin from './BikePin';
 import BikeSvg from './BikeSvg';
 import BrokenBike from './brokenBike';
 import BlueBikeSvg from './BlueBikeSvg';
+import CameraSvg from './CameraSvg';
 import BubbleSvg from './BubbleSvg';
 import HandSvg from './HandSvg';
 import LeafSvg from './LeafSvg';
@@ -19,6 +20,7 @@ export {
     BrokenBike,
     BlueBikeSvg,
     BubbleSvg,
+    CameraSvg,
     ContactSvg,
     ContactTypeSvg,
     FinishLine,

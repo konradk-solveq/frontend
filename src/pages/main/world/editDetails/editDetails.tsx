@@ -1,44 +1,54 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {View, SafeAreaView, Platform, ScrollView} from 'react-native';
+import React, {useCallback, useEffect, useRef, useState, useMemo} from 'react';
+import {View, ScrollView, Pressable} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/core';
 
-import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
-import {getVerticalPx} from '../../../../helpers/layoutFoo';
-import {ImagesMetadataType} from '../../../../interfaces/api';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {ImagesMetadataType} from '@interfaces/api';
 import {
     loadingMapsSelector,
     mapDataByIDSelector,
     mapIdToAddSelector,
     privateDataByIDSelector,
     mapsErrorSelector,
-} from '../../../../storage/selectors/map';
-import {editPrivateMapMetaData} from '../../../../storage/actions/maps';
-import useStatusBarHeight from '../../../../hooks/statusBarHeight';
-import {getImagesThumbs} from '../../../../utils/transformData';
-import {ImageType, MapFormDataResult} from '../../../../interfaces/form';
-import useCustomBackNavButton from '../../../../hooks/useCustomBackNavBtn';
+} from '@storage/selectors/map';
+import {editPrivateMapMetaData} from '@storage/actions/maps';
+import {getImagesThumbs} from '@utils/transformData';
+import {ImageType, MapFormDataResult} from '@interfaces/form';
+import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import {EditDetailsRouteT} from '@type/rootStack';
 import {MapType} from '@models/map.model';
-
-import {NavigationHeader} from '@components/navigation';
-import SliverTopBar from '../../../../sharedComponents/sliverTopBar/sliverTopBar';
-import EditForm from './form/editForm';
 import Loader from '@components/svg/loader/loader';
-import PublishRouteThankYouPageModal from '../../../../sharedComponents/modals/publishRouteThankYouPageModal/publishRouteThankYouPageModal';
-import WrongResponseModal from '../../../../sharedComponents/modals/fail/failedResponseModal';
+import WrongResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import styles from './style';
+import GenericScreen from '@pages/template/GenericScreen';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
+import colors from '@theme/colors';
+import {BodyPrimary, Header3} from '@components/texts/texts';
+import EditForm, {
+    RouteEditFormRef,
+} from '@containers/World/EditDetailsContainer';
+import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
 
-const isIOS = Platform.OS === 'ios';
+type AlertTranslationT = {
+    text: string;
+    approve: string;
+    cancel: string;
+};
 
 const EditDetails = () => {
+    const {t} = useMergedTranslation('RoutesDetails.EditScreen');
+
     const wasPublishedBeforeRef = useRef(false);
+
+    const options = useAppSelector(mapOptionsAndTagsSelector);
 
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
     const route = useRoute<EditDetailsRouteT>();
     const mapID = route?.params?.mapID;
     const privateMap = route?.params?.private;
+    const publish = route?.params?.publish;
     const redirectToScreen = route?.params?.redirectTo;
 
     const newPrivateMapID = useAppSelector(mapIdToAddSelector);
@@ -52,17 +62,11 @@ const EditDetails = () => {
 
     const images = getImagesThumbs(mapData?.pictures);
     const [submit, setSubmit] = useState(false);
-    const [scrollToTop, setScrollToTop] = useState(false);
 
-    const statusBarHeight = useStatusBarHeight();
-    const safeAreaStyle = isIOS ? {marginTop: -statusBarHeight} : undefined;
-    const [showModal, setShowModal] = useState(false);
+    const scrollViewRef = useRef<ScrollView>(null);
+
+    const [showAlert, setShowAlert] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
-    const [isPublished, setIsPublished] = useState(false);
-
-    const headerBackgroundHeight = getVerticalPx(
-        100,
-    ); /* equal to header height */
 
     const onBackHandler = useCallback(() => {
         if (redirectToScreen) {
@@ -74,8 +78,8 @@ const EditDetails = () => {
 
     useCustomBackNavButton(onBackHandler, true);
 
-    const onScrollToTopHandler = (p: boolean) => {
-        setScrollToTop(p);
+    const onScrollToTopHandler = () => {
+        scrollViewRef.current && scrollViewRef.current?.scrollTo({y: 0});
     };
 
     useEffect(() => {
@@ -88,8 +92,8 @@ const EditDetails = () => {
     useEffect(() => {
         if (submit && !isLoading) {
             if (error?.statusCode < 400) {
-                setShowModal(true);
                 setSubmit(false);
+                onBackHandler();
                 return;
             }
             setShowErrorModal(true);
@@ -99,7 +103,7 @@ const EditDetails = () => {
 
     const onSubmitHandler = (
         data: MapFormDataResult,
-        publish: boolean,
+        publishRoute: boolean,
         imgsToAdd?: ImageType[],
         imgsToRemove?: string[],
     ) => {
@@ -122,65 +126,82 @@ const EditDetails = () => {
             editPrivateMapMetaData(
                 data,
                 imgsToChange,
-                publish,
+                publishRoute,
                 mapID || newPrivateMapID,
             ),
         );
         setSubmit(true);
-        setIsPublished(publish);
+        setShowAlert(false);
     };
+
+    const formRef = useRef<RouteEditFormRef>();
+
+    const alertContent = useMemo(
+        () =>
+            (publish
+                ? t('alertPublish', {returnObjects: true})
+                : t('alertEdit', {returnObjects: true})) as AlertTranslationT,
+        [publish, t],
+    );
+
+    const alertData = useMemo(
+        () => ({
+            show: showAlert,
+            onPress: publish ? () => setShowAlert(false) : onBackHandler,
+            onCancel: onBackHandler,
+            text: alertContent.text,
+            pressText: alertContent.approve,
+            cancelText: alertContent.cancel,
+        }),
+        [alertContent, onBackHandler, publish, showAlert],
+    );
 
     if (isLoading && submit) {
         return <Loader />;
     }
 
     return (
-        <>
-            <SafeAreaView style={[styles.safeAreaView, safeAreaStyle]}>
-                <View
-                    style={[
-                        styles.innerContainer,
-                        {paddingTop: headerBackgroundHeight},
-                    ]}>
-                    <NavigationHeader
-                        onPress={onBackHandler}
-                        title=""
-                        style={styles.header}
+        <GenericScreen
+            showCross
+            transculentStatusBar
+            contentBelowHeader
+            screenTitle={publish ? t('publishHeader') : t('header')}
+            backgroundColor={colors.white}
+            onArrowPress={() => setShowAlert(true)}
+            navigationRightActionElement={
+                <Pressable onPress={formRef.current && formRef.current?.submit}>
+                    <BodyPrimary color={colors.red}>
+                        {publish ? t('publish') : t('save')}
+                    </BodyPrimary>
+                </Pressable>
+            }>
+            <View style={styles.content}>
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    ref={scrollViewRef}>
+                    {publish && (
+                        <Header3 style={styles.header}>
+                            {t('publishDescription')}
+                        </Header3>
+                    )}
+                    <EditForm
+                        onSubmit={onSubmitHandler}
+                        mapData={mapData}
+                        imagesData={images}
+                        alertData={alertData}
+                        publish={publish}
+                        options={options}
+                        scrollTop={onScrollToTopHandler}
+                        ref={formRef}
                     />
-                    <SliverTopBar
-                        scrollToTopPosition={scrollToTop}
-                        resetScrollPosition={() => onScrollToTopHandler(false)}
-                        imgSrc={images?.sliverImg || ''}>
-                        <View style={styles.content}>
-                            <ScrollView showsVerticalScrollIndicator={false}>
-                                <View style={styles.container}>
-                                    <EditForm
-                                        onSubmit={onSubmitHandler}
-                                        mapData={mapData}
-                                        imagesData={images}
-                                        scrollTop={() =>
-                                            onScrollToTopHandler(true)
-                                        }
-                                    />
-                                </View>
-                            </ScrollView>
-                        </View>
-                    </SliverTopBar>
-                    <PublishRouteThankYouPageModal
-                        showModal={showModal}
-                        onPress={onBackHandler}
-                        isPublished={isPublished}
-                        wasPublished={wasPublishedBeforeRef.current}
-                        onBackPress={() => setShowModal(false)}
-                    />
-                    <WrongResponseModal
-                        showModal={showErrorModal}
-                        errorMessage={error?.message}
-                        onClose={() => setShowErrorModal(false)}
-                    />
-                </View>
-            </SafeAreaView>
-        </>
+                </ScrollView>
+            </View>
+            <WrongResponseModal
+                showModal={showErrorModal}
+                errorMessage={error?.message}
+                onClose={() => setShowErrorModal(false)}
+            />
+        </GenericScreen>
     );
 };
 
