@@ -13,6 +13,7 @@ import {
     getWarrantyTypeText,
     shouldShowWarrantyStatusInfo,
 } from '@pages/main/bike/utils/warranty';
+import ArrowSvg from '@src/components/svg/Arrow';
 
 const TYPE_NO_INFO = 'no-info';
 
@@ -94,6 +95,9 @@ const Warranty: React.FC<Props> = ({
                             <BodyPrimary algin="right">
                                 {warrantyStatusInfoText}
                             </BodyPrimary>
+                            {!containsWarrantyInfo && (
+                                <ArrowSvg style={styles.arrow} />
+                            )}
                         </Pressable>
                     </View>
                 )}
@@ -121,5 +125,11 @@ const styles = StyleSheet.create({
         color: colors.black,
         textAlign: 'right',
         width: '50%',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    arrow: {
+        marginLeft: getFHorizontalPx(7),
     },
 });
