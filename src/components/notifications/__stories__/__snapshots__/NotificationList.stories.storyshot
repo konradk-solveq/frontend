@@ -54,7 +54,7 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
-                  "marginHorizontal": 3.8461538461538463,
+                  "marginHorizontal": 30.76923076923077,
                   "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
@@ -219,7 +219,7 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
-                  "marginHorizontal": 3.8461538461538463,
+                  "marginHorizontal": 30.76923076923077,
                   "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
@@ -363,7 +363,7 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                 Object {
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
-                  "marginHorizontal": 3.8461538461538463,
+                  "marginHorizontal": 30.76923076923077,
                   "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,

@@ -9,6 +9,7 @@ import {
     getFVerticalPx,
     getFFontSize,
 } from '@helpers/appLayoutDimensions';
+import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
 
 export interface NotificationI {
     title: string;
@@ -96,7 +97,7 @@ export default Notification;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.white,
-        marginHorizontal: getFHorizontalPx(2),
+        marginHorizontal: appContainerHorizontalMargin,
         paddingHorizontal: getFHorizontalPx(16),
         paddingVertical: getFVerticalPx(12),
         marginTop: getFVerticalPx(16),
