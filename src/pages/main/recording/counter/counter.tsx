@@ -26,6 +26,7 @@ import {
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import useCompassHook from '@hooks/useCompassHook';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
+import {isIOS} from '@utils/platform';
 
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {CounterDataContext} from '@pages/main/recording/counter/context/counterContext';
@@ -364,6 +365,15 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         [pauseTracker, resumeTracker],
     );
 
+    const androidNotificationStyle = {
+        paddingTop: gpsNotificationsViabilsity ? getFVerticalPx(16) : top,
+    };
+    const iosNotificationStyle = {
+        paddingTop: gpsNotificationsViabilsity
+            ? getFVerticalPx(16)
+            : top - getFVerticalPx(16),
+    };
+
     return (
         <GenericScreen
             hideBackArrow
@@ -419,10 +429,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 </CounterDataContext.Provider>
 
                 <LocationStatusNotification
-                    containerStyle={[
-                        styles.locationNotification,
-                        {marginTop: top},
-                    ]}
+                    containerStyle={[styles.locationNotification]}
                     onLayout={e => {
                         if (!e?.nativeEvent?.layout) {
                             return;
@@ -435,7 +442,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         );
                     }}
                 />
-                <View style={[styles.notificationsContainer, {top: top}]}>
+                <View
+                    style={[
+                        styles.notificationsContainer,
+                        !isIOS
+                            ? androidNotificationStyle
+                            : iosNotificationStyle,
+                    ]}>
                     <NotificationList
                         notifications={notifications}
                         paddingTop={gpsNotificationsViabilsity}
