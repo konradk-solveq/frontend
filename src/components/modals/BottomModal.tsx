@@ -285,7 +285,7 @@ const BottomModal: React.FC<IProps> = ({
                         {header}
                     </Animated.View>
                     <ScrollView
-                        scrollEnabled={isOpen || enableScroll}
+                        scrollEnabled={enableScroll}
                         showsVerticalScrollIndicator={false}>
                         {children}
                     </ScrollView>
