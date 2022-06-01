@@ -92,6 +92,23 @@ describe('<Alert /> - components/alerts', () => {
         expect(negativeComponent.props.children).toEqual(NEGATIVE_TEXT);
     });
 
+    it('Should not render set "cancelText" when "noCancel" is equal to "true"', async () => {
+        const {queryByTestId} = render(
+            <Alert
+                show
+                cancelText={NEGATIVE_TEXT}
+                onPress={onPressFn}
+                onCancel={onCancelFn}
+                noCancel
+            />,
+        );
+
+        const negativeComponent = queryByTestId(
+            `${ALERT_NEGATIVE_TEST_ID}-text`,
+        );
+        expect(negativeComponent).toBeNull();
+    });
+
     afterEach(() => {
         jest.restoreAllMocks();
         jest.clearAllMocks();

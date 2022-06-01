@@ -27,6 +27,7 @@ import {
     startRecording,
     stopRecording,
 } from './utils/routes';
+import {RecordingStateT} from '@storage/reducers/routes';
 
 export interface ActionAsyncResponseI {
     success: boolean;
@@ -100,6 +101,11 @@ export const setRoutesToSynch = (routeIds: string[]) => ({
 export const setRouteMapVisibility = (isMapVisible: boolean) => ({
     type: actionTypes.SET_ROUTE_MAP_VISIBILITY,
     isMapVisible: isMapVisible,
+});
+
+export const setRecordingState = (recordingState: RecordingStateT) => ({
+    type: actionTypes.SET_RECORDING_STATE,
+    recordingState: recordingState,
 });
 
 export const clearRoutesToSynch = (routeIds: string[]) => ({
@@ -301,6 +307,7 @@ export const stopCurrentRoute = (
             ...currentRoute,
             isActive: false,
             endedAt: new Date(),
+            recordingState: 'stopped',
         };
 
         dispatch(setCurrentRoute(currentRouteToEnd));
@@ -449,7 +456,9 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
 
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             dispatch(setLoadingState(false));
 
             /* Route debug - start */
@@ -476,7 +485,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         const response = await syncRouteData(
             currRoutesDat,
-            currentRoute?.remoteRouteId,
+            currentRoute?.remoteRouteId /* TODO: check if currentRoute.id shouldn't be used too */,
             getNextRouteNumber(totalPrivateMaps),
         );
 
@@ -590,7 +599,9 @@ export const syncRouteDataFromQueue = (
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             setLoadState(dispatch, true, skipLoadingState);
             return;
         }
@@ -673,7 +684,9 @@ export const abortSyncCurrentRouteData = (
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
 
-            dispatch(setError(i18next.t('dataAction.noInternetConnection'), 500));
+            dispatch(
+                setError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
             dispatch(setLoadingState(false));
             return;
         }

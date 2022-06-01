@@ -64,6 +64,7 @@ exports[`Storyshots containers/Onboarding/UserIntroduction Default 1`] = `
             style={
               Object {
                 "marginBottom": 6.322274881516588,
+                "marginLeft": 30.76923076923077,
               }
             }
             testID="user-introduction-container-id-name-text-input-input-name"
@@ -110,6 +111,7 @@ exports[`Storyshots containers/Onboarding/UserIntroduction Default 1`] = `
                   "paddingVertical": 0,
                 },
                 Object {},
+                false,
               ]
             }
             testID="user-introduction-container-id-name-text-input-input-value"

@@ -139,9 +139,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
           showsHorizontalScrollIndicator={false}
           style={
             Array [
-              Object {
-                "height": 150,
-              },
+              undefined,
               Object {
                 "height": 126.44549763033176,
               },
@@ -181,10 +179,10 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
                     Array [
                       Object {
                         "backgroundColor": "#ededed",
-                        "borderRadius": 16,
-                        "height": 125,
-                        "marginRight": 15,
-                        "width": 125,
+                        "borderRadius": 15.80568720379147,
+                        "height": 128.0260663507109,
+                        "marginRight": 15.384615384615385,
+                        "width": 209.6153846153846,
                       },
                       Object {
                         "borderRadius": 15.384615384615385,
@@ -787,9 +785,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
           showsHorizontalScrollIndicator={false}
           style={
             Array [
-              Object {
-                "height": 150,
-              },
+              undefined,
               Object {
                 "height": 126.44549763033176,
               },
@@ -829,10 +825,10 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
                     Array [
                       Object {
                         "backgroundColor": "#ededed",
-                        "borderRadius": 16,
-                        "height": 125,
-                        "marginRight": 15,
-                        "width": 125,
+                        "borderRadius": 15.80568720379147,
+                        "height": 128.0260663507109,
+                        "marginRight": 15.384615384615385,
+                        "width": 209.6153846153846,
                       },
                       Object {
                         "borderRadius": 15.384615384615385,

@@ -10,6 +10,7 @@ import {
 import colors from '@theme/colors';
 import {IProps as ButtonIProps} from '@components/buttons/Button';
 import {Button} from '@components/buttons';
+import {Subtitle} from '@components/texts/texts';
 
 interface ActiveButtonIProps extends ButtonIProps {
     active: boolean;
@@ -53,6 +54,7 @@ interface IProps {
     withEmptyRadio?: boolean;
     titleStyle?: TextStyle;
     buttonStyle?: ViewStyle;
+    buttonBackgroundColor?: string;
 }
 
 const MultiSelect: React.FC<IProps> = ({
@@ -65,6 +67,7 @@ const MultiSelect: React.FC<IProps> = ({
     withEmptyRadio,
     titleStyle,
     buttonStyle = {},
+    buttonBackgroundColor = colors.white,
 }: IProps) => {
     const [active, setActive] = useState<string[]>([]);
 
@@ -104,10 +107,11 @@ const MultiSelect: React.FC<IProps> = ({
                         style={[buttonStyle]}
                         active={active.includes(o.enumValue)}
                         testID={`multiselect-button-${o.enumValue}`}
+                        backgroundColor={buttonBackgroundColor}
                     />
                 );
             }),
-        [options, buttonStyle, active, onPressHanlder],
+        [options, buttonStyle, active, buttonBackgroundColor, onPressHanlder],
     );
 
     return (
@@ -117,7 +121,9 @@ const MultiSelect: React.FC<IProps> = ({
                 <View style={styles.list}>{renderOptions}</View>
             ) : null}
             {errorMessage ? (
-                <Text style={styles.error}>{errorMessage}</Text>
+                <Subtitle color={colors.red} style={styles.error}>
+                    {errorMessage}
+                </Subtitle>
             ) : null}
         </View>
     );
@@ -141,7 +147,7 @@ const styles = StyleSheet.create({
         fontFamily: 'DIN2014-Demi',
         fontSize: getFFontSize(18),
         letterSpacing: 0.5,
-        color: '#555555',
+        color: colors.black,
         textAlign: 'left',
         marginBottom: getFVerticalPx(5),
     },
@@ -150,13 +156,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     error: {
-        fontFamily: 'DIN2014-Demi',
-        fontSize: getFFontSize(18),
-        textAlign: 'left',
-        color: colors.red,
-        position: 'relative',
-        marginTop: getFVerticalPx(6),
-        height: getFVerticalPx(23),
+        marginLeft: getFHorizontalPx(16),
     },
 });
 

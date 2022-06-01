@@ -8,8 +8,9 @@ import {
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
 
-import {IconButton, PrimaryButton, SecondaryButton} from '@components/buttons';
+import {IconButton, SecondaryButton} from '@components/buttons';
 import {ButtonsGroup} from '@containers/World/components';
+import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
 
 interface IProps {
     onPressPrimary: (e: GestureResponderEvent) => void;
@@ -35,7 +36,7 @@ const PrivateActionButtons: React.FC<IProps> = ({
                     <SecondaryButton
                         onPress={onPressPrimary}
                         text={t('published.plannedPrimaryAction')}
-                        icon={MykrossIconFont.MYKROSS_ICON_SHARE}
+                        icon={MYKROSS_ICON_NATIVE_SHARE_ICON}
                         style={styles.primaryButton}
                         testID={`${testID}-primary-button`}
                     />

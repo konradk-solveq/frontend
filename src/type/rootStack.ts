@@ -78,6 +78,7 @@ export type KrossWorldParamsListT = {
     EditDetails: {
         mapID?: string;
         private?: boolean;
+        publish?: boolean;
         redirectTo?: string;
     };
     FeaturedRoutesScreen: {

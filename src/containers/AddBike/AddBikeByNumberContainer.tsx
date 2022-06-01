@@ -88,7 +88,6 @@ const AddBikeByNumberContainer: React.FC<IProps> = ({
                         <TextInput
                             inputName={t('inputName')}
                             value={value}
-                            hint={t('inputHint')}
                             onChangeValue={onChange}
                             autoCapitalize="characters"
                             isValid={isValid}

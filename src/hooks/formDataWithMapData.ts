@@ -1,16 +1,12 @@
 import {useEffect} from 'react';
-import {useForm} from 'react-hook-form';
-
-import {useAppSelector} from './redux';
-import {mapOptionsAndTagsSelector} from '../storage/selectors/app';
-import {FormData} from '../pages/main/world/editDetails/form/inputs/types';
+import {useForm, FieldValues} from 'react-hook-form';
 import {Map} from '../models/map.model';
 import {mapDataToFormData} from '../utils/transformData';
+import {FormData} from '@type/editDetailsForm';
 
 type ValueType = string | boolean | undefined | string[];
 
-const useFormDataWithMapData = (mapData: Map | undefined) => {
-    const options = useAppSelector(mapOptionsAndTagsSelector);
+const useFormDataWithMapData = (mapData: Map | undefined, publish: boolean) => {
     const {
         control,
         handleSubmit,
@@ -18,7 +14,7 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
         setError,
         setFocus,
         getValues,
-    } = useForm<FormData>();
+    } = useForm<FieldValues>();
 
     useEffect(() => {
         if (mapData) {
@@ -31,6 +27,9 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
                 setValue(k, v);
             });
         }
+        if (publish) {
+            setValue('publishWithName', true);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -40,7 +39,6 @@ const useFormDataWithMapData = (mapData: Map | undefined) => {
         setValue,
         setError,
         setFocus,
-        options,
         getValues,
     };
 };

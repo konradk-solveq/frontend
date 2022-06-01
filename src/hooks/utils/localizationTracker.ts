@@ -1,11 +1,12 @@
-import {isLocationValidate} from '@src/utils/locationData';
 import {v4 as uuidv4} from 'uuid';
 
-import {transformMetersToKilometersString} from '../../utils/metersToKilometers';
-import {getAverageSpeed, msToKH} from '../../utils/speed';
+import {transformMetersToKilometersString} from '@utils/metersToKilometers';
+import {getAverageSpeed, msToKH} from '@utils/speed';
+import {isLocationValidate} from '@utils/locationData';
+import {CurrentRouteI} from '@storage/reducers/routes';
 
-export const DEFAULT_SPEED = '0,0';
-export const DEFAULT_DISTANCE = '0,00';
+export const DEFAULT_SPEED = '0.0';
+export const DEFAULT_DISTANCE = '0.00';
 
 export const getAverageSpeedData = (
     speedData: number[],
@@ -19,10 +20,13 @@ export const getAverageSpeedData = (
     return aSpeed;
 };
 
-export const startCurrentRoute = async (followByRoute?: string) => {
+export const startCurrentRoute = async (
+    followByRoute?: string,
+): Promise<CurrentRouteI> => {
     return {
         id: uuidv4(),
         isActive: true,
+        recordingState: 'recording',
         startedAt: new Date(),
         endedAt: undefined,
         routeId: followByRoute || undefined,
@@ -47,6 +51,7 @@ export const getTrackerData = (
         gpsData?.odometer,
         2,
         true,
+        '.',
     );
 
     const res = {

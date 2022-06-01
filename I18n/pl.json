@@ -4,16 +4,16 @@
         "language": "Język",
         "chooseLanguage": "Wybierz język",
         "title_1": "Nagrywaj trasy",
-        "text_1": "W szybki i łatwy sposób zacznij nagryawć swoje trasy rowerowe",
+        "text_1": "W szybki i łatwy sposób zacznij nagrywać swoje trasy rowerowe",
         "title_2": "Trasy publiczne",
-        "text_2": "Bierz przykład z innych i wrzucaj swoje trasy na mapę publiczną",
+        "text_2": "Bierz przykład z innych i wrzucaj swoje trasy na mapę Publiczną",
         "title_3": "Rower",
         "text_3": "Dodaj go do aplikacji, a poznasz więcej szczegółów",
         "title_4": "Serwisy i sklepy",
         "text_4": "Znajdź rekomendowanego przez KROSS specjalistę od rowerów"
     },
     "GetToKnowEachOther": {
-        "title": "Czołem, rowerzysto!\nPoznajmy się bliżej.",
+        "title": "Czołem rowerzysto!\nPoznajmy się bliżej",
         "skip": "Pomiń",
         "goForward": "Dalej",
         "emptyValue": "Uzupełnij pole",
@@ -40,16 +40,16 @@
         "alertMessage": "Włącz NFC w ustawieniach telefonu."
     },
     "AddBikeScreen": {
-        "headerTitle": "Dodaj rower kross",
+        "headerTitle": "Dodaj rower KROSS",
         "divider": "lub",
         "upperCell": {
-            "header": "Skan NFC",
-            "body": "Jeśli masz rower od xxxx to naklejka nfc \n znajduje się przy kierownicy"
+            "header": "Skanuj naklejkę NFC",
+            "body": "Jeśli masz rower KROSS to naklejka NFC \n znajduje się przy kierownicy"
         },
         "bottomCell": {
             "header": "Wprowadź ręcznie nr ramy",
             "linkButton": "Gdzie znajdę nr ramy?",
-            "scanNfcButton": "Skan NFC",
+            "scanNfcButton": "Skanuj naklejkę NFC",
             "findByNumberButton": "Wprowadź ręcznie nr ramy"
         }
     },
@@ -62,7 +62,6 @@
             "header": "Wprowadź ręcznie nr ramy",
             "linkButton": "Gdzie znajdę nr ramy?",
             "inputName": "Nr ramy",
-            "inputHint": "Składa się z 12 cyfr",
             "submitButton": "Dalej"
         }
     },
@@ -85,7 +84,7 @@
     },
     "AddBikeSummary": {
         "header": "Nowy rower",
-        "summaryPrefix": "od kross nr ramy",
+        "summaryPrefix": "od KROSS nr ramy",
         "addBikeButton": "Dodaj rower"
     },
     "TutorialNFCmodal": {
@@ -118,19 +117,19 @@
                 "additionalInfo": "M L 21 22 02"
             }
         },
-        "buttonText": "Cofnij"
+        "buttonText": "Zamknij"
     },
     "Permits": {
         "header": "Zgody",
-        "title": "Zaakceptuj regulamin, aby móc korzystać z aplikacji.",
+        "title": "Zaakceptuj regulamin, aby móc korzystać \nz aplikacji",
         "text": "* pole obowiązkowe",
-        "urlRegulations": "https://www.kross.pl.rgulamn",
+        "urlRegulations": "https://www.kross.pl.regulamin",
         "hiperRegulations": "Regulaminem Aplikacji Mobilnej",
         "urlPrivacyPolicy": "https://www.kross.pl.polityka",
         "hiperPrivacyPolicy": "Polityce prywatności",
         "permit": {
             "required": true,
-            "text": "Oświadczam, że\u00a0zapoznałem się z\u00a0https://www.kross.pl.rgulamn i\u00a0akceptuję wszystkie zawarte w\u00a0nim warunki.\u00a0*"
+            "text": "Oświadczam, że\u00a0zapoznałem się z\u00a0https://www.kross.pl.regulamin i\u00a0akceptuję wszystkie zawarte w\u00a0nim warunki.\u00a0*"
         },
         "clauseTitle": "Klauzula informacyjna",
         "clause": "Administratorem danych jest KROSS S.A. z\u00a0siedzibą w\u00a0Przasnyszu (06-300), ul.\u00a0Leszno\u00a046. Dane osobowe będą przetwarzane dla celów utworzenia indywidualnego konta Użytkownika i\u00a0zarządzania nim, w\u00a0celu realizacji obsługi gwarancyjnej, w\u00a0celach analiz statystycznych oraz w\u00a0celu ustalania, dochodzenia i\u00a0egzekucji ewentualnych roszczeń. Na\u00a0zasadach określonych w\u00a0RODO przysługuje Pani\\Panu prawo dostępu do danych, prawo żądania ich sprostowania, usunięcia lub ograniczenia ich przetwarzania, wniesienia sprzeciwu wobec ich przetwarzania, prawo żądania ich przenoszenia, a\u00a0także prawo wniesienia skargi do\u00a0Prezesa UODO. Podanie danych osobowych jest dobrowolne, jednak odmowa ich podania uniemożliwia korzystanie z\u00a0Aplikacji Mobilnej. Więcej informacji na\u00a0temat przetwarzania danych osobowych znajduje się w\u00a0https://www.kross.pl.polityka.",
@@ -178,7 +177,7 @@
             "hyper": "rodo@kross.pl"
         },
         {
-            "url": "https://www.kross.pl.rgulamin",
+            "url": "https://www.kross.pl.regulamin",
             "hyper": "Regulamin Aplikacji Mobilnej"
         },
         {
@@ -234,8 +233,7 @@
         "header": "Wyślij znajomym",
         "ShareContent": {
             "Route": {
-                "title": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
-                "message": "{{url}}",
+                "title": "Hej! Polecam Ci ciekawą trasę rowerową nagraną w aplikacji myKROSS.",
                 "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
             }
         }
@@ -349,7 +347,7 @@
         "fourthTitle": "Buduj z nami Mapę Rowerową",
         "secondText": "Jeżeli chcesz w jednym miejscu zarządzać Twoimi rowerami KROSS oraz rowerami innych producentów, dodaj je do aplikacji.",
         "thirdText": "Nie zwlekaj! Wsiadaj na rower i zacznij przemierzać kilometry z myKROSS.",
-        "fourthText": "Bądź inspiracją dla innych. Nagraj kolejną trasę i upublicznij ją na Mapie Rowerowej.",
+        "fourthText": "Bądź inspiracją dla innych. Nagraj kolejną trasę i opublikuj ją na mapie Publicznej.",
         "secondBtn": "DODAJ ROWER",
         "thirdBtn": "Nagraj trasę",
         "fourthBtn": "Nagraj trasę",
@@ -373,7 +371,7 @@
         "btnPlanned": "Zapisane",
         "btnFilters": "Filtruj",
         "btnSort": "Sortuj",
-        "resetFilters": "Resetuj",
+        "resetFilters": "Wyczyść",
         "maps": {
             "filtersTitle": "Filtry",
             "filtersClear": "Wyczyść",
@@ -423,20 +421,20 @@
         },
         "BikeMap": {
             "title": "Trasy w okolicy",
-            "distanceUnit": "km",
+            "distanceUnit": " km",
             "timeUnit": "h",
             "noTitle": "Brak tytułu",
             "distanceToStart": " km od Ciebie",
             "addToFavAction": "Pobierz trasę",
             "shareRouteAction": "Udostępnij",
-            "publishTripAction": "Upublicznij",
+            "publishTripAction": "Opublikuj",
             "editTripAction": "Edytuj",
             "startTripAction": "Rozpocznij",
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły",
-            "addRouteToPlanned": "Trasa {{name}} została dodana do planowanych.",
-            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z planowanych.",
+            "addRouteToPlanned": "Trasa {{name}} została zapisana",
+            "removeRouteFromPlanned": "Trasa {{name}} została usunięta z zapisanych",
             "sortBy": {
                 "nearest": "Od najbliższych",
                 "newest": "Od najnowszych",
@@ -447,7 +445,7 @@
         "PlannedRoutes": {
             "emptyState": {
                 "header": "Brak zapisanych tras",
-                "info": "Zapoznaj się z trasami innych rowerzystów\n i zapisz je do swojej listy ",
+                "info": "Zapoznaj się z trasami innych rowerzystów\n i zapisz je na swojej liście",
                 "action": "Przejdź do tras publicznych"
             },
             "title": ", odkryj ciekawe trasy z KROSS",
@@ -488,11 +486,11 @@
         },
         "Tile": {
             "noTitle": "Brak tytułu",
-            "distanceUnit": "km",
+            "distanceUnit": " km",
             "separator": " - ",
             "hours": "h",
             "minutes": "m",
-            "distanceToStart": "km od Ciebie",
+            "distanceToStart": " km od Ciebie",
             "public": "publiczna"
         },
         "moreActionsModal": {
@@ -526,7 +524,7 @@
     "MainMyRoutes": {
         "title": "Nie masz nagranych tras",
         "text": "Nagraj pierwszą trasę, dokumentuj jej przebieg. Pokaż nam ciekawe miejsca na Twojej trasie.",
-        "btnRecord": "Nagraj pierwszą trasę",
+        "btnRecord": "Nagraj pierwszą trasę",
         "btnCheck": "sprawdź rekomendowane trasy"
     },
     "RoutesDetails": {
@@ -550,7 +548,7 @@
             "mapTitle": "Sprawdź trasę na mapie",
             "tagsTitle": "Tagi",
             "creationPrefix": "Utworzono",
-            "publishPrefix": "Na mapie rowerowej od",
+            "publishPrefix": "Na mapie Publicznej od",
             "distanceToStart": " km od Ciebie",
             "noDescription": "Brak opisu.",
             "multiDifficulties": "Różnorodna",
@@ -558,7 +556,7 @@
                 "published": {
                     "primaryAction": "Rozpocznij",
                     "plannedPrimaryAction": "Udostępnij",
-                    "plannedPrimaryAlternativeAction": "Upubllicznij",
+                    "plannedPrimaryAlternativeAction": "Opublikuj",
                     "secondaryAction": "Zapisz",
                     "secondaryActionActive": "Zapisano",
                     "plannedSecondaryAction": "Edytuj"
@@ -572,19 +570,23 @@
                 "button": "Przejdź do strony głównej"
             }
         },
-        "EditScreen": {
-            "tagsTitle": "Tagi",
-            "nameInput": "Tytuł",
-            "intro": "Opis trasy",
-            "description": "Szczegółowy opis trasy",
-            "publishButton": "Upublicznij",
-            "updateButton": "Aktualizuj",
+        "form": {
+            "required": "Pole wymagane",
+            "publishButton": "Opublikuj",
             "saveButton": "Zapisz",
-            "imagesTitle": "Zdjęcia z trasy",
-            "removeRouteBtn": "Tak, usuń",
-            "cancelRemoveRouteBtn": "Anuluj",
-            "defaultUser": "Rowerzysta",
-            "publishAs": "Opublikuj jako",
+            "publishAsAnonymous": {
+                "label": "Opublikuj anonimowo"
+            },
+            "photos": {
+                "label": "Zdjęcia",
+                "placeholder": "Dodaj zdjęcie"
+            },
+            "title": {
+                "placeholder": "Tytuł"
+            },
+            "description": {
+                "placeholder": "Opis trasy"
+            },
             "attributes": {
                 "level": {
                     "name": "Poziom trudności",
@@ -615,8 +617,35 @@
                         "dla dzieci"
                     ]
                 }
-            }
         }
+        },
+        "EditScreen": {
+            "header": "Edycja trasy",
+            "publishHeader": "Opublikuj trasę",
+            "save": "Zapisz",
+            "publish": "Publikuj",
+            "publishDescription": "Przed opublikowaniem trasy, prosimy o wypełnienie wszystkich pól",
+            "alertEdit": {
+                "text": "Wychodzisz z ekranu edycji trasy prywatnej",
+                "approve": "Zapisz i wyjdź",
+                "cancel": "Wyjdź bez zapisywania"
+            },
+            "alertPublish": {
+                "text": "Wychodzisz z ekranu publikacji trasy",
+                "approve": "Wróć do formularza",
+                "cancel": "Wyjdź"
+            },
+            "tagsTitle": "Tagi",
+            "nameInput": "Tytuł",
+            "intro": "Opis trasy",
+            "description": "Szczegółowy opis trasy",
+            "updateButton": "Aktualizuj",
+            "imagesTitle": "Zdjęcia z trasy",
+            "removeRouteBtn": "Tak, usuń",
+            "cancelRemoveRouteBtn": "Anuluj",
+            "defaultUser": "Rowerzysta"
+        }
+
     },
     "MainBike": {
         "header": "Rower",
@@ -627,8 +656,11 @@
         "warranty": {
             "state": "Status gwarancji",
             "toEnd": "Do końca gwarancji",
+            "missingToEnd": "Skontaktuj się z nami",
+            "missingToEndAction": "kontakt",
             "lifetime": "dożywotnia ochrona ramy",
             "expired": "wygasła",
+            "noInfo": "brak informacji\n w systemie",
             "days_0": "dzień",
             "days_1": "dni",
             "days_2": "dni",
@@ -661,51 +693,61 @@
         "noBikes": {
             "addBikeTile": {
                 "header": "Dodaj swój rower",
-                "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
+                "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru",
                 "primaryButton": "Dodaj rower KROSS",
                 "secondaryButton": "Dodaj rower innej marki"
             },
             "servicesTile": {
                 "header": "Punkty serwisowe",
-                "body": "Chcesz naprawiać swój rower? \n Czas przeglądu się zbliża?",
+                "body": "Chcesz naprawić swój rower? \n Zbliża się czas przeglądu?",
                 "button": "Sprawdź"
             }
         },
         "AddBikeTile": {
             "header": "Dodaj swój rower",
             "header2": "Dodaj kolejny rower",
-            "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru.",
+            "body": "Podaj numer ramy i poznaj wszystkie \n szczegóły swojego roweru",
             "primaryButton": "Dodaj rower KROSS",
             "secondaryButton": "Dodaj rower innej marki"
         }
     },
     "MainBikeParams": {
-        "header": "Specyfikacje",
+        "header": "Specyfikacja",
         "description": "Opis",
         "color": "Kolor",
         "size": "Rozmiar",
         "noData": "Brak danych"
     },
     "MainCounter": {
-        "headerStart": "Rozpocznij nagrywanie",
-        "headerRecord": "Trwa nagrywanie",
-        "headerPause": "Pauza",
-        "distance": "Dystans",
-        "distanceUnit": "km",
-        "time": "Czas",
-        "speed": "Prędkość",
-        "speedUnit": "km/h",
-        "averageSpeed": "Średnia prędkość",
-        "averageSpeedUnit": "km/h",
-        "btnStart": "START",
-        "btnPauza": "PAUZA",
-        "btnPauzaOff": "WZNÓW",
-        "btnEnd": "ZAKOŃCZ",
-        "cancelText": "Czy chcesz przerwać nagrywanie trasy bez jej zapisywania?",
-        "endText": "Czy chcesz zakończyć nagrywanie trasy?",
-        "btnCancel": "ANULUJ",
-        "btnBreak": "PRZERWIJ",
-        "bikeChanged": "Zmieniono rower na {{name}}"
+        "alerts": {
+            "tooShort": {
+                "message": "Przejechany dystans jest \n zbyt krótki. Minimalna długość \n trasy do zapisania to 100m",
+                "action": "Zamknij"
+            },
+            "pressLongToFinish": {
+                "message": "Przytrzymaj przez 3 sek.\naby zakończyć"
+            }
+        },
+        "metrics": {
+            "short": {
+                "time": "czas",
+                "distance": "km",
+                "speed": "km/h",
+                "averageSpeed": "śr. km/h"
+            },
+            "full": {
+                "time": "czas",
+                "distance": "dystans",
+                "speed": "prędkość km/h",
+                "averageSpeed": "śr. prędkość km/h"
+            }
+        },
+        "actions": {
+            "startRecording": "Rozpocznij nagrywanie",
+            "pauseRecording": "Pauza",
+            "resumeRecording": "Wznów",
+            "stopRecording": "Zakończ"
+        }
     },
     "CounterThankYouPage": {
         "title": "{{name}}, brawo!",
@@ -717,13 +759,13 @@
         ],
         "type_2": " {{num}} l paliwa!",
         "distance": "Dystans",
-        "distanceUnit": "km",
+        "distanceUnit": " km",
         "time": "Czas jazdy",
         "timeUnit": "h",
         "break": "czas przerw",
         "breakUnit": "h",
-        "btnSave": "UPUBLICZNIJ",
-        "btnCancel": "POWRÓT",
+        "btnSave": "Opublikuj",
+        "btnCancel": "Powrót",
         "errorCloseBtn": "Zamknij",
         "errorTitle": "Coś poszło nie tak!",
         "errorMessageTitle": "Przejechany dystans jest **zbyt krótki**.",
@@ -732,7 +774,7 @@
     "ServicesMap": {
         "services": "Serwisy",
         "shops": "Sklepy",
-        "title": "Znajdź sklep lub serwis"
+        "closeButton": "Wyjdź"
     },
     "MainProfile": {
         "header": "Twoje Konto",
@@ -746,7 +788,7 @@
         "privacyPolicy": "Polityka prywatności",
         "help": "Pomoc",
         "contact": "Kontakt",
-        "accountEdit": "Edycja konta"
+        "accountEdit": "Moje dane"
     },
     "Help": {
         "header": "Pomoc"
@@ -757,13 +799,13 @@
         "selectAll": "Zaznacz wsystkie"
     },
     "AboutApp": {
-        "header": "O Aplikacji",
-        "title": "myKROSS to\u00a0aplikacja dla wszystkich pasjonatów jazdy rowerem.",
-        "text_1": "Aplikacja myKROSS powstała z\u00a0myślą o\u00a0rowerzystach przemierzających kilkanaście, kilkadziesiąt, a\u00a0nawet kilkaset kilometrów miesięcznie, poszukujących rzetelnej informacji o\u00a0swoim rowerze oraz informacji jak zadbać o\u00a0jego stan.",
-        "text_2": "W\u00a0myKROSS wystarczy podać numer ramy roweru, a\u00a0aplikacja sprawdzi czy jest to\u00a0rower marki KROSS czy też innego producenta i\u00a0umożliwi dodanie jego do\u00a0listy rowerów.",
-        "text_2b": "W\u00a0aplikacji mamy pełny wgląd w\u00a0podstawowe dane roweru np. informacje o\u00a0numerze ramy, modelu, producencie. Dodatkowo dla rowerów KROSS można podejrzeć pełną specyfikację roweru a\u00a0więc takie dane jak kolor, rozmiar, szczegółowe informacje o\u00a0ramie i\u00a0widelcu, elementach napędu, kołach, hamulcach itp.",
-        "text_3": "W\u00a0zależności od\u00a0producenta roweru aplikacja umożliwia też dostęp do\u00a0informacji o\u00a0najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co\u00a0więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności jakie powinny zostać podczas niego wykonane.",
-        "text_3b": "myKROSS pomaga również w\u00a0zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do\u00a0sezonu rowerowego",
+        "header": "O aplikacji",
+        "title": "myKROSS to\u00a0aplikacja dla wszystkich pasjonatów jazdy rowerem",
+        "text_1": "Jedną z\u00a0podstawowych funkcji aplikacji myKROSS jest nagrywanie tras. Licznik rejestrujący parametry jazdy na\u00a0bieżąco informuje rowerzystę o\u00a0pokonanym dystansie, prędkości oraz czasie. Dodatkowo w\u00a0trakcie jazdy można obserwować ślad swojej trasy na\u00a0mapie, a\u00a0po jej zakończeniu, ślad trasy wraz ze\u00a0wszystkimi zarejestrowanymi parametrami zostaje zapisany na\u00a0liście Moje trasy.",
+        "text_2": "Dla tych, którzy zdecydują się podzielić swoimi trasami z\u00a0innymi powstała mapa tras Publicznych. Zawiera ciekawostki i zdjęcia z wycieczki lub treningu. Trasy można łatwo udostępniać na swoich kontach w mediach społecznościowych, zachęcając innych do aktywnego spędzania czasu. \n\nDzięki filtrom wyszukiwanie tras staje się o wiele szybsze, a gdy trasa okaże się ciekawa, w równie szybki sposób można ją zapisać. Zapisane trasy to idealna okazja na poznanie nowych miejsc w pobliżu naszej lokalizacji.",
+        "text_2b": "Dzięki naklejce NFC umieszczonej na\u00a0ramie roweru KROSS aplikacja w\u00a0szybki sposób doda go do\u00a0listy rowerów. Natomiast każdy Użytkownik, także posiadający rower innego producenta, ma\u00a0możliwość dodania go\u00a0ręcznie w\u00a0aplikacji. W\u00a0przypadku posiadania większej liczby rowerów, każdy kolejny można dodać do\u00a0listy w\u00a0taki sam sposób.",
+        "text_3": "W\u00a0zależności od\u00a0producenta roweru aplikacja myKROSS umożliwia także dostęp do\u00a0informacji o\u00a0najbliższych przeglądach gwarancyjnych, okresowych czy sezonowych. Co\u00a0więcej, każdy typ przeglądu zawiera szczegółowy wykaz czynności, na które warto zwrócić uwagę. Dodatkowo właściciele rowerów KROSS mogą zapoznać się ze\u00a0szczegółowymi informacjami o\u00a0ramie i\u00a0widelcu, elementach napędu, kołach, hamulcach,\u00a0itp.",
+        "text_3b": "myKROSS pomaga również w zlokalizowaniu najbliższego punktu serwisowego lub sklepu rowerowego rekomendowanego przez KROSS, gdzie można wykonać wymagane przeglądy lub przygotować rower do\u00a0sezonu rowerowego.",
         "signature_1": "Życzymy udanej jazdy!",
         "signature_2": "Zespół KROSS"
     },
@@ -774,14 +816,14 @@
         "phone": "(29) 752 11 00",
         "email": "kross@kross.pl",
         "btn": "Przejdź do kross.eu",
-        "contactCaption": "Poniżej znajdziesz dane \nkontaktowe.",
+        "contactCaption": "Poniżej znajdziesz dane \nkontaktowe",
         "officeTitle": "Biuro Obsługi Klienta",
         "officeSubtitle": "Czynne w godzinach",
         "officeHours": "pn. - pt.: 9:00 - 16:00"
     },
     "NameChange": {
         "header": "Moje dane",
-        "defaultName": "Rowerzysto",
+        "defaultName": "rowerzysto",
         "title": "sprawdź czy Twoje dane są aktualne",
         "placeholder": "Podaj imię lub pseudonim",
         "btn": "Zapisz",
@@ -823,13 +865,13 @@
             "dni"
         ],
         "servisMap": "Najbliższy serwis",
-        "descriptionTitle": "W ramach przeglądu powinny być wykonane następujące czynności: ",
+        "descriptionTitle": "Zapoznaj się z listą czynności, na które warto zwrócić uwagę podczas przeglądu:",
         "warning": "Warunkiem ważności Gwarancji jest posiadanie dowodu zakupu i Oświadczenia Gwarancyjnego lub konta gwarancyjnego na platformie kross.eu/pl, założonego zgodnie z regulaminem tej platformy.",
         "pastDate": "termin minął"
     },
     "ThankYouPage": {
         "goodJobTitle": "Dobra robota",
-        "thankYouSlogan": "Wybierając rower dbasz o środowisko i swój portfel",
+        "thankYouSlogan": "Wybierając rower dbasz o środowisko\ni swój portfel",
         "saveRoute": "Zapisz",
         "publishRoute": "Opublikuj",
         "savedResource": "zaoszczędzonych gramów CO2",
@@ -837,9 +879,9 @@
         "savedFuelCount_0": "zaoszczędzony litr paliwa",
         "savedFuelCount_1": "zaoszczędzone litry paliwa",
         "savedFuelCount_2": "zaoszczędzonych litrów paliwa",
-        "defaultName": "Rowerzysto",
+        "defaultName": "rowerzysto",
         "titleSuffix": ", brawo!",
-        "publishBtn": "Upublicznij",
+        "publishBtn": "Opublikuj",
         "cancelButton": "Powrót",
         "distance": "Dystans",
         "distanceSuffix": "km",
@@ -855,9 +897,9 @@
         "continueBtn": "Wróć do zapisu trasy"
     },
     "PublishThankYouPage": {
-        "defaultName": "Rowerzysto",
+        "defaultName": "rowerzysto",
         "titleSuffix": ", trasa została ",
-        "titleSuffixPublished": "upubliczniona",
+        "titleSuffixPublished": "opublikowana",
         "titleSuffixUpdated": "zaktualizowana",
         "titleSuffixSaved": "zapisana",
         "okBtn": "Ok",
@@ -913,7 +955,7 @@
         "routeData": {
             "defaultRouteName": "Trasa z dnia",
             "defaultAlternativeRouteName": "Trasa {{number}} z dnia",
-            "defaultAuthorName": "Rowerzysta",
+            "defaultAuthorName": "rowerzysta",
             "removeRouteError": "Trasa nie została usunięta. Spróbuj ponownie.",
             "createRouteError": "Trasa nie została utworzona. Spróbuj ponownie.",
             "updateRouteError": "Trasa nie została zaktualizowana. Spróbuj ponownie.",
@@ -979,5 +1021,12 @@
     "Alert": {
         "positive": "Potwierdź",
         "negative": "Anuluj"
+    },
+    "Notifications": {
+        "location": {
+            "searchSignal": {
+                "title": "Szukanie sygnału GPS"
+            }
+        }
     }
 }

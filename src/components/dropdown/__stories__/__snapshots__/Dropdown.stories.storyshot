@@ -153,7 +153,10 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
             "width": "100%",
           },
           Object {},
-          [Function],
+          Object {
+            "height": 0,
+            "opacity": 0,
+          },
         ]
       }
       testID="dropdown-test-id-items-box"
@@ -162,7 +165,11 @@ exports[`Storyshots components/dropdown/Dropdown Customized 1`] = `
         collapsable={false}
         nativeID="animatedComponent"
         scrollEventThrottle={0.0001}
-        style={Object {}}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
         testID="dropdown-test-id-items-list"
       >
         <View>
@@ -802,7 +809,10 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
             "width": "100%",
           },
           undefined,
-          [Function],
+          Object {
+            "height": 0,
+            "opacity": 0,
+          },
         ]
       }
       testID="dropdown-test-id-items-box"
@@ -811,7 +821,11 @@ exports[`Storyshots components/dropdown/Dropdown Default 1`] = `
         collapsable={false}
         nativeID="animatedComponent"
         scrollEventThrottle={0.0001}
-        style={Object {}}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
         testID="dropdown-test-id-items-list"
       >
         <View>

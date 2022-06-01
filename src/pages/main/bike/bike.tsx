@@ -148,6 +148,10 @@ const Bike: React.FC<Props> = (props: Props) => {
         });
     }, [navigation]);
 
+    const onGoToContatcHandler = useCallback(() => {
+        navigation.navigate('Contact');
+    }, [navigation]);
+
     const bikeTypes = useAppSelector(bikeTypesSelector);
 
     const bikeType = useMemo(
@@ -180,6 +184,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             onChangeBikeHandler={onChangeBikeHandler}
                             onReviewPress={onReviewPress}
                             bikeType={bikeType}
+                            onContactPress={onGoToContatcHandler}
                         />
                         <ChangeBikeModal
                             visible={showBottomModal}

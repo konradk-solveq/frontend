@@ -30,6 +30,7 @@ exports[`Storyshots components/input/TextInput Customized 1`] = `
         style={
           Object {
             "marginBottom": 6.322274881516588,
+            "marginLeft": 30.76923076923077,
           }
         }
         testID="text-input-test-id-input-name"
@@ -77,6 +78,7 @@ exports[`Storyshots components/input/TextInput Customized 1`] = `
               "paddingVertical": 0,
             },
             Object {},
+            false,
           ]
         }
         testID="text-input-test-id-input-value"
@@ -145,6 +147,7 @@ exports[`Storyshots components/input/TextInput Default 1`] = `
         style={
           Object {
             "marginBottom": 6.322274881516588,
+            "marginLeft": 30.76923076923077,
           }
         }
         testID="text-input-test-id-input-name"
@@ -192,6 +195,7 @@ exports[`Storyshots components/input/TextInput Default 1`] = `
               "paddingVertical": 0,
             },
             Object {},
+            false,
           ]
         }
         testID="text-input-test-id-input-value"

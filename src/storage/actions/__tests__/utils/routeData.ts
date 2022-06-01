@@ -9,6 +9,7 @@ export const startedRoute: CurrentRouteI = {
     pauseTime: 0,
     routeId: 'route-id',
     remoteRouteId: 'remote-route-test-id',
+    recordingState: 'recording',
 };
 
 export const endedRoute: CurrentRouteI = {
@@ -19,6 +20,7 @@ export const endedRoute: CurrentRouteI = {
     pauseTime: 0,
     routeId: 'route-id',
     remoteRouteId: 'remote-route-test-id',
+    recordingState: 'stopped',
 };
 
 export const stoppedRoute: CurrentRouteI = {
@@ -29,6 +31,7 @@ export const stoppedRoute: CurrentRouteI = {
     pauseTime: 0,
     routeId: 'route-id',
     remoteRouteId: 'remote-route-test-id',
+    recordingState: 'stopped',
 };
 
 export const dataToSynch: LocationDataI[] = [

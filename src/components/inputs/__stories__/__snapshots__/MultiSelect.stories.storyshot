@@ -27,7 +27,7 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
       style={
         Array [
           Object {
-            "color": "#555555",
+            "color": "#333333",
             "fontFamily": "DIN2014-Demi",
             "fontSize": 18,
             "letterSpacing": 0.5,
@@ -752,7 +752,7 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
       style={
         Array [
           Object {
-            "color": "#555555",
+            "color": "#333333",
             "fontFamily": "DIN2014-Demi",
             "fontSize": 18,
             "letterSpacing": 0.5,

@@ -37,7 +37,13 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Customizable 1`] 
             "position": "absolute",
             "width": "100%",
           },
-          [Function],
+          Object {
+            "transform": Array [
+              Object {
+                "translateY": 75.86729857819905,
+              },
+            ],
+          },
           Object {
             "alignItems": "center",
             "backgroundColor": "#FAFAFA",
@@ -48,6 +54,7 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Customizable 1`] 
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -107,13 +114,20 @@ exports[`Storyshots components/headers/CollapsibleStickyHeader Default 1`] = `
             "position": "absolute",
             "width": "100%",
           },
-          [Function],
+          Object {
+            "transform": Array [
+              Object {
+                "translateY": 75.86729857819905,
+              },
+            ],
+          },
           undefined,
         ]
       }
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {

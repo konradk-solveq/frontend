@@ -80,7 +80,13 @@ const TextInput: React.FC<IProps> = ({
                 keyboardType={keyboardType}
                 autoCapitalize={autoCapitalize}
                 textContentType={textContentType}
-                style={[styles.input, validationStyle]}
+                style={[
+                    styles.input,
+                    validationStyle,
+                    multiline && {
+                        height: getFFontSize(24) * numberOfLines,
+                    },
+                ]}
                 selectionColor={colors.darkGrey}
                 testID={`${testID}-input-value`}
             />
@@ -107,6 +113,7 @@ const TextInput: React.FC<IProps> = ({
 const styles = StyleSheet.create({
     inputNameContianer: {
         marginBottom: getFVerticalPx(4),
+        marginLeft: getFHorizontalPx(16),
     },
     inputHint: {
         marginTop: getFVerticalPx(8),

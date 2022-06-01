@@ -135,6 +135,7 @@ export const Header1: FunctionComponent<PropsT> = ({
     algin,
     color,
     adjustsFontSizeToFit = false,
+    numberOfLines = 0,
     children,
     style,
     testID = 'header1-test-id',
@@ -153,7 +154,8 @@ export const Header1: FunctionComponent<PropsT> = ({
         <Text
             testID={testID}
             style={[styles.text, style]}
-            adjustsFontSizeToFit={adjustsFontSizeToFit}>
+            adjustsFontSizeToFit={adjustsFontSizeToFit}
+            numberOfLines={numberOfLines}>
             {children}
         </Text>
     );

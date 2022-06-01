@@ -11,6 +11,11 @@ jest.setSystemTime(new Date('2022-03-29T01:00:00.000Z'));
  */
 const Reanimated = require('react-native-reanimated/mock');
 Reanimated.useAnimatedProps = jest.fn();
+Reanimated.FadeIn = {delay: jest.fn()};
+Reanimated.FadeOut = {delay: jest.fn()};
+Reanimated.Layout = {
+    damping: jest.fn().mockReturnValue({delay: jest.fn()}),
+};
 
 initStoryshots({
     framework: 'react-native',

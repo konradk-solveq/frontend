@@ -31,7 +31,7 @@ export interface Overview {
     type: string;
     date: Date;
     info: string;
-    operations: string[];
+    operations: string[] | null;
     style?: Record<OverviewStyleT, string | boolean>;
 }
 
