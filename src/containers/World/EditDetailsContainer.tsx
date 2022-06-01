@@ -94,17 +94,21 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             return isValid;
         };
 
-        const onSubmitHandlerWithPublish: SubmitHandler<MapFormDataResult> = data => {
+        const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
+            if (!publish) {
+                onSubmit(data, false, imagesToAdd, imagesToRemove);
+                return;
+            }
             const isValid = validateFormData(data);
             if (isValid) {
                 onSubmit(data, true, imagesToAdd, imagesToRemove);
             }
         };
-        const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
-            onSubmit(data, false, imagesToAdd, imagesToRemove);
-        };
 
-        const onInvalidSubmitHandlerWithPublish: SubmitErrorHandler<MapFormDataResult> = () => {
+        const onInvalidSubmitHandler: SubmitErrorHandler<MapFormDataResult> = () => {
+            if (!publish) {
+                return;
+            }
             const formValues = getValues();
             validateFormData(formValues);
         };
@@ -139,9 +143,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
         };
 
         useImperativeHandle(ref, () => ({
-            submit: handleSubmit(
-                publish ? onSubmitHandlerWithPublish : onSubmitHandler,
-            ),
+            submit: handleSubmit(onSubmitHandler),
         }));
 
         const onRemoveImageHandler = (imageUri: string) => {
@@ -330,10 +332,8 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                         text={publish ? t('publishButton') : t('saveButton')}
                         testID={`${testID}-submit-button`}
                         onPress={handleSubmit(
-                            publish
-                                ? onSubmitHandlerWithPublish
-                                : onSubmitHandler,
-                            onInvalidSubmitHandlerWithPublish,
+                            onSubmitHandler,
+                            onInvalidSubmitHandler,
                         )}
                     />
                 </View>

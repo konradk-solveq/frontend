@@ -110,7 +110,7 @@ const EditDetails = () => {
         const iToRemove: string[] = [];
         images.images.forEach(i => {
             if (imgsToRemove?.includes(i)) {
-                const iTD = mapData?.images?.find(
+                const iTD = mapData?.pictures?.images?.find(
                     im => i.includes(im.id) && im.type !== 'map',
                 );
                 if (iTD?.id) {
@@ -169,7 +169,10 @@ const EditDetails = () => {
             backgroundColor={colors.white}
             onArrowPress={() => setShowAlert(true)}
             navigationRightActionElement={
-                <Pressable onPress={formRef.current && formRef.current?.submit}>
+                <Pressable
+                    onPress={() =>
+                        formRef.current && formRef.current?.submit()
+                    }>
                     <BodyPrimary color={colors.red}>
                         {publish ? t('publish') : t('save')}
                     </BodyPrimary>
