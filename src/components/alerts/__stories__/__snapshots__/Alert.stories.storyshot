@@ -136,7 +136,8 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
           }
         />
         <Text
-          adjustsFontSizeToFit={false}
+          adjustsFontSizeToFit={true}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -559,7 +560,8 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
           }
         />
         <Text
-          adjustsFontSizeToFit={false}
+          adjustsFontSizeToFit={true}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -982,7 +984,8 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
           }
         />
         <Text
-          adjustsFontSizeToFit={false}
+          adjustsFontSizeToFit={true}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -1405,7 +1408,8 @@ exports[`Storyshots components/alerts/alert Without cancel button 1`] = `
           }
         />
         <Text
-          adjustsFontSizeToFit={false}
+          adjustsFontSizeToFit={true}
+          numberOfLines={0}
           style={
             Array [
               Object {

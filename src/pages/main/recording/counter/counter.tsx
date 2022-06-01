@@ -460,6 +460,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     onPress={onCloseShortRouteAlertHandler}
                     text={t('alerts.tooShort.message')}
                     pressText={t('alerts.tooShort.action')}
+                    numberOfLines={3}
                     noCancel
                     contentStyle={{
                         height: getFHorizontalPx(244),
