@@ -13,6 +13,7 @@ import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import GenericScreen from '@src/pages/template/GenericScreen';
 import {Header1, Header3, Paragraph} from '@components/texts/texts';
 import {getFVerticalPx} from '@src/helpers/appLayoutDimensions';
+import {RouteDebugBtn} from '@src/sharedComponents/buttons';
 
 const getAppVersion = () => {
     const appBuildNumber = DeviceInfo.getBuildNumber();
@@ -84,6 +85,8 @@ const AboutApp: React.FC = () => {
                     <Paragraph style={styles.appVersion}>
                         {getAppVersion()}
                     </Paragraph>
+
+                    <RouteDebugBtn />
                 </View>
             </ScrollView>
         </GenericScreen>
