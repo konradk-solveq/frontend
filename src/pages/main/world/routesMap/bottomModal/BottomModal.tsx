@@ -35,7 +35,7 @@ const BottomModal: React.FC<IProps> = ({
         <BM
             show={show}
             openModal={isOpen}
-            enableScroll
+            enableScroll={isOpen}
             autoClose
             isSwipeable
             isReactive={canOpen}
