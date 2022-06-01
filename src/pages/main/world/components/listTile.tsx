@@ -1,11 +1,13 @@
 import React, {useEffect, useCallback, useState, useMemo} from 'react';
+import {useNavigation} from '@react-navigation/core';
+
 import {Map, ReactionsType} from '@models/map.model';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {mapReactionsConfigSelector} from '@storage/selectors/app';
+import {userIdSelector} from '@storage/selectors';
 import {modifyReaction, removePlannedMap} from '@storage/actions/maps';
 import {getMapImageToDisplay} from '@utils/transformData';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {useNavigation} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
 import {capitalize, timeWithHoursAndMinutes} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
@@ -47,6 +49,7 @@ const ListTile: React.FC<PropsI> = ({
     const [numberOfLikes, setNumberOfLikes] = useState(0);
     const notificationContext = useNotificationContext();
     const mapType = useMemo(() => getMapType(mode), [mode]);
+    const userID = useAppSelector(userIdSelector);
 
     useEffect(() => {
         setNumberOfLikes(likesNumber);
@@ -149,7 +152,10 @@ const ListTile: React.FC<PropsI> = ({
     const handleEditPressOn = () => {
         navigation.navigate({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-            params: {mapID: mapData.id, private: !mapData.isPublic},
+            params: {
+                mapID: mapData.id,
+                private: !mapData.isPublic || mapData?.ownerId === userID,
+            },
         });
     };
 
