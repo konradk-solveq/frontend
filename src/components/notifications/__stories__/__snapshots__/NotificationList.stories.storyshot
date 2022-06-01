@@ -106,6 +106,7 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               </Text>
               <Text
                 adjustsFontSizeToFit={false}
+                numberOfLines={0}
                 style={
                   Array [
                     Object {
@@ -271,6 +272,7 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               </Text>
               <Text
                 adjustsFontSizeToFit={false}
+                numberOfLines={0}
                 style={
                   Array [
                     Object {
@@ -415,6 +417,7 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               </Text>
               <Text
                 adjustsFontSizeToFit={false}
+                numberOfLines={0}
                 style={
                   Array [
                     Object {

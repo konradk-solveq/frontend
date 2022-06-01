@@ -133,7 +133,8 @@ exports[`Storyshots containers/World/EditDetailsContainer Customized 1`] = `
               }
             />
             <Text
-              adjustsFontSizeToFit={false}
+              adjustsFontSizeToFit={true}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -616,6 +617,7 @@ exports[`Storyshots containers/World/EditDetailsContainer Customized 1`] = `
       >
         <Text
           adjustsFontSizeToFit={false}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -736,6 +738,7 @@ exports[`Storyshots containers/World/EditDetailsContainer Customized 1`] = `
               </View>
               <Text
                 adjustsFontSizeToFit={false}
+                numberOfLines={0}
                 style={
                   Array [
                     Object {
@@ -3390,7 +3393,8 @@ exports[`Storyshots containers/World/EditDetailsContainer Default 1`] = `
               }
             />
             <Text
-              adjustsFontSizeToFit={false}
+              adjustsFontSizeToFit={true}
+              numberOfLines={0}
               style={
                 Array [
                   Object {
@@ -3873,6 +3877,7 @@ exports[`Storyshots containers/World/EditDetailsContainer Default 1`] = `
       >
         <Text
           adjustsFontSizeToFit={false}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -3993,6 +3998,7 @@ exports[`Storyshots containers/World/EditDetailsContainer Default 1`] = `
               </View>
               <Text
                 adjustsFontSizeToFit={false}
+                numberOfLines={0}
                 style={
                   Array [
                     Object {

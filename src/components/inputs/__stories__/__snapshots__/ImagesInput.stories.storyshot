@@ -125,6 +125,7 @@ exports[`Storyshots components/input/ImagesInput Customized 1`] = `
           </View>
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {
@@ -274,6 +275,7 @@ exports[`Storyshots components/input/ImagesInput Default 1`] = `
           </View>
           <Text
             adjustsFontSizeToFit={false}
+            numberOfLines={0}
             style={
               Array [
                 Object {

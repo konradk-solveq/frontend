@@ -108,6 +108,7 @@ exports[`Storyshots containers/Recording/components/SavingPanel Saved fuel optio
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
@@ -238,6 +239,7 @@ exports[`Storyshots containers/Recording/components/SavingPanel Saved resources 
     >
       <Text
         adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
           Array [
             Object {
