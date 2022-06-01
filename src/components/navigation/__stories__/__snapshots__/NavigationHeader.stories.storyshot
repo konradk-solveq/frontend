@@ -232,7 +232,7 @@ exports[`Storyshots components/navigation/NavigationHeader Customized 1`] = `
                             "flexDirection": "row",
                             "height": 44.25592417061611,
                             "paddingRight": 3.8461538461538463,
-                            "width": 96.15384615384616,
+                            "width": 115.38461538461539,
                           }
                         }
                       >
@@ -298,7 +298,7 @@ exports[`Storyshots components/navigation/NavigationHeader Customized 1`] = `
                             "alignItems": "center",
                             "height": 44.25592417061611,
                             "justifyContent": "center",
-                            "width": 496.1538461538462,
+                            "width": 457.6923076923077,
                           }
                         }
                       >
@@ -332,7 +332,7 @@ exports[`Storyshots components/navigation/NavigationHeader Customized 1`] = `
                             "flexDirection": "row",
                             "height": 44.25592417061611,
                             "paddingRight": 3.8461538461538463,
-                            "width": 96.15384615384616,
+                            "width": 115.38461538461539,
                           }
                         }
                       >
@@ -452,7 +452,7 @@ exports[`Storyshots components/navigation/NavigationHeader Customized 1`] = `
                                 }
                                 testID="icon-btn-test-id-icon"
                               >
-                                W
+                                V
                               </Text>
                             </View>
                           </View>
@@ -701,7 +701,7 @@ exports[`Storyshots components/navigation/NavigationHeader Default 1`] = `
                             "flexDirection": "row",
                             "height": 44.25592417061611,
                             "paddingRight": 3.8461538461538463,
-                            "width": 96.15384615384616,
+                            "width": 115.38461538461539,
                           }
                         }
                       >
@@ -767,7 +767,7 @@ exports[`Storyshots components/navigation/NavigationHeader Default 1`] = `
                             "alignItems": "center",
                             "height": 44.25592417061611,
                             "justifyContent": "center",
-                            "width": 496.1538461538462,
+                            "width": 457.6923076923077,
                           }
                         }
                       >
@@ -799,7 +799,7 @@ exports[`Storyshots components/navigation/NavigationHeader Default 1`] = `
                             "flexDirection": "row",
                             "height": 44.25592417061611,
                             "paddingRight": 3.8461538461538463,
-                            "width": 96.15384615384616,
+                            "width": 115.38461538461539,
                           }
                         }
                       >
@@ -1058,7 +1058,7 @@ exports[`Storyshots components/navigation/NavigationHeader With additional butto
                             "flexDirection": "row",
                             "height": 44.25592417061611,
                             "paddingRight": 3.8461538461538463,
-                            "width": 96.15384615384616,
+                            "width": 115.38461538461539,
                           }
                         }
                       >
@@ -1124,7 +1124,7 @@ exports[`Storyshots components/navigation/NavigationHeader With additional butto
                             "alignItems": "center",
                             "height": 44.25592417061611,
                             "justifyContent": "center",
-                            "width": 496.1538461538462,
+                            "width": 457.6923076923077,
                           }
                         }
                       >
@@ -1156,7 +1156,7 @@ exports[`Storyshots components/navigation/NavigationHeader With additional butto
                             "flexDirection": "row",
                             "height": 44.25592417061611,
                             "paddingRight": 3.8461538461538463,
-                            "width": 96.15384615384616,
+                            "width": 115.38461538461539,
                           }
                         }
                       >
@@ -1276,7 +1276,7 @@ exports[`Storyshots components/navigation/NavigationHeader With additional butto
                                 }
                                 testID="icon-btn-test-id-icon"
                               >
-                                W
+                                V
                               </Text>
                             </View>
                           </View>

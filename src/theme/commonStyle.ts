@@ -10,6 +10,7 @@ import {LAYOUT_HORIZONTAL_MARGIN} from '@theme/layout';
 
 const {width, height} = Dimensions.get('screen');
 
+export const BOTTOM_TAB_HEIGHT = getFVerticalPx(83);
 export const navBarHeight = getFVerticalPx(88);
 export const appContainerHorizontalMargin = getFHorizontalPx(
     LAYOUT_HORIZONTAL_MARGIN,

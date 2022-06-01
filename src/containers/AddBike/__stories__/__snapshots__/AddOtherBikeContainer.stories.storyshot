@@ -59,6 +59,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
               style={
                 Object {
                   "marginBottom": 6.322274881516588,
+                  "marginLeft": 30.76923076923077,
                 }
               }
               testID="add-other-bike-container-id-button-input-input-name"
@@ -105,6 +106,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                     "paddingVertical": 0,
                   },
                   Object {},
+                  false,
                 ]
               }
               testID="add-other-bike-container-id-button-input-input-value"
@@ -160,6 +162,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-name"
@@ -206,6 +209,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-value"
@@ -247,6 +251,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-name"
@@ -293,6 +298,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-value"
@@ -414,6 +420,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
     </View>
   </View>
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={
       Array [
         Object {
@@ -428,7 +437,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           "right": 0,
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 0,
+        },
         Object {
           "backgroundColor": "#FFFFFF",
         },
@@ -444,7 +455,11 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
       }
     >
       <View
-        style={[Function]}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
       >
         <View
           style={
@@ -1244,7 +1259,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           "zIndex": 1,
         },
         undefined,
-        [Function],
+        Object {
+          "opacity": 0,
+        },
       ]
     }
   >
@@ -1333,6 +1350,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
               style={
                 Object {
                   "marginBottom": 6.322274881516588,
+                  "marginLeft": 30.76923076923077,
                 }
               }
               testID="add-other-bike-container-id-button-input-input-name"
@@ -1379,6 +1397,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                     "paddingVertical": 0,
                   },
                   Object {},
+                  false,
                 ]
               }
               testID="add-other-bike-container-id-button-input-input-value"
@@ -1434,6 +1453,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-name"
@@ -1480,6 +1500,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-manufacturer-text-input-input-value"
@@ -1521,6 +1542,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-name"
@@ -1567,6 +1589,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-other-bike-container-id-bikeName-text-input-input-value"
@@ -1688,6 +1711,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
     </View>
   </View>
   <View
+    collapsable={false}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
     style={
       Array [
         Object {
@@ -1702,7 +1728,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           "right": 0,
           "zIndex": 10,
         },
-        [Function],
+        Object {
+          "height": 0,
+        },
         Object {
           "backgroundColor": "#FFFFFF",
         },
@@ -1718,7 +1746,11 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
       }
     >
       <View
-        style={[Function]}
+        style={
+          Object {
+            "opacity": 0,
+          }
+        }
       >
         <View
           style={
@@ -2518,7 +2550,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           "zIndex": 1,
         },
         undefined,
-        [Function],
+        Object {
+          "opacity": 0,
+        },
       ]
     }
   >

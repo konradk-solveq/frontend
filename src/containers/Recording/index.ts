@@ -1,3 +1,4 @@
+import CounterContainer from './CounterContainer';
 import ThankYouPageContainer from './ThankYouPageContainer';
 
-export {ThankYouPageContainer};
+export {CounterContainer, ThankYouPageContainer};

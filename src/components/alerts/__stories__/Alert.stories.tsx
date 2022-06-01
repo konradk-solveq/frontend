@@ -14,7 +14,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react-native';
 import {action} from '@storybook/addon-actions';
-import {text, boolean} from '@storybook/addon-knobs';
+import {text, boolean, object} from '@storybook/addon-knobs';
 
 import LayoutCenter from '@sb/utils/LayoutCenter';
 
@@ -41,6 +41,14 @@ storiesOf('components/alerts/alert', module)
             onCancel={action('on-cancel-action')}
         />
     ))
+    .add('Without cancel button', () => (
+        <Alert
+            show
+            text={CONTENT_TEXT}
+            onPress={action('on-press-action')}
+            noCancel
+        />
+    ))
     .add('Customized', () => (
         <Alert
             show={boolean('Show alert', true)}
@@ -49,5 +57,7 @@ storiesOf('components/alerts/alert', module)
             cancelText={text('Negative action text', NEGATIVE_TEXT)}
             onPress={action('on-press-action')}
             onCancel={action('on-cancel-action')}
+            noCancel={boolean('No cancel button', false)}
+            contentStyle={object('Content style', {})}
         />
     ));

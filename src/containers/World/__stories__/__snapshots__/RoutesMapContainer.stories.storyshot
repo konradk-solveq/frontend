@@ -775,7 +775,9 @@ const clearMarkersCluster = () => {
             "width": "100%",
             "zIndex": 1,
           },
-          [Function],
+          Object {
+            "bottom": 63.22274881516588,
+          },
         ]
       }
     >

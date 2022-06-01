@@ -180,7 +180,7 @@ const BackButton: React.FC<IIBProps> = React.memo(
 export default React.memo(NavigationHeader);
 
 const ROW_HEIGHT = 48;
-const ACTION_CONTAINER_WIDTH = 50;
+const ACTION_CONTAINER_WIDTH = 60;
 const HEADER_TITLE_CONTAINER_WIDTH =
     2 * (ACTION_CONTAINER_WIDTH + LAYOUT_HORIZONTAL_MARGIN);
 const HEADER_CONTENT_CONTAINER_HEIGHT = 28;

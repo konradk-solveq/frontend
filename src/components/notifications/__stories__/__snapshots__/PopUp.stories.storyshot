@@ -1,0 +1,669 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/notifications/Popup Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 18.966824644549764,
+          "elevation": 37.38461538461539,
+          "height": 101.1563981042654,
+          "justifyContent": "center",
+          "shadowColor": "#333333",
+          "shadowOffset": Object {
+            "height": 12.644549763033176,
+            "width": 0,
+          },
+          "shadowOpacity": 0.12,
+          "shadowRadius": 16,
+          "width": 467.3076923076923,
+        },
+        Object {
+          "opacity": 0,
+        },
+        Object {},
+      ]
+    }
+    testID="popup-test-id"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 18.966824644549764,
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+      testID="popup-test-id-press"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 18.966824644549764,
+            "justifyContent": "center",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={162.79857819905214}
+          bbWidth={528.8461538461538}
+          fill="none"
+          focusable={false}
+          height={162.79857819905214}
+          meetOrSlice={1}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 162,
+                "width": 528,
+              },
+            ]
+          }
+          vbHeight={103}
+          vbWidth={275}
+          width={528.8461538461538}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                clipRule={0}
+                d="M28 8c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h222.87a2 2 0 0 1 1.765 1.06l2.6 4.877c.98 1.838 3.765 1.142 3.765-.94V20c0-6.627-5.373-12-12-12H28Z"
+                fill={4294967295}
+                fillRule={0}
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "marginTop": 15.80568720379147,
+            "paddingHorizontal": 34.61538461538461,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "marginRight": 30.76923076923077,
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={37.93364928909953}
+            bbWidth={37.93364928909953}
+            fill="none"
+            focusable={false}
+            height={37.93364928909953}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 37,
+                  "width": 37,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={37.93364928909953}
+          >
+            <RNSVGGroup
+              fill={null}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGPath
+                d="M17.004 22.172c1.644-.594 2.922-1.428 3.833-2.502.912-1.082 1.445-2.356 1.6-3.82.154-1.466-.09-3.073-.733-4.822l-.794-2.186c-.358-.984-.854-1.696-1.489-2.136-.626-.447-1.224-.565-1.794-.354-.31.114-.407.318-.293.61l.33.928c.08.212.097.383.048.513a.402.402 0 0 1-.256.256.441.441 0 0 1-.378-.024c-.122-.065-.224-.204-.306-.415l-.22-.61c-.211-.603-.557-1.022-1.037-1.258-.48-.244-.985-.268-1.514-.073-.496.17-.659.48-.488.928l.452 1.281c.081.204.097.37.049.5a.441.441 0 0 1-.635.245c-.122-.073-.224-.216-.305-.427l-.428-1.184c-.236-.66-.586-1.095-1.05-1.306-.463-.212-.96-.22-1.489-.025-.488.18-.655.484-.5.916l.928 2.527c.073.203.085.374.036.512a.403.403 0 0 1-.244.257.467.467 0 0 1-.39-.025c-.123-.073-.22-.211-.294-.415l-3.04-8.337c-.154-.432-.406-.733-.756-.904-.35-.179-.716-.199-1.099-.06-.398.138-.675.39-.83.756-.154.358-.154.757 0 1.196l4.395 12.061c.049.138.053.256.012.354a.333.333 0 0 1-.195.183c-.163.057-.338-.012-.525-.207l-2.942-3.162c-.236-.252-.488-.42-.757-.5a1.218 1.218 0 0 0-.83.024c-.423.154-.716.403-.879.745a1.337 1.337 0 0 0-.049 1.062c.057.13.118.248.183.354.066.105.13.203.196.293l3.87 4.797c1.61 1.994 3.316 3.235 5.114 3.723 1.807.497 3.638.407 5.493-.268Z"
+                fill={4291180339}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="popup-test-id-text"
+        >
+          Hello world
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/notifications/Popup Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 18.966824644549764,
+          "elevation": 37.38461538461539,
+          "height": 101.1563981042654,
+          "justifyContent": "center",
+          "shadowColor": "#333333",
+          "shadowOffset": Object {
+            "height": 12.644549763033176,
+            "width": 0,
+          },
+          "shadowOpacity": 0.12,
+          "shadowRadius": 16,
+          "width": 467.3076923076923,
+        },
+        Object {
+          "opacity": 0,
+        },
+        undefined,
+      ]
+    }
+    testID="popup-test-id"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 18.966824644549764,
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+      testID="popup-test-id-press"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 18.966824644549764,
+            "justifyContent": "center",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={162.79857819905214}
+          bbWidth={528.8461538461538}
+          fill="none"
+          focusable={false}
+          height={162.79857819905214}
+          meetOrSlice={1}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 162,
+                "width": 528,
+              },
+            ]
+          }
+          vbHeight={103}
+          vbWidth={275}
+          width={528.8461538461538}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                clipRule={0}
+                d="M28 8c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h222.87a2 2 0 0 1 1.765 1.06l2.6 4.877c.98 1.838 3.765 1.142 3.765-.94V20c0-6.627-5.373-12-12-12H28Z"
+                fill={4294967295}
+                fillRule={0}
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "marginTop": 15.80568720379147,
+            "paddingHorizontal": 34.61538461538461,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "marginRight": 30.76923076923077,
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={37.93364928909953}
+            bbWidth={37.93364928909953}
+            fill="none"
+            focusable={false}
+            height={37.93364928909953}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 37,
+                  "width": 37,
+                },
+              ]
+            }
+            vbHeight={24}
+            vbWidth={24}
+            width={37.93364928909953}
+          >
+            <RNSVGGroup
+              fill={null}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGPath
+                d="M17.004 22.172c1.644-.594 2.922-1.428 3.833-2.502.912-1.082 1.445-2.356 1.6-3.82.154-1.466-.09-3.073-.733-4.822l-.794-2.186c-.358-.984-.854-1.696-1.489-2.136-.626-.447-1.224-.565-1.794-.354-.31.114-.407.318-.293.61l.33.928c.08.212.097.383.048.513a.402.402 0 0 1-.256.256.441.441 0 0 1-.378-.024c-.122-.065-.224-.204-.306-.415l-.22-.61c-.211-.603-.557-1.022-1.037-1.258-.48-.244-.985-.268-1.514-.073-.496.17-.659.48-.488.928l.452 1.281c.081.204.097.37.049.5a.441.441 0 0 1-.635.245c-.122-.073-.224-.216-.305-.427l-.428-1.184c-.236-.66-.586-1.095-1.05-1.306-.463-.212-.96-.22-1.489-.025-.488.18-.655.484-.5.916l.928 2.527c.073.203.085.374.036.512a.403.403 0 0 1-.244.257.467.467 0 0 1-.39-.025c-.123-.073-.22-.211-.294-.415l-3.04-8.337c-.154-.432-.406-.733-.756-.904-.35-.179-.716-.199-1.099-.06-.398.138-.675.39-.83.756-.154.358-.154.757 0 1.196l4.395 12.061c.049.138.053.256.012.354a.333.333 0 0 1-.195.183c-.163.057-.338-.012-.525-.207l-2.942-3.162c-.236-.252-.488-.42-.757-.5a1.218 1.218 0 0 0-.83.024c-.423.154-.716.403-.879.745a1.337 1.337 0 0 0-.049 1.062c.057.13.118.248.183.354.066.105.13.203.196.293l3.87 4.797c1.61 1.994 3.316 3.235 5.114 3.723 1.807.497 3.638.407 5.493-.268Z"
+                fill={4291180339}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="popup-test-id-text"
+        >
+          Hold for 3 seconds
+to finish
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/notifications/Popup With custom icon 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "alignItems": "center",
+          "borderRadius": 18.966824644549764,
+          "elevation": 37.38461538461539,
+          "height": 101.1563981042654,
+          "justifyContent": "center",
+          "shadowColor": "#333333",
+          "shadowOffset": Object {
+            "height": 12.644549763033176,
+            "width": 0,
+          },
+          "shadowOpacity": 0.12,
+          "shadowRadius": 16,
+          "width": 467.3076923076923,
+        },
+        Object {
+          "opacity": 0,
+        },
+        undefined,
+      ]
+    }
+    testID="popup-test-id"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "borderRadius": 18.966824644549764,
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+      testID="popup-test-id-press"
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "borderRadius": 18.966824644549764,
+            "justifyContent": "center",
+            "left": 0,
+            "overflow": "hidden",
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <RNSVGSvgView
+          align="xMidYMid"
+          bbHeight={162.79857819905214}
+          bbWidth={528.8461538461538}
+          fill="none"
+          focusable={false}
+          height={162.79857819905214}
+          meetOrSlice={1}
+          minX={0}
+          minY={0}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "transparent",
+                "borderWidth": 0,
+              },
+              Object {
+                "flex": 0,
+                "height": 162,
+                "width": 528,
+              },
+            ]
+          }
+          vbHeight={103}
+          vbWidth={275}
+          width={528.8461538461538}
+        >
+          <RNSVGGroup
+            fill={null}
+            propList={
+              Array [
+                "fill",
+              ]
+            }
+          >
+            <RNSVGGroup>
+              <RNSVGPath
+                clipRule={0}
+                d="M28 8c-6.627 0-12 5.373-12 12v40c0 6.627 5.373 12 12 12h222.87a2 2 0 0 1 1.765 1.06l2.6 4.877c.98 1.838 3.765 1.142 3.765-.94V20c0-6.627-5.373-12-12-12H28Z"
+                fill={4294967295}
+                fillRule={0}
+                propList={
+                  Array [
+                    "fill",
+                    "fillRule",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGGroup>
+        </RNSVGSvgView>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "marginTop": 15.80568720379147,
+            "paddingHorizontal": 34.61538461538461,
+            "width": "100%",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "marginRight": 30.76923076923077,
+            }
+          }
+        >
+          <RNSVGSvgView
+            align="xMidYMid"
+            bbHeight={37.93364928909953}
+            bbWidth={46.15384615384615}
+            fill="none"
+            focusable={false}
+            height={37.93364928909953}
+            meetOrSlice={0}
+            minX={0}
+            minY={0}
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "transparent",
+                  "borderWidth": 0,
+                },
+                Object {
+                  "flex": 0,
+                  "height": 37,
+                  "width": 46,
+                },
+              ]
+            }
+            vbHeight={25}
+            vbWidth={24}
+            width={46.15384615384615}
+          >
+            <RNSVGGroup
+              fill={null}
+              propList={
+                Array [
+                  "fill",
+                ]
+              }
+            >
+              <RNSVGPath
+                d="M12 24.5273c1.6276 0 3.1576-.3133 4.5898-.9399 1.4323-.6185 2.6937-1.473 3.7842-2.5635 1.0905-1.0905 1.945-2.3478 2.5635-3.7719.6185-1.4323.9277-2.9623.9277-4.5899 0-1.6276-.3092-3.15347-.9277-4.57763-.6185-1.43229-1.4771-2.69368-2.5757-3.78418-1.0905-1.09863-2.3519-1.95719-3.7842-2.57568-1.4323-.61849-2.9622-.927735-4.5898-.927735-1.6113 0-3.13314.309245-4.56544.927735-1.43229.61849-2.69775 1.47705-3.79638 2.57568-1.0905 1.0905-1.94499 2.35189-2.56348 3.78418C.44401 9.50863.134766 11.0345.134766 12.6621c0 1.6276.309244 3.1576.927734 4.5899.62663 1.4241 1.48519 2.6814 2.57568 3.7719 1.0905 1.0905 2.35189 1.945 3.78418 2.5635 1.4323.6266 2.95814.9399 4.57764.9399Zm0-5.1025c-.1628 0-.297-.0488-.4028-.1465-.1058-.1058-.1587-.2401-.1587-.4028v-.8423c-.8301-.0651-1.54625-.3052-2.14846-.7202-.59408-.4232-.98063-.9684-1.15967-1.6358-.00814-.0651-.02034-.1302-.03662-.1953-.01628-.0651-.02441-.1302-.02441-.1953 0-.2197.06917-.4028.20752-.5493.14648-.1465.33365-.2197.56152-.2197.19531 0 .35807.0529.48828.1587.13835.0976.24414.2522.31738.4638.09766.3744.29297.6918.58596.9522.3011.2604.7039.4232 1.2085.4883v-3.3081l-.1465-.0367c-1.001-.236-1.75782-.5859-2.27052-1.0498-.50455-.472-.75683-1.0945-.75683-1.8676 0-.83012.29704-1.50964.89111-2.03861.59408-.53711 1.35494-.8545 2.28274-.95215v-.80567c0-.1709.0529-.30517.1587-.40283.1058-.10579.24-.15869.4028-.15869.1546 0 .2848.0529.3906.15869.114.09766.1709.23193.1709.40283v.80567c.7813.08951 1.4527.34179 2.0142.75683.5615.41504.9236.93587 1.0864 1.5625.0163.06511.0285.13428.0366.20752.0082.06511.0122.13021.0122.19531 0 .2197-.0732.3988-.2197.5371-.1383.1384-.3174.2075-.5371.2075-.3825 0-.651-.2034-.8057-.6103-.122-.37437-.3173-.67547-.5859-.90334-.2686-.236-.6022-.39062-1.001-.46387v3.12501l.2197.0366c1.0254.1953 1.8026.5371 2.3316 1.0254.529.4883.7934 1.1434.7934 1.9653 0 .9034-.3214 1.6236-.9643 2.1607-.6429.529-1.4364.8341-2.3804.9155v.8301c0 .1627-.0569.297-.1709.4028-.1058.0977-.236.1465-.3906.1465Zm-.5615-7.7637V8.81689c-.4802.07325-.8545.24008-1.1231.50049-.2685.26042-.4028.56153-.4028.90332 0 .3418.1139.6266.3418.8545.236.2197.6022.4069 1.0986.5615l.0855.0244Zm1.123 1.8799v3.0396c.5697-.057.9969-.2238 1.2818-.5005.2848-.2767.4272-.6144.4272-1.0132 0-.3499-.1099-.6429-.3296-.8789-.2197-.2442-.6063-.4395-1.1597-.5859l-.2197-.0611Z"
+                fill={4284585983}
+                propList={
+                  Array [
+                    "fill",
+                  ]
+                }
+              />
+            </RNSVGGroup>
+          </RNSVGSvgView>
+        </View>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 16,
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="popup-test-id-text"
+        >
+          Hold for 3 seconds
+to finish
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

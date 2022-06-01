@@ -109,6 +109,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Customized 1`] =
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-bike-by-number-container-id-text-input-input-name"
@@ -156,6 +157,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Customized 1`] =
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-bike-by-number-container-id-text-input-input-value"
@@ -169,26 +171,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Customized 1`] =
             }
           }
           testID="add-bike-by-number-container-id-text-input-input-hint"
-        >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="add-bike-by-number-container-id-text-input-input-hint-text"
-          >
-            AddBikeByNumberScreen.content.inputHint
-          </Text>
-        </View>
+        />
       </View>
     </View>
     <View
@@ -397,6 +380,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Default 1`] = `
           style={
             Object {
               "marginBottom": 6.322274881516588,
+              "marginLeft": 30.76923076923077,
             }
           }
           testID="add-bike-by-number-container-id-text-input-input-name"
@@ -444,6 +428,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Default 1`] = `
                 "paddingVertical": 0,
               },
               Object {},
+              false,
             ]
           }
           testID="add-bike-by-number-container-id-text-input-input-value"
@@ -457,26 +442,7 @@ exports[`Storyshots containers/AddBike/AddBikeByNumberContainer Default 1`] = `
             }
           }
           testID="add-bike-by-number-container-id-text-input-input-hint"
-        >
-          <Text
-            adjustsFontSizeToFit={false}
-            style={
-              Array [
-                Object {
-                  "color": "#717171",
-                  "fontFamily": "DIN2014-Regular",
-                  "fontSize": 14,
-                  "lineHeight": 16,
-                  "textAlign": "left",
-                },
-                undefined,
-              ]
-            }
-            testID="add-bike-by-number-container-id-text-input-input-hint-text"
-          >
-            AddBikeByNumberScreen.content.inputHint
-          </Text>
-        </View>
+        />
       </View>
     </View>
     <View

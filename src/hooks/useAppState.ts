@@ -25,10 +25,13 @@ const useAppState = () => {
     };
 
     useEffect(() => {
-        AppState.addEventListener('change', handleAppStateChange);
+        const subcription = AppState.addEventListener(
+            'change',
+            handleAppStateChange,
+        );
 
         return () => {
-            AppState.removeEventListener('change', handleAppStateChange);
+            subcription.remove();
         };
     }, []);
 

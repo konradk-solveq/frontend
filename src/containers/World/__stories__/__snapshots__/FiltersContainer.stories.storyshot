@@ -21,7 +21,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
             "position": "absolute",
             "width": "100%",
           },
-          [Function],
+          Object {
+            "paddingTop": 12.644549763033176,
+          },
         ]
       }
     >
@@ -944,7 +946,7 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                         style={
                           Array [
                             Object {
-                              "color": "#555555",
+                              "color": "#333333",
                               "fontFamily": "DIN2014-Demi",
                               "fontSize": 18,
                               "letterSpacing": 0.5,
@@ -1254,7 +1256,7 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                         style={
                           Array [
                             Object {
-                              "color": "#555555",
+                              "color": "#333333",
                               "fontFamily": "DIN2014-Demi",
                               "fontSize": 18,
                               "letterSpacing": 0.5,
@@ -1732,7 +1734,7 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                         style={
                           Array [
                             Object {
-                              "color": "#555555",
+                              "color": "#333333",
                               "fontFamily": "DIN2014-Demi",
                               "fontSize": 18,
                               "letterSpacing": 0.5,

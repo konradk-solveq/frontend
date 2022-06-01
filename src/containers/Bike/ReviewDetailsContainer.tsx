@@ -24,7 +24,7 @@ interface IProps {
     date: string | Date;
     type: string;
     checkmark: string | boolean;
-    operations: string[];
+    operations: string[] | null;
     info: string;
     onServicesTilePress: (e: GestureResponderEvent) => void;
     overviewsTitle?: string;
@@ -73,7 +73,7 @@ const ReviewDetailsContainer = ({
             {!!overviewsTitle && (
                 <Header3 style={styles.overviewTitle}>{overviewsTitle}</Header3>
             )}
-            {operations.map(operation => (
+            {operations?.map(operation => (
                 <BulletRow content={operation} />
             ))}
             <ServicePointsTile

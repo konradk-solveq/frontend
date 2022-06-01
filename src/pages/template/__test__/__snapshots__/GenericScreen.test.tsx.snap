@@ -72,7 +72,7 @@ exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         />
@@ -82,7 +82,7 @@ exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
               "alignItems": "center",
               "height": 44.25592417061611,
               "justifyContent": "center",
-              "width": 496.1538461538462,
+              "width": 457.6923076923077,
             }
           }
         >
@@ -114,7 +114,7 @@ exports[`<BikeSelectorList /> Rendering Should hide backArrowBtn 1`] = `
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         />
@@ -199,7 +199,7 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         >
@@ -265,7 +265,7 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
               "alignItems": "center",
               "height": 44.25592417061611,
               "justifyContent": "center",
-              "width": 496.1538461538462,
+              "width": 457.6923076923077,
             }
           }
         >
@@ -297,7 +297,7 @@ exports[`<BikeSelectorList /> Rendering Should match snapshot 1`] = `
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         />
@@ -382,7 +382,7 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         >
@@ -448,7 +448,7 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
               "alignItems": "center",
               "height": 44.25592417061611,
               "justifyContent": "center",
-              "width": 496.1538461538462,
+              "width": 457.6923076923077,
             }
           }
         >
@@ -480,7 +480,7 @@ exports[`<BikeSelectorList /> Rendering Should navigate after press on backArrow
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         />
@@ -565,7 +565,7 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         >
@@ -631,7 +631,7 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
               "alignItems": "center",
               "height": 44.25592417061611,
               "justifyContent": "center",
-              "width": 496.1538461538462,
+              "width": 457.6923076923077,
             }
           }
         >
@@ -663,7 +663,7 @@ exports[`<BikeSelectorList /> Rendering Should render child component 1`] = `
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         />
@@ -750,7 +750,7 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         >
@@ -816,7 +816,7 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
               "alignItems": "center",
               "height": 44.25592417061611,
               "justifyContent": "center",
-              "width": 496.1538461538462,
+              "width": 457.6923076923077,
             }
           }
         >
@@ -848,7 +848,7 @@ exports[`<BikeSelectorList /> Rendering Should render header right action elemen
               "flexDirection": "row",
               "height": 44.25592417061611,
               "paddingRight": 3.8461538461538463,
-              "width": 96.15384615384616,
+              "width": 115.38461538461539,
             }
           }
         >

@@ -1,0 +1,444 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/notifications/NotificationList Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "backgroundColor": "#eaeaea",
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": "100%",
+          "width": "100%",
+        },
+        Object {
+          "paddingTop": 0,
+        },
+        Object {
+          "maxHeight": undefined,
+        },
+      ]
+    }
+  >
+    <RCTScrollView
+      contentContainerStyle={
+        Object {
+          "paddingBottom": 151.7345971563981,
+        }
+      }
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
+        <View
+          exiting={
+            Object {
+              "delay": [MockFunction],
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 25.28909952606635,
+                  "marginHorizontal": 30.76923076923077,
+                  "marginTop": 25.28909952606635,
+                  "paddingHorizontal": 30.76923076923077,
+                  "paddingVertical": 18.966824644549764,
+                },
+                Object {
+                  "elevation": 5,
+                  "shadowColor": "#333333",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 38.46153846153846,
+                  },
+                  "shadowOpacity": 0.07,
+                  "shadowRadius": 15.384615384615385,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#C63733",
+                      "fontSize": 24,
+                    },
+                    Array [
+                      Object {
+                        "marginRight": 30.76923076923077,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                U
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#C63733",
+                    },
+                  ]
+                }
+                testID="header3-test-id"
+              >
+                Example Notification I
+              </Text>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "justifyContent": "space-between",
+                    "marginTop": 18.966824644549764,
+                  },
+                  false,
+                ]
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#717171",
+                      "fontFamily": "DIN2014-Regular",
+                      "fontSize": 14,
+                      "lineHeight": 16,
+                      "textAlign": "left",
+                    },
+                    Array [
+                      Object {
+                        "color": "#333333",
+                      },
+                      undefined,
+                    ],
+                  ]
+                }
+                testID="notification-subtitle"
+              >
+                Hello!
+              </Text>
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="notification-action-button"
+              >
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#333333",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "textAlign": "left",
+                      },
+                      Array [
+                        Object {
+                          "color": "#C63733",
+                        },
+                        undefined,
+                      ],
+                    ]
+                  }
+                  testID="body-primary-test-id"
+                >
+                  Action
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          exiting={
+            Object {
+              "delay": [MockFunction],
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 25.28909952606635,
+                  "marginHorizontal": 30.76923076923077,
+                  "marginTop": 25.28909952606635,
+                  "paddingHorizontal": 30.76923076923077,
+                  "paddingVertical": 18.966824644549764,
+                },
+                Object {
+                  "elevation": 5,
+                  "shadowColor": "#333333",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 38.46153846153846,
+                  },
+                  "shadowOpacity": 0.07,
+                  "shadowRadius": 15.384615384615385,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#C63733",
+                      "fontSize": 24,
+                    },
+                    Array [
+                      Object {
+                        "marginRight": 30.76923076923077,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                X
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#C63733",
+                    },
+                  ]
+                }
+                testID="header3-test-id"
+              >
+                Example Notification II
+              </Text>
+            </View>
+            <View
+              style={
+                Array [
+                  Object {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                  },
+                  Object {
+                    "justifyContent": "space-between",
+                    "marginTop": 18.966824644549764,
+                  },
+                  Object {
+                    "flexDirection": "row-reverse",
+                  },
+                ]
+              }
+            >
+              <View
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onBlur={[Function]}
+                onClick={[Function]}
+                onFocus={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                testID="notification-action-button"
+              >
+                <Text
+                  adjustsFontSizeToFit={false}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#333333",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 24,
+                        "textAlign": "left",
+                      },
+                      Array [
+                        Object {
+                          "color": "#C63733",
+                        },
+                        undefined,
+                      ],
+                    ]
+                  }
+                  testID="body-primary-test-id"
+                >
+                  Do sth.
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          exiting={
+            Object {
+              "delay": [MockFunction],
+            }
+          }
+        >
+          <View
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                  "borderRadius": 25.28909952606635,
+                  "marginHorizontal": 30.76923076923077,
+                  "marginTop": 25.28909952606635,
+                  "paddingHorizontal": 30.76923076923077,
+                  "paddingVertical": 18.966824644549764,
+                },
+                Object {
+                  "elevation": 5,
+                  "shadowColor": "#333333",
+                  "shadowOffset": Object {
+                    "height": 0,
+                    "width": 38.46153846153846,
+                  },
+                  "shadowOpacity": 0.07,
+                  "shadowRadius": 15.384615384615385,
+                },
+                undefined,
+              ]
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                }
+              }
+            >
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "fontFamily": "mykross",
+                      "textAlign": "center",
+                    },
+                    Object {
+                      "color": "#C63733",
+                      "fontSize": 24,
+                    },
+                    Array [
+                      Object {
+                        "marginRight": 30.76923076923077,
+                      },
+                      Object {},
+                    ],
+                  ]
+                }
+                testID="text-icon-test-id"
+              >
+                B
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 24,
+                      "textAlign": "left",
+                    },
+                    Object {
+                      "color": "#C63733",
+                    },
+                  ]
+                }
+                testID="header3-test-id"
+              >
+                Example Notification III
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+</View>
+`;

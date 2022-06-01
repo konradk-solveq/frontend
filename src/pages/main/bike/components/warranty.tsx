@@ -1,34 +1,75 @@
-import React, {useMemo} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useCallback, useMemo} from 'react';
+import {GestureResponderEvent, Pressable, StyleSheet, View} from 'react-native';
+
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {BodyPrimary} from '@components/texts/texts';
 import colors from '@theme/colors';
 import {HorizontalDivider} from '@components/divider';
 import {getFVerticalPx, getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import {countDaysToEnd} from '@helpers/warranty';
+import {
+    getWarrantyStatusInfoText,
+    getWarrantyStatusInfo,
+    getWarrantyTypeText,
+    shouldShowWarrantyStatusInfo,
+} from '@pages/main/bike/utils/warranty';
+import ArrowSvg from '@src/components/svg/Arrow';
+
+const TYPE_NO_INFO = 'no-info';
 
 interface Props {
     style?: any;
     type?: string;
     info: string;
     endDate?: Date;
+    onPress: (e: GestureResponderEvent) => void;
 }
 
-const TYPE_EXTENDED = 'extended';
-
-const Warranty: React.FC<Props> = ({style, type, endDate, info}: Props) => {
+const Warranty: React.FC<Props> = ({
+    style,
+    type,
+    endDate,
+    info,
+    onPress,
+}: Props) => {
     const {t} = useMergedTranslation('MainBike');
     const daysToEnd = useMemo(() => endDate && countDaysToEnd(endDate), [
         endDate,
     ]);
-    const showInfo = daysToEnd || type === TYPE_EXTENDED;
-    const showDate = (daysToEnd && daysToEnd > 0) || type === TYPE_EXTENDED;
-    const warrantyEndText =
-        type === TYPE_EXTENDED
-            ? t('warranty.lifetime')
-            : `${daysToEnd} ${t('warranty.days', {count: daysToEnd})}`;
-    const warrantyStatusText = showDate ? info : t('warranty.expired');
-    return showInfo ? (
+    const containsWarrantyInfo = type !== TYPE_NO_INFO;
+    /**
+     * When warranty is not equal to 'no-info' or 'extended',
+     * and date is expired Warranty Satus Info should
+     * not be displayed.
+     */
+    const showWarrantyStatusInfo = shouldShowWarrantyStatusInfo(
+        type,
+        daysToEnd,
+    );
+
+    /**
+     * Information about warranty type, eg. 'basice', 'extended', 'no-info' etc.
+     */
+    const warrantyTypeText = getWarrantyTypeText(
+        showWarrantyStatusInfo,
+        info,
+        containsWarrantyInfo,
+    );
+
+    const warrantyStatusInfo = getWarrantyStatusInfo(containsWarrantyInfo);
+
+    const warrantyStatusInfoText = getWarrantyStatusInfoText(type, daysToEnd);
+
+    const onPressHandler = useCallback(
+        (e: GestureResponderEvent) => {
+            if (!containsWarrantyInfo) {
+                onPress(e);
+            }
+        },
+        [containsWarrantyInfo, onPress],
+    );
+
+    return (
         <View style={style}>
             <View>
                 <View style={styles.textLine}>
@@ -36,26 +77,33 @@ const Warranty: React.FC<Props> = ({style, type, endDate, info}: Props) => {
                         {t('warranty.state')}
                     </BodyPrimary>
                     <BodyPrimary style={styles.rightText}>
-                        {warrantyStatusText}
+                        {warrantyTypeText}
                     </BodyPrimary>
                 </View>
                 <HorizontalDivider
                     width={getFVerticalPx(1)}
                     color={colors.grey}
                 />
-                {showDate && (
+                {showWarrantyStatusInfo && (
                     <View style={styles.textLine}>
                         <BodyPrimary style={styles.leftText}>
-                            {t('warranty.toEnd')}
+                            {warrantyStatusInfo}
                         </BodyPrimary>
-                        <BodyPrimary style={styles.rightText}>
-                            {warrantyEndText}
-                        </BodyPrimary>
+                        <Pressable
+                            style={styles.rightText}
+                            onPress={onPressHandler}>
+                            <BodyPrimary algin="right">
+                                {warrantyStatusInfoText}
+                            </BodyPrimary>
+                            {!containsWarrantyInfo && (
+                                <ArrowSvg style={styles.arrow} />
+                            )}
+                        </Pressable>
                     </View>
                 )}
             </View>
         </View>
-    ) : null;
+    );
 };
 
 export default Warranty;
@@ -77,5 +125,11 @@ const styles = StyleSheet.create({
         color: colors.black,
         textAlign: 'right',
         width: '50%',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    arrow: {
+        marginLeft: getFHorizontalPx(7),
     },
 });

@@ -56,16 +56,9 @@ const ShareRouteScreen: React.FC = () => {
         if (sharedContent?.url && !shareError) {
             setShareBtnIsVisible(true);
 
-            const message = i18next.t(
-                'ShareScreen.ShareContent.Route.message',
-                {
-                    url: sharedContent.url || '',
-                    interpolation: {escapeValue: false},
-                },
-            );
             callSystemShare(sharedContent.url, {
                 title: trans.ShareContent.Route.title,
-                message: message,
+                message: trans.ShareContent.Route.title,
                 subject: trans.ShareContent.Route.subject,
             });
         }

@@ -1,9 +1,9 @@
-import { getHorizontalPx } from '@src/helpers/layoutFoo';
 import React, {useCallback, useContext, useEffect, useRef} from 'react';
 import {InteractionManager, Platform} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
 
-import {CounterDataContext} from '../nativeCounter/counterContext/counterContext';
+import {CounterDataContext} from '@pages/main/recording/counter/context/counterContext';
+import {getHorizontalPx} from '@helpers/layoutFoo';
 
 type ShortCoordsType = {
     latitude: number;

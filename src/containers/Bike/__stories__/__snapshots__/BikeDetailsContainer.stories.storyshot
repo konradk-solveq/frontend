@@ -233,6 +233,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
       >
         <Text
           adjustsFontSizeToFit={false}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -361,7 +362,10 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
                     "textAlign": "left",
                   },
                   Object {
+                    "alignItems": "center",
                     "color": "#333333",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
                     "textAlign": "right",
                     "width": "50%",
                   },
@@ -369,7 +373,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               }
               testID="body-primary-test-id"
             >
-              brak informacji
+              MainBike.warranty.noInfo
             </Text>
           </View>
           <View
@@ -419,30 +423,92 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
               }
               testID="body-primary-test-id"
             >
-              MainBike.warranty.toEnd
+              MainBike.warranty.missingToEnd
             </Text>
-            <Text
-              adjustsFontSizeToFit={false}
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#333333",
-                    "textAlign": "right",
-                    "width": "50%",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "color": "#333333",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                  "textAlign": "right",
+                  "width": "50%",
+                }
               }
-              testID="body-primary-test-id"
             >
-              1099 MainBike.warranty.days
-            </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "right",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                MainBike.warranty.missingToEndAction
+              </Text>
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={22.127962085308056}
+                bbWidth={17.307692307692307}
+                focusable={false}
+                height={22.127962085308056}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "marginLeft": 13.461538461538462,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 22,
+                      "width": 17,
+                    },
+                  ]
+                }
+                vbHeight={15}
+                vbWidth={9}
+                width={17.307692307692307}
+              >
+                <RNSVGGroup>
+                  <RNSVGPath
+                    d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
+                    fill={4281545523}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
           </View>
         </View>
       </View>
@@ -1186,6 +1252,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
       >
         <Text
           adjustsFontSizeToFit={false}
+          numberOfLines={0}
           style={
             Array [
               Object {
@@ -1314,7 +1381,10 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
                     "textAlign": "left",
                   },
                   Object {
+                    "alignItems": "center",
                     "color": "#333333",
+                    "flexDirection": "row",
+                    "justifyContent": "flex-end",
                     "textAlign": "right",
                     "width": "50%",
                   },
@@ -1322,7 +1392,7 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               }
               testID="body-primary-test-id"
             >
-              brak informacji
+              MainBike.warranty.noInfo
             </Text>
           </View>
           <View
@@ -1372,30 +1442,92 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
               }
               testID="body-primary-test-id"
             >
-              MainBike.warranty.toEnd
+              MainBike.warranty.missingToEnd
             </Text>
-            <Text
-              adjustsFontSizeToFit={false}
+            <View
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
               style={
-                Array [
-                  Object {
-                    "color": "#333333",
-                    "fontFamily": "DIN2014-Demi",
-                    "fontSize": 16,
-                    "lineHeight": 24,
-                    "textAlign": "left",
-                  },
-                  Object {
-                    "color": "#333333",
-                    "textAlign": "right",
-                    "width": "50%",
-                  },
-                ]
+                Object {
+                  "alignItems": "center",
+                  "color": "#333333",
+                  "flexDirection": "row",
+                  "justifyContent": "flex-end",
+                  "textAlign": "right",
+                  "width": "50%",
+                }
               }
-              testID="body-primary-test-id"
             >
-              1099 MainBike.warranty.days
-            </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 16,
+                      "lineHeight": 24,
+                      "textAlign": "right",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="body-primary-test-id"
+              >
+                MainBike.warranty.missingToEndAction
+              </Text>
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={22.127962085308056}
+                bbWidth={17.307692307692307}
+                focusable={false}
+                height={22.127962085308056}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    Object {
+                      "marginLeft": 13.461538461538462,
+                    },
+                    Object {
+                      "flex": 0,
+                      "height": 22,
+                      "width": 17,
+                    },
+                  ]
+                }
+                vbHeight={15}
+                vbWidth={9}
+                width={17.307692307692307}
+              >
+                <RNSVGGroup>
+                  <RNSVGPath
+                    d="M.309.79c-.38.355-.41.915-.088 1.302l.088.093 5.145 4.814L.31 11.815l-.088.093c-.322.387-.292.947.088 1.303s.978.383 1.392.082l.1-.082 5.89-5.513.088-.093c.295-.355.295-.855 0-1.21l-.088-.093L1.801.79C1.387.404.72.404.308.79z"
+                    fill={4281545523}
+                    propList={
+                      Array [
+                        "fill",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+            </View>
           </View>
         </View>
       </View>
