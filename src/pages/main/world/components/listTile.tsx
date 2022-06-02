@@ -15,6 +15,7 @@ import {useNotificationContext} from '@providers/topNotificationProvider/TopNoti
 import {addPlannedMap} from '@storage/actions/maps';
 import ListTileView from '@components/tiles/listTileView';
 import {getMapType} from '../utils/routes';
+
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
     mapData: Map;
