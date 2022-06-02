@@ -31,6 +31,7 @@ import {
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
 import colors from '@theme/colors';
+import { isIOS } from '@src/utils/platform';
 
 const {height} = Dimensions.get('window');
 const containerHeight = getFVerticalPx(270);
@@ -276,6 +277,7 @@ const BottomModal: React.FC<IProps> = ({
     return (
         <PanGestureHandler
             onGestureEvent={panGestureEventHandler}
+            activeOffsetY={[-10, 10]}
             enabled={isReactive}>
             <Animated.View
                 style={[styles.container, modalAnimation, style]}
