@@ -8,10 +8,10 @@ import {BottomTabNavigationProp} from '@react-navigation/bottom-tabs';
 
 import {
     AuthParamsListT,
-    RecordParamsListT,
     GeneralParamsListT,
     KrossWorldParamsListT,
     RootStackType,
+    CounterParamsLsitT,
 } from '@type/rootStack';
 
 type NestedNavigatorParamsT<RootStackType> = NavigatorScreenParams<
@@ -51,11 +51,21 @@ export type NavigatorScreenParamsT<
     ParamsList extends Partial<RootStackType>
 > = NavigatorScreenParams<ParamsList>;
 
+/* TODO: this types should be rewrite cause it is not correct*/
 export type MaterialTabStackType = {
+    RecordTab: NestedNavigatorParamsT<Pick<CounterParamsLsitT, 'Counter'>> & {
+        params: Pick<CounterParamsLsitT, 'Counter'>;
+    };
     WorldBikeMap: NestedNavigatorParamsT<KrossWorldParamsListT>;
     WorldMyRoutes: NestedNavigatorParamsT<KrossWorldParamsListT>;
     WorldPlannedRoutes: NestedNavigatorParamsT<KrossWorldParamsListT>;
 };
+
+export type RecordTabRouteT = RouteProp<MaterialTabStackType, 'RecordTab'>;
+export type RecordTabNavigationPropT = BottomTabNavigationProp<
+    MaterialTabStackType,
+    'RecordTab'
+>;
 
 export type WorldBikeTabRouteT = RouteProp<
     MaterialTabStackType,

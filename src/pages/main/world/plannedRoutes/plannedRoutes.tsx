@@ -256,7 +256,9 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             switch (actionType) {
                 case 'record':
                     setBottomSheetWithMoreActions(false);
-                    navigation.navigate('Counter', {mapID: mapId});
+                    navigation.navigate('RecordTab', {
+                        mapID: mapId,
+                    });
                     break;
                 case 'remove':
                     dispatch(removePlannedMap(mapId));

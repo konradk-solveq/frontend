@@ -1,4 +1,4 @@
-import React, {useMemo, useState, useEffect, useCallback} from 'react';
+import React, {useMemo, useState, useEffect, useCallback, useRef} from 'react';
 import {InteractionManager} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
 
@@ -40,6 +40,7 @@ const initRouteInfo = {
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
+    const mapIDToNavigateRef = useRef<string>();
     const {mapID, nearestPoint} = useAppRoute<'RoutesMap'>()?.params || {};
     const globalLcation = useAppSelector(globalLocationSelector);
 
@@ -86,6 +87,7 @@ const RoutesMap: React.FC = () => {
                 routeMapType: RouteMapType.BIKE_MAP,
             });
         }
+        mapIDToNavigateRef.current = id;
     };
 
     useEffect(() => {
@@ -146,6 +148,7 @@ const RoutesMap: React.FC = () => {
             /**
              * Clear param after path has been showed.
              */
+            mapIDToNavigateRef.current = mapID;
             navigation.setParams({mapID: undefined});
         } else {
             if (nearestPoint) {
@@ -235,7 +238,10 @@ const RoutesMap: React.FC = () => {
             switch (actionType) {
                 case 'record':
                     setBottomSheetWithMoreActions(false);
-                    navigation.navigate('Counter', {mapID: mapId});
+                    navigation.navigate('RecordTab', {
+                        mapID: mapIDToNavigateRef.current,
+                    });
+                    mapIDToNavigateRef.current = '';
                     break;
                 case 'add_to_planned':
                     setIsAddingToFavourites(true);
@@ -285,7 +291,14 @@ const RoutesMap: React.FC = () => {
                     break;
             }
         },
-        [dispatch, navigation, mapData?.id, routeInfo.mapType, isCreatedByUser],
+        [
+            dispatch,
+            navigation,
+            mapData?.id,
+            routeInfo.mapType,
+            isCreatedByUser,
+            mapID,
+        ],
     );
 
     return (
