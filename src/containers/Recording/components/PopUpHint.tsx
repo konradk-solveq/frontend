@@ -18,7 +18,7 @@ interface IProps {
 const PopUpHint: React.FC<IProps> = ({onPress, show = false}: IProps) => {
     const {t} = useMergedTranslation('MainCounter.alerts');
     return (
-        <View style={styles.container}>
+        <View style={styles.container} pointerEvents={show ? 'auto' : 'none'}>
             <PopUp
                 show={show}
                 duration={250}
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         alignItems: 'center',
-        top: -getFVerticalPx(118),
+        top: -getFVerticalPx(90),
         zIndex: 12,
     },
 });

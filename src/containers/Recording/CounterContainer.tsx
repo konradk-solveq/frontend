@@ -39,6 +39,7 @@ import {FullMetrics, Metrics} from '@containers/Recording/components';
 import {PopUpHint} from '@containers/Recording/components';
 
 export const BOTTOM_MODAL_HEIGHT = 303;
+export const BOTTOM_MODAL_HEIGHT_AFTER_START = 223;
 const BOTTOM_SPACE_AFTER_START = getFVerticalPx(50);
 const BOTTOM_SPACE = getFVerticalPx(50) + BOTTOM_TAB_HEIGHT;
 
@@ -75,10 +76,13 @@ const CounterContainer: React.FC<IProps> = ({
     const [openBottomModal, setOpenBottomModal] = useState(false);
     const [modalHeight, setModalHeight] = useState(getFVerticalPx(300));
 
-    /* TODO: issue - modal is not rendered initally */
     useEffect(() => {
-        setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT));
-    }, []);
+        if (recordingState === 'not-started') {
+            setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT));
+        } else if (recordingState === 'recording') {
+            setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT_AFTER_START));
+        }
+    }, [recordingState]);
 
     const closeContentOpacity = useSharedValue(1);
     const openContentOpacity = useSharedValue(0);
