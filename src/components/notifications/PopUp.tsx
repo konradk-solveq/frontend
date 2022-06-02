@@ -104,6 +104,7 @@ const PopUp: React.FC<IProps> = ({
             testID={testID}>
             <Pressable
                 onPress={onPressHandler}
+                disabled={!show}
                 style={styles.pressableArea}
                 testID={`${testID}-press`}>
                 <View style={styles.background}>
