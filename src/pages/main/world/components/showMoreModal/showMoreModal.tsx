@@ -96,7 +96,7 @@ const ShowMoreModal: React.FC<IProps> = ({
 
     const onStartRouteHandler = () => {
         onPressCancel();
-        navigation.navigate('Counter', {
+        navigation.navigate('RecordTab', {
             mapID: mapID,
         });
     };
