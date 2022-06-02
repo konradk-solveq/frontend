@@ -276,6 +276,7 @@ const BottomModal: React.FC<IProps> = ({
     return (
         <PanGestureHandler
             onGestureEvent={panGestureEventHandler}
+            activeOffsetY={[-10, 10]}
             enabled={isReactive}>
             <Animated.View
                 style={[styles.container, modalAnimation, style]}

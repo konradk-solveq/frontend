@@ -168,9 +168,9 @@ const RouteDetails = () => {
     const sliverImage = images && getSliverImageToDisplay(images);
 
     const onPressStartRouteHandler = () => {
-        navigation.navigate({
-            name: RegularStackRoute.COUNTER_SCREEN,
-            params: {mapID: mapID, private: privateMap},
+        navigation.navigate('RecordTab', {
+            mapID: mapID,
+            private: privateMap,
         });
     };
 

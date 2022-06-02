@@ -41,6 +41,11 @@ exports[`Storyshots components/notifications/Popup Customized 1`] = `
     testID="popup-test-id"
   >
     <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -263,6 +268,11 @@ exports[`Storyshots components/notifications/Popup Default 1`] = `
     testID="popup-test-id"
   >
     <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}
@@ -486,6 +496,11 @@ exports[`Storyshots components/notifications/Popup With custom icon 1`] = `
     testID="popup-test-id"
   >
     <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
       accessible={true}
       collapsable={false}
       focusable={true}

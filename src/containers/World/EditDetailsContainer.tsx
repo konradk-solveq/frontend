@@ -1,4 +1,4 @@
-import React, {useState, useImperativeHandle, Ref} from 'react';
+import React, {useState, useImperativeHandle, Ref, useMemo} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SubmitErrorHandler, SubmitHandler, FieldValues} from 'react-hook-form';
 
@@ -51,6 +51,7 @@ interface IProps {
     ref?: Ref<RouteEditFormRef | undefined>;
 }
 
+/* TODO: missing tests for validation */
 const EditForm: React.FC<IProps> = React.forwardRef(
     (
         {
@@ -72,6 +73,9 @@ const EditForm: React.FC<IProps> = React.forwardRef(
         );
         const [imagesToAdd, setImagesToAdd] = useState<ImageType[]>([]);
         const [imagesToRemove, setImagesToRemove] = useState<string[]>([]);
+        const isRoutePublished = useMemo(() => mapData?.isPublic, [
+            mapData?.isPublic,
+        ]);
 
         const {
             control,
@@ -94,19 +98,25 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             return isValid;
         };
 
+        /**
+         * Validate data when publish or route is already published
+         */
         const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
-            if (!publish) {
+            if (!publish && !isRoutePublished) {
                 onSubmit(data, false, imagesToAdd, imagesToRemove);
                 return;
             }
             const isValid = validateFormData(data);
             if (isValid) {
-                onSubmit(data, true, imagesToAdd, imagesToRemove);
+                onSubmit(data, publish, imagesToAdd, imagesToRemove);
             }
         };
 
+        /**
+         * Validate data when publish or route is already published
+         */
         const onInvalidSubmitHandler: SubmitErrorHandler<MapFormDataResult> = () => {
-            if (!publish) {
+            if (!publish && !isRoutePublished) {
                 return;
             }
             const formValues = getValues();
@@ -142,8 +152,11 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             }
         };
 
+        /**
+         * Validate data when publish or route is already published
+         */
         useImperativeHandle(ref, () => ({
-            submit: handleSubmit(onSubmitHandler),
+            submit: handleSubmit(onSubmitHandler, onInvalidSubmitHandler),
         }));
 
         const onRemoveImageHandler = (imageUri: string) => {

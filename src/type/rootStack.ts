@@ -261,6 +261,7 @@ export type CounterParamsLsitT = {
         distance?: number;
         time?: number;
         pause?: number;
+        isPlanned?: boolean;
     };
     CounterThankYouPage: {
         distance?: string;

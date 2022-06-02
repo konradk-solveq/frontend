@@ -133,6 +133,7 @@ const MoreActionsModal: React.FC<IProps> = ({
                 show={aproveAction}
                 onPress={onAproveAction}
                 text={contentAlert}
+                numberOfLines={3}
                 pressText={t('alert.positive')}
                 cancelText={t('alert.negative')}
                 onCancel={() => setAproveAction(false)}

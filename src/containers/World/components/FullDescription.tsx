@@ -42,6 +42,7 @@ interface IProps {
     images?: ImagesUrlsToDisplay;
 }
 
+/* Missing tests for conditional rendering */
 const FullDescription: React.FC<IProps> = ({mapData, images}: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
     const [showImgPreview, setShowImgPreview] = useState(false);
@@ -53,15 +54,21 @@ const FullDescription: React.FC<IProps> = ({mapData, images}: IProps) => {
 
     return (
         <View style={[styles.container, styles.bottomPadding]}>
-            {mapData?.description ? (
+            {mapData?.description || surfacesString ? (
                 <View style={styles.bottomPadding}>
-                    <View style={styles.bottomPadding}>
-                        <Header3>{t('descriptionTitle')}</Header3>
-                        <Paragraph>
-                            {mapData?.description ? mapData.description : ''}
-                        </Paragraph>
-                    </View>
-                    <Paragraph>{surfacesString}</Paragraph>
+                    {mapData?.description && (
+                        <View style={styles.bottomPadding}>
+                            <>
+                                <Header3>{t('descriptionTitle')}</Header3>
+                                <Paragraph>
+                                    {mapData?.description
+                                        ? mapData.description
+                                        : ''}
+                                </Paragraph>
+                            </>
+                        </View>
+                    )}
+                    {surfacesString && <Paragraph>{surfacesString}</Paragraph>}
                 </View>
             ) : null}
             {images?.images?.length ? (

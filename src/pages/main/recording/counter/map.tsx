@@ -2,9 +2,14 @@ import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {StyleSheet, Platform, View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
 
+import {RouteMapType} from '@models/places.model';
 import useAppState from '@hooks/useAppState';
-import {useAppSelector} from '../../../../hooks/redux';
-import {favouriteMapDataByIDSelector} from '../../../../storage/selectors/map';
+import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
+import {fetchMapIfNotExistsLocally} from '@storage/actions/maps';
+import {
+    favouriteMapDataByIDSelector,
+    mapDataByIDSelector,
+} from '../../../../storage/selectors/map';
 import {getCurrentLocation} from '../../../../utils/geolocation';
 import {DataI} from '@hooks/useLocalizationTracker';
 
@@ -49,7 +54,7 @@ const setLocationData = async (
 const isIOS = Platform.OS === 'ios';
 
 interface IProps {
-    routeId: string;
+    routeId?: string;
     trackerData: DataI | undefined;
     autoFindMe: number;
     headingOn: boolean;
@@ -58,6 +63,7 @@ interface IProps {
     restoredPath?: ShortCoordsType[];
     autoFindMeSwith: (e: number) => void;
     beforeRecording: boolean;
+    isPlanned?: boolean;
 }
 
 const initCompasHeading = {
@@ -73,7 +79,7 @@ const initCompasHeading = {
 const ZOOM_START_VALUE = isIOS ? 18 : 17;
 
 const Map: React.FC<IProps> = ({
-    routeId,
+    routeId = '',
     trackerData,
     autoFindMe,
     headingOn,
@@ -82,8 +88,11 @@ const Map: React.FC<IProps> = ({
     restoredPath,
     autoFindMeSwith,
     beforeRecording,
+    isPlanned = false,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
+    const mapWasFetchedRef = useRef(false);
+    const dispatch = useAppDispatch();
     const timerRef = useRef<NodeJS.Timeout | null>(null);
     const cooldownRef = useRef<NodeJS.Timeout | null>(null);
     const mountedRef = useRef(false);
@@ -135,12 +144,32 @@ const Map: React.FC<IProps> = ({
         }
     }, [trackerData?.odometer]);
 
-    const mapData = useAppSelector(favouriteMapDataByIDSelector(routeId));
+    const mapData = useAppSelector(
+        isPlanned
+            ? favouriteMapDataByIDSelector(routeId)
+            : mapDataByIDSelector(routeId),
+    );
 
     const [location, setLocaion] = useState<LatLng | null>(null);
     const [foreignRoute, setForeignRoute] = useState<
         {latitude: number; longitude: number}[] | null
     >(null);
+
+    /**
+     * If path not exists locally try to fetch it once
+     */
+    useEffect(() => {
+        if (routeId && !mapData?.path && !mapWasFetchedRef.current) {
+            dispatch(
+                fetchMapIfNotExistsLocally(
+                    routeId,
+                    RouteMapType.BIKE_MAP,
+                    true,
+                ),
+            );
+            mapWasFetchedRef.current = true;
+        }
+    }, [dispatch, mapData?.path, routeId]);
 
     useEffect(() => {
         if (!mountedRef.current || locationSetRef.current) {

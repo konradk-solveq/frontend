@@ -209,6 +209,7 @@ exports[`Storyshots containers/AddBike/AddBikeFrameInfo Default 1`] = `
             >
               <Text
                 adjustsFontSizeToFit={false}
+                numberOfLines={0}
                 style={
                   Array [
                     Object {
@@ -250,6 +251,7 @@ exports[`Storyshots containers/AddBike/AddBikeFrameInfo Default 1`] = `
             </Text>
             <Text
               adjustsFontSizeToFit={false}
+              numberOfLines={0}
               style={
                 Array [
                   Object {

@@ -19,6 +19,7 @@ export interface IProps {
     pressText?: string;
     cancelText?: string;
     show?: boolean;
+    numberOfLines?: number;
     contentStyle?: ViewStyle;
     testID?: string;
 }
@@ -31,6 +32,7 @@ const Alert: React.FC<IProps> = ({
     pressText = '',
     cancelText = '',
     text = '',
+    numberOfLines = 0,
     contentStyle,
     testID = 'alert-id',
 }: IProps) => {
@@ -56,7 +58,11 @@ const Alert: React.FC<IProps> = ({
                     <HorizontalSpacer height={29.5} />
                     <WarningSvg />
                     <HorizontalSpacer height={13.5} />
-                    <Header3 algin="center" testID={`${testID}-content`}>
+                    <Header3
+                        algin="center"
+                        testID={`${testID}-content`}
+                        adjustsFontSizeToFit
+                        numberOfLines={numberOfLines}>
                         {text}
                     </Header3>
                     <HorizontalSpacer height={24} />

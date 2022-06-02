@@ -81,6 +81,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const trackerStartTime = useAppSelector(trackerStartTimeSelector);
     const trackerPauseTime = useAppSelector(trackerPauseTimeSelector);
+    const mapID = route?.params?.mapID;
+    const isPlanned = route?.params?.isPlanned;
 
     const [autoFindMe, setAutoFindMe] = useState<number>(1);
     const [headingOn, setHeadingOn] = useState<boolean>(true);
@@ -173,12 +175,23 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         };
     }, []);
 
+    /**
+     * Reset params on unmount
+     */
+    useEffect(() => {
+        return () => {
+            navigation.setParams({
+                mapID: undefined,
+            });
+        };
+    }, [navigation]);
+
     /* Re-run counter after app restart */
     useEffect(() => {
         if (isTrackerActive && mountedRef.current) {
             setBeforeRecording(false);
             setPauseTime({start: 0, total: trackerPauseTime});
-            startTracker(route?.params?.mapID);
+            startTracker(mapID);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -313,9 +326,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (!isActive && !recordingFinishedRef.current) {
             setBeforeRecording(false);
             setRenderPath(true);
-            startTracker(route?.params?.mapID);
+            startTracker(mapID);
         }
-    }, [isActive, route?.params?.mapID, startTracker]);
+    }, [isActive, mapID, startTracker]);
 
     /**
      * Stop tracking
@@ -382,7 +395,8 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             transculentBottom>
             <View style={styles.container}>
                 <Map
-                    routeId={followedRouteId || route?.params?.mapID}
+                    routeId={followedRouteId || mapID}
+                    isPlanned={isPlanned}
                     trackerData={trackerData}
                     autoFindMe={autoFindMe}
                     headingOn={headingOn}
@@ -460,6 +474,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     onPress={onCloseShortRouteAlertHandler}
                     text={t('alerts.tooShort.message')}
                     pressText={t('alerts.tooShort.action')}
+                    numberOfLines={3}
                     noCancel
                     contentStyle={{
                         height: getFHorizontalPx(244),

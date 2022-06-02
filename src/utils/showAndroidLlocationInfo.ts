@@ -23,7 +23,7 @@ export const onRecordTripActionHandler = async (
             await setConfigWithLocationPermission('WhenInUse');
         }
     }
-    navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
+    navigation.navigate('RecordTab', {});
 };
 
 export const showLocationInfo = async (
@@ -34,7 +34,7 @@ export const showLocationInfo = async (
     if (!permissionsType.coarseLocation && !permissionsType.fineLocation) {
         const res = await askFineLocationPermission();
         if (res !== 'granted') {
-            navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
+            navigation.navigate('RecordTab', {});
             return;
         }
     }
