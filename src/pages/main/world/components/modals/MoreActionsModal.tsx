@@ -12,7 +12,7 @@
  *  which doesn't work right now.
  */
 
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 
 import {MapsTypesT, RouteDetailsActionT} from '@type/screens/routesMap';
@@ -28,9 +28,6 @@ import {Alert} from '@components/alerts';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import colors from '@theme/colors';
-
-const TIME_TO_HIDE_MODAL = isIOS ? 400 : 800;
-const TIME_TO_SHOW_SECOND_MODAL = isIOS ? TIME_TO_HIDE_MODAL + 50 : 0;
 
 interface IProps {
     onPressAction: (actionType: RouteDetailsActionT) => void;
@@ -55,45 +52,43 @@ const MoreActionsModal: React.FC<IProps> = ({
     );
 
     const [aproveAction, setAproveAction] = useState(false);
-
     /**
-     * We use modal to cover navigation components
-     * like tab-bottom.
-     *
-     * Hiding modal is delayed to allow
-     * other animations to finish.
+     * Helper to avoid render two modals at the same time on IOS devices
      */
-    const [visible, setVisible] = useState(false);
-    useEffect(() => {
-        const timer = setTimeout(
-            () => {
-                setVisible(show);
-            },
-            show ? 0 : TIME_TO_HIDE_MODAL,
-        );
+    const [dissmised, setDissmised] = useState(!isIOS);
 
-        return () => clearTimeout(timer);
-    }, [show]);
+    const onDismissHandler = () => {
+        setDissmised(isIOS ? false : true);
+    };
 
     const onAproveAction = useCallback(() => {
         onPressAction('remove');
         setAproveAction(false);
+        onDismissHandler();
     }, [onPressAction]);
 
     const showAdditionalAprove = useCallback(() => {
         onClose();
-        setTimeout(() => {
-            setAproveAction(true);
-        }, TIME_TO_SHOW_SECOND_MODAL);
+        setAproveAction(true);
     }, [onClose]);
 
     return (
-        <>
-            <Modal transparent animationType="fade" visible={visible}>
+        <View>
+            <Modal
+                transparent
+                animationType="fade"
+                visible={show}
+                onDismiss={() => {
+                    /**
+                     * Triggered on IOS
+                     */
+                    setDissmised(true);
+                }}>
                 <BottomModal
                     show={show}
                     openModalHeight={getFVerticalPx(138)}
                     header={<HorizontalSpacer height={8} />}
+                    initWithStartHeight
                     style={styles.modal}>
                     <View>
                         <View
@@ -130,15 +125,18 @@ const MoreActionsModal: React.FC<IProps> = ({
             </Modal>
 
             <Alert
-                show={aproveAction}
+                show={aproveAction && dissmised && !show}
                 onPress={onAproveAction}
                 text={contentAlert}
                 numberOfLines={3}
                 pressText={t('alert.positive')}
                 cancelText={t('alert.negative')}
-                onCancel={() => setAproveAction(false)}
+                onCancel={() => {
+                    setAproveAction(false);
+                    onDismissHandler();
+                }}
             />
-        </>
+        </View>
     );
 };
 

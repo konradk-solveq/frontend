@@ -31,7 +31,6 @@ import {
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
 import colors from '@theme/colors';
-import { isIOS } from '@src/utils/platform';
 
 const {height} = Dimensions.get('window');
 const containerHeight = getFVerticalPx(270);
@@ -80,6 +79,7 @@ interface IProps {
      * Calculate the height of the component without statusBar height
      */
     drawUnderStatusBar?: boolean;
+    initWithStartHeight?: boolean;
     style?: ViewStyle;
     testID?: string;
 }
@@ -101,6 +101,7 @@ const BottomModal: React.FC<IProps> = ({
     openDuration = 750,
     closeDuration = 750,
     drawUnderStatusBar = false,
+    initWithStartHeight = false,
     style,
     testID = 'bottom-modal-test-id',
 }: IProps) => {
@@ -141,7 +142,9 @@ const BottomModal: React.FC<IProps> = ({
         [onChangeState],
     );
 
-    const modalHeight = useSharedValue(0);
+    const modalHeight = useSharedValue(
+        initWithStartHeight ? openModalHeight : 0,
+    );
     const modalHeaderOpacity = useSharedValue(0);
     const modalIsOpened = useSharedValue(false);
 
