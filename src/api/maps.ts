@@ -82,9 +82,11 @@ export const getRoute = async (
 ) => {
     let url = `${BASE_ROUTE_URL}/${id}`;
     if (location) {
-        url = `${url}?lat=${location.latitude}&lng=${
-            location.longitude
-        }&distance=true&path=${!!withPath}`;
+        url = `${url}?lat=${location.latitude}&lng=${location.longitude}&distance=true`;
+    }
+    if (withPath) {
+        const concatenator = location ? '&' : '?';
+        url = `${url}${concatenator}path=${!!withPath}`;
     }
 
     return await axiosGet(url);

@@ -268,7 +268,12 @@ const mapsReducer = (state = initialStateList, action: any) => {
             };
         }
         case actionTypes.ADD_MAPS_DATA: {
-            let newMaps: any = {maps: [...state.maps, action.map]};
+            let newMaps: any = {
+                maps: [
+                    ...state.maps?.filter(m => m.id !== action.map?.id),
+                    action.map,
+                ],
+            };
             if (action.mapType === RouteMapType.MY_ROUTES) {
                 newMaps = {privateMaps: [...state.privateMaps, action.map]};
             }
