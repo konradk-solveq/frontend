@@ -505,8 +505,8 @@ export const removePlannedMapByIdService = async (
 };
 
 export const getMapsByTypeAndId = async (
-    location: Coords,
     mapId: string,
+    location?: Coords,
     withPath?: boolean,
 ): Promise<MapResponse> => {
     const response = await getRoute(mapId, location, withPath);
