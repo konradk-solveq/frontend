@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import {Map} from '@models/map.model';
+import {Map, CoordsType} from '@models/map.model';
 import {getSharedCyclingMapService} from '@services/shareService';
 import {useMergedState} from '@hooks/useMergedState';
 import {mapToClass} from '@utils/transformData';
@@ -28,6 +28,8 @@ export const useSharedMapData = (shareID?: string) => {
                 const response = await getSharedCyclingMapService(shareID);
                 if (response.data) {
                     const md = mapToClass(response.data, appConfig);
+                    md.nearestPoint = getMiddlePoint(md.path);
+
                     setMapState({mapData: md, error: false});
                 } else {
                     setMapState({error: true});
@@ -46,4 +48,27 @@ export const useSharedMapData = (shareID?: string) => {
     }
 
     return {mapData, isLoading, error};
+};
+
+/**
+ * Returns middle point of the path
+ */
+const getMiddlePoint = (mapDataPath?: CoordsType[]) => {
+    if (!mapDataPath?.length) {
+        return;
+    }
+
+    try {
+        const index = Math.ceil(mapDataPath.length / 2);
+        const point = mapDataPath?.[index];
+
+        if (point?.length) {
+            return {
+                lat: point[0],
+                lng: point[1],
+            };
+        }
+    } catch (error) {
+        console.error('[getNearestPoint]: ', error);
+    }
 };
