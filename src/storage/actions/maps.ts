@@ -706,7 +706,7 @@ export const fetchMapIfNotExistsLocally = (
             return;
         }
 
-        const response = await getMapsByTypeAndId(location, mapId, withPath);
+        const response = await getMapsByTypeAndId(mapId, location, withPath);
 
         if (response.error || !response.data || !response.data) {
             dispatch(setError(response.error, response.status));

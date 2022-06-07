@@ -34,7 +34,7 @@ export const getScreenNameToNavigate = (
 
     switch (shareType) {
         case 'cyclingMap':
-            return 'RouteDetails';
+            return 'RoutesMap';
         default:
             return;
     }

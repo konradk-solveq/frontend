@@ -1,6 +1,7 @@
 import React, {useMemo, useState, useEffect, useCallback, useRef} from 'react';
 import {InteractionManager} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
+import {StackActions} from '@react-navigation/native';
 
 import {Point, RouteMapType} from '@models/places.model';
 import {RouteDetailsActionT} from '@type/screens/routesMap';
@@ -10,6 +11,7 @@ import {jsonParse} from '@utils/transformJson';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
 import {globalLocationSelector} from '@storage/selectors/app';
+import {useSharedMapData} from '@hooks/useSharedMapData';
 
 import GenericScreen from '@pages/template/GenericScreen';
 import {
@@ -41,8 +43,19 @@ const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
     const mapIDToNavigateRef = useRef<string>();
-    const {mapID, nearestPoint} = useAppRoute<'RoutesMap'>()?.params || {};
+    const {mapID: regularMapId, nearestPoint: regularNearestPoint, shareID} =
+        useAppRoute<'RoutesMap'>()?.params || {};
+    /**
+     * Helper for navigation back
+     */
+    const cameFromSharedLinkRef = useRef(false);
     const globalLcation = useAppSelector(globalLocationSelector);
+
+    useEffect(() => {
+        if (shareID) {
+            cameFromSharedLinkRef.current = true;
+        }
+    }, [shareID]);
 
     const {location} = useLocationProvider();
     const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLcation);
@@ -54,6 +67,33 @@ const RoutesMap: React.FC = () => {
         () => routeInfo?.mapType === selectorMapTypeEnum.private,
         [routeInfo?.mapType],
     );
+
+    /**
+     * If user was navigated trough shared link, we need to fetch map data
+     */
+    const {mapData: sharedMapData} = useSharedMapData(shareID);
+
+    const [mapID, setMapID] = useState(regularMapId);
+    /**
+     * Set mapID when data comes from shared link
+     */
+    useEffect(() => {
+        if (sharedMapData?.id && shareID) {
+            setMapID(sharedMapData?.id);
+        }
+    }, [regularMapId, sharedMapData?.id, shareID]);
+
+    const [nearestPoint, setNearestPoint] = useState<Point | undefined>(
+        regularNearestPoint,
+    );
+    /**
+     * When user comes from shared link, we need to set nearest point
+     */
+    useEffect(() => {
+        if (shareID && sharedMapData?.nearestPoint) {
+            setNearestPoint(sharedMapData?.nearestPoint);
+        }
+    }, [shareID, sharedMapData?.nearestPoint]);
 
     const [bottomSheetWithDetails, setBottomSheetWithDetails] = useState(false);
     const [
@@ -129,8 +169,8 @@ const RoutesMap: React.FC = () => {
     );
 
     const markerToShowDetails = useMemo(
-        () => routeMarkres?.find(r => r.details.id === mapID),
-        [routeMarkres, mapID],
+        () => routeMapMarkers.routeMarkres?.find(r => r.details.id === mapID),
+        [routeMapMarkers.routeMarkres, mapID],
     );
 
     /**
@@ -166,14 +206,32 @@ const RoutesMap: React.FC = () => {
                      */
                     navigation.setParams({nearestPoint: undefined});
                     setCenterMapAtLocation(locationToSet);
+                    setNearestPoint(undefined);
                 }
             }
         }
-    }, [markerToShowDetails, navigation, loc, nearestPoint, mapID]);
+    }, [
+        markerToShowDetails,
+        navigation,
+        loc,
+        nearestPoint,
+        mapID,
+        shareID,
+        sharedMapData?.id,
+    ]);
 
-    const onNavigateBack = () => {
-        navigation.navigate('WorldTab');
-    };
+    const onNavigateBack = useCallback(() => {
+        navigation.setParams({ID: undefined});
+        if (cameFromSharedLinkRef.current && !navigation.canGoBack()) {
+            /**
+             * we use replace instead of navigate, because if you open the app using the shared link,
+             * this screen ends up as the top screen of the stack navigator
+             */
+            navigation.dispatch(StackActions.replace('TabMenu'));
+        } else {
+            navigation.navigate('WorldTab');
+        }
+    }, [navigation]);
 
     const onWebViewMessageHandler = useCallback(
         (e: WebViewMessageEvent) => {
@@ -210,11 +268,14 @@ const RoutesMap: React.FC = () => {
                     );
                     break;
                 case 'clickMap':
+                    setMapID('');
+                    navigation.setParams({ID: undefined});
+                    setNearestPoint(undefined);
                     handleMarkerClick('', []);
                     break;
             }
         },
-        [loc, routeMapMarkers],
+        [loc, routeMapMarkers, navigation],
     );
 
     /**
@@ -291,14 +352,7 @@ const RoutesMap: React.FC = () => {
                     break;
             }
         },
-        [
-            dispatch,
-            navigation,
-            mapData?.id,
-            routeInfo.mapType,
-            isCreatedByUser,
-            mapID,
-        ],
+        [dispatch, navigation, mapData?.id, routeInfo.mapType, isCreatedByUser],
     );
 
     return (

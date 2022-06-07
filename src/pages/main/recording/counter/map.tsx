@@ -203,7 +203,7 @@ const Map: React.FC<IProps> = ({
     }, []);
 
     useEffect(() => {
-        if (mapData?.path?.length && mountedRef.current) {
+        if (mapData?.path?.length && mountedRef.current && !foreignRoute) {
             const fRoute = mapData.path.map(e => {
                 return {
                     latitude: e[0],
@@ -212,8 +212,7 @@ const Map: React.FC<IProps> = ({
             });
             setForeignRoute(fRoute);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [mapData?.path, foreignRoute]);
 
     const autoFindMeLastStateRef = useRef(0);
     /**
@@ -336,6 +335,7 @@ const Map: React.FC<IProps> = ({
     };
 
     const handleCameraChange = useCallback(() => {
+        setCameraAnimCooldown(true);
         autoFindMeSwith(0);
     }, [autoFindMeSwith]);
 

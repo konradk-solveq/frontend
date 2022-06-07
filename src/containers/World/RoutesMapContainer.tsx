@@ -123,6 +123,8 @@ const RoutesMapContainer: React.FC<IProps> = ({
             const p = jsonStringify(pos);
             if (p) {
                 setJsWV(`setPosOnMap(${p});true;`);
+
+                setJsWV('getRgion();true;');
                 posRef.current = true;
             }
         }
