@@ -335,6 +335,7 @@ const Map: React.FC<IProps> = ({
     };
 
     const handleCameraChange = useCallback(() => {
+        setCameraAnimCooldown(true);
         autoFindMeSwith(0);
     }, [autoFindMeSwith]);
 
