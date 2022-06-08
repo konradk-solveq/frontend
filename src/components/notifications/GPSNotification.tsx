@@ -1,12 +1,16 @@
 import React from 'react';
-import {LayoutChangeEvent, StyleSheet, View, ViewStyle} from 'react-native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {
+    LayoutChangeEvent,
+    StyleSheet,
+    View,
+    ViewStyle,
+    StyleProp,
+} from 'react-native';
 
 import {
     getFHorizontalPx,
     getFVerticalPx,
 } from '@theme/utils/appLayoutDimensions';
-import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
 
@@ -16,7 +20,7 @@ import {TextIcon} from '@components/icons';
 interface IProps {
     title?: string;
     showWhenLocationIsDisabled?: boolean;
-    containerStyle?: ViewStyle | ViewStyle[];
+    containerStyle?: StyleProp<ViewStyle>;
     onLayout?: (event: LayoutChangeEvent) => void;
     style?: ViewStyle;
 }
@@ -27,12 +31,8 @@ const GPSNotification: React.FC<IProps> = ({
     onLayout,
     style,
 }: IProps) => {
-    const {top} = useSafeAreaInsets();
-
     return (
-        <View
-            style={[styles.container, {top}, containerStyle]}
-            onLayout={onLayout}>
+        <View style={[styles.container, containerStyle]} onLayout={onLayout}>
             <View style={[styles.notificationContainer, style]}>
                 <TextIcon
                     icon={MykrossIconFont.MYKROSS_ICON_SIGNAL}
@@ -46,10 +46,6 @@ const GPSNotification: React.FC<IProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
         backgroundColor: 'transparent',
         zIndex: 1000,
     },

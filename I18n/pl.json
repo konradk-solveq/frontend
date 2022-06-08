@@ -1026,6 +1026,9 @@
         "location": {
             "searchSignal": {
                 "title": "Szukanie sygnału GPS"
+            },
+            "disabled": {
+                "title": "Wyłączony GPS"
             }
         }
     }

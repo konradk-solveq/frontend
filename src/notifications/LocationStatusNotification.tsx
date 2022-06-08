@@ -1,10 +1,16 @@
 import React, {useEffect, useMemo} from 'react';
-import {LayoutChangeEvent, ViewStyle} from 'react-native';
+import {
+    LayoutChangeEvent,
+    ViewStyle,
+    StyleSheet,
+    StyleProp,
+} from 'react-native';
 
 import {useLocationProvider} from '@hooks/';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {GPSNotification} from '@components/notifications';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 const defaultLayoutEvent = {
     nativeEvent: {layout: {height: 0, x: 0, y: 0, width: 0}},
@@ -32,12 +38,13 @@ const defaultLayoutEvent = {
     },
     timeStamp: 0,
     type: '',
+    isDefault: 'default',
 };
 
 interface IProps {
     title?: string;
     showWhenLocationIsDisabled?: boolean;
-    containerStyle?: ViewStyle | ViewStyle[];
+    containerStyle?: StyleProp<ViewStyle>;
     onLayout?: (event: LayoutChangeEvent) => void;
     style?: ViewStyle;
 }
@@ -83,8 +90,12 @@ const LocationStatusNotification: React.FC<IProps> = ({
 
     return showNotification || whenLocationIsDsiabled ? (
         <GPSNotification
-            title={title || t('searchSignal.title')}
-            containerStyle={containerStyle}
+            title={
+                title || !locationEnabled
+                    ? t('disabled.title')
+                    : t('searchSignal.title')
+            }
+            containerStyle={[styles.locationNotification, containerStyle]}
             style={style}
             onLayout={onLayout}
         />
@@ -92,3 +103,10 @@ const LocationStatusNotification: React.FC<IProps> = ({
 };
 
 export default React.memo(LocationStatusNotification);
+
+const styles = StyleSheet.create({
+    locationNotification: {
+        marginHorizontal: appContainerHorizontalMargin,
+        zIndex: 25,
+    },
+});

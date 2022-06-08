@@ -1,5 +1,5 @@
 import React, {useMemo, useState, useEffect, useCallback, useRef} from 'react';
-import {InteractionManager} from 'react-native';
+import {InteractionManager, View, StyleSheet} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {StackActions} from '@react-navigation/native';
 
@@ -32,6 +32,9 @@ import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@pages/main/world/routesMap/bottomModal/BottomModal';
 import {MoreActionsModal} from '@pages/main/world/components/modals';
+import NotificationList from '@components/notifications/NotificationList';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {LocationStatusNotification} from '@notifications';
 
 const initRouteInfo = {
     id: '',
@@ -50,6 +53,7 @@ const RoutesMap: React.FC = () => {
      */
     const cameFromSharedLinkRef = useRef(false);
     const globalLcation = useAppSelector(globalLocationSelector);
+    const {top} = useSafeAreaInsets();
 
     useEffect(() => {
         if (shareID) {
@@ -357,6 +361,16 @@ const RoutesMap: React.FC = () => {
 
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
+            <View style={[styles.notificationsContainer, {top}]}>
+                <NotificationList>
+                    {[
+                        <LocationStatusNotification
+                            key={'gps-notification'}
+                            showWhenLocationIsDisabled
+                        />,
+                    ]}
+                </NotificationList>
+            </View>
             <RoutesMapContainer
                 location={loc}
                 onPressClose={onNavigateBack}
@@ -393,3 +407,12 @@ const RoutesMap: React.FC = () => {
 };
 
 export default RoutesMap;
+
+const styles = StyleSheet.create({
+    notificationsContainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        zIndex: 1,
+    },
+});

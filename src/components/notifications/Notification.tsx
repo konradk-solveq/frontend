@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
         marginHorizontal: appContainerHorizontalMargin,
         paddingHorizontal: getFHorizontalPx(16),
         paddingVertical: getFVerticalPx(12),
-        marginTop: getFVerticalPx(16),
         borderRadius: getFVerticalPx(16),
     },
     shadow: {

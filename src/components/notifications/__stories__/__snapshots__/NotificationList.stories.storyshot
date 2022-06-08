@@ -17,6 +17,8 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
   }
 >
   <View
+    onLayout={[Function]}
+    pointerEvents="box-none"
     style={
       Array [
         Object {
@@ -47,6 +49,11 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               "delay": [MockFunction],
             }
           }
+          style={
+            Object {
+              "marginTop": 25.28909952606635,
+            }
+          }
         >
           <View
             style={
@@ -55,7 +62,6 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
                   "marginHorizontal": 30.76923076923077,
-                  "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
                 },
@@ -213,6 +219,11 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               "delay": [MockFunction],
             }
           }
+          style={
+            Object {
+              "marginTop": 25.28909952606635,
+            }
+          }
         >
           <View
             style={
@@ -221,7 +232,6 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
                   "marginHorizontal": 30.76923076923077,
-                  "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
                 },
@@ -358,6 +368,11 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               "delay": [MockFunction],
             }
           }
+          style={
+            Object {
+              "marginTop": 25.28909952606635,
+            }
+          }
         >
           <View
             style={
@@ -366,7 +381,6 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
                   "backgroundColor": "#FFFFFF",
                   "borderRadius": 25.28909952606635,
                   "marginHorizontal": 30.76923076923077,
-                  "marginTop": 25.28909952606635,
                   "paddingHorizontal": 30.76923076923077,
                   "paddingVertical": 18.966824644549764,
                 },

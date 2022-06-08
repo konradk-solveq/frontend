@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo} from 'react';
-import {StyleSheet, ScrollView} from 'react-native';
+import {StyleSheet, ScrollView, LayoutChangeEvent} from 'react-native';
 import Animated, {
     FadeIn,
     Layout,
@@ -9,7 +9,6 @@ import Animated, {
     withTiming,
 } from 'react-native-reanimated';
 
-import {Notification} from '@components/notifications/index';
 import {NotificationI} from '@components/notifications/Notification';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
@@ -18,28 +17,35 @@ export interface NotificationListItemI extends NotificationI {
 }
 
 interface IProps {
-    notifications: NotificationListItemI[];
+    children: JSX.Element[];
     maxHeight?: number;
     paddingTop?: number;
+    onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-const renderItem = (item: NotificationListItemI) => (
+const renderItem = (item: JSX.Element) => (
     <Animated.View
+        style={styles.listItem}
         entering={FadeIn.delay(300)}
         layout={Layout.damping(1).delay(150)}
         exiting={FadeOut}
         key={item.key}>
-        <Notification {...item} />
+        {item}
     </Animated.View>
 );
 
-const NotificationList = ({notifications, maxHeight, paddingTop}: IProps) => {
+const NotificationList = ({
+    children,
+    maxHeight,
+    paddingTop,
+    onLayout = () => {},
+}: IProps) => {
     /**
      * Disable this additional area when there is no notifications
      */
     const bottomStyle = useMemo(
-        () => (notifications?.length > 0 ? styles.content : undefined),
-        [notifications],
+        () => (children?.length > 0 ? styles.content : undefined),
+        [children],
     );
     const paddingTopValue = useSharedValue(0);
     const paddingTopAnimation = useAnimatedStyle(() => ({
@@ -54,6 +60,8 @@ const NotificationList = ({notifications, maxHeight, paddingTop}: IProps) => {
 
     return (
         <Animated.View
+            pointerEvents="box-none"
+            onLayout={onLayout}
             style={[
                 styles.container,
                 paddingTopAnimation,
@@ -62,7 +70,7 @@ const NotificationList = ({notifications, maxHeight, paddingTop}: IProps) => {
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={bottomStyle}>
-                {notifications.map(renderItem)}
+                {children.map(renderItem)}
             </ScrollView>
         </Animated.View>
     );
@@ -77,9 +85,12 @@ const styles = StyleSheet.create({
     },
     content: {
         /**
-            We need some extra space below the last element,
-            because it disappears during the removal of any component above it
+         We need some extra space below the last element,
+         because it disappears during the removal of any component above it
          */
         paddingBottom: getFVerticalPx(96),
+    },
+    listItem: {
+        marginTop: getFVerticalPx(16),
     },
 });
