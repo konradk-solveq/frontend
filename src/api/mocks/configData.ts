@@ -165,4 +165,5 @@ export default {
         ],
         codes: ['pl', 'en', 'cs', 'hu'],
     },
-}
+    ads: {url: ''},
+};

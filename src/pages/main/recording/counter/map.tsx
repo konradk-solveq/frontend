@@ -1,6 +1,11 @@
 import React, {useState, useRef, useEffect, useCallback} from 'react';
 import {StyleSheet, Platform, View} from 'react-native';
-import MapView, {PROVIDER_GOOGLE, Camera, LatLng} from 'react-native-maps';
+import MapView, {
+    PROVIDER_GOOGLE,
+    PROVIDER_DEFAULT,
+    Camera,
+    LatLng,
+} from 'react-native-maps';
 
 import {RouteMapType} from '@models/places.model';
 import useAppState from '@hooks/useAppState';
@@ -344,7 +349,11 @@ const Map: React.FC<IProps> = ({
         <View>
             <MapView
                 ref={mapRef}
-                provider={PROVIDER_GOOGLE}
+                provider={
+                    process.env.JEST_WORKER_ID
+                        ? PROVIDER_DEFAULT
+                        : PROVIDER_GOOGLE
+                } /* There is an issue during the tests when PROVIDER_GGOGLE is set */
                 style={styles.map}
                 customMapStyle={mapStyle}
                 pitchEnabled={true}

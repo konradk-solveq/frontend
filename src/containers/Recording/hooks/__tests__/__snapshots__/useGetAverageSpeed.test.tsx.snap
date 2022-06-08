@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[useGetAverageSpeed] - containers/Recording/hooks Permission not granted Should return average speed when given "startTime" and recodring has been "started" 1`] = `"14.7"`;
