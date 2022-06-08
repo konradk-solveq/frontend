@@ -57,6 +57,9 @@ storiesOf('components/buttons/Button', module)
             withoutShadow={boolean('Disable shadow', false)}
             adjustsTextSizeToFit={boolean('Adjust text size to fit', false)}
             style={object('Icon style', styles.button)}
+            disableTouch={boolean('Disable touch', false)}
+            disabledColor={color('Disabled color', colors.grey)}
+            disabledTextColor={color('Disabled text color', colors.grey)}
         />
     ));
 

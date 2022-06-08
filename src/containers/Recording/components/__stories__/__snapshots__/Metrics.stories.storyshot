@@ -1,0 +1,677 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/Recording/components/metrics/Metrics Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "paddingHorizontal": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 31.61137440758294,
+          "paddingHorizontal": 76.92307692307692,
+          "width": "100%",
+        },
+        Object {
+          "height": 75.86729857819905,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "position": "absolute",
+        "top": 12.644549763033176,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": 20,
+          "left": 20,
+          "right": 20,
+          "top": 20,
+        }
+      }
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={37.93364928909953}
+        bbWidth={37.93364928909953}
+        focusable={false}
+        height={37.93364928909953}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 37,
+              "width": 37,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={37.93364928909953}
+      >
+        <RNSVGGroup>
+          <RNSVGPath
+            d="M20.243 14.243 12 9l-8.243 5.243"
+            fill={null}
+            propList={
+              Array [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={4291180339}
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth="3"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "justifyContent": "center",
+          "padding": 0,
+          "width": 115.38461538461539,
+        }
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          00:00
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.time
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "padding": 0,
+            "width": 115.38461538461539,
+          },
+          Object {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          0.00
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.distance
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "padding": 0,
+            "width": 115.38461538461539,
+          },
+          Object {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          0.0
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.speed
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "padding": 0,
+            "width": 115.38461538461539,
+          },
+          Object {
+            "alignItems": "flex-end",
+          },
+        ]
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          0.0
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.averageSpeed
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots containers/Recording/components/metrics/Metrics With tracker data 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "paddingHorizontal": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "height": 31.61137440758294,
+          "paddingHorizontal": 76.92307692307692,
+          "width": "100%",
+        },
+        Object {
+          "height": 75.86729857819905,
+        },
+        undefined,
+      ]
+    }
+  />
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "position": "absolute",
+        "top": 12.644549763033176,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      hitSlop={
+        Object {
+          "bottom": 20,
+          "left": 20,
+          "right": 20,
+          "top": 20,
+        }
+      }
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <RNSVGSvgView
+        align="xMidYMid"
+        bbHeight={37.93364928909953}
+        bbWidth={37.93364928909953}
+        focusable={false}
+        height={37.93364928909953}
+        meetOrSlice={0}
+        minX={0}
+        minY={0}
+        style={
+          Array [
+            Object {
+              "backgroundColor": "transparent",
+              "borderWidth": 0,
+            },
+            Object {
+              "flex": 0,
+              "height": 37,
+              "width": 37,
+            },
+          ]
+        }
+        vbHeight={24}
+        vbWidth={24}
+        width={37.93364928909953}
+      >
+        <RNSVGGroup>
+          <RNSVGPath
+            d="M20.243 14.243 12 9l-8.243 5.243"
+            fill={null}
+            propList={
+              Array [
+                "fill",
+                "stroke",
+                "strokeWidth",
+                "strokeLinecap",
+                "strokeLinejoin",
+              ]
+            }
+            stroke={4291180339}
+            strokeLinecap={1}
+            strokeLinejoin={1}
+            strokeWidth="3"
+          />
+        </RNSVGGroup>
+      </RNSVGSvgView>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "justifyContent": "center",
+          "padding": 0,
+          "width": 115.38461538461539,
+        }
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          00:00
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.time
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "padding": 0,
+            "width": 115.38461538461539,
+          },
+          Object {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          3,41
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.distance
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "padding": 0,
+            "width": 115.38461538461539,
+          },
+          Object {
+            "alignItems": "center",
+          },
+        ]
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          10.0
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.speed
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "justifyContent": "center",
+            "padding": 0,
+            "width": 115.38461538461539,
+          },
+          Object {
+            "alignItems": "flex-end",
+          },
+        ]
+      }
+    >
+      <View>
+        <Text
+          adjustsFontSizeToFit={true}
+          numberOfLines={1}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 24,
+                "fontWeight": "600",
+                "lineHeight": 32,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="header1-test-id"
+        >
+          0.0
+        </Text>
+        <Text
+          adjustsFontSizeToFit={false}
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Regular",
+                "fontSize": 14,
+                "lineHeight": 16,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="subtitle-test-id"
+        >
+          MainCounter.metrics.short.averageSpeed
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {GestureResponderEvent, StyleSheet, View} from 'react-native';
+import {GestureResponderEvent, StyleSheet, View, ViewStyle} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {
@@ -13,12 +13,24 @@ import {HandSvg} from '@components/svg';
 interface IProps {
     onPress: (e: GestureResponderEvent) => void;
     show?: boolean;
+    cotainerStyle?: ViewStyle;
+    style?: ViewStyle;
+    testID?: string;
 }
 
-const PopUpHint: React.FC<IProps> = ({onPress, show = false}: IProps) => {
+const PopUpHint: React.FC<IProps> = ({
+    onPress,
+    show = false,
+    cotainerStyle,
+    style,
+    testID = 'popup-hint',
+}: IProps) => {
     const {t} = useMergedTranslation('MainCounter.alerts');
     return (
-        <View style={styles.container} pointerEvents={show ? 'auto' : 'none'}>
+        <View
+            testID={testID}
+            style={[styles.container, cotainerStyle]}
+            pointerEvents={show ? 'auto' : 'none'}>
             <PopUp
                 show={show}
                 duration={250}
@@ -32,6 +44,8 @@ const PopUpHint: React.FC<IProps> = ({onPress, show = false}: IProps) => {
                     </View>
                 }
                 text={t('pressLongToFinish.message')}
+                style={style}
+                testID={`${testID}-popup`}
             />
         </View>
     );
