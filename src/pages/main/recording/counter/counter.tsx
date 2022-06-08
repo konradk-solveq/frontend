@@ -133,8 +133,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         locData?.trackerData,
     ]);
 
-    // const [mapHiden, setMapHiden] = useState(true);
-    // const [renderMap, setRenderMap] = useState(false);
     const [renderPath, setRenderPath] = useState(false);
 
     /**
