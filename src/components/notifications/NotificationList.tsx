@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {StyleSheet, ScrollView, LayoutChangeEvent} from 'react-native';
 import Animated, {
     FadeIn,
@@ -22,16 +22,31 @@ interface IProps {
     paddingTop?: number;
     onLayout?: (event: LayoutChangeEvent) => void;
 }
+interface IItemProps {
+    item: JSX.Element;
+}
+
+const ListItem = ({item}: IItemProps) => {
+    const [height, setHeight] = useState(0);
+    return (
+        <Animated.View
+            onLayout={e => {
+                if (!e?.nativeEvent?.layout) {
+                    return;
+                }
+                setHeight(e.nativeEvent.layout.height);
+            }}
+            style={height ? styles.listItem : {}}
+            entering={FadeIn.delay(300)}
+            layout={Layout.damping(1).delay(150)}
+            exiting={FadeOut}>
+            {item}
+        </Animated.View>
+    );
+};
 
 const renderItem = (item: JSX.Element) => (
-    <Animated.View
-        style={styles.listItem}
-        entering={FadeIn.delay(300)}
-        layout={Layout.damping(1).delay(150)}
-        exiting={FadeOut}
-        key={item.key}>
-        {item}
-    </Animated.View>
+    <ListItem item={item} key={item.key} />
 );
 
 const NotificationList = ({

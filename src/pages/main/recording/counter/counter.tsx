@@ -44,6 +44,7 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {LocationStatusNotification} from '@notifications/index';
 import {RecordIcon} from '@components/icons/tabMenu';
 import {Notification} from '@components/notifications';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 
 const recordingNotification = {
     key: 'pause-notifications',
@@ -103,7 +104,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (!e?.nativeEvent?.layout) {
             return;
         }
-        console.log(e.nativeEvent.layout.height);
         // need to subtract the extra padding from the notifications container (getFVerticalPx(96))
         setNotificationsHeight(
             e.nativeEvent.layout.height - getFVerticalPx(96),
@@ -444,6 +444,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             <LocationStatusNotification
                                 showWhenLocationIsDisabled
                                 key={'gps-notification'}
+                            />,
+                            <LocationPermissionNotification
+                                key={'location-permission-notification'}
                             />,
                         ]}
                     </NotificationList>

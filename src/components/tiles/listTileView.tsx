@@ -33,6 +33,7 @@ interface PropsI {
     editPressOn: () => void;
     detailsPressOn: () => void;
     onPressShare?: () => void;
+    hideDistanceToStart?: boolean;
     mode: 'public' | 'my' | 'saved' | 'featured';
     testID?: string;
 }
@@ -55,6 +56,7 @@ const ListTileView: React.FC<PropsI> = ({
     detailsPressOn,
     onPressShare,
     mode,
+    hideDistanceToStart,
     testID,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
@@ -124,13 +126,16 @@ const ListTileView: React.FC<PropsI> = ({
                             <Demi18h28crop>{name}</Demi18h28crop>
                             <Demi18h28>{distanceAndTime}</Demi18h28>
                             <View style={styles.row}>
-                                <Demi16h36>{distanceToStart}</Demi16h36>
+                                <Demi16h36>
+                                    {!hideDistanceToStart && distanceToStart}
+                                </Demi16h36>
                                 <Demi16h36>{difficultyAndSurface}</Demi16h36>
                             </View>
 
                             <View style={styles.reactions}>
                                 {mode !== 'my' && (
-                                    <PressableComponent onPress={handleLikeOnPress}>
+                                    <PressableComponent
+                                        onPress={handleLikeOnPress}>
                                         <View style={styles.iconWrap}>
                                             <TextIcon
                                                 icon={
@@ -149,7 +154,8 @@ const ListTileView: React.FC<PropsI> = ({
 
                                 {(mode === 'public' || mode === 'featured') && (
                                     <View style={styles.reactionWrap}>
-                                        <PressableComponent onPress={handleSaveOnPress}>
+                                        <PressableComponent
+                                            onPress={handleSaveOnPress}>
                                             <TextIcon
                                                 icon={
                                                     saveChecked
@@ -163,7 +169,8 @@ const ListTileView: React.FC<PropsI> = ({
                                 )}
 
                                 {mode !== 'my' && (
-                                    <PressableComponent onPress={onPressShareHandler}>
+                                    <PressableComponent
+                                        onPress={onPressShareHandler}>
                                         <TextIcon
                                             icon={
                                                 MYKROSS_ICON_NATIVE_SHARE_ICON
@@ -187,7 +194,8 @@ const ListTileView: React.FC<PropsI> = ({
 
                             {mode !== 'public' && (
                                 <View style={styles.edit}>
-                                    <PressableComponent onPress={detailsPressOn}>
+                                    <PressableComponent
+                                        onPress={detailsPressOn}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_MORE

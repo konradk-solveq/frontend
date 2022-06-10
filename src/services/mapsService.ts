@@ -95,7 +95,6 @@ export const getMapsList = async (
     const f = getFiltersParam(filters);
 
     const response = await getMaps(location, paginationUrl, f);
-
     if (
         !response?.data ||
         response.status >= 400 ||

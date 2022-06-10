@@ -30,6 +30,7 @@ import {BottomModal} from '@components/modals';
 import {AnimatedContainerPosition} from '@src/containers/World/components';
 import {LocationStatusNotification} from '@notifications';
 import NotificationList from '@components/notifications/NotificationList';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -272,6 +273,9 @@ const ServicesMap: React.FC = () => {
                     <LocationStatusNotification
                         showWhenLocationIsDisabled
                         key={'gps-notification'}
+                    />
+                    <LocationPermissionNotification
+                        key={'location-permission-notification'}
                     />
                 </NotificationList>
             </View>

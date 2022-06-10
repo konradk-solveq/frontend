@@ -24,6 +24,7 @@ interface PropsI {
     mode: 'public' | 'my' | 'saved' | 'featured';
     sectionID?: string;
     testID?: string;
+    hideDistanceToStart?: boolean;
 }
 
 const ListTile: React.FC<PropsI> = ({
@@ -34,6 +35,7 @@ const ListTile: React.FC<PropsI> = ({
     mode,
     sectionID,
     testID,
+    hideDistanceToStart,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
     const {t: tbm} = useMergedTranslation('MainWorld.BikeMap');
@@ -191,6 +193,7 @@ const ListTile: React.FC<PropsI> = ({
             detailsPressOn={handleDetailsPressOn}
             onPressShare={onPressShare}
             mode={mode}
+            hideDistanceToStart={hideDistanceToStart}
             testID={testID}
         />
     );

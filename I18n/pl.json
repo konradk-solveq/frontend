@@ -1029,6 +1029,11 @@
             },
             "disabled": {
                 "title": "Wyłączony GPS"
+            },
+            "permission": {
+                "title": "Sprawdź uprawienia lokalizacji",
+                "subtitle": "Nie mamy Twojej zgody na lokalizację",
+                "action": "Ustawienia"
             }
         }
     }

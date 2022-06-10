@@ -39,7 +39,10 @@ import {
 } from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {getPlannedRoutesDropdownList} from '../utils/dropdownLists';
+import {
+    getPlannedRoutesDropdownList,
+    getPlannedRoutesNoLocationDropdownList,
+} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {removePlannedMap, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -50,6 +53,9 @@ import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {BikePin} from '@components/svg';
 import {isIOS} from '@utils/platform';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import {globalLocationSelector} from '@storage/selectors/app';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -74,9 +80,14 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const {planned: plannedMapsCount} = useAppSelector(mapsCountSelector);
+    const {permissionGranted, permissionResult} = useCheckLocationType();
+    const location = useAppSelector(globalLocationSelector);
     const plannedRoutesDropdownList = useMemo(
-        () => getPlannedRoutesDropdownList(t),
-        [t],
+        () =>
+            (permissionGranted || !permissionResult) && location
+                ? getPlannedRoutesDropdownList(t)
+                : getPlannedRoutesNoLocationDropdownList(t),
+        [t, permissionGranted, permissionResult, location],
     );
     const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
@@ -155,20 +166,23 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         navigation.navigate('WorldBikeMap');
     };
 
-    const onPressTileHandler = (mapID?: string) => {
-        /**
-         * Nearest point to user's position
-         */
-        const nearestPoint = favouriteMaps.find(md => md.id === mapID)
-            ?.nearestPoint;
+    const onPressTileHandler = useCallback(
+        (mapID?: string) => {
+            /**
+             * Nearest point to user's position
+             */
+            const nearestPoint = favouriteMaps.find(md => md.id === mapID)
+                ?.nearestPoint;
 
-        navigation.navigate('RoutesMap', {
-            mapID: mapID,
-            nearestPoint: nearestPoint,
-            private: false,
-            favourite: true,
-        });
-    };
+            navigation.navigate('RoutesMap', {
+                mapID: mapID,
+                nearestPoint: nearestPoint,
+                private: false,
+                favourite: true,
+            });
+        },
+        [favouriteMaps, navigation],
+    );
 
     const onEndReachedHandler = useCallback(() => {
         if (!isLoading && !isRefreshing && nextCoursor) {
@@ -176,23 +190,34 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         }
     }, [isLoading, isRefreshing, nextCoursor, onLoadMoreHandler, onLoadMore]);
 
-    const renderItem = ({item, index}: RenderItem) => {
-        const lastItemStyle =
-            index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
-        const images = getImagesThumbs(item?.pictures);
-        return (
-            <View key={item.id} style={lastItemStyle}>
-                <ListTile
-                    mapData={item}
-                    images={images}
-                    onPress={onPressHandler}
-                    onPressTile={onPressTileHandler}
-                    mode={'saved'}
-                    tilePressable
-                />
-            </View>
-        );
-    };
+    const renderItem = useCallback(
+        ({item, index}: RenderItem) => {
+            const lastItemStyle =
+                index === favouriteMaps?.length - 1
+                    ? styles.lastTile
+                    : undefined;
+            const images = getImagesThumbs(item?.pictures);
+            return (
+                <View key={item.id} style={lastItemStyle}>
+                    <ListTile
+                        mapData={item}
+                        images={images}
+                        onPress={onPressHandler}
+                        onPressTile={onPressTileHandler}
+                        mode={'saved'}
+                        tilePressable
+                        hideDistanceToStart={!location || !permissionGranted}
+                    />
+                </View>
+            );
+        },
+        [
+            favouriteMaps?.length,
+            location,
+            onPressTileHandler,
+            permissionGranted,
+        ],
+    );
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -334,10 +359,15 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     onScroll={onScroll}
                     onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
-                        <Header2 style={styles.header}>
-                            {userName || t('defaultUserName')}
-                            {t('title')}
-                        </Header2>
+                        <View style={styles.listHeaderContainer}>
+                            <LocationPermissionNotification
+                                style={styles.notification}
+                            />
+                            <Header2 style={styles.header}>
+                                {userName || t('defaultUserName')}
+                                {t('title')}
+                            </Header2>
+                        </View>
                     }
                     data={!showListLoader ? favouriteMaps : []}
                     renderItem={renderItem}

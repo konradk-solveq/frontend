@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {GestureResponderEvent, StyleSheet, View, ViewStyle} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
 import Animated, {
     useAnimatedStyle,
@@ -145,6 +145,19 @@ const DropdownList: React.FC<IProps> = ({
         },
         [onPressItem, onPress],
     );
+
+    /**
+     * Change sorting settings if the available items changed
+     */
+
+    useEffect(() => {
+        if (
+            !activeItem &&
+            !list.find(el => el.isDefault || el.id === activeItem)
+        ) {
+            onPressListItem(list[0].id);
+        }
+    }, [activeItem, list, onPressListItem]);
 
     /**
      * Trigger action, reset active item and close dropdown

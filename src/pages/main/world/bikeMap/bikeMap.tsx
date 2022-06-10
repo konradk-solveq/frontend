@@ -41,7 +41,10 @@ import {
     getSorByFilters,
 } from '@utils/apiDataTransform/filters';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
-import {getPublicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
+import {
+    getPublicRoutesDropdownList,
+    getPublicRoutesNoLocationDropdownList,
+} from '@pages/main/world/utils/dropdownLists';
 import {fetchMapsCount} from '@storage/actions';
 import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -50,6 +53,9 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
 
 import {isIOS} from '@utils/platform';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import {globalLocationSelector} from '@storage/selectors/app';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -74,9 +80,14 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
+    const {permissionGranted, permissionResult} = useCheckLocationType();
+    const location = useAppSelector(globalLocationSelector);
     const publicRoutesDropdownList = useMemo(
-        () => getPublicRoutesDropdownList(t),
-        [t],
+        () =>
+            (permissionGranted || !permissionResult) && location
+                ? getPublicRoutesDropdownList(t)
+                : getPublicRoutesNoLocationDropdownList(t),
+        [permissionGranted, permissionResult, location, t],
     );
     const listError = useAppSelector(publicMapsListErrorSelector)?.error;
 
@@ -216,11 +227,12 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         onPressTile={onPressTileHandler}
                         mode={'public'}
                         tilePressable
+                        hideDistanceToStart={!location || !permissionGranted}
                     />
                 </View>
             );
         },
-        [mapsData?.length, onPressTileHandler],
+        [location, mapsData?.length, onPressTileHandler, permissionGranted],
     );
 
     const renderListFooter = useCallback(() => {
@@ -321,6 +333,9 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
                         <View style={styles.listHeader}>
+                            <LocationPermissionNotification
+                                style={styles.notification}
+                            />
                             <FeaturedRoutes />
                             <Header2 style={styles.header}>
                                 {t('BikeMap.title')}

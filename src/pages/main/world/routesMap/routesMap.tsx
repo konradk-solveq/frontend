@@ -35,6 +35,7 @@ import {MoreActionsModal} from '@pages/main/world/components/modals';
 import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LocationStatusNotification} from '@notifications';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 
 const initRouteInfo = {
     id: '',
@@ -367,6 +368,9 @@ const RoutesMap: React.FC = () => {
                         <LocationStatusNotification
                             key={'gps-notification'}
                             showWhenLocationIsDisabled
+                        />,
+                        <LocationPermissionNotification
+                            key={'location-permission-notification'}
                         />,
                     ]}
                 </NotificationList>

@@ -49,11 +49,8 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               "delay": [MockFunction],
             }
           }
-          style={
-            Object {
-              "marginTop": 25.28909952606635,
-            }
-          }
+          onLayout={[Function]}
+          style={Object {}}
         >
           <View
             style={
@@ -219,11 +216,8 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               "delay": [MockFunction],
             }
           }
-          style={
-            Object {
-              "marginTop": 25.28909952606635,
-            }
-          }
+          onLayout={[Function]}
+          style={Object {}}
         >
           <View
             style={
@@ -368,11 +362,8 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
               "delay": [MockFunction],
             }
           }
-          style={
-            Object {
-              "marginTop": 25.28909952606635,
-            }
-          }
+          onLayout={[Function]}
+          style={Object {}}
         >
           <View
             style={
