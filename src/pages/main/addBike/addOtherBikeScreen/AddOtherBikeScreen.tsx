@@ -15,14 +15,18 @@ import GenericScreen from '@pages/template/GenericScreen';
 import {AddOtherBikeContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';
 import {OtherBikeDataT} from '@containers/AddBike/type/bike';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+import Approved from '@src/components/icons/Approved';
 
 const modalHeight = 443;
 
 const AddOtherBikeScreen: React.FC = () => {
     const {t} = useMergedTranslation('AddOtherBikeScreen');
+    const {t: toastT} = useMergedTranslation('Toasts');
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
     const fNumber = useAppRoute<'AddOtherBike'>()?.params?.frameNumber;
+    const {addToast} = useToastContext();
 
     const [isFetching, setIsFetching] = useState(false);
     const [frameNumber, setFrameNumber] = useState('');
@@ -104,6 +108,12 @@ const AddOtherBikeScreen: React.FC = () => {
         }
         addBikeEvent();
         navigation.pop(fNumber ? 3 : 2);
+        addToast({
+            key: 'added-bike-success',
+            title: toastT('bikeAddedTitle'),
+            subtitle: toastT('bikeAddedSubtitle'),
+            icon: <Approved />,
+        });
     }, [navigation, fNumber, bikeData]);
 
     return (

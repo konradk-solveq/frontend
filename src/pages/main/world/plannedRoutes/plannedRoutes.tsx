@@ -53,6 +53,8 @@ import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {BikePin} from '@components/svg';
 import {isIOS} from '@utils/platform';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
+import Bookmark from '@src/components/icons/Bookmark';
+import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import {globalLocationSelector} from '@storage/selectors/app';
@@ -71,6 +73,7 @@ interface RenderItem {
 interface IProps {}
 const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
+    const {t: toastsT} = useMergedTranslation('Toasts');
     const {t: mwt} = useMergedTranslation('MainWorld');
     const navigation = useAppNavigation();
     const nextCoursor = useAppSelector(nextPlannedPaginationCoursor);
@@ -91,6 +94,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     );
     const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
+    const {addToast} = useToastContext();
     /**
      * Navigate to map button bottom position modifier
      */
@@ -287,6 +291,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     break;
                 case 'remove':
                     dispatch(removePlannedMap(mapId));
+                    addToast({
+                        key: 'toast-route-removed-from-favorites',
+                        title: toastsT('removeRouteFromPlanned'),
+                        icon: <Bookmark />,
+                    });
                     break;
                 default:
                     break;

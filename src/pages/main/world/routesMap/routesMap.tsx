@@ -32,6 +32,9 @@ import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@pages/main/world/routesMap/bottomModal/BottomModal';
 import {MoreActionsModal} from '@pages/main/world/components/modals';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
+import Bookmark from '@src/components/icons/Bookmark';
 import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LocationStatusNotification} from '@notifications';
@@ -54,6 +57,8 @@ const RoutesMap: React.FC = () => {
      */
     const cameFromSharedLinkRef = useRef(false);
     const globalLcation = useAppSelector(globalLocationSelector);
+    const {addToast} = useToastContext();
+    const {t} = useMergedTranslation('Toasts');
     const {top} = useSafeAreaInsets();
 
     useEffect(() => {
@@ -313,6 +318,11 @@ const RoutesMap: React.FC = () => {
                     setIsAddingToFavourites(true);
                     await dispatch(addPlannedMap(mapId));
                     setIsAddingToFavourites(false);
+                    addToast({
+                        key: 'toast-route-added-to-favorites',
+                        title: t('addRouteToPlanned'),
+                        icon: <Bookmark />,
+                    });
                     break;
                 case 'remove_from_planned':
                     setIsAddingToFavourites(true);
@@ -323,6 +333,11 @@ const RoutesMap: React.FC = () => {
                         routeMapType: RouteMapType.BIKE_MAP,
                     }));
                     setIsAddingToFavourites(false);
+                    addToast({
+                        key: 'toast-route-removed-from-favorites',
+                        title: t('removeRouteFromPlanned'),
+                        icon: <Bookmark />,
+                    });
                     break;
                 case 'share':
                     navigation.navigate('ShareRouteScreen', {

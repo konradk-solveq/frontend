@@ -7,7 +7,7 @@ import {persistStore} from 'redux-persist';
 
 import storage from '@storage/storage';
 import StaticLocationProvider from '@providers/staticLocationProvider/staticLocationProvider';
-import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
+import ToastProvider from '@src/providers/ToastProvider/ToastProvider';
 
 import {initAppSize} from '@helpers/layoutFoo';
 import {initConfig} from '@theme/appLayoutConfig';
@@ -40,13 +40,13 @@ const App: () => Node = () => {
             <Provider store={storage}>
                 <PersistGate persistor={persistor}>
                     <NetworkStatus />
-                    <TopNotificationProvider>
+                    <ToastProvider>
                         <StaticLocationProvider>
                             <Suspense fallback={null}>
                                 <NavContainer />
                             </Suspense>
                         </StaticLocationProvider>
-                    </TopNotificationProvider>
+                    </ToastProvider>
                 </PersistGate>
             </Provider>
         </>

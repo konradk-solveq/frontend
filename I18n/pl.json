@@ -433,7 +433,7 @@
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły",
-            "addRouteToPlanned": "Trasa {{name}} została zapisana",
+            "addRouteToPlanned": "Trasa {{name}} została dodana do zapisanych",
             "removeRouteFromPlanned": "Trasa {{name}} została usunięta z zapisanych",
             "sortBy": {
                 "nearest": "Od najbliższych",
@@ -1036,5 +1036,13 @@
                 "action": "Ustawienia"
             }
         }
+    },
+    "Toasts": {
+        "bikeAddedTitle": "Dodaliśmy Twój rower",
+        "bikeAddedSubtitle": "Sprawdź zakładkę 'rower'",
+        "routeSaved": "Trasa została zapisana",
+        "routePublished": "Trasa została opublikowana",
+        "addRouteToPlanned": "Trasa została dodana do zapisanych",
+        "removeRouteFromPlanned": "Trasa została usunięta z zapisanych"
     }
 }

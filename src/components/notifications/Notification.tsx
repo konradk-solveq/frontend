@@ -13,7 +13,7 @@ import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
 
 export interface NotificationDataI {
     title: string;
-    icon: MykrossIconFont | IconFont | JSX.Element;
+    icon: MykrossIconFont | IconFont | Element;
     subtitle?: string;
     action?: () => void;
     actionText?: string;
