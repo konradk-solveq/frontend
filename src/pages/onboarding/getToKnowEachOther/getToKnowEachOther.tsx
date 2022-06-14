@@ -1,11 +1,7 @@
 import React, {useMemo, useCallback} from 'react';
 import {Pressable} from 'react-native';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {
-    setUserName,
-    setOnboardingFinished,
-    setDeepLinkActionForScreen,
-} from '@storage/actions/index';
+import {setUserName} from '@storage/actions/index';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 
 import {validateData} from '@utils/validation/validation';
@@ -16,10 +12,12 @@ import UserIntroductionContainer from '@containers/Onboarding/UserIntroductionCo
 import {UserT} from '@containers/Onboarding/type/user';
 import {userRules} from '@utils/validation/validationRules';
 import {onboardingFinishedSelector} from '@storage/selectors';
+import {OnboardingStackRoute} from '@navigation/route';
+import {useNavigation} from '@react-navigation/native';
 const GetToKnowEachOther: React.FC = () => {
     const dispatch = useAppDispatch();
     const {t} = useMergedTranslation('GetToKnowEachOther');
-
+    const navigation = useNavigation();
     const onValidate = useCallback(
         (fieldName: string, value?: string) => {
             const rule = userRules?.[fieldName];
@@ -35,10 +33,11 @@ const GetToKnowEachOther: React.FC = () => {
 
     const goForward = useCallback(() => {
         if (!onboardingFinished) {
-            dispatch(setOnboardingFinished(true));
-            dispatch(setDeepLinkActionForScreen('HomeTab'));
+            navigation.navigate(
+                OnboardingStackRoute.LOCATION_USAGE_INFO_SCREEN,
+            );
         }
-    }, [dispatch, onboardingFinished]);
+    }, [navigation, onboardingFinished]);
 
     const onSubmit = useCallback(
         (user: UserT) => {

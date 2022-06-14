@@ -27,6 +27,12 @@
             }
         }
     },
+    "LocationUsage": {
+        "title": "Lokalizacja",
+        "header" : "Potrzebujemy Twojej zgody, aby umożliwić zapis tras z użyciem GPS",
+        "info": "Wybierz \"Zezwól podczas korzystania z aplikacji\" na kolejnym ekranie.",
+        "button": "Dalej"
+    },
     "OneLineText-error-null": "Wartość nie może być null-em",
     "TutorialNFC": {
         "header": "Identyfikacja roweru",
