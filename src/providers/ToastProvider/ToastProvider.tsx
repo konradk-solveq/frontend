@@ -3,6 +3,7 @@ import React, {
     useCallback,
     useContext,
     useEffect,
+    useRef,
     useState,
 } from 'react';
 import {StyleSheet, View} from 'react-native';
@@ -15,6 +16,7 @@ import {
 } from '@theme/commonStyle';
 import Toast from '../../components/notifications/Toast';
 import {NotificationI} from '../../components/notifications/Notification';
+import {v4 as uuidv4} from 'uuid';
 
 const DEFAULT_VISIBILITY_TIME = 3000;
 
@@ -23,11 +25,12 @@ export interface ToastItem extends NotificationI {
     testID?: string;
     onPressDismiss?: boolean;
     onDismissAction?: () => void;
+    leaveOnScreenChange?: boolean;
+    durationTime?: number;
 }
 
 interface IToastProps {
     children?: React.ReactNode;
-    visibilityTime?: number;
 }
 
 const initialState = {
@@ -40,39 +43,43 @@ const initialState = {
 export const ToastContext = createContext(initialState);
 export const useToastContext = () => useContext(ToastContext);
 
-const ToastProvider: React.FC<IToastProps> = ({
-    children,
-    visibilityTime = DEFAULT_VISIBILITY_TIME,
-}: IToastProps) => {
+const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
     const [toastList, setToastList] = useState<ToastItem[]>([]);
+    const listRef = useRef(toastList);
 
     const addToast = (toastToAdd: ToastItem) => {
-        const newList = [...toastList, toastToAdd];
+        const key = uuidv4();
+        const newList = [
+            ...toastList,
+            {...toastToAdd, key}, // Add additional key to prevent adding elements with same key in array
+        ];
         setToastList(newList);
+        setTimeout(
+            () => removeToast(key),
+            toastToAdd.durationTime || DEFAULT_VISIBILITY_TIME,
+        );
     };
 
     const removeAllToasts = () => {
-        setToastList([]);
+        if (toastList.length > 0) {
+            const newToastList = toastList.filter(el => el.leaveOnScreenChange);
+            newToastList.length === 0 && setToastList(newToastList);
+        }
     };
 
     const removeToast = useCallback(
         (key: string) => {
-            const newToastList = toastList.filter(toast => toast.key !== key);
+            const newToastList = listRef.current.filter(
+                toast => toast.key !== key,
+            );
             setToastList(newToastList);
         },
-        [toastList],
+        [listRef],
     );
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            if (toastList.length > 0) {
-                removeToast(toastList[0].key);
-            }
-        }, visibilityTime);
-        return () => {
-            clearInterval(interval);
-        };
-    }, [toastList, removeToast, visibilityTime]);
+        listRef.current = toastList;
+    }, [toastList]);
 
     return (
         <ToastContext.Provider value={{toastList, addToast, removeAllToasts}}>

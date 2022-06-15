@@ -1,19 +1,29 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
 import {ViewStyle} from 'react-native';
-import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
 interface IProps {
     style?: ViewStyle;
     testID?: string;
+    width?: number;
+    height?: number;
 }
 
-const Bookmark = ({testID = 'bookmark-icon', style}: IProps) => {
+const Bookmark = ({
+    testID = 'bookmark-icon',
+    style,
+    width = 30,
+    height = 40,
+}: IProps) => {
     return (
         <Svg
-            width={getFVerticalPx(22)}
-            height={getFVerticalPx(32)}
+            width={getFHorizontalPx(width)}
+            height={getFVerticalPx(height)}
             fill="none"
-            viewBox="0 0 26 24"
+            viewBox="0 0 32 32"
             style={style}
             testID={testID}>
             <Path

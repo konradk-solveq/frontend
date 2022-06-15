@@ -113,6 +113,7 @@ const AddOtherBikeScreen: React.FC = () => {
             title: toastT('bikeAddedTitle'),
             subtitle: toastT('bikeAddedSubtitle'),
             icon: <Approved />,
+            leaveOnScreenChange: true,
         });
     }, [navigation, fNumber, bikeData]);
 

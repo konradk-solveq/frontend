@@ -112,6 +112,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                     key: 'toast-details-edit',
                     title: toastsT('routeSaved'),
                     icon: <ApprovedMarker />,
+                    leaveOnScreenChange: true,
                 });
                 return;
             }
@@ -122,6 +123,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                     key: 'toast-details-edit',
                     title: toastsT('routePublished'),
                     icon: <ApprovedMarker />,
+                    leaveOnScreenChange: true,
                 });
             }
         };

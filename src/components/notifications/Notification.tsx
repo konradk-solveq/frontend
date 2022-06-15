@@ -44,7 +44,7 @@ const Notification = ({
     subtitleStyle,
     actionStyle,
     withoutShadow = false,
-}: IProps) => {
+}: NotificationI) => {
     const showButton = !!(actionText && action);
     const renderBottomRow = showButton || !!subtitle;
     return (

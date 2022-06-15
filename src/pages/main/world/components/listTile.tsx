@@ -151,7 +151,7 @@ const ListTile: React.FC<PropsI> = ({
             },
         );
         addToast({
-            key: `route-${mapData.id}-${state ? 'added' : 'removed'}-success`,
+            key: `route-${mapData.id}-${state ? 'added' : 'removed'}`,
             title: toggleRouteToPlanned,
             icon: <Bookmark />,
         });
