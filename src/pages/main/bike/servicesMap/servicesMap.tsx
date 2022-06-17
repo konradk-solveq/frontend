@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, useCallback} from 'react';
 import {WebView} from 'react-native-webview';
 
 import {StyleSheet, View, Platform} from 'react-native';
@@ -31,12 +31,15 @@ import {AnimatedContainerPosition} from '@src/containers/World/components';
 import {LocationStatusNotification} from '@notifications';
 import NotificationList from '@components/notifications/NotificationList';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
 
     const {t} = useMergedTranslation('ServicesMap');
+
+    const {permissionGranted, permissionResult} = useCheckLocationType();
 
     const {location} = useLocationProvider();
     const [initLocation, setInitLocation] = useState<
@@ -58,19 +61,26 @@ const ServicesMap: React.FC = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {
-        if (location) {
+    const handleSetMyLocation = useCallback(() => {
+        if (location && permissionResult && permissionGranted) {
             const pos = {
                 latitude: location.latitude,
                 longitude: location.longitude,
             };
             const p = jsonStringify(pos);
             if (p) {
-                setJs(`setMyLocation(${p});true;`);
+                setJs(`setMyLocation(${p}, false);true;`);
             }
+        } else {
+            setJs('setMyLocation(null, true);true;');
         }
-    }, [location]);
+    }, [location, permissionGranted, permissionResult]);
 
+    useEffect(() => {
+        if (mapLoaded) {
+            handleSetMyLocation();
+        }
+    }, [mapLoaded, handleSetMyLocation]);
     const heandleShowAdress = (adressDetails: PointDetails | null) => {
         setAdress(adressDetails);
     };
@@ -156,7 +166,6 @@ const ServicesMap: React.FC = () => {
                 break;
             case 'clickMap':
                 heandleShowAdress(null);
-                break;
         }
     };
 
@@ -303,10 +312,12 @@ const ServicesMap: React.FC = () => {
                         height: getFHorizontalPx(44),
                     }}
                 />
-                <IconButton
-                    icon={MykrossIconFont.MYKROSS_ICON_USER}
-                    onPress={handleFindMyLocation}
-                />
+                {!!location && !!permissionResult && permissionGranted && (
+                    <IconButton
+                        icon={MykrossIconFont.MYKROSS_ICON_USER}
+                        onPress={handleFindMyLocation}
+                    />
+                )}
             </AnimatedContainerPosition>
         </GenericScreen>
     );
