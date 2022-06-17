@@ -6,6 +6,7 @@ import {TermsAndConditionsType} from '@models/regulations.model';
 import {setAppCurrentTerms} from '@storage/actions';
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 import {getIsNewVersion} from '@helpers/appVersion';
+import NewAppVersionModal from '../newAppVersion/newAppVersionModal';
 import {SplashScreenRouteT} from '@type/rootStack';
 import {
     getFHorizontalPx,
@@ -82,14 +83,6 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     }),
                 );
             }
-
-            // show New App Version
-            if (
-                showedNewAppVersion < shopAppVersion &&
-                getIsNewVersion(shopAppVersion)
-            ) {
-                setShowNewAppVersion(true);
-            }
         }
     }, [currentVersion, shopAppVersion, showedNewAppVersion, showed, data]);
 
@@ -100,10 +93,6 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     return RegularStackRoute.NEW_REGULATIONS_SCREEN;
                 }
 
-                if (showNewAppVersion) {
-                    return RegularStackRoute.NEW_APP_VERSION_SCREEN;
-                }
-
                 if (props.route.params?.redirectToScreen) {
                     return props.route.params.redirectToScreen;
                 }
@@ -112,7 +101,14 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
             };
 
             const t = setTimeout(() => {
-                props.navigation.replace(getPage());
+                if (
+                    showedNewAppVersion < shopAppVersion &&
+                    getIsNewVersion(shopAppVersion)
+                ) {
+                    setShowNewAppVersion(true);
+                } else {
+                    props.navigation.replace(getPage());
+                }
             }, time);
             return () => {
                 clearTimeout(t);
@@ -123,6 +119,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
         props.navigation,
         shopAppVersion,
         showNewRegulations,
+        showedNewAppVersion,
         props.route.params?.redirectToScreen,
     ]);
 
@@ -138,6 +135,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     <Image style={styles.image} source={KROOS_LOGO} />
                 </View>
             </OpacityAnimation>
+            <NewAppVersionModal showModal={showNewAppVersion} />
         </>
     );
 };

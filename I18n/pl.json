@@ -215,13 +215,9 @@
         ]
     },
     "newAppVersion": {
-        "header": "Nowa wersja aplikacji",
-        "title": "Nowa wersja aplikacji",
-        "text_1": "Dostępna jest ",
-        "text_2": "nowa wersja aplikacji myKROSS",
-        "text_3": " - nie zwlekaj pobierz najnowszą wersję.",
-        "btnLeft": "POMIŃ",
-        "btnRight": "AKTUALIZUJ"
+        "title": "Zaktualizuj aplikację Kross",
+        "content": "Udostępniliśmy nową wersję aplikacji.\nBądź na bieżąco z nowościami, pobierz aktualizację.",
+        "updateButton": "Aktualizuj"
     },
     "Login": {
         "header": "Zaloguj się do KROSS",

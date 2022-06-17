@@ -14,14 +14,12 @@ import {
 import TabMenu from '@pages/main/tabMenu';
 import SplashScreen from '@pages/main/splashScreen/splashScreen';
 import newRegulations from '@pages/main/newRegulations/newRegulations';
-import NewAppVersion from '@pages/main/newAppVersion/newAppVersion';
 import useAuthorization from '@src/hooks/useAuthorization';
 
 const RegularScreens = () => (
     <>
         <Stack.Screen name="TabMenu" component={TabMenu} />
         <Stack.Screen name="NewRegulations" component={newRegulations} />
-        <Stack.Screen name="NewAppVersion" component={NewAppVersion} />
         {BikePrivateScreens()}
         {KrossWorldCommonScreens()}
         {RecordRouteCommonScreens()}
