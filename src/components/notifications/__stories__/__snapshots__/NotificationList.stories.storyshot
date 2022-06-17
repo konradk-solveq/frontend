@@ -40,6 +40,8 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
           "paddingBottom": 151.7345971563981,
         }
       }
+      onContentSizeChange={[Function]}
+      scrollEnabled={false}
       showsVerticalScrollIndicator={false}
     >
       <View>

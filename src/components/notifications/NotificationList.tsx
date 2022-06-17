@@ -1,4 +1,4 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useMemo, useState, useCallback} from 'react';
 import {StyleSheet, ScrollView, LayoutChangeEvent} from 'react-native';
 import Animated, {
     FadeIn,
@@ -62,6 +62,34 @@ const NotificationList = ({
         () => (children?.length > 0 ? styles.content : undefined),
         [children],
     );
+
+    /**
+     * Get container and content heights to enable scrolling only if the content is overflowing the container
+     */
+
+    const [containerHeight, setContainerHeight] = useState(0);
+    const [contentHeight, setContentHeight] = useState(0);
+
+    const handleContainerLayoutChange = useCallback(
+        e => {
+            onLayout(e);
+            if (!e?.nativeEvent?.layout) {
+                return;
+            }
+            setContainerHeight(e.nativeEvent.layout.height);
+        },
+        [onLayout],
+    );
+
+    const handleContentHeightChange = useCallback((_, height: number) => {
+        setContentHeight(height - getFVerticalPx(96));
+    }, []);
+
+    const isScrollEnabled = useMemo(() => contentHeight > containerHeight, [
+        containerHeight,
+        contentHeight,
+    ]);
+
     const paddingTopValue = useSharedValue(0);
     const paddingTopAnimation = useAnimatedStyle(() => ({
         paddingTop: withTiming(paddingTopValue.value, {
@@ -76,15 +104,17 @@ const NotificationList = ({
     return (
         <Animated.View
             pointerEvents="box-none"
-            onLayout={onLayout}
+            onLayout={handleContainerLayoutChange}
             style={[
                 styles.container,
                 paddingTopAnimation,
                 {maxHeight: maxHeight},
             ]}>
             <ScrollView
+                scrollEnabled={isScrollEnabled}
                 showsVerticalScrollIndicator={false}
-                contentContainerStyle={bottomStyle}>
+                contentContainerStyle={bottomStyle}
+                onContentSizeChange={handleContentHeightChange}>
                 {children.map(renderItem)}
             </ScrollView>
         </Animated.View>
