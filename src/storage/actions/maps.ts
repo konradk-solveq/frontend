@@ -177,6 +177,12 @@ export const modifyMapReactions = (
     sectionID: sectionID,
 });
 
+export const modifyPlannedMapReactions = (mapID: string, reaction: string) => ({
+    type: actionTypes.MODIFY_PLANNED_MAP_REACTIONS,
+    mapIdToModify: mapID,
+    reaction: reaction,
+});
+
 export const removeMapFromPrivates = (mapID: string) => ({
     type: actionTypes.REMOVE_MAP_FROM_PRIVATES,
     mapID: mapID,
@@ -729,6 +735,7 @@ export const modifyReaction = (
 
         batch(() => {
             dispatch(modifyMapReactions(routeId, reaction, sectionId));
+            dispatch(modifyPlannedMapReactions(routeId, reaction));
             dispatch(clearError());
         });
 

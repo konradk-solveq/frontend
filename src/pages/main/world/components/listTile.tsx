@@ -16,6 +16,7 @@ import ListTileView from '@components/tiles/listTileView';
 import {getMapType} from '../utils/routes';
 import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 import Bookmark from '@src/components/icons/Bookmark';
+import {deductReactions} from '@utils/mapsData';
 
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
@@ -72,7 +73,9 @@ const ListTile: React.FC<PropsI> = ({
 
     const handleLikePressOn = useCallback(
         (state: boolean) => {
-            setNumberOfLikes(prev => (!state ? prev - 1 : prev + 1));
+            setNumberOfLikes(prev =>
+                !state && prev ? deductReactions(prev) : prev + 1,
+            );
             if (mapData?.id) {
                 dispatch(
                     modifyReaction(

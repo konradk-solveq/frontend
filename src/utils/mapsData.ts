@@ -3,6 +3,14 @@ import deepCopy from '@src/helpers/deepCopy';
 import {RootState} from '@storage/storage';
 import {IMapsListError} from '@storage/reducers/maps';
 
+export const deductReactions = (currentValue: number) => {
+    if (currentValue > 0) {
+        return currentValue - 1;
+    }
+
+    return currentValue;
+};
+
 export const updateReactionsInMap = (
     maps: MapType[],
     mapIdToModify: string,
@@ -22,7 +30,7 @@ export const updateReactionsInMap = (
                         reaction: null,
                         reactions: {
                             ...m.reactions,
-                            [reaction]: oldValue - 1,
+                            [reaction]: deductReactions(oldValue),
                         },
                     };
                 }
@@ -79,7 +87,7 @@ export const updateReactionsInFeatueedMap = (
                                 reaction: null,
                                 reactions: {
                                     ...m.reactions,
-                                    [reaction]: oldValue - 1,
+                                    [reaction]: deductReactions(oldValue),
                                 },
                             };
                         }

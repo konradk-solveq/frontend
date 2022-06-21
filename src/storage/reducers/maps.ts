@@ -312,6 +312,19 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 statusCode: 200,
             };
         }
+        case actionTypes.MODIFY_PLANNED_MAP_REACTIONS: {
+            const modifiedMaps = updateReactionsInMap(
+                state.plannedMaps,
+                action.mapIdToModify,
+                action.reaction,
+            );
+
+            return {
+                ...state,
+                plannedMaps: modifiedMaps,
+                statusCode: 200,
+            };
+        }
         case actionTypes.SET_MAP_IS_FAVOURITED_STATE: {
             const modifiedMaps = updateIsUserFavouriteInMap(
                 state.maps,

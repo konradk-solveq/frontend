@@ -64,23 +64,31 @@ const ListTileView: React.FC<PropsI> = ({
     const [saveChecked, setSaveChecked] = useState(checkUserFavorite);
 
     const handleLikeOnPress = () => {
-        const state = !likeChecked;
-        if (likePressOn) {
-            likePressOn(state);
-        }
-        setLikeChecked(state);
+        setLikeChecked(prev => {
+            if (likePressOn) {
+                likePressOn(!prev);
+            }
+
+            return !prev;
+        });
     };
+
+    useEffect(() => {
+        setLikeChecked(checkLike);
+    }, [checkLike]);
 
     useEffect(() => {
         setSaveChecked(checkUserFavorite);
     }, [checkUserFavorite]);
 
     const handleSaveOnPress = () => {
-        const state = !saveChecked;
-        if (toggleFavoritePressOn) {
-            toggleFavoritePressOn(state);
-        }
-        setSaveChecked(state);
+        setSaveChecked(prev => {
+            if (toggleFavoritePressOn) {
+                toggleFavoritePressOn(!prev);
+            }
+
+            return !prev;
+        });
     };
 
     const onPressShareHandler = () => {
