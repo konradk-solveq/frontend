@@ -149,7 +149,9 @@ const BottomModal: React.FC<IProps> = ({
     const modalIsOpened = useSharedValue(false);
 
     const modalAnimation = useAnimatedStyle(() => ({
-        height: modalHeight.value,
+        height: withTiming(modalHeight.value, {
+            duration: isSwipeable ? 0 : 750,
+        }),
     }));
     /**
      * Animate header

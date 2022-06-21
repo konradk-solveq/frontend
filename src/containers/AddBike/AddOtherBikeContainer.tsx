@@ -206,7 +206,7 @@ const AddOtherBikeContainer: React.FC<IProps> = ({
                     onValidate={onValidateHandler}
                 />
             </BottomModal>
-            <Backdrop isVisible={showModal} />
+            <Backdrop isVisible={showModal} style={{height: 'auto'}} />
         </>
     );
 };
