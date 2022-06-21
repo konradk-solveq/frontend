@@ -724,23 +724,27 @@ export const modifyReaction = (
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
-        const response = !remove
-            ? await modifyReactionService(routeId, reaction)
-            : await removeReactionService(routeId);
-
-        if (response.error || !response.data) {
-            dispatch(setError(response.error, response.status));
-            return;
-        }
-
+        /**
+         * Call redux update before http request to reflect changes in UI imidietly
+         */
         batch(() => {
             dispatch(modifyMapReactions(routeId, reaction, sectionId));
             dispatch(modifyPlannedMapReactions(routeId, reaction));
             dispatch(clearError());
         });
 
+        const response = !remove
+            ? await modifyReactionService(routeId, reaction)
+            : await removeReactionService(routeId);
+
+        if (response.error || !response.data) {
+            dispatch(setError(response.error, response.status));
+            /* Revert changes on error */
+            dispatch(modifyMapReactions(routeId, reaction, sectionId));
+            return;
+        }
+
         dispatch(setLoadingState(false));
-        dispatch(fetchPrivateMapsList());
     } catch (error) {
         loggErrorMessage(error, 'modifyReaction');
     }

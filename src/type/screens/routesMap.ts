@@ -6,6 +6,7 @@ export type RouteDetailsActionT =
     | 'edit'
     | 'publish'
     | 'do_more'
-    | 'remove';
+    | 'remove'
+    | 'reactions';
 
 export type MapsTypesT = 'regular' | 'private' | 'favourite' | 'featured';

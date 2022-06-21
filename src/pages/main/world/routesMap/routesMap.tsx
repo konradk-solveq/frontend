@@ -10,7 +10,10 @@ import {useLocationProvider} from '@providers/staticLocationProvider/staticLocat
 import {jsonParse} from '@utils/transformJson';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
-import {globalLocationSelector} from '@storage/selectors/app';
+import {
+    globalLocationSelector,
+    mapReactionsConfigSelector,
+} from '@storage/selectors/app';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 
 import GenericScreen from '@pages/template/GenericScreen';
@@ -26,6 +29,7 @@ import {
     fetchMapIfNotExistsLocally,
     removePrivateMapMetaData,
     removePlannedMap,
+    modifyReaction,
 } from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
@@ -60,6 +64,10 @@ const RoutesMap: React.FC = () => {
     const {addToast} = useToastContext();
     const {t} = useMergedTranslation('Toasts');
     const {top} = useSafeAreaInsets();
+    const config = useAppSelector(mapReactionsConfigSelector);
+    const reaction = useMemo(() => config?.find(c => c.enumValue === 'like'), [
+        config,
+    ]);
 
     useEffect(() => {
         if (shareID) {
@@ -156,6 +164,7 @@ const RoutesMap: React.FC = () => {
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
+
     const mapImages = getImagesThumbs(mapData?.pictures);
     /* Route has been published */
     const isPublished = useMemo(() => mapData?.isPublic || false, [
@@ -368,11 +377,36 @@ const RoutesMap: React.FC = () => {
                     setRouteInfo(initRouteInfo);
                     dispatch(removePrivateMapMetaData(mapId));
                     break;
+                case 'reactions':
+                    /**
+                     * Can like only published routes
+                     */
+                    if (reaction?.enumValue && mapData?.isPublic) {
+                        dispatch(
+                            modifyReaction(
+                                mapId,
+                                reaction.enumValue,
+                                !!mapData?.reaction,
+                            ),
+                        );
+                    }
+                    break;
                 default:
                     break;
             }
         },
-        [dispatch, navigation, mapData?.id, routeInfo.mapType, isCreatedByUser],
+        [
+            dispatch,
+            navigation,
+            mapData?.id,
+            mapData?.reaction,
+            mapData?.isPublic,
+            routeInfo.mapType,
+            isCreatedByUser,
+            reaction?.enumValue,
+            t,
+            addToast,
+        ],
     );
 
     return (
@@ -404,6 +438,7 @@ const RoutesMap: React.FC = () => {
                 {mapData ? (
                     <RouteMapDetailsContainer
                         mapData={mapData}
+                        likeReaction={reaction}
                         mapImages={mapImages}
                         onPressAction={onPressHandler}
                         isPrivate={isCreatedByUser}
