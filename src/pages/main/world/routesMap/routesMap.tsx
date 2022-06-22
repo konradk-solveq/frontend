@@ -1,5 +1,5 @@
 import React, {useMemo, useState, useEffect, useCallback, useRef} from 'react';
-import {InteractionManager, View, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {StackActions} from '@react-navigation/native';
 
@@ -43,6 +43,7 @@ import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LocationStatusNotification} from '@notifications';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
 
 const initRouteInfo = {
     id: '',
@@ -302,7 +303,7 @@ const RoutesMap: React.FC = () => {
      * When no data exists placeholder will be shown.
      */
     useEffect(() => {
-        InteractionManager.runAfterInteractions(() => {
+        customInteractionManager.runAfterInteractions(() => {
             setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
         });
     }, [routeInfo.id, mapID]);
