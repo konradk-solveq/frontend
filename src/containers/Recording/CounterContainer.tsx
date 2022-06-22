@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {GestureResponderEvent, StyleSheet, View} from 'react-native';
 import Animated, {
     useAnimatedStyle,
@@ -64,6 +64,11 @@ const CounterContainer: React.FC<IProps> = ({
     testID = 'counter-container',
 }: IProps) => {
     /**
+     * Keeps information that counter has been fired
+     * and `default` state should not be longer presented
+     */
+    const recordProccessWasStartedRef = useRef(false);
+    /**
      * Recording process is active (from start to stop)
      */
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -79,9 +84,13 @@ const CounterContainer: React.FC<IProps> = ({
     const [modalHeight, setModalHeight] = useState(getFVerticalPx(300));
 
     useEffect(() => {
-        if (recordingState === 'not-started') {
+        if (
+            recordingState === 'not-started' &&
+            !recordProccessWasStartedRef.current
+        ) {
             setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT));
         } else if (recordingState === 'recording') {
+            recordProccessWasStartedRef.current = true;
             setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT_AFTER_START));
         }
     }, [recordingState]);
@@ -110,10 +119,9 @@ const CounterContainer: React.FC<IProps> = ({
      * and the bottom tabBar visibility
      */
     useEffect(() => {
-        bottomSpaceHeight.value =
-            !recordingState || recordingState === 'not-started'
-                ? BOTTOM_SPACE
-                : BOTTOM_SPACE_AFTER_START;
+        bottomSpaceHeight.value = !recordProccessWasStartedRef.current
+            ? BOTTOM_SPACE
+            : BOTTOM_SPACE_AFTER_START;
     }, [bottomSpaceHeight, recordingState]);
 
     /**
@@ -235,7 +243,7 @@ const CounterContainer: React.FC<IProps> = ({
                     onPressStart={onPressStart}
                     onPressPauseResume={onPressPauseResume}
                     onPressStop={onPressStopHandler}
-                    started={isTrackerActive}
+                    started={recordProccessWasStartedRef.current}
                     recordingState={recordingState}
                     testID={`${testID}-action-buttons`}
                 />

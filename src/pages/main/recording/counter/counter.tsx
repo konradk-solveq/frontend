@@ -42,7 +42,6 @@ import NotificationList, {
 } from '@components/notifications/NotificationList';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {LocationStatusNotification} from '@notifications/index';
-import {RecordIcon} from '@components/icons/tabMenu';
 import {Notification} from '@components/notifications';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 
@@ -153,17 +152,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     /**
      * Hide NavBar if recording is active
+     * and do not revert this after recording is stopped
      */
     useEffect(() => {
         if (recordingState && recordingState !== 'not-started') {
             navigation.setOptions({
                 tabBarVisible: false,
                 tabBarIcon: () => null,
-            });
-        } else {
-            navigation.setOptions({
-                tabBarVisible: true,
-                tabBarIcon: () => <RecordIcon />,
             });
         }
     }, [navigation, recordingState]);
