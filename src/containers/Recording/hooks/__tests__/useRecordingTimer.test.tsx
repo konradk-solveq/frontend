@@ -5,6 +5,7 @@ import {useRecordingTimer} from '@containers/Recording/hooks';
 
 const RECORDING_START_DATE = '2022-06-07T05:47:00.000Z';
 const DEFAULT_TIME = '00:00';
+const DEFAULT_TIME_SECONDS = '00';
 
 describe('[useRecordingTimer] - containers/Recording/hooks', () => {
     describe('Permission not granted', () => {
@@ -21,7 +22,8 @@ describe('[useRecordingTimer] - containers/Recording/hooks', () => {
                 await waitForNextUpdate();
             });
 
-            expect(result.current).toEqual('00:13');
+            expect(result.current.hoursWithMinutes).toEqual('00:13');
+            expect(result.current.dzSeconds).toEqual('00');
         }, 5000);
 
         it('Should return default time when given "startTime" and recodring has not been "started"', async () => {
@@ -33,7 +35,8 @@ describe('[useRecordingTimer] - containers/Recording/hooks', () => {
                 await waitForNextUpdate();
             });
 
-            expect(result.current).toEqual(DEFAULT_TIME);
+            expect(result.current.hoursWithMinutes).toEqual(DEFAULT_TIME);
+            expect(result.current.dzSeconds).toEqual(DEFAULT_TIME_SECONDS);
         }, 5000);
 
         it('Should return default time when and recodring has been "started" but missing "startTime"', async () => {
@@ -45,7 +48,8 @@ describe('[useRecordingTimer] - containers/Recording/hooks', () => {
                 await waitForNextUpdate();
             });
 
-            expect(result.current).toEqual(DEFAULT_TIME);
+            expect(result.current.hoursWithMinutes).toEqual(DEFAULT_TIME);
+            expect(result.current.dzSeconds).toEqual(DEFAULT_TIME_SECONDS);
         }, 5000);
 
         afterEach(() => {

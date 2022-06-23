@@ -99,29 +99,66 @@ exports[`Storyshots containers/Recording/components/metrics/FullMetrics Default 
             />
           </RNSVGGroup>
         </RNSVGSvgView>
-        <Text
-          adjustsFontSizeToFit={false}
-          numberOfLines={0}
+        <View
           style={
-            Array [
-              Object {
-                "color": "#333333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "marginBottom": 6.322274881516588,
-                "marginTop": 12.644549763033176,
-              },
-            ]
+            Object {
+              "flexDirection": "row",
+            }
           }
-          testID="header1-test-id"
         >
-          00:00
-        </Text>
+          <Text
+            adjustsFontSizeToFit={false}
+            numberOfLines={0}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginBottom": 6.322274881516588,
+                  "marginTop": 12.644549763033176,
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            00:00:
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Array [
+                  Object {
+                    "alignSelf": "flex-end",
+                    "paddingBottom": 3.161137440758294,
+                  },
+                  Object {
+                    "marginBottom": 6.322274881516588,
+                    "marginTop": 12.644549763033176,
+                  },
+                ],
+              ]
+            }
+            testID="header3-test-id"
+          >
+            00
+          </Text>
+        </View>
         <Text
           adjustsFontSizeToFit={false}
           style={
@@ -728,29 +765,66 @@ exports[`Storyshots containers/Recording/components/metrics/FullMetrics With tra
             />
           </RNSVGGroup>
         </RNSVGSvgView>
-        <Text
-          adjustsFontSizeToFit={false}
-          numberOfLines={0}
+        <View
           style={
-            Array [
-              Object {
-                "color": "#333333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 24,
-                "fontWeight": "600",
-                "lineHeight": 32,
-                "textAlign": "left",
-              },
-              Object {
-                "marginBottom": 6.322274881516588,
-                "marginTop": 12.644549763033176,
-              },
-            ]
+            Object {
+              "flexDirection": "row",
+            }
           }
-          testID="header1-test-id"
         >
-          00:00
-        </Text>
+          <Text
+            adjustsFontSizeToFit={false}
+            numberOfLines={0}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 24,
+                  "fontWeight": "600",
+                  "lineHeight": 32,
+                  "textAlign": "left",
+                },
+                Object {
+                  "marginBottom": 6.322274881516588,
+                  "marginTop": 12.644549763033176,
+                },
+              ]
+            }
+            testID="header1-test-id"
+          >
+            00:00:
+          </Text>
+          <Text
+            adjustsFontSizeToFit={true}
+            numberOfLines={1}
+            style={
+              Array [
+                Object {
+                  "color": "#333333",
+                  "fontFamily": "DIN2014-Demi",
+                  "fontSize": 18,
+                  "fontWeight": "600",
+                  "lineHeight": 24,
+                  "textAlign": "left",
+                },
+                Array [
+                  Object {
+                    "alignSelf": "flex-end",
+                    "paddingBottom": 3.161137440758294,
+                  },
+                  Object {
+                    "marginBottom": 6.322274881516588,
+                    "marginTop": 12.644549763033176,
+                  },
+                ],
+              ]
+            }
+            testID="header3-test-id"
+          >
+            00
+          </Text>
+        </View>
         <Text
           adjustsFontSizeToFit={false}
           style={
