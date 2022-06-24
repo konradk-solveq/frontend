@@ -6,6 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useIsFocused} from '@react-navigation/native';
 
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -72,6 +73,8 @@ interface RenderItem {
 interface IProps {}
 const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld');
+    const isTabFocused = useIsFocused();
+
     const navigation = useAppNavigation();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const dispatch = useAppDispatch();
@@ -282,6 +285,15 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
+    /**
+     * Dismiss sort dropdown when user navigates to other tab.
+     */
+    useEffect(() => {
+        if (!isTabFocused) {
+            toggleDropdown(false);
+        }
+    }, [isTabFocused, toggleDropdown]);
+
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = publicRoutesDropdownList[0];
@@ -303,7 +315,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sButtonName}
-                setShowDropdown={setShowDropdown}
+                setShowDropdown={toggleDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}
                 toggleDropdown={toggleDropdown}
@@ -359,6 +371,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
 
             <Backdrop
                 isVisible={showBackdrop}
+                onPress={() => toggleDropdown(false)}
                 style={styles.fullscreenBackdrop}
             />
 

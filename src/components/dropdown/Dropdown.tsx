@@ -113,18 +113,23 @@ const DropdownList: React.FC<IProps> = ({
         itemOpacity.value = open ? 1 : 0;
     }, [open, boxHeight, boxOpacity, itemOpacity, dropdownHeight]);
 
-    const toggleDropdown = useCallback(() => {
-        setOpen(prev => {
-            if (onPress) {
-                onPress(!prev);
-            }
-            return !prev;
-        });
-    }, [onPress]);
+    const toggleDropdown = useCallback(
+        (skipOnPress?: boolean) => {
+            setOpen(prev => {
+                if (onPress && !skipOnPress) {
+                    onPress(!prev);
+                }
+                return !prev;
+            });
+        },
+        [onPress],
+    );
 
     useEffect(() => {
         if (openOnStart) {
-            toggleDropdown();
+            toggleDropdown(true);
+        } else {
+            setOpen(false);
         }
     }, [openOnStart, toggleDropdown]);
 
@@ -210,7 +215,7 @@ const DropdownList: React.FC<IProps> = ({
             {!hideButton && (
                 <TransparentButton
                     text={buttonName}
-                    onPress={toggleDropdown}
+                    onPress={() => toggleDropdown()}
                     icon={buttonIcon}
                     style={{...styles.button, ...buttonStyle}}
                     containerStyle={{

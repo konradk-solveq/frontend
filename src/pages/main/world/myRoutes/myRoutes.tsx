@@ -6,6 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useIsFocused} from '@react-navigation/native';
 
 import {
     userNameSelector,
@@ -78,6 +79,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.MyRoutes');
     const {t: mwt} = useMergedTranslation('MainWorld');
     const navigation = useAppNavigation();
+    const isTabFocused = useIsFocused();
     const nextCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
@@ -246,6 +248,15 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
+    /**
+     * Dismiss sort dropdown when user navigates to other tab.
+     */
+    useEffect(() => {
+        if (!isTabFocused) {
+            toggleDropdown(false);
+        }
+    }, [isTabFocused, toggleDropdown]);
+
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = privateRoutesDropdownList[0];
@@ -347,7 +358,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sButtonName}
-                setShowDropdown={setShowDropdown}
+                setShowDropdown={toggleDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}
                 toggleDropdown={toggleDropdown}
@@ -409,6 +420,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
             <Backdrop
                 isVisible={showBackdrop}
+                onPress={() => toggleDropdown(false)}
                 style={styles.fullscreenBackdrop}
             />
 
