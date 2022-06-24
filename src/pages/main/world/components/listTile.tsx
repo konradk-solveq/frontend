@@ -73,9 +73,6 @@ const ListTile: React.FC<PropsI> = ({
 
     const handleLikePressOn = useCallback(
         (state: boolean) => {
-            setNumberOfLikes(prev =>
-                !state && prev ? deductReactions(prev) : prev + 1,
-            );
             if (mapData?.id) {
                 dispatch(
                     modifyReaction(

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {View, Image, Pressable} from 'react-native';
 import {
     BodySecondary,
@@ -60,22 +60,11 @@ const ListTileView: React.FC<PropsI> = ({
     testID,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
-    const [likeChecked, setLikeChecked] = useState(checkLike);
     const [saveChecked, setSaveChecked] = useState(checkUserFavorite);
 
-    const handleLikeOnPress = () => {
-        setLikeChecked(prev => {
-            if (likePressOn) {
-                likePressOn(!prev);
-            }
-
-            return !prev;
-        });
-    };
-
-    useEffect(() => {
-        setLikeChecked(checkLike);
-    }, [checkLike]);
+    const handleLikeOnPress = useCallback(() => {
+        likePressOn(!checkLike);
+    }, [likePressOn, checkLike]);
 
     useEffect(() => {
         setSaveChecked(checkUserFavorite);
@@ -147,7 +136,7 @@ const ListTileView: React.FC<PropsI> = ({
                                         <View style={styles.iconWrap}>
                                             <TextIcon
                                                 icon={
-                                                    likeChecked
+                                                    checkLike
                                                         ? MykrossIconFont.MYKROSS_ICON_LIKE_ON
                                                         : MykrossIconFont.MYKROSS_ICON_LIKE_OFF
                                                 }
