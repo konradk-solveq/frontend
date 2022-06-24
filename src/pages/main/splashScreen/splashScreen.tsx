@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar, Image, View, StyleSheet} from 'react-native';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ENVIRONMENT_TYPE} from '@env';
 
 import {TermsAndConditionsType} from '@models/regulations.model';
 import {setAppCurrentTerms} from '@storage/actions';
@@ -16,6 +18,9 @@ import colors from '@theme/colors';
 
 import {AnimatedKrossLogoContainer} from '@containers/Splash';
 import {OpacityAnimation} from '@components/animations';
+import {Subtitle} from '@components/texts/texts';
+import {getAppVersion} from '@utils/system/appVersion';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 import KROOS_LOGO from '@assets/images/logo/kross_logo_horizontal.png';
 
@@ -135,8 +140,18 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     <Image style={styles.image} source={KROOS_LOGO} />
                 </View>
             </OpacityAnimation>
+            {ENVIRONMENT_TYPE !== 'production' && <AppVersion />}
             <NewAppVersionModal showModal={showNewAppVersion} />
         </>
+    );
+};
+
+const AppVersion: React.FC = () => {
+    const {bottom} = useSafeAreaInsets();
+    return (
+        <View style={[styles.appVersionContainer, {marginBottom: bottom / 2}]}>
+            <Subtitle>{`v${getAppVersion()}`}</Subtitle>
+        </View>
     );
 };
 
@@ -150,6 +165,14 @@ const styles = StyleSheet.create({
     image: {
         width: getFHorizontalPx(282),
         height: getFVerticalPx(44),
+    },
+    appVersionContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        alignItems: 'flex-end',
+        paddingRight: appContainerHorizontalMargin,
     },
 });
 
