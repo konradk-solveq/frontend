@@ -123,9 +123,9 @@ const Bike: React.FC<Props> = (props: Props) => {
         setShowAddBikeModal(true);
         /* On IOS cannot show mutliple modals at the same time */
         if (isIOS) {
-            setShowBottomModal(false);
+            showBottomModal && setShowBottomModal(false);
         }
-    }, []);
+    }, [showBottomModal]);
 
     /* Hide bottom sheet with actions for adding bikes */
     const hideOtherBike = useCallback(() => {
@@ -136,10 +136,10 @@ const Bike: React.FC<Props> = (props: Props) => {
          */
         if (isIOS) {
             setTimeout(() => {
-                setShowBottomModal(true);
+                bikes.length > 1 && setShowBottomModal(true);
             }, 870);
         }
-    }, []);
+    }, [bikes]);
 
     const onAddOtherBike = useCallback(() => {
         hideModals();
