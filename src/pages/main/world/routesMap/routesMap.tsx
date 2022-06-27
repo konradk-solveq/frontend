@@ -61,7 +61,7 @@ const RoutesMap: React.FC = () => {
      * Helper for navigation back
      */
     const cameFromSharedLinkRef = useRef(false);
-    const globalLcation = useAppSelector(globalLocationSelector);
+    const globalLocation = useAppSelector(globalLocationSelector);
     const {addToast} = useToastContext();
     const {t} = useMergedTranslation('Toasts');
     const {top} = useSafeAreaInsets();
@@ -77,7 +77,7 @@ const RoutesMap: React.FC = () => {
     }, [shareID]);
 
     const {location} = useLocationProvider();
-    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLcation);
+    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLocation);
     const [centerMapAtLocation, setCenterMapAtLocation] = useState<
         BasicCoordsType | undefined
     >();

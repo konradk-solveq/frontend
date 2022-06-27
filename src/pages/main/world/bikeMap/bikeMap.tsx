@@ -57,6 +57,7 @@ import {isIOS} from '@utils/platform';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import {globalLocationSelector} from '@storage/selectors/app';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -140,6 +141,8 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    useForegroundLocationMapRefresh(setShowListLoader, onRefresh);
 
     const onErrorScrollHandler = useCallback(
         (event: NativeSyntheticEvent<NativeScrollEvent>) => {

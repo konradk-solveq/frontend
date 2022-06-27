@@ -57,6 +57,7 @@ import InfiniteScrollError from '@components/error/InfiniteScrollError';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import {globalLocationSelector} from '@storage/selectors/app';
+import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -98,6 +99,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     );
     const listError = useAppSelector(privateMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
+
     /**
      * Navigate to map button bottom position modifier
      */
@@ -134,6 +136,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    useForegroundLocationMapRefresh(setShowListLoader, onRefresh);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);

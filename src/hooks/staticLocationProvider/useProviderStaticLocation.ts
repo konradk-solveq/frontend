@@ -6,7 +6,10 @@ import {BasicCoordsType} from '@type/coords';
 import {locationTypeEnum} from '@type/location';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {setGlobalLocation} from '@storage/actions/app';
-import {showedLocationInfoSelector} from '@storage/selectors/app';
+import {
+    showedLocationInfoSelector,
+    globalLocationSelector,
+} from '@storage/selectors/app';
 import {
     cleanUpListener,
     getLatLngFromForeground,
@@ -27,7 +30,9 @@ import {
     IDENTIFIER,
     shouldOmit,
     transfromToProperFormat,
+    transformCoordsToLocation,
 } from '@src/providers/staticLocationProvider/utils/geofenceData';
+import useAppState from '@hooks/useAppState';
 
 const isIOS = Platform.OS === 'ios';
 const intervalToRefreshLocation = __DEV__ ? 12000 : 120000;
@@ -35,7 +40,7 @@ const intervalToRefreshLocation = __DEV__ ? 12000 : 120000;
 const useProviderStaticLocation = () => {
     const dispatch = useAppDispatch();
     const initLocationRef = useRef(false);
-
+    const {appIsActive} = useAppState();
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
     const locationDialogHasBeenShown = useAppSelector(
@@ -44,11 +49,13 @@ const useProviderStaticLocation = () => {
     const isAuthanticated = useAppSelector(
         authUserIsAuthenticatedStateSelector,
     );
+    const globalLocation = useAppSelector(globalLocationSelector);
 
     const {locationType, permissionGranted} = useCheckLocationType();
 
     const [location, setLocation] = useState<BasicCoordsType | undefined>();
     const [isTrackingActivated, setIsTrackingActivated] = useState(false);
+    const [isCounterScreen, setIsCounterScreen] = useState(false);
 
     /**
      * Get initial location with low accuracy.
@@ -149,17 +156,34 @@ const useProviderStaticLocation = () => {
         [storeCurrentLocation],
     );
 
-    const setLocationWithInterval = useCallback(async () => {
-        if (!initLocationRef.current) {
-            return;
-        }
+    /**
+     * Passing the force argument to the getLatLngFromForeground function
+     * to force the location library to fetch the current location ignoring the current state
+     * of the location library
+     */
+    const setLocationWithInterval = useCallback(
+        async (force?: boolean) => {
+            if (!initLocationRef.current) {
+                return;
+            }
 
-        const loc = await getLatLngFromForeground();
+            const loc = await getLatLngFromForeground(force);
 
-        if (loc) {
-            storeCurrentLocation(loc);
+            if (loc) {
+                storeCurrentLocation(loc);
+            }
+        },
+        [storeCurrentLocation],
+    );
+
+    /**
+     * Refresh location after opening the app from the background
+     */
+    useEffect(() => {
+        if (appIsActive) {
+            setLocationWithInterval(true);
         }
-    }, [storeCurrentLocation]);
+    }, [appIsActive, setLocationWithInterval]);
 
     const setInitLocationWithInterval = useCallback(async () => {
         if (!location && initLocationRef.current) {
@@ -167,6 +191,39 @@ const useProviderStaticLocation = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    /**
+     * set a new geofence to track if the global location has changed and the user
+     * isn't in the counter screen
+     * (the location is tracked continuously there, so there's no need to set geofences)
+     */
+    useEffect(() => {
+        if (!isCounterScreen) {
+            if (globalLocation?.latitude && globalLocation?.longitude) {
+                const longitude = globalLocation.longitude;
+                const latitude = globalLocation.latitude;
+                setLocation({latitude, longitude});
+                const coordsLocation = transformCoordsToLocation({
+                    longitude,
+                    latitude,
+                });
+                setGofenceToMonitor(
+                    coordsLocation
+                        ? {
+                            location: coordsLocation,
+                              identifier: IDENTIFIER,
+                            action: '',
+                          }
+                        : undefined,
+                );
+            }
+        }
+    }, [
+        globalLocation?.latitude,
+        globalLocation?.longitude,
+        isCounterScreen,
+        setGofenceToMonitor,
+    ]);
 
     /**
      * Start plugin only if route tracking is disabled.
@@ -179,7 +236,7 @@ const useProviderStaticLocation = () => {
                 !isTrackingActivated && !isRouteRecordingActive,
             );
         }
-    }, [isTrackingActivated, isRouteRecordingActive, setGofenceToMonitor]);
+    }, [setGofenceToMonitor, isTrackingActivated, isRouteRecordingActive]);
 
     /**
      * Don't stop plugin when tracking is enabled.
@@ -200,6 +257,14 @@ const useProviderStaticLocation = () => {
      */
     const isTrackingActivatedHandler = useCallback((a: boolean) => {
         setIsTrackingActivated(a);
+    }, []);
+
+    /**
+     * Set information about being on the counter screen to prevent geofencing
+     * on every update during the recording a route.
+     */
+    const isCounterScreenHandler = useCallback((state: boolean) => {
+        setIsCounterScreen(state);
     }, []);
 
     useEffect(() => {
@@ -278,6 +343,7 @@ const useProviderStaticLocation = () => {
         setLocationWithInterval,
         isTrackingActivated,
         isTrackingActivatedHandler,
+        isCounterScreenHandler,
     };
 };
 

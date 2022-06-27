@@ -44,6 +44,8 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {LocationStatusNotification} from '@notifications/index';
 import {Notification} from '@components/notifications';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {useFocusEffect} from '@react-navigation/core';
 
 const recordingNotification = {
     key: 'pause-notifications',
@@ -74,6 +76,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const {top} = useSafeAreaInsets();
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
+    const {isCounterScreenHandler} = useLocationProvider();
     const recordingState = useAppSelector(trackerRecordingStateSelector);
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -93,6 +96,17 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [notifications, setNotifications] = useState<NotificationListItemI[]>(
         [],
     );
+
+    /**
+     * Communicate the 'before recording' state to the StaticLocationProvider
+     */
+    useFocusEffect(() => {
+        isCounterScreenHandler(true);
+
+        return () => {
+            isCounterScreenHandler(false);
+        };
+    });
 
     /**
      * Read notifications container height

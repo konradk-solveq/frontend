@@ -59,6 +59,7 @@ import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
 import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import {globalLocationSelector} from '@storage/selectors/app';
+import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -97,6 +98,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
     const {addToast} = useToastContext();
+
     /**
      * Navigate to map button bottom position modifier
      */
@@ -133,6 +135,8 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    useForegroundLocationMapRefresh(setShowListLoader, onRefresh);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
