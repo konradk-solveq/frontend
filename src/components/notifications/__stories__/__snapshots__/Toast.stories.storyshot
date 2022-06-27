@@ -25,6 +25,7 @@ exports[`Storyshots components/notifications/Toast Customized 1`] = `
       }
     }
     focusable={true}
+    needsOffscreenAlphaCompositing={true}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -34,6 +35,12 @@ exports[`Storyshots components/notifications/Toast Customized 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginTop": 12.644549763033176,
+        "paddingVertical": 0,
+      }
+    }
   >
     <View
       style={
@@ -57,7 +64,7 @@ exports[`Storyshots components/notifications/Toast Customized 1`] = `
           },
           Object {
             "alignSelf": "center",
-            "marginTop": 12.644549763033176,
+            "elevation": 1,
             "width": "100%",
           },
         ]
@@ -123,6 +130,7 @@ exports[`Storyshots components/notifications/Toast Default 1`] = `
       }
     }
     focusable={true}
+    needsOffscreenAlphaCompositing={true}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
@@ -132,6 +140,12 @@ exports[`Storyshots components/notifications/Toast Default 1`] = `
     onResponderTerminate={[Function]}
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginTop": 12.644549763033176,
+        "paddingVertical": 0,
+      }
+    }
   >
     <View
       style={
@@ -155,7 +169,7 @@ exports[`Storyshots components/notifications/Toast Default 1`] = `
           },
           Object {
             "alignSelf": "center",
-            "marginTop": 12.644549763033176,
+            "elevation": 1,
             "width": "100%",
           },
         ]

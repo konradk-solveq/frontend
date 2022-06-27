@@ -104,7 +104,7 @@ const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        bottom: navBarHeight + getFVerticalPx(48),
+        bottom: navBarHeight + getFVerticalPx(44),
         height: screenHeight,
         width: '100%',
         justifyContent: 'flex-end',
