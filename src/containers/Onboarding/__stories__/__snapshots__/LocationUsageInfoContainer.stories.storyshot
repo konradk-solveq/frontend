@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots containers/Onboarding/LocationUsage Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "paddingVertical": 31.61137440758294,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "marginTop": 94.83412322274881,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../src/pages/onboarding/locationUsageInfo/images/routeMap.png",
+          }
+        }
+        style={
+          Object {
+            "maxHeight": 546.8767772511849,
+            "maxWidth": 750,
+          }
+        }
+      />
+      <Text
+        adjustsFontSizeToFit={false}
+        numberOfLines={0}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Array [
+              Object {
+                "marginHorizontal": 115.38461538461539,
+                "textAlign": "center",
+              },
+              Object {
+                "marginTop": 63.22274881516588,
+              },
+            ],
+          ]
+        }
+        testID="header2-test-id"
+      >
+        We need your permission to allow GPS track recording
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "textAlign": "left",
+            },
+            Array [
+              Object {
+                "marginHorizontal": 115.38461538461539,
+                "textAlign": "center",
+              },
+              Object {
+                "marginTop": 25.28909952606635,
+              },
+            ],
+          ]
+        }
+        testID="paragraph-test-id"
+      >
+        Select Allow while using the application on the next screen.
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "elevation": 5,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 7.6923076923076925,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 15.384615384615385,
+          },
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {},
+          ],
+        ]
+      }
+      testID="location-usage-button-test-id"
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "alignItems": "center",
+              "borderRadius": 30.76923076923077,
+              "flexDirection": "row",
+              "height": "100%",
+              "justifyContent": "center",
+              "width": "100%",
+            },
+            Object {
+              "backgroundColor": "#C63733",
+            },
+            undefined,
+          ]
+        }
+        testID="location-usage-button-test-id-container"
+      >
+        <Text
+          adjustsFontSizeToFit={true}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#FFFFFF",
+              },
+            ]
+          }
+          testID="location-usage-button-test-id-text"
+        >
+          Next
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

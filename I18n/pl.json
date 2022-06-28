@@ -27,6 +27,12 @@
             }
         }
     },
+    "LocationUsage": {
+        "title": "Lokalizacja",
+        "header" : "Potrzebujemy Twojej zgody, aby umożliwić zapis tras z użyciem GPS",
+        "info": "Wybierz \"Zezwól podczas korzystania z aplikacji\" na kolejnym ekranie.",
+        "button": "Dalej"
+    },
     "OneLineText-error-null": "Wartość nie może być null-em",
     "TutorialNFC": {
         "header": "Identyfikacja roweru",
@@ -209,13 +215,9 @@
         ]
     },
     "newAppVersion": {
-        "header": "Nowa wersja aplikacji",
-        "title": "Nowa wersja aplikacji",
-        "text_1": "Dostępna jest ",
-        "text_2": "nowa wersja aplikacji myKROSS",
-        "text_3": " - nie zwlekaj pobierz najnowszą wersję.",
-        "btnLeft": "POMIŃ",
-        "btnRight": "AKTUALIZUJ"
+        "title": "Zaktualizuj aplikację Kross",
+        "content": "Udostępniliśmy nową wersję aplikacji.\nBądź na bieżąco z nowościami, pobierz aktualizację.",
+        "updateButton": "Aktualizuj"
     },
     "Login": {
         "header": "Zaloguj się do KROSS",
@@ -433,7 +435,7 @@
             "removeToFavAction": "Usuń trasę",
             "showOnMapAction": "Zobacz na mapie",
             "routeDetailsAction": "Szczegóły",
-            "addRouteToPlanned": "Trasa {{name}} została zapisana",
+            "addRouteToPlanned": "Trasa {{name}} została dodana do zapisanych",
             "removeRouteFromPlanned": "Trasa {{name}} została usunięta z zapisanych",
             "sortBy": {
                 "nearest": "Od najbliższych",
@@ -1026,7 +1028,23 @@
         "location": {
             "searchSignal": {
                 "title": "Szukanie sygnału GPS"
+            },
+            "disabled": {
+                "title": "Wyłączony GPS"
+            },
+            "permission": {
+                "title": "Sprawdź uprawienia lokalizacji",
+                "subtitle": "Nie mamy Twojej zgody na lokalizację",
+                "action": "Ustawienia"
             }
         }
+    },
+    "Toasts": {
+        "bikeAddedTitle": "Dodaliśmy Twój rower",
+        "bikeAddedSubtitle": "Sprawdź zakładkę Rower",
+        "routeSaved": "Trasa została zapisana",
+        "routePublished": "Trasa została opublikowana",
+        "addRouteToPlanned": "Trasa została dodana do zapisanych",
+        "removeRouteFromPlanned": "Trasa została usunięta z zapisanych"
     }
 }

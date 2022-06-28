@@ -13,6 +13,8 @@ import {addBikeEvent} from '@analytics/utils/bikes';
 import GenericScreen from '@pages/template/GenericScreen';
 import {AddBikeByNumberContainer} from '@containers/AddBike';
 import {AddBikeSummaryModal} from '@pages/main/addBike/components';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+import Approved from '@src/components/icons/Approved';
 
 const rules: Record<string, any[] | undefined> = {
     bikeNumber: [
@@ -24,8 +26,10 @@ const rules: Record<string, any[] | undefined> = {
 
 const AddBikeByNumberScreen: React.FC = () => {
     const {t} = useMergedTranslation('AddBikeByNumberScreen');
+    const {t: toastsT} = useMergedTranslation('Toasts');
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
+    const {addToast} = useToastContext();
 
     const [isFetching, setIsFetching] = useState(false);
     const [frameNumber, setFrameNumber] = useState('');
@@ -105,6 +109,13 @@ const AddBikeByNumberScreen: React.FC = () => {
     const onAddBike = () => {
         addBikeEvent(true);
         navigation.pop(2);
+        addToast({
+            key: 'added-bike-success',
+            title: toastsT('bikeAddedTitle'),
+            subtitle: toastsT('bikeAddedSubtitle'),
+            icon: <Approved />,
+            leaveOnScreenChange: true,
+        });
     };
 
     return (

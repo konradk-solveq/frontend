@@ -18,6 +18,7 @@ import {
 } from './utils/compareMapsDispatchResults';
 
 import {addPlannedMap, fetchFeaturedMapsList, removePlannedMap} from '../maps';
+import {defaultLocation} from '@utils/constants/location';
 
 const featuredRoutesDataMock: FeaturedMapType[] = deepCopy(frdMock);
 const featuredRoutesDataNextMock: FeaturedMapType[] = deepCopy(frdNextMock);
@@ -39,10 +40,7 @@ describe('[Maps actions]', () => {
                     ...initState,
                     app: {
                         ...initState.app,
-                        location: {
-                            latitude: 50.691728031513534,
-                            longitude: 17.79613619421019,
-                        },
+                        location: defaultLocation,
                     },
                 });
                 /**
@@ -74,10 +72,7 @@ describe('[Maps actions]', () => {
                     ...initState,
                     app: {
                         ...initState.app,
-                        location: {
-                            latitude: 50.691728031513534,
-                            longitude: 17.79613619421019,
-                        },
+                        location: defaultLocation,
                     },
                 });
                 /**
@@ -117,10 +112,7 @@ describe('[Maps actions]', () => {
                 ...initState,
                 app: {
                     ...initState.app,
-                    location: {
-                        latitude: 50.691728031513534,
-                        longitude: 17.79613619421019,
-                    },
+                    location: defaultLocation,
                 },
                 maps: {
                     ...initState.maps,
@@ -169,10 +161,7 @@ describe('[Maps actions]', () => {
                 ...initState,
                 app: {
                     ...initState.app,
-                    location: {
-                        latitude: 50.691728031513534,
-                        longitude: 17.79613619421019,
-                    },
+                    location: defaultLocation,
                 },
                 maps: {
                     ...initState.maps,
@@ -209,10 +198,7 @@ describe('[Maps actions]', () => {
                 ...initState,
                 app: {
                     ...initState.app,
-                    location: {
-                        latitude: 50.691728031513534,
-                        longitude: 17.79613619421019,
-                    },
+                    location: defaultLocation,
                 },
                 maps: {
                     ...initState.maps,
@@ -263,10 +249,7 @@ describe('[Maps actions]', () => {
                 ...initState,
                 app: {
                     ...initState.app,
-                    location: {
-                        latitude: 50.691728031513534,
-                        longitude: 17.79613619421019,
-                    },
+                    location: defaultLocation,
                 },
                 maps: {
                     ...initState.maps,

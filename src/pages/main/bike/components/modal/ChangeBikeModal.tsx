@@ -2,7 +2,7 @@ import {getFVerticalPx, getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import {IconButton, SecondaryButton} from '@components/buttons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
-import {BackdropModal} from '@components/modals';
+import {BottomModal} from '@components/modals';
 import React, {useCallback, useMemo} from 'react';
 import {
     View,
@@ -10,6 +10,7 @@ import {
     Pressable,
     Dimensions,
     ScrollView,
+    Modal,
 } from 'react-native';
 import {Header2, BodyPrimary} from '@components/texts/texts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -18,6 +19,7 @@ import {HorizontalDivider} from '@components/divider';
 import {TextIcon} from '@components/icons';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {isAndroid} from '@utils/platform';
+import {Backdrop} from '@components/backdrop';
 
 interface IProps {
     visible: boolean;
@@ -26,6 +28,7 @@ interface IProps {
     bikes: UserBike[];
     onBikeSelect: (bike: UserBike) => void;
     selectedBike: UserBike | null;
+    testID?: string;
 }
 
 interface SingleBikeIProps {
@@ -63,6 +66,7 @@ const ChangeBikeModal = ({
     onBikeSelect,
     selectedBike,
     onAddKrossBike,
+    testID = 'change-bike-modal-id',
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike');
     const {bottom, top} = useSafeAreaInsets();
@@ -80,41 +84,51 @@ const ChangeBikeModal = ({
         return maxHeight < modalH ? maxHeight : modalH;
     }, [bikes.length, bottom, top]);
     return (
-        <BackdropModal
-            containerStyle={styles.modalContainer}
+        <Modal
+            transparent
+            animationType="fade"
             visible={visible}
-            height={modalHeight}>
-            <View style={styles.headerContainer}>
-                <Header2>{t('chooseBike')}</Header2>
-                <View style={styles.closeButton}>
-                    <IconButton
-                        icon={MykrossIconFont.MYKROSS_ICON_EXIT}
-                        iconColor={colors.black}
-                        onPress={onCloseBottomModal}
-                    />
-                </View>
-            </View>
-            <ScrollView>
-                {bikes.map(bike => (
-                    <SingleBike
-                        key={bike.description.serial_number}
-                        bike={bike}
-                        isSelected={
-                            !!selectedBike?.description.serial_number &&
-                            bike.description.serial_number ===
-                                selectedBike?.description.serial_number
-                        }
-                        onBikeSelect={onBikeSelect}
-                    />
-                ))}
-            </ScrollView>
-            <SecondaryButton
-                style={styles.addButton}
-                text={t('addNextBike')}
-                onPress={onAddKrossBike}
-                withoutShadow
-            />
-        </BackdropModal>
+            testID={testID}>
+            <BottomModal
+                show={visible}
+                openModalHeight={getFVerticalPx(modalHeight)}
+                header={
+                    <View style={styles.headerContainer}>
+                        <Header2>{t('chooseBike')}</Header2>
+                        <View style={styles.closeButton}>
+                            <IconButton
+                                icon={MykrossIconFont.MYKROSS_ICON_EXIT}
+                                iconColor={colors.black}
+                                onPress={onCloseBottomModal}
+                            />
+                        </View>
+                    </View>
+                }
+                style={{backgroundColor: colors.white}}
+                testID={`${testID}-bottom-modal`}>
+                <ScrollView>
+                    {bikes.map(bike => (
+                        <SingleBike
+                            key={bike.description.serial_number}
+                            bike={bike}
+                            isSelected={
+                                !!selectedBike?.description.serial_number &&
+                                bike.description.serial_number ===
+                                    selectedBike?.description.serial_number
+                            }
+                            onBikeSelect={onBikeSelect}
+                        />
+                    ))}
+                </ScrollView>
+                <SecondaryButton
+                    style={styles.addButton}
+                    text={t('addNextBike')}
+                    onPress={onAddKrossBike}
+                    withoutShadow
+                />
+            </BottomModal>
+            <Backdrop isVisible={visible} />
+        </Modal>
     );
 };
 

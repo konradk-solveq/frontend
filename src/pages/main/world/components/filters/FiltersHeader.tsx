@@ -13,7 +13,7 @@ import {View, StyleSheet, Dimensions} from 'react-native';
 import SortButton from '../buttons/SortButton';
 import {FiltersButton} from '@pages/main/world/components/buttons';
 import {Dropdown} from '@components/dropdown';
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import colors from '@theme/colors';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
@@ -56,6 +56,14 @@ const FiltersHeader = ({
     useEffect(() => {
         backgroundColorProgress.value = showDropdown ? 1 : 0;
     }, [showDropdown, backgroundColorProgress]);
+
+    const toggleDropdownHandler = useCallback(
+        (state: boolean) => {
+            toggleDropdown(state);
+        },
+        [toggleDropdown],
+    );
+
     return (
         <>
             <CollapsibleStickyHeader
@@ -66,7 +74,7 @@ const FiltersHeader = ({
                     <View style={styles.topButtons}>
                         <SortButton
                             title={sortButtonName}
-                            onPress={() => setShowDropdown(true)}
+                            onPress={() => setShowDropdown(!showDropdown)}
                             style={styles.topButton}
                         />
                         <FiltersButton
@@ -84,7 +92,7 @@ const FiltersHeader = ({
                     <Dropdown
                         openOnStart={showDropdown}
                         list={dropdownList}
-                        onPress={toggleDropdown}
+                        onPress={toggleDropdownHandler}
                         onPressItem={onSortByHandler}
                         buttonText={t('btnSort')}
                         buttonContainerStyle={

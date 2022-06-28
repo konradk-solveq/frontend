@@ -6,6 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useIsFocused} from '@react-navigation/native';
 
 import {
     userNameSelector,
@@ -40,7 +41,10 @@ import {
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
 import {RoutesMapButton} from '@pages/main/world/components/buttons';
-import {getPrivateRoutesDropdownList} from '../utils/dropdownLists';
+import {
+    getPrivateRoutesDropdownList,
+    getPrivateRoutesNoLocationDropdownList,
+} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {removePrivateMapMetaData, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -50,6 +54,10 @@ import {useHideOnScrollDirection} from '@hooks/useHideOnScrollDirection';
 import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {FinishLine} from '@components/svg';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import {globalLocationSelector} from '@storage/selectors/app';
+import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -72,6 +80,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.MyRoutes');
     const {t: mwt} = useMergedTranslation('MainWorld');
     const navigation = useAppNavigation();
+    const isTabFocused = useIsFocused();
     const nextCoursor = useAppSelector(nextPrivatePaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
@@ -79,12 +88,18 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
+    const {permissionGranted, permissionResult} = useCheckLocationType();
+    const location = useAppSelector(globalLocationSelector);
     const privateRoutesDropdownList = useMemo(
-        () => getPrivateRoutesDropdownList(t),
-        [t],
+        () =>
+            (permissionGranted || !permissionResult) && location
+                ? getPrivateRoutesDropdownList(t)
+                : getPrivateRoutesNoLocationDropdownList(t),
+        [t, permissionGranted, permissionResult, location],
     );
     const listError = useAppSelector(privateMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
+
     /**
      * Navigate to map button bottom position modifier
      */
@@ -121,6 +136,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    useForegroundLocationMapRefresh(setShowListLoader, onRefresh);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
@@ -201,11 +218,19 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         onPressTile={onPressTileHandler}
                         mode={'my'}
                         tilePressable
+                        hideDistanceToStart={!location || !permissionGranted}
                     />
                 </View>
             );
         },
-        [privateMaps?.length, shouldShowDate, sortedByDate, onPressTileHandler],
+        [
+            privateMaps?.length,
+            shouldShowDate,
+            sortedByDate,
+            onPressTileHandler,
+            location,
+            permissionGranted,
+        ],
     );
 
     const onEndReachedHandler = useCallback(() => {
@@ -226,6 +251,15 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowBackdrop(state);
         setShowDropdown(state);
     }, []);
+
+    /**
+     * Dismiss sort dropdown when user navigates to other tab.
+     */
+    useEffect(() => {
+        if (!isTabFocused) {
+            toggleDropdown(false);
+        }
+    }, [isTabFocused, toggleDropdown]);
 
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
@@ -328,7 +362,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sButtonName}
-                setShowDropdown={setShowDropdown}
+                setShowDropdown={toggleDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}
                 toggleDropdown={toggleDropdown}
@@ -361,12 +395,17 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         onScroll={onScroll}
                         onMomentumScrollEnd={onErrorScrollHandler}
                         ListHeaderComponent={
-                            <Header2 style={styles.header}>
-                                {totalNumberOfPrivateMaps &&
-                                totalNumberOfPrivateMaps > 0
-                                    ? secondTitle
-                                    : basicTitle}
-                            </Header2>
+                            <View style={styles.listHeaderContainer}>
+                                <LocationPermissionNotification
+                                    style={styles.notification}
+                                />
+                                <Header2 style={styles.header}>
+                                    {totalNumberOfPrivateMaps &&
+                                    totalNumberOfPrivateMaps > 0
+                                        ? secondTitle
+                                        : basicTitle}
+                                </Header2>
+                            </View>
                         }
                         data={!showListLoader ? privateMaps : []}
                         renderItem={renderItem}
@@ -385,6 +424,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
 
             <Backdrop
                 isVisible={showBackdrop}
+                onPress={() => toggleDropdown(false)}
                 style={styles.fullscreenBackdrop}
             />
 

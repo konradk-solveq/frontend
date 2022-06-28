@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 
 import {ReactionsType} from '@models/map.model';
@@ -7,7 +7,7 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
 
 import {BodyPrimary, BodySecondary, Header2} from '@components/texts/texts';
-import {TextIcon} from '@components/icons';
+import {IconButton} from '@components/buttons';
 import {
     getFHorizontalPx,
     getFVerticalPx,
@@ -22,6 +22,8 @@ interface IProps {
     distanceToRoute?: string;
     difficultiesLevels?: string[];
     reactions?: ReactionsType;
+    likeReaction?: boolean;
+    onPressReaction?: () => void;
     testID?: string;
 }
 
@@ -32,6 +34,8 @@ const PrologDescription: React.FC<IProps> = ({
     distanceToRoute = '-',
     difficultiesLevels,
     reactions,
+    likeReaction = false,
+    onPressReaction,
     testID = 'prolog-description-test-id',
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
@@ -39,6 +43,10 @@ const PrologDescription: React.FC<IProps> = ({
         () => getDifficultyString(difficultiesLevels, t('multiDifficulties')),
         [difficultiesLevels, t],
     );
+
+    const onPressReactionHandler = useCallback(() => {
+        onPressReaction && onPressReaction();
+    }, [onPressReaction]);
 
     return (
         <>
@@ -61,12 +69,16 @@ const PrologDescription: React.FC<IProps> = ({
             <View
                 style={[styles.row, styles.flexStart]}
                 testID={`${testID}-row3`}>
-                <TextIcon
-                    icon={MykrossIconFont.MYKROSS_ICON_LIKE_OFF}
+                <IconButton
+                    icon={
+                        !likeReaction
+                            ? MykrossIconFont.MYKROSS_ICON_LIKE_OFF
+                            : MykrossIconFont.MYKROSS_ICON_LIKE_ON
+                    }
+                    iconSize={20}
                     iconColor={colors.black}
-                    style={{
-                        marginRight: getFHorizontalPx(8),
-                    }}
+                    style={styles.iconButton}
+                    onPress={onPressReactionHandler}
                 />
                 <BodyPrimary testID={`${testID}-row3-likes`}>
                     {reactions?.like || 0}
@@ -85,6 +97,11 @@ const styles = StyleSheet.create({
     flexStart: {
         alignItems: 'center',
         justifyContent: 'flex-start',
+    },
+    iconButton: {
+        paddingRight: getFHorizontalPx(8),
+        backgroundColor: 'transparent',
+        width: 'auto',
     },
 });
 

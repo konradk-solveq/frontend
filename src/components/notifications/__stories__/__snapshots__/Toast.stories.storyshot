@@ -1,0 +1,211 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/notifications/Toast Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "backgroundColor": "#eaeaea",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    exiting={
+      Object {
+        "delay": [MockFunction],
+      }
+    }
+    focusable={true}
+    needsOffscreenAlphaCompositing={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginTop": 12.644549763033176,
+        "paddingVertical": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 25.28909952606635,
+            "marginHorizontal": 30.76923076923077,
+            "paddingHorizontal": 30.76923076923077,
+            "paddingVertical": 18.966824644549764,
+          },
+          Object {
+            "elevation": 5,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 38.46153846153846,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 15.384615384615385,
+          },
+          Object {
+            "alignSelf": "center",
+            "elevation": 1,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          numberOfLines={0}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#333333",
+                "marginLeft": 12.644549763033176,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`Storyshots components/notifications/Toast Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      Object {
+        "backgroundColor": "#eaeaea",
+      },
+    ]
+  }
+>
+  <View
+    accessible={true}
+    collapsable={false}
+    exiting={
+      Object {
+        "delay": [MockFunction],
+      }
+    }
+    focusable={true}
+    needsOffscreenAlphaCompositing={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "marginTop": 12.644549763033176,
+        "paddingVertical": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 25.28909952606635,
+            "marginHorizontal": 30.76923076923077,
+            "paddingHorizontal": 30.76923076923077,
+            "paddingVertical": 18.966824644549764,
+          },
+          Object {
+            "elevation": 5,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 38.46153846153846,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 15.384615384615385,
+          },
+          Object {
+            "alignSelf": "center",
+            "elevation": 1,
+            "width": "100%",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          adjustsFontSizeToFit={false}
+          numberOfLines={0}
+          style={
+            Array [
+              Object {
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "fontWeight": "600",
+                "lineHeight": 24,
+                "textAlign": "left",
+              },
+              Object {
+                "color": "#333333",
+                "marginLeft": 12.644549763033176,
+              },
+            ]
+          }
+          testID="header3-test-id"
+        />
+      </View>
+    </View>
+  </View>
+</View>
+`;

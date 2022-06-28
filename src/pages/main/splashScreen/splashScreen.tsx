@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {StatusBar, Image, View, StyleSheet} from 'react-native';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {ENVIRONMENT_TYPE} from '@env';
 
 import {TermsAndConditionsType} from '@models/regulations.model';
 import {setAppCurrentTerms} from '@storage/actions';
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 import {getIsNewVersion} from '@helpers/appVersion';
+import NewAppVersionModal from '../newAppVersion/newAppVersionModal';
 import {SplashScreenRouteT} from '@type/rootStack';
 import {
     getFHorizontalPx,
@@ -15,6 +18,9 @@ import colors from '@theme/colors';
 
 import {AnimatedKrossLogoContainer} from '@containers/Splash';
 import {OpacityAnimation} from '@components/animations';
+import {Subtitle} from '@components/texts/texts';
+import {getAppVersion} from '@utils/system/appVersion';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 import KROOS_LOGO from '@assets/images/logo/kross_logo_horizontal.png';
 
@@ -82,14 +88,6 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     }),
                 );
             }
-
-            // show New App Version
-            if (
-                showedNewAppVersion < shopAppVersion &&
-                getIsNewVersion(shopAppVersion)
-            ) {
-                setShowNewAppVersion(true);
-            }
         }
     }, [currentVersion, shopAppVersion, showedNewAppVersion, showed, data]);
 
@@ -100,10 +98,6 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     return RegularStackRoute.NEW_REGULATIONS_SCREEN;
                 }
 
-                if (showNewAppVersion) {
-                    return RegularStackRoute.NEW_APP_VERSION_SCREEN;
-                }
-
                 if (props.route.params?.redirectToScreen) {
                     return props.route.params.redirectToScreen;
                 }
@@ -112,7 +106,14 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
             };
 
             const t = setTimeout(() => {
-                props.navigation.replace(getPage());
+                if (
+                    showedNewAppVersion < shopAppVersion &&
+                    getIsNewVersion(shopAppVersion)
+                ) {
+                    setShowNewAppVersion(true);
+                } else {
+                    props.navigation.replace(getPage());
+                }
             }, time);
             return () => {
                 clearTimeout(t);
@@ -123,6 +124,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
         props.navigation,
         shopAppVersion,
         showNewRegulations,
+        showedNewAppVersion,
         props.route.params?.redirectToScreen,
     ]);
 
@@ -138,7 +140,18 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                     <Image style={styles.image} source={KROOS_LOGO} />
                 </View>
             </OpacityAnimation>
+            {ENVIRONMENT_TYPE !== 'production' && <AppVersion />}
+            <NewAppVersionModal showModal={showNewAppVersion} />
         </>
+    );
+};
+
+const AppVersion: React.FC = () => {
+    const {bottom} = useSafeAreaInsets();
+    return (
+        <View style={[styles.appVersionContainer, {marginBottom: bottom / 2}]}>
+            <Subtitle>{`v${getAppVersion()}`}</Subtitle>
+        </View>
     );
 };
 
@@ -152,6 +165,14 @@ const styles = StyleSheet.create({
     image: {
         width: getFHorizontalPx(282),
         height: getFVerticalPx(44),
+    },
+    appVersionContainer: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        alignItems: 'flex-end',
+        paddingRight: appContainerHorizontalMargin,
     },
 });
 

@@ -1258,7 +1258,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
           "width": 750,
           "zIndex": 1,
         },
-        undefined,
+        Object {
+          "height": "auto",
+        },
         Object {
           "opacity": 0,
         },
@@ -2549,7 +2551,9 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
           "width": 750,
           "zIndex": 1,
         },
-        undefined,
+        Object {
+          "height": "auto",
+        },
         Object {
           "opacity": 0,
         },

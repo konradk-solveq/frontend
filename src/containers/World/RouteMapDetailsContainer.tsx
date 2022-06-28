@@ -1,7 +1,7 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {StyleSheet, View, ViewStyle} from 'react-native';
 
-import {MapType} from '@models/map.model';
+import {MapType, SelectOptionType} from '@models/map.model';
 import {ImagesUrlsToDisplay} from '@utils/transformData';
 import {RouteDetailsActionT} from '@type/screens/routesMap';
 
@@ -18,6 +18,7 @@ import {
 interface IProps {
     onPressAction: (actionType: RouteDetailsActionT) => void;
     mapData?: MapType;
+    likeReaction?: SelectOptionType;
     isPrivate?: boolean;
     isPublished?: boolean;
     isFavourited?: boolean;
@@ -30,6 +31,7 @@ interface IProps {
 const RouteMapDetailsContainer: React.FC<IProps> = ({
     onPressAction,
     mapData,
+    likeReaction,
     isPrivate = false,
     isPublished = false,
     isFavourited = false,
@@ -42,6 +44,13 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
         onPressAction(isFavourited ? 'remove_from_planned' : 'add_to_planned');
     }, [isFavourited, onPressAction]);
 
+    const isLiked = useMemo(
+        () =>
+            !!mapData?.reaction &&
+            likeReaction?.enumValue === mapData?.reaction,
+        [likeReaction?.enumValue, mapData?.reaction],
+    );
+
     return (
         <View style={[styles.container, style]} testID={testID}>
             <>
@@ -52,6 +61,8 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                     distanceToRoute={mapData?.distanceToRouteInKilometers}
                     difficultiesLevels={mapData?.pickedDifficulties}
                     reactions={mapData?.reactions}
+                    likeReaction={isLiked}
+                    onPressReaction={() => onPressAction('reactions')}
                     testID={`${testID}-prolog-description`}
                 />
                 {!isPrivate ? (

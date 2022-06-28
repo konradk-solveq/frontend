@@ -37,6 +37,7 @@ import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {isLocationValidToPass} from '@src/utils/transformData';
 import {dispatchRouteDebugAction} from '@src/utils/debugging/routeData';
+import {setGlobalLocation} from '@storage/actions/app';
 
 export interface DataI {
     distance: string;
@@ -236,6 +237,24 @@ const useLocalizationTracker = (
         }
     }, []);
 
+    useEffect(() => {
+        if (!isTrackerActive) {
+            trackerData?.coords.lat &&
+                trackerData?.coords.lon &&
+                dispatch(
+                    setGlobalLocation({
+                        latitude: trackerData.coords.lat,
+                        longitude: trackerData.coords.lon,
+                    }),
+                );
+        }
+    }, [
+        dispatch,
+        isTrackerActive,
+        trackerData?.coords?.lat,
+        trackerData?.coords?.lon,
+    ]);
+
     const setCurrentTrackerData = useCallback(
         async (fastTimeout?: boolean, locationData?: Location) => {
             const currentLocationData =
@@ -244,9 +263,10 @@ const useLocalizationTracker = (
                     currentRouteId,
                     fastTimeout ? 4 : undefined,
                     undefined,
-                    fastTimeout ? true : false,
+                    fastTimeout,
                     fastTimeout ? 5 : 15,
                     fastTimeout ? 2000 : 500,
+                    fastTimeout,
                 ));
 
             if (!currentLocationData) {

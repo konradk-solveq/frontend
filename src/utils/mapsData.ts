@@ -3,6 +3,41 @@ import deepCopy from '@src/helpers/deepCopy';
 import {RootState} from '@storage/storage';
 import {IMapsListError} from '@storage/reducers/maps';
 
+export const deductReactions = (currentValue: number) => {
+    if (currentValue > 0) {
+        return currentValue - 1;
+    }
+
+    return currentValue;
+};
+
+const updateSingleMapReaction = (map: MapType, reaction: string) => {
+    let oldValue = 0;
+    const k = reaction as keyof ReactionsType;
+    if (map.reactions?.[k]) {
+        oldValue = map.reactions[k];
+    }
+    if (map?.reaction && map.reaction === reaction) {
+        return {
+            ...map,
+            reaction: null,
+            reactions: {
+                ...map.reactions,
+                [reaction]: deductReactions(oldValue),
+            },
+        };
+    }
+
+    return {
+        ...map,
+        reaction: reaction,
+        reactions: {
+            ...map.reactions,
+            [reaction]: oldValue + 1,
+        },
+    };
+};
+
 export const updateReactionsInMap = (
     maps: MapType[],
     mapIdToModify: string,
@@ -11,30 +46,7 @@ export const updateReactionsInMap = (
     try {
         return [...maps].map(m => {
             if (mapIdToModify && m?.id === mapIdToModify) {
-                let oldValue = 0;
-                const k = reaction as keyof ReactionsType;
-                if (m.reactions?.[k]) {
-                    oldValue = m.reactions[k];
-                }
-                if (m?.reaction && m.reaction === reaction) {
-                    return {
-                        ...m,
-                        reaction: null,
-                        reactions: {
-                            ...m.reactions,
-                            [reaction]: oldValue - 1,
-                        },
-                    };
-                }
-
-                return {
-                    ...m,
-                    reaction: reaction,
-                    reactions: {
-                        ...m.reactions,
-                        [reaction]: oldValue + 1,
-                    },
-                };
+                return updateSingleMapReaction(m, reaction);
             }
 
             return m;
@@ -68,30 +80,7 @@ export const updateReactionsInFeatueedMap = (
 
                 const updatedMaps = featuredMap.map((m: MapType) => {
                     if (mapIdToModify && m?.id === mapIdToModify) {
-                        let oldValue = 0;
-                        const k = reaction as keyof ReactionsType;
-                        if (m.reactions?.[k]) {
-                            oldValue = m.reactions[k];
-                        }
-                        if (m?.reaction && m.reaction === reaction) {
-                            return {
-                                ...m,
-                                reaction: null,
-                                reactions: {
-                                    ...m.reactions,
-                                    [reaction]: oldValue - 1,
-                                },
-                            };
-                        }
-
-                        return {
-                            ...m,
-                            reaction: reaction,
-                            reactions: {
-                                ...m.reactions,
-                                [reaction]: oldValue + 1,
-                            },
-                        };
+                        return updateSingleMapReaction(m, reaction);
                     }
 
                     return m;

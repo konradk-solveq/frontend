@@ -29,7 +29,12 @@ export const getMaps = async (
 ) => {
     const r = range || 50000;
     const l = limit || 10;
-    let url = `${BASE_URL}/find/location?lat=${location.latitude}&lng=${location.longitude}&range=${r}&limit=${l}&page=1&detailed=true`;
+    const lat = location?.latitude;
+    const lng = location?.longitude;
+    const locationParams = `lat=${location?.latitude}&lng=${location?.longitude}&`;
+    let url = `${BASE_URL}/find/location?${
+        lat && lng ? locationParams : ''
+    }range=${r}&limit=${l}&page=1&detailed=true`;
 
     const params =
         filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
@@ -97,6 +102,13 @@ export const getPrivateRoutes = async (
     paginationUrl?: string,
     filters?: MapFitlerType,
 ) => {
+    const lat = location?.latitude;
+    const lng = location?.longitude;
+    const locationParams = `lat=${location?.latitude}&lng=${location?.longitude}&`;
+    let url = `${BASE_URL}/find/my?${
+        lat && lng ? locationParams : ''
+    }detailed=true`;
+
     /**
      * Default: private routes are filtered by created_at.
      */
@@ -105,8 +117,7 @@ export const getPrivateRoutes = async (
             ? {params: filters}
             : {params: {sortBy: 'created', order: 'desc'}};
     return await axiosGet(
-        paginationUrl ||
-            `${BASE_URL}/find/my?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
+        paginationUrl || url,
         paginationUrl ? undefined : params,
     );
 };
@@ -158,12 +169,18 @@ export const getPlannedRoutes = async (
     paginationUrl?: string,
     filters?: MapFitlerType,
 ) => {
+    const lat = location?.latitude;
+    const lng = location?.longitude;
+    const locationParams = `lat=${location?.latitude}&lng=${location?.longitude}&`;
+    let url = `${PLANNED_ROUTE_URL}?${
+        lat && lng ? locationParams : ''
+    }detailed=true`;
+
     const params =
         filters && Object.keys(filters)?.length > 0 ? {params: filters} : {};
 
     return await axiosGet(
-        paginationUrl ||
-            `${PLANNED_ROUTE_URL}?lat=${location.latitude}&lng=${location.longitude}&detailed=true`,
+        paginationUrl || url,
         paginationUrl ? undefined : params,
     );
 };
