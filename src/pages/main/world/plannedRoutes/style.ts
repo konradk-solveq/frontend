@@ -12,9 +12,15 @@ const styles = StyleSheet.create({
         backgroundColor: colors.whiteGrey,
         height: '100%',
     },
+
+    listHeaderContainer: {
+        marginTop: getFVerticalPx(60),
+    },
+    notification: {
+        marginBottom: getFVerticalPx(24),
+    },
     header: {
         marginHorizontal: getHorizontalPx(16),
-        marginTop: getFVerticalPx(60),
     },
     tileWrapper: {
         marginTop: getVerticalPx(30),

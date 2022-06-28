@@ -9,6 +9,7 @@ import Permits from '../../pages/onboarding/permitsDeclarations/permits';
 import Regulations from '../../pages/onboarding/permitsDeclarations/regulations';
 import PrivacyPolicy from '../../pages/onboarding/permitsDeclarations/privacyPolicy';
 import SplashScreen from '@pages/onboarding/splashScreen/splashScreen';
+import LocationUsageInfo from '@pages/onboarding/locationUsageInfo/locationUsageInfo';
 
 const OnboardingStackNavigator: React.FC = () => {
     return (
@@ -42,6 +43,10 @@ const OnboardingStackNavigator: React.FC = () => {
             <Stack.Screen
                 name={OnboardingStackRoute.GET_TO_KNOW_EACH_OTHER_SCREEN}
                 component={GetToKnowEachOther}
+            />
+            <Stack.Screen
+                name={OnboardingStackRoute.LOCATION_USAGE_INFO_SCREEN}
+                component={LocationUsageInfo}
             />
         </Stack.Navigator>
     );

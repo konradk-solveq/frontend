@@ -8,6 +8,8 @@ import {render, RenderOptions} from '@testing-library/react-native';
 import storage, {buildStore, RootState} from '@storage/storage';
 import StaticLocationProvider from '@providers/staticLocationProvider/staticLocationProvider';
 import TopNotificationProvider from '@providers/topNotificationProvider/TopNotificationProvider';
+import {CounterDataContext} from '@src/pages/main/recording/counter/context/counterContext';
+import {DataI} from '@hooks/useLocalizationTracker';
 
 const persistor = persistStore(storage);
 
@@ -36,7 +38,7 @@ export const renderComponent = async (
     };
 };
 
-interface HookWrapperProps {
+export interface HookWrapperProps {
     children: React.ReactNode;
     initState?: Store<any, any>;
 }
@@ -75,5 +77,16 @@ export const rerenderComponent = async (component: any, children: any) => {
     );
     return;
 };
+
+export const hookWrapperCounterDataProvider = (
+    {children, initState}: HookWrapperProps,
+    values: {trackerData: DataI; pauseTime: number},
+) => (
+    <CounterDataContext.Provider value={values}>
+        <Provider store={initState || storage}>
+            <PersistGate persistor={persistor}>{children}</PersistGate>
+        </Provider>
+    </CounterDataContext.Provider>
+);
 
 export default renderComponent;

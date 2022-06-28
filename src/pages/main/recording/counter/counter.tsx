@@ -26,7 +26,6 @@ import {
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import useCompassHook from '@hooks/useCompassHook';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
-import {isIOS} from '@utils/platform';
 
 import {BothStackRoute, RegularStackRoute} from '@navigation/route';
 import {CounterDataContext} from '@pages/main/recording/counter/context/counterContext';
@@ -43,7 +42,10 @@ import NotificationList, {
 } from '@components/notifications/NotificationList';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {LocationStatusNotification} from '@notifications/index';
-import {RecordIcon} from '@components/icons/tabMenu';
+import {Notification} from '@components/notifications';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
+import {useFocusEffect} from '@react-navigation/core';
 
 const recordingNotification = {
     key: 'pause-notifications',
@@ -51,8 +53,6 @@ const recordingNotification = {
     icon: MykrossIconFont.MYKROSS_ICON_PAUSE,
     action: () => {},
 };
-
-const NOTIFICATION_CONTAINER_HEIGHT = getFVerticalPx(48 + 20);
 
 const returnToPreviousScreen = (nav: any) => {
     if (nav.canGoBack()) {
@@ -76,6 +76,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const {top} = useSafeAreaInsets();
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
+    const {isCounterScreenHandler} = useLocationProvider();
     const recordingState = useAppSelector(trackerRecordingStateSelector);
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -96,23 +97,38 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         [],
     );
 
-    const [
-        gpsNotificationsViabilsity,
-        setGpsNotificationsVisability,
-    ] = useState(0);
-    /* TODO: this value should be read dynamicaly */
-    const notificationsHeight =
-        notifications.length * NOTIFICATION_CONTAINER_HEIGHT;
+    /**
+     * Communicate the 'before recording' state to the StaticLocationProvider
+     */
+    useFocusEffect(() => {
+        isCounterScreenHandler(true);
+
+        return () => {
+            isCounterScreenHandler(false);
+        };
+    });
+
+    /**
+     * Read notifications container height
+     */
+    const [notificationsHeight, setNotificationsHeight] = useState(0);
+
+    const handleNotificationsLayoutChange = useCallback(e => {
+        if (!e?.nativeEvent?.layout) {
+            return;
+        }
+        // need to subtract the extra padding from the notifications container (getFVerticalPx(96))
+        setNotificationsHeight(
+            e.nativeEvent.layout.height - getFVerticalPx(96),
+        );
+    }, []);
+
     /**
      * Height which defines how much space is left for content when modal open
      */
-    const heightOfNotificationContainer = useMemo(
-        () =>
-            gpsNotificationsViabilsity > 0
-                ? notificationsHeight + gpsNotificationsViabilsity
-                : notificationsHeight,
-        [gpsNotificationsViabilsity, notificationsHeight],
-    );
+    const heightOfNotificationContainer = useMemo(() => {
+        return notificationsHeight > 0 ? notificationsHeight : 0;
+    }, [notificationsHeight]);
 
     /**
      * Shows alert with error when recorded route is shorter than 100 m
@@ -133,8 +149,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         locData?.trackerData,
     ]);
 
-    // const [mapHiden, setMapHiden] = useState(true);
-    // const [renderMap, setRenderMap] = useState(false);
     const [renderPath, setRenderPath] = useState(false);
 
     /**
@@ -152,17 +166,13 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     /**
      * Hide NavBar if recording is active
+     * and do not revert this after recording is stopped
      */
     useEffect(() => {
         if (recordingState && recordingState !== 'not-started') {
             navigation.setOptions({
                 tabBarVisible: false,
                 tabBarIcon: () => null,
-            });
-        } else {
-            navigation.setOptions({
-                tabBarVisible: true,
-                tabBarIcon: () => <RecordIcon />,
             });
         }
     }, [navigation, recordingState]);
@@ -378,15 +388,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         [pauseTracker, resumeTracker],
     );
 
-    const androidNotificationStyle = {
-        paddingTop: gpsNotificationsViabilsity ? getFVerticalPx(16) : top,
-    };
-    const iosNotificationStyle = {
-        paddingTop: gpsNotificationsViabilsity
-            ? getFVerticalPx(16)
-            : top - getFVerticalPx(16),
-    };
-
     return (
         <GenericScreen
             hideBackArrow
@@ -442,31 +443,22 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     />
                 </CounterDataContext.Provider>
 
-                <LocationStatusNotification
-                    containerStyle={[styles.locationNotification]}
-                    onLayout={e => {
-                        if (!e?.nativeEvent?.layout) {
-                            return;
-                        }
-                        setGpsNotificationsVisability(
-                            e.nativeEvent.layout.height > 0
-                                ? e.nativeEvent.layout.height +
-                                      getFVerticalPx(32)
-                                : 0,
-                        );
-                    }}
-                />
-                <View
-                    style={[
-                        styles.notificationsContainer,
-                        !isIOS
-                            ? androidNotificationStyle
-                            : iosNotificationStyle,
-                    ]}>
+                <View style={[styles.notificationsContainer, {top}]}>
                     <NotificationList
-                        notifications={notifications}
-                        paddingTop={gpsNotificationsViabilsity}
-                    />
+                        onLayout={handleNotificationsLayoutChange}>
+                        {[
+                            ...notifications.map(notification => (
+                                <Notification {...notification} />
+                            )),
+                            <LocationStatusNotification
+                                showWhenLocationIsDisabled
+                                key={'gps-notification'}
+                            />,
+                            <LocationPermissionNotification
+                                key={'location-permission-notification'}
+                            />,
+                        ]}
+                    </NotificationList>
                 </View>
 
                 <CustomAlert
@@ -506,10 +498,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: appContainerHorizontalMargin,
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
-    },
-    locationNotification: {
-        paddingHorizontal: getFHorizontalPx(16),
-        zIndex: 25,
     },
 });
 

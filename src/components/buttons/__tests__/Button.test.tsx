@@ -120,6 +120,16 @@ describe('<Button /> - components/buttons', () => {
         );
     });
 
+    it('Should button be disabled when passed "disableTouch"', () => {
+        const {getByTestId} = render(
+            <Button text={BUTTON_TEST_TEXT} onPress={onPressFn} disableTouch />,
+        );
+
+        fireEvent.press(getByTestId(BUTTON_TEST_ID));
+
+        expect(onPressFn).not.toBeCalled();
+    });
+
     afterEach(() => {
         jest.restoreAllMocks();
         jest.clearAllMocks();

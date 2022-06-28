@@ -11,15 +11,15 @@ import {
 } from '@helpers/appLayoutDimensions';
 import {appContainerHorizontalMargin} from '@src/theme/commonStyle';
 
-export interface NotificationI {
+export interface NotificationDataI {
     title: string;
-    icon: MykrossIconFont | IconFont;
+    icon: MykrossIconFont | IconFont | Element;
     subtitle?: string;
     action?: () => void;
     actionText?: string;
 }
 
-interface IProps extends NotificationI {
+export interface NotificationI extends NotificationDataI {
     containerStyle?: ViewStyle;
     iconColor?: string;
     iconSize?: number;
@@ -44,7 +44,7 @@ const Notification = ({
     subtitleStyle,
     actionStyle,
     withoutShadow = false,
-}: IProps) => {
+}: NotificationI) => {
     const showButton = !!(actionText && action);
     const renderBottomRow = showButton || !!subtitle;
     return (
@@ -55,12 +55,16 @@ const Notification = ({
                 containerStyle,
             ]}>
             <View style={styles.row}>
-                <TextIcon
-                    icon={icon}
-                    iconSize={iconSize}
-                    iconColor={iconColor}
-                    style={[styles.icon, iconStyle]}
-                />
+                {typeof icon === 'string' ? (
+                    <TextIcon
+                        icon={icon}
+                        iconSize={iconSize}
+                        iconColor={iconColor}
+                        style={[styles.icon, iconStyle]}
+                    />
+                ) : (
+                    icon
+                )}
                 <Header3 style={titleStyle}>{title}</Header3>
             </View>
             {renderBottomRow && (
@@ -100,7 +104,6 @@ const styles = StyleSheet.create({
         marginHorizontal: appContainerHorizontalMargin,
         paddingHorizontal: getFHorizontalPx(16),
         paddingVertical: getFVerticalPx(12),
-        marginTop: getFVerticalPx(16),
         borderRadius: getFVerticalPx(16),
     },
     shadow: {

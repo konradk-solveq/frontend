@@ -11,10 +11,12 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {RegularStackRoute} from '@navigation/route';
 import {capitalize, timeWithHoursAndMinutes} from '@src/helpers/stringFoo';
 import {getFullDate} from '@src/helpers/overviews';
-import {useNotificationContext} from '@providers/topNotificationProvider/TopNotificationProvider';
 import {addPlannedMap} from '@storage/actions/maps';
 import ListTileView from '@components/tiles/listTileView';
 import {getMapType} from '../utils/routes';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+import Bookmark from '@src/components/icons/Bookmark';
+import {deductReactions} from '@utils/mapsData';
 
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
@@ -24,6 +26,7 @@ interface PropsI {
     mode: 'public' | 'my' | 'saved' | 'featured';
     sectionID?: string;
     testID?: string;
+    hideDistanceToStart?: boolean;
 }
 
 const ListTile: React.FC<PropsI> = ({
@@ -34,6 +37,7 @@ const ListTile: React.FC<PropsI> = ({
     mode,
     sectionID,
     testID,
+    hideDistanceToStart,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
     const {t: tbm} = useMergedTranslation('MainWorld.BikeMap');
@@ -48,7 +52,7 @@ const ListTile: React.FC<PropsI> = ({
         : 0;
 
     const [numberOfLikes, setNumberOfLikes] = useState(0);
-    const notificationContext = useNotificationContext();
+    const {addToast} = useToastContext();
     const mapType = useMemo(() => getMapType(mode), [mode]);
     const userID = useAppSelector(userIdSelector);
 
@@ -69,7 +73,6 @@ const ListTile: React.FC<PropsI> = ({
 
     const handleLikePressOn = useCallback(
         (state: boolean) => {
-            setNumberOfLikes(prev => (!state ? prev - 1 : prev + 1));
             if (mapData?.id) {
                 dispatch(
                     modifyReaction(
@@ -141,10 +144,17 @@ const ListTile: React.FC<PropsI> = ({
     };
 
     const handleToggleFavoritePressOn = (state: boolean) => {
-        const addRouteToPlanned = tbm('addRouteToPlanned', {
-            name: '',
+        const toggleRouteToPlanned = tbm(
+            state ? 'addRouteToPlanned' : 'removeRouteFromPlanned',
+            {
+                name: '',
+            },
+        );
+        addToast({
+            key: `route-${mapData.id}-${state ? 'added' : 'removed'}`,
+            title: toggleRouteToPlanned,
+            icon: <Bookmark />,
         });
-        notificationContext.setNotificationVisibility(addRouteToPlanned);
         state
             ? dispatch(addPlannedMap(mapData.id))
             : dispatch(removePlannedMap(mapData.id));
@@ -191,6 +201,7 @@ const ListTile: React.FC<PropsI> = ({
             detailsPressOn={handleDetailsPressOn}
             onPressShare={onPressShare}
             mode={mode}
+            hideDistanceToStart={hideDistanceToStart}
             testID={testID}
         />
     );

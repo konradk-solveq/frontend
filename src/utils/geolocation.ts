@@ -16,7 +16,7 @@ import {
 } from 'react-native-permissions';
 import GetLocation from 'react-native-get-location';
 
-import {LocationDataI} from '@interfaces/geolocation';
+import {LocationDataI, GeofenceEvent} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import i18next from '@translations/i18next';
 import {getTrackerData} from '@hooks/utils/localizationTracker';
@@ -138,7 +138,7 @@ export const getCurrentLocation = async (
     notPersist?: boolean,
     timeout?: number,
     maximumAge?: number,
-    forceGettingLocation?: boolean
+    forceGettingLocation?: boolean,
 ) => {
     try {
         const state = await getBackgroundGeolocationState();
@@ -171,21 +171,18 @@ export const getCurrentLocation = async (
     }
 };
 
-export const getLatLng = async () => {
-    const location = await getCurrentLocation();
-    if (!location || !isLocationValidate(location)) {
-        return {lat: undefined, lng: undefined};
-    }
-
-    const lat = location.coords.latitude;
-    const lng = location.coords.longitude;
-    return {lat, lng};
-};
-
-export const getLatLngFromForeground = async (): Promise<
-    BasicCoordsType | undefined
-> => {
-    const location = await getCurrentLocation('', 4, 10, true);
+export const getLatLngFromForeground = async (
+    force?: boolean,
+): Promise<BasicCoordsType | undefined> => {
+    const location = await getCurrentLocation(
+        '',
+        4,
+        10,
+        true,
+        undefined,
+        undefined,
+        force,
+    );
     if (!location || !isLocationValidate(location)) {
         return undefined;
     }
@@ -671,7 +668,7 @@ export const addGeofence = async (
 };
 
 export const onGeofenceChangeListener = async (
-    callback: () => void,
+    callback: (event: GeofenceEvent) => void,
     startPlugin: boolean,
 ) => {
     try {

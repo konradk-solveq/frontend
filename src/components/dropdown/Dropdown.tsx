@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {GestureResponderEvent, StyleSheet, View, ViewStyle} from 'react-native';
+import {StyleSheet, View, ViewStyle} from 'react-native';
 
 import Animated, {
     useAnimatedStyle,
@@ -113,18 +113,23 @@ const DropdownList: React.FC<IProps> = ({
         itemOpacity.value = open ? 1 : 0;
     }, [open, boxHeight, boxOpacity, itemOpacity, dropdownHeight]);
 
-    const toggleDropdown = useCallback(() => {
-        setOpen(prev => {
-            if (onPress) {
-                onPress(!prev);
-            }
-            return !prev;
-        });
-    }, [onPress]);
+    const toggleDropdown = useCallback(
+        (skipOnPress?: boolean) => {
+            setOpen(prev => {
+                if (onPress && !skipOnPress) {
+                    onPress(!prev);
+                }
+                return !prev;
+            });
+        },
+        [onPress],
+    );
 
     useEffect(() => {
         if (openOnStart) {
-            toggleDropdown();
+            toggleDropdown(true);
+        } else {
+            setOpen(false);
         }
     }, [openOnStart, toggleDropdown]);
 
@@ -145,6 +150,19 @@ const DropdownList: React.FC<IProps> = ({
         },
         [onPressItem, onPress],
     );
+
+    /**
+     * Change sorting settings if the available items changed
+     */
+
+    useEffect(() => {
+        if (
+            !activeItem &&
+            !list.find(el => el.isDefault || el.id === activeItem)
+        ) {
+            onPressListItem(list[0].id);
+        }
+    }, [activeItem, list, onPressListItem]);
 
     /**
      * Trigger action, reset active item and close dropdown
@@ -197,7 +215,7 @@ const DropdownList: React.FC<IProps> = ({
             {!hideButton && (
                 <TransparentButton
                     text={buttonName}
-                    onPress={toggleDropdown}
+                    onPress={() => toggleDropdown()}
                     icon={buttonIcon}
                     style={{...styles.button, ...buttonStyle}}
                     containerStyle={{

@@ -28,7 +28,15 @@ jest.mock('react-native-reanimated', () => {
     // So we override it with a no-op
     Reanimated.default.call = () => {};
 
-    return Reanimated;
+    return {
+        ...Reanimated,
+        FadeIn: {
+            delay: jest.fn(),
+        },
+        Layout: {
+            damping: jest.fn().mockImplementation(() => ({delay: jest.fn()})),
+        },
+    };
 });
 // Silence the warning: Animated: `useNativeDriver` is not supported
 // because the native animated module is missing

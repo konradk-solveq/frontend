@@ -20,7 +20,7 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
 
 import {HorizontalSpacer} from '@components/divider';
-import {BodySecondary, Header1} from '@components/texts/texts';
+import {BodySecondary, Header1, Header3} from '@components/texts/texts';
 import {
     DistanceSvg,
     SpeedAvgSvg,
@@ -81,7 +81,17 @@ const FullMetrics: React.FC<IProps> = ({
                 <View style={styles.row}>
                     <View style={styles.tile}>
                         <StoperSvg />
-                        <Header1 style={styles.textDistance}>{time}</Header1>
+                        <View style={styles.timerRow}>
+                            <Header1 style={styles.textDistance}>
+                                {`${time.hoursWithMinutes}:`}
+                            </Header1>
+                            <Header3
+                                adjustsFontSizeToFit
+                                numberOfLines={1}
+                                style={[styles.seconds, styles.textDistance]}>
+                                {time.dzSeconds}
+                            </Header3>
+                        </View>
                         <BodySecondary>{t('time')}</BodySecondary>
                     </View>
                     <View style={styles.tile}>
@@ -146,6 +156,13 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    timerRow: {
+        flexDirection: 'row',
+    },
+    seconds: {
+        alignSelf: 'flex-end',
+        paddingBottom: getFVerticalPx(2),
     },
 });
 

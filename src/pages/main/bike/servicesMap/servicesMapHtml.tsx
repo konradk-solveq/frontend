@@ -59,21 +59,28 @@ const googleMap = document.getElementById('map');
 // let pos = { latitude: 53.009342618210624, longitude: 20.890509251985964 };
 
 let my_location = null;
-const setMyLocation = position => {
-    let latLng = new google.maps.LatLng(position.latitude, position.longitude);
-
+const setMyLocation = (position, hideMarker) => {
+    let latLng = position ? new google.maps.LatLng(position.latitude, position.longitude) : null;
     if (map) {
-        if (my_location) {
-            my_location.setPosition(latLng);
+        if (!hideMarker){
+            if (my_location) {
+                my_location.setPosition(latLng);
+            } else {
+                my_location = new google.maps.Marker({
+                    id: 'my_location',
+                    position: latLng,
+                    icon: 'my_location.png',
+                    map: map,
+                });
+            }
         } else {
-            my_location = new google.maps.Marker({
-                id: 'my_location',
-                position: latLng,
-                icon: 'my_location.png',
-                map: map,
-            });
+             if (my_location) {
+                my_location.setMap(null);
+                my_location=null;
+            }
         }
     }
+
 }
 
 // dodawanie punktów po zmianie regionu
@@ -84,14 +91,11 @@ let clusterServiceShops = null;
 let clickedMarker = {};
 const setPosOnMap = position => {
     let latLng = new google.maps.LatLng(position.latitude, position.longitude);
-
+    
     map.setOptions({
         center: latLng,
     });
-
-    setMyLocation(position);
 }
-
 
 const getRgion = () => {
     const bounds = map.getBounds();

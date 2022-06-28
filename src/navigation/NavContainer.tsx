@@ -19,6 +19,7 @@ import {getScreenName} from '@navigation/utils/navigation';
 import {sendAnalyticInfoAboutNewScreen} from '@analytics/firebaseAnalytics';
 
 import {linking} from './linking';
+import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
 
 const NavContainer: React.FC = () => {
     const isActive = useAppSelector(trackerActiveSelector);
@@ -26,6 +27,7 @@ const NavContainer: React.FC = () => {
         onboardingFinishedSelector,
     );
     useAppInit();
+    const {removeAllToasts} = useToastContext();
 
     const routeNameRef = useRef<string | undefined>();
     const navigationRef: RefObject<NavigationContainerRef> = useRef(null);
@@ -69,7 +71,7 @@ const NavContainer: React.FC = () => {
                         previousRouteName,
                     );
                 }
-
+                removeAllToasts();
                 routeNameRef.current = currentRouteName;
             }}>
             {!isOnboardingFinished ? (

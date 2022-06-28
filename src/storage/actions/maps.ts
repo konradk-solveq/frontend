@@ -31,6 +31,7 @@ import {
     getPrivateMapsListCount,
     getPlannedMapsListCount,
 } from '@services/mapsService';
+import {defaultLocation} from '@utils/constants/location';
 
 const TEST_ENV = process.env.JEST_WORKER_ID;
 
@@ -176,6 +177,12 @@ export const modifyMapReactions = (
     sectionID: sectionID,
 });
 
+export const modifyPlannedMapReactions = (mapID: string, reaction: string) => ({
+    type: actionTypes.MODIFY_PLANNED_MAP_REACTIONS,
+    mapIdToModify: mapID,
+    reaction: reaction,
+});
+
 export const removeMapFromPrivates = (mapID: string) => ({
     type: actionTypes.REMOVE_MAP_FROM_PRIVATES,
     mapID: mapID,
@@ -218,13 +225,6 @@ export const fetchMapsList = (
             isOffline,
             internetConnectionInfo,
         }: AppState = getState().app;
-        if (!location?.latitude || !location.longitude) {
-            const message = i18next.t(
-                'dataAction.locationData.readSQLDataFailure',
-            );
-            dispatch(setMapsListError(message, 400));
-            return;
-        }
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
                 setMapsListError(
@@ -234,7 +234,11 @@ export const fetchMapsList = (
             );
             return;
         }
-        const response = await getMapsList(location, page, filters);
+        const response = await getMapsList(
+            location || defaultLocation,
+            page,
+            filters,
+        );
         if (response.error || !response.data || !response.data.elements) {
             dispatch(setMapsListError(response.error, response.status));
             return;
@@ -384,14 +388,6 @@ export const fetchPrivateMapsList = (
             isOffline,
             internetConnectionInfo,
         }: AppState = getState().app;
-        if (!location?.latitude || !location.longitude) {
-            const message = i18next.t(
-                'dataAction.locationData.readSQLDataFailure',
-            );
-            dispatch(setPrivateMapsListError(message, 400));
-            return;
-        }
-
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
                 setPrivateMapsListError(
@@ -403,7 +399,7 @@ export const fetchPrivateMapsList = (
         }
 
         const response = await getPrivateMapsListService(
-            location,
+            location || defaultLocation,
             page,
             filters,
         );
@@ -534,13 +530,6 @@ export const fetchPlannedMapsList = (
     const {isOffline, internetConnectionInfo}: AppState = getState().app;
     try {
         const {location}: AppState = getState().app;
-        if (!location?.latitude || !location.longitude) {
-            const message = i18next.t(
-                'dataAction.locationData.readSQLDataFailure',
-            );
-            dispatch(setPlannedMapsListError(message, 400));
-            return;
-        }
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
@@ -553,7 +542,7 @@ export const fetchPlannedMapsList = (
         }
 
         const response = await getPlannedMapsListService(
-            location,
+            location || defaultLocation,
             page,
             filters,
         );
@@ -735,22 +724,27 @@ export const modifyReaction = (
 ): AppThunk<Promise<void>> => async dispatch => {
     dispatch(setLoadingState(true));
     try {
+        /**
+         * Call redux update before http request to reflect changes in UI imidietly
+         */
+        batch(() => {
+            dispatch(modifyMapReactions(routeId, reaction, sectionId));
+            dispatch(modifyPlannedMapReactions(routeId, reaction));
+            dispatch(clearError());
+        });
+
         const response = !remove
             ? await modifyReactionService(routeId, reaction)
             : await removeReactionService(routeId);
 
         if (response.error || !response.data) {
             dispatch(setError(response.error, response.status));
+            /* Revert changes on error */
+            dispatch(modifyMapReactions(routeId, reaction, sectionId));
             return;
         }
 
-        batch(() => {
-            dispatch(modifyMapReactions(routeId, reaction, sectionId));
-            dispatch(clearError());
-        });
-
         dispatch(setLoadingState(false));
-        dispatch(fetchPrivateMapsList());
     } catch (error) {
         loggErrorMessage(error, 'modifyReaction');
     }

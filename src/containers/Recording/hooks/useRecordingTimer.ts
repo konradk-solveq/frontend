@@ -57,9 +57,10 @@ const useRecordingTimer = (time?: Date, isRunning?: boolean) => {
     const convertedTime = convertToCounterFormat(currentTime, time);
 
     /**
-     * Returns hours and minutes
+     * Returns hours and minutes as one value
+     * and seconds as secoond
      */
-    return `${convertedTime.hoursWithMinutes}`;
+    return convertedTime;
 };
 
 export default useRecordingTimer;

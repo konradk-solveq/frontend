@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.whiteGrey,
         height: '100%',
     },
+    notification: {
+        marginBottom: getFVerticalPx(24),
+    },
     header: {
         marginHorizontal: getFHorizontalPx(16),
     },

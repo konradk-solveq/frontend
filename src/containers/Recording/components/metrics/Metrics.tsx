@@ -17,8 +17,9 @@ import {
 } from '@theme/utils/appLayoutDimensions';
 
 import {HorizontalSpacer} from '@components/divider';
-import {Header1, Subtitle} from '@components/texts/texts';
+import {Header1, Header3, Subtitle} from '@components/texts/texts';
 import {ChevronUp} from '@components/svg';
+import style from '@src/pages/template/styles';
 
 interface IProps {
     onOpenPress: (e: GestureResponderEvent) => void;
@@ -54,9 +55,17 @@ const Metrics: React.FC<IProps> = ({
             <View style={styles.row}>
                 <View style={styles.cell}>
                     <View>
-                        <Header1 adjustsFontSizeToFit numberOfLines={1}>
-                            {time}
-                        </Header1>
+                        <View style={styles.row}>
+                            <Header1 adjustsFontSizeToFit numberOfLines={1}>
+                                {`${time.hoursWithMinutes}:`}
+                            </Header1>
+                            <Header3
+                                adjustsFontSizeToFit
+                                numberOfLines={1}
+                                style={styles.seconds}>
+                                {time.dzSeconds}
+                            </Header3>
+                        </View>
                         <Subtitle>{t('time')}</Subtitle>
                     </View>
                 </View>
@@ -117,6 +126,10 @@ const styles = StyleSheet.create({
     },
     alignToRight: {
         alignItems: 'flex-end',
+    },
+    seconds: {
+        alignSelf: 'flex-end',
+        paddingBottom: getFVerticalPx(2),
     },
 });
 

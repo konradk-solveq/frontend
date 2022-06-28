@@ -6,6 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useIsFocused} from '@react-navigation/native';
 
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -41,7 +42,10 @@ import {
     getSorByFilters,
 } from '@utils/apiDataTransform/filters';
 import FeaturedRoutes from '@pages/main/world/featuredRoutes/FeaturedRoutesList/FeaturedRoutes';
-import {getPublicRoutesDropdownList} from '@pages/main/world/utils/dropdownLists';
+import {
+    getPublicRoutesDropdownList,
+    getPublicRoutesNoLocationDropdownList,
+} from '@pages/main/world/utils/dropdownLists';
 import {fetchMapsCount} from '@storage/actions';
 import {resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -50,6 +54,10 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
 
 import {isIOS} from '@utils/platform';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import {globalLocationSelector} from '@storage/selectors/app';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -66,6 +74,8 @@ interface RenderItem {
 interface IProps {}
 const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld');
+    const isTabFocused = useIsFocused();
+
     const navigation = useAppNavigation();
     const nextCoursor = useAppSelector(nextPaginationCoursor);
     const dispatch = useAppDispatch();
@@ -74,9 +84,14 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
+    const {permissionGranted, permissionResult} = useCheckLocationType();
+    const location = useAppSelector(globalLocationSelector);
     const publicRoutesDropdownList = useMemo(
-        () => getPublicRoutesDropdownList(t),
-        [t],
+        () =>
+            (permissionGranted || !permissionResult) && location
+                ? getPublicRoutesDropdownList(t)
+                : getPublicRoutesNoLocationDropdownList(t),
+        [permissionGranted, permissionResult, location, t],
     );
     const listError = useAppSelector(publicMapsListErrorSelector)?.error;
 
@@ -126,6 +141,8 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    useForegroundLocationMapRefresh(setShowListLoader, onRefresh);
 
     const onErrorScrollHandler = useCallback(
         (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -216,11 +233,12 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                         onPressTile={onPressTileHandler}
                         mode={'public'}
                         tilePressable
+                        hideDistanceToStart={!location || !permissionGranted}
                     />
                 </View>
             );
         },
-        [mapsData?.length, onPressTileHandler],
+        [location, mapsData?.length, onPressTileHandler, permissionGranted],
     );
 
     const renderListFooter = useCallback(() => {
@@ -270,6 +288,15 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         setShowDropdown(state);
     }, []);
 
+    /**
+     * Dismiss sort dropdown when user navigates to other tab.
+     */
+    useEffect(() => {
+        if (!isTabFocused) {
+            toggleDropdown(false);
+        }
+    }, [isTabFocused, toggleDropdown]);
+
     const onSortByHandler = useCallback(
         (sortTypeId?: string) => {
             const firstEl = publicRoutesDropdownList[0];
@@ -291,7 +318,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sButtonName}
-                setShowDropdown={setShowDropdown}
+                setShowDropdown={toggleDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}
                 toggleDropdown={toggleDropdown}
@@ -321,6 +348,9 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
                         <View style={styles.listHeader}>
+                            <LocationPermissionNotification
+                                style={styles.notification}
+                            />
                             <FeaturedRoutes />
                             <Header2 style={styles.header}>
                                 {t('BikeMap.title')}
@@ -344,6 +374,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
 
             <Backdrop
                 isVisible={showBackdrop}
+                onPress={() => toggleDropdown(false)}
                 style={styles.fullscreenBackdrop}
             />
 

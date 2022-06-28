@@ -6,6 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useIsFocused} from '@react-navigation/native';
 
 import {
     userNameSelector,
@@ -39,7 +40,10 @@ import {
 } from '@utils/apiDataTransform/filters';
 import {PickedFilters} from '@interfaces/form';
 import FiltersModal from '@pages/main/world/components/filters/filtersModal';
-import {getPlannedRoutesDropdownList} from '../utils/dropdownLists';
+import {
+    getPlannedRoutesDropdownList,
+    getPlannedRoutesNoLocationDropdownList,
+} from '../utils/dropdownLists';
 import ListTile from '@pages/main/world/components/listTile';
 import {removePlannedMap, resetMapsCount} from '@storage/actions/maps';
 import {Header2} from '@components/texts/texts';
@@ -50,6 +54,12 @@ import EmptyStateContainer from '@containers/World/EmptyStateContainer';
 import {BikePin} from '@components/svg';
 import {isIOS} from '@utils/platform';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
+import Bookmark from '@src/components/icons/Bookmark';
+import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import {globalLocationSelector} from '@storage/selectors/app';
+import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -65,8 +75,10 @@ interface RenderItem {
 interface IProps {}
 const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const {t} = useMergedTranslation('MainWorld.PlannedRoutes');
+    const {t: toastsT} = useMergedTranslation('Toasts');
     const {t: mwt} = useMergedTranslation('MainWorld');
     const navigation = useAppNavigation();
+    const isTabFocused = useIsFocused();
     const nextCoursor = useAppSelector(nextPlannedPaginationCoursor);
     const dispatch = useAppDispatch();
     const userName = useAppSelector(userNameSelector);
@@ -74,12 +86,19 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const {planned: plannedMapsCount} = useAppSelector(mapsCountSelector);
+    const {permissionGranted, permissionResult} = useCheckLocationType();
+    const location = useAppSelector(globalLocationSelector);
     const plannedRoutesDropdownList = useMemo(
-        () => getPlannedRoutesDropdownList(t),
-        [t],
+        () =>
+            (permissionGranted || !permissionResult) && location
+                ? getPlannedRoutesDropdownList(t)
+                : getPlannedRoutesNoLocationDropdownList(t),
+        [t, permissionGranted, permissionResult, location],
     );
     const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
+    const {addToast} = useToastContext();
+
     /**
      * Navigate to map button bottom position modifier
      */
@@ -116,6 +135,8 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
         dispatch,
     ]);
+
+    useForegroundLocationMapRefresh(setShowListLoader, onRefresh);
 
     useEffect(() => {
         const isValid = checkIfContainsFitlers(savedMapFilters);
@@ -155,20 +176,23 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         navigation.navigate('WorldBikeMap');
     };
 
-    const onPressTileHandler = (mapID?: string) => {
-        /**
-         * Nearest point to user's position
-         */
-        const nearestPoint = favouriteMaps.find(md => md.id === mapID)
-            ?.nearestPoint;
+    const onPressTileHandler = useCallback(
+        (mapID?: string) => {
+            /**
+             * Nearest point to user's position
+             */
+            const nearestPoint = favouriteMaps.find(md => md.id === mapID)
+                ?.nearestPoint;
 
-        navigation.navigate('RoutesMap', {
-            mapID: mapID,
-            nearestPoint: nearestPoint,
-            private: false,
-            favourite: true,
-        });
-    };
+            navigation.navigate('RoutesMap', {
+                mapID: mapID,
+                nearestPoint: nearestPoint,
+                private: false,
+                favourite: true,
+            });
+        },
+        [favouriteMaps, navigation],
+    );
 
     const onEndReachedHandler = useCallback(() => {
         if (!isLoading && !isRefreshing && nextCoursor) {
@@ -176,23 +200,34 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         }
     }, [isLoading, isRefreshing, nextCoursor, onLoadMoreHandler, onLoadMore]);
 
-    const renderItem = ({item, index}: RenderItem) => {
-        const lastItemStyle =
-            index === favouriteMaps?.length - 1 ? styles.lastTile : undefined;
-        const images = getImagesThumbs(item?.pictures);
-        return (
-            <View key={item.id} style={lastItemStyle}>
-                <ListTile
-                    mapData={item}
-                    images={images}
-                    onPress={onPressHandler}
-                    onPressTile={onPressTileHandler}
-                    mode={'saved'}
-                    tilePressable
-                />
-            </View>
-        );
-    };
+    const renderItem = useCallback(
+        ({item, index}: RenderItem) => {
+            const lastItemStyle =
+                index === favouriteMaps?.length - 1
+                    ? styles.lastTile
+                    : undefined;
+            const images = getImagesThumbs(item?.pictures);
+            return (
+                <View key={item.id} style={lastItemStyle}>
+                    <ListTile
+                        mapData={item}
+                        images={images}
+                        onPress={onPressHandler}
+                        onPressTile={onPressTileHandler}
+                        mode={'saved'}
+                        tilePressable
+                        hideDistanceToStart={!location || !permissionGranted}
+                    />
+                </View>
+            );
+        },
+        [
+            favouriteMaps?.length,
+            location,
+            onPressTileHandler,
+            permissionGranted,
+        ],
+    );
 
     const [showBackdrop, setShowBackdrop] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -206,6 +241,15 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         setShowBackdrop(state);
         setShowDropdown(state);
     }, []);
+
+    /**
+     * Dismiss sort dropdown when user navigates to other tab.
+     */
+    useEffect(() => {
+        if (!isTabFocused) {
+            toggleDropdown(false);
+        }
+    }, [isTabFocused, toggleDropdown]);
 
     const {onScroll, shouldHide} = useHideOnScrollDirection();
 
@@ -262,6 +306,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     break;
                 case 'remove':
                     dispatch(removePlannedMap(mapId));
+                    addToast({
+                        key: 'toast-route-removed-from-favorites',
+                        title: toastsT('removeRouteFromPlanned'),
+                        icon: <Bookmark />,
+                    });
                     break;
                 default:
                     break;
@@ -304,7 +353,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sButtonName}
-                setShowDropdown={setShowDropdown}
+                setShowDropdown={toggleDropdown}
                 onFiltersModalOpenHandler={onFiltersModalOpenHandler}
                 showDropdown={showDropdown}
                 toggleDropdown={toggleDropdown}
@@ -334,10 +383,15 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     onScroll={onScroll}
                     onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
-                        <Header2 style={styles.header}>
-                            {userName || t('defaultUserName')}
-                            {t('title')}
-                        </Header2>
+                        <View style={styles.listHeaderContainer}>
+                            <LocationPermissionNotification
+                                style={styles.notification}
+                            />
+                            <Header2 style={styles.header}>
+                                {userName || t('defaultUserName')}
+                                {t('title')}
+                            </Header2>
+                        </View>
                     }
                     data={!showListLoader ? favouriteMaps : []}
                     renderItem={renderItem}
@@ -355,6 +409,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
 
             <Backdrop
                 isVisible={showBackdrop}
+                onPress={() => toggleDropdown(false)}
                 style={styles.fullscreenBackdrop}
             />
 

@@ -9,6 +9,7 @@ export const OnboardingStackRoute = {
     NEW_BEGINNING_SCREEN: 'Tutorial',
     PERMITS_SCREEN: 'Permits',
     GET_TO_KNOW_EACH_OTHER_SCREEN: 'GetToKnowEachOther',
+    LOCATION_USAGE_INFO_SCREEN: 'LocationUsageInfo',
 
     // not used jet
     ONBOARDING_REGISTER_SCREEN: 'OnboardingRegister',

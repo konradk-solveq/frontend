@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {GestureResponderEvent, StyleSheet, View} from 'react-native';
 import Animated, {
     useAnimatedStyle,
@@ -52,6 +52,7 @@ interface IProps {
     onPressStop: () => void;
     totalDistance?: number;
     topSpace?: number;
+    testID?: string;
 }
 
 const CounterContainer: React.FC<IProps> = ({
@@ -60,7 +61,13 @@ const CounterContainer: React.FC<IProps> = ({
     onPressStop,
     totalDistance = 0,
     topSpace = 0,
+    testID = 'counter-container',
 }: IProps) => {
+    /**
+     * Keeps information that counter has been fired
+     * and `default` state should not be longer presented
+     */
+    const recordProccessWasStartedRef = useRef(false);
     /**
      * Recording process is active (from start to stop)
      */
@@ -77,9 +84,13 @@ const CounterContainer: React.FC<IProps> = ({
     const [modalHeight, setModalHeight] = useState(getFVerticalPx(300));
 
     useEffect(() => {
-        if (recordingState === 'not-started') {
+        if (
+            recordingState === 'not-started' &&
+            !recordProccessWasStartedRef.current
+        ) {
             setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT));
         } else if (recordingState === 'recording') {
+            recordProccessWasStartedRef.current = true;
             setModalHeight(getFVerticalPx(BOTTOM_MODAL_HEIGHT_AFTER_START));
         }
     }, [recordingState]);
@@ -108,10 +119,9 @@ const CounterContainer: React.FC<IProps> = ({
      * and the bottom tabBar visibility
      */
     useEffect(() => {
-        bottomSpaceHeight.value =
-            !recordingState || recordingState === 'not-started'
-                ? BOTTOM_SPACE
-                : BOTTOM_SPACE_AFTER_START;
+        bottomSpaceHeight.value = !recordProccessWasStartedRef.current
+            ? BOTTOM_SPACE
+            : BOTTOM_SPACE_AFTER_START;
     }, [bottomSpaceHeight, recordingState]);
 
     /**
@@ -182,7 +192,7 @@ const CounterContainer: React.FC<IProps> = ({
     };
 
     return (
-        <View style={styles.container} pointerEvents="box-none">
+        <View style={styles.container} pointerEvents="box-none" testID={testID}>
             <BottomModal
                 show
                 openModal={openBottomModal}
@@ -233,8 +243,9 @@ const CounterContainer: React.FC<IProps> = ({
                     onPressStart={onPressStart}
                     onPressPauseResume={onPressPauseResume}
                     onPressStop={onPressStopHandler}
-                    started={isTrackerActive}
+                    started={recordProccessWasStartedRef.current}
                     recordingState={recordingState}
+                    testID={`${testID}-action-buttons`}
                 />
 
                 <Animated.View style={bottomSpaceAnimation} />
@@ -255,6 +266,7 @@ interface IPropsActionButtons {
     onPressPauseResume: (e: GestureResponderEvent, resume: boolean) => void;
     onPressStop: (finishedAnimation?: boolean) => void;
     recordingState: RecordingStateT;
+    testID?: string;
 }
 
 const ActionButtons: React.FC<IPropsActionButtons> = React.memo(
@@ -264,6 +276,7 @@ const ActionButtons: React.FC<IPropsActionButtons> = React.memo(
         onPressPauseResume,
         onPressStop,
         recordingState,
+        testID = 'action-buttons',
     }: IPropsActionButtons) => {
         const {t} = useMergedTranslation('MainCounter.actions');
         const [isProcessing, setIsProcessing] = useState(false);
@@ -302,6 +315,7 @@ const ActionButtons: React.FC<IPropsActionButtons> = React.memo(
                 withoutShadow
                 withLoader={isProcessing}
                 onPress={onPressStartHandler}
+                testID={`${testID}-start-button`}
             />
         ) : (
             <View style={styles.row}>
@@ -313,12 +327,14 @@ const ActionButtons: React.FC<IPropsActionButtons> = React.memo(
                     }
                     onPress={onPressPauseResumeHandler}
                     style={styles.actionButton}
+                    testID={`${testID}-pause-resume-button`}
                 />
                 <FillUpButton
                     text={t('stopRecording')}
                     onReleaseAction={() => onPressStopHandler(false)}
                     onFilledAction={() => onPressStopHandler(true)}
                     containerStyle={styles.actionButton}
+                    testID={`${testID}-stop-button`}
                 />
             </View>
         );

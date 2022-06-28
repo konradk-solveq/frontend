@@ -105,6 +105,17 @@ describe('Return meters number converted to kilometes -- utils', () => {
 
             expect(tNumber).toEqual('');
         });
+
+        it('Should return string with passed "separator"', () => {
+            const tNumber = transformMetersToKilometersString(
+                mockedData.meters1,
+                undefined,
+                undefined,
+                '--',
+            );
+
+            expect(tNumber).toContain('--');
+        });
     });
 
     afterEach(() => {

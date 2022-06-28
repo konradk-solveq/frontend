@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {InteractionManager, View} from 'react-native';
+import {View} from 'react-native';
 import {useNavigation, useFocusEffect} from '@react-navigation/core';
 import {useRoute} from '@react-navigation/native';
 
@@ -19,6 +19,7 @@ import {ShareBtn} from '@sharedComponents/buttons';
 
 import Placeholder from './Placeholder';
 import styles from './style';
+import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
 
 const ShareRouteScreen: React.FC = () => {
     const trans: any = useMemo(
@@ -69,7 +70,7 @@ const ShareRouteScreen: React.FC = () => {
      */
     useFocusEffect(
         React.useCallback(() => {
-            const task = InteractionManager.runAfterInteractions(() => {
+            const task = customInteractionManager.runAfterInteractions(() => {
                 callSharing();
             });
 

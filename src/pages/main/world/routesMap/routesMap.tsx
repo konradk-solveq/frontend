@@ -1,5 +1,5 @@
 import React, {useMemo, useState, useEffect, useCallback, useRef} from 'react';
-import {InteractionManager} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {WebViewMessageEvent} from 'react-native-webview';
 import {StackActions} from '@react-navigation/native';
 
@@ -10,7 +10,10 @@ import {useLocationProvider} from '@providers/staticLocationProvider/staticLocat
 import {jsonParse} from '@utils/transformJson';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
-import {globalLocationSelector} from '@storage/selectors/app';
+import {
+    globalLocationSelector,
+    mapReactionsConfigSelector,
+} from '@storage/selectors/app';
 import {useSharedMapData} from '@hooks/useSharedMapData';
 
 import GenericScreen from '@pages/template/GenericScreen';
@@ -26,12 +29,21 @@ import {
     fetchMapIfNotExistsLocally,
     removePrivateMapMetaData,
     removePlannedMap,
+    modifyReaction,
 } from '@storage/actions/maps';
 import {useAppRoute} from '@navigation/hooks/useAppRoute';
 import {BasicCoordsType} from '@type/coords';
 import {selectMapDataByIDBasedOnTypeSelector} from '@storage/selectors/map';
 import BottomModal from '@pages/main/world/routesMap/bottomModal/BottomModal';
 import {MoreActionsModal} from '@pages/main/world/components/modals';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
+import Bookmark from '@src/components/icons/Bookmark';
+import NotificationList from '@components/notifications/NotificationList';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {LocationStatusNotification} from '@notifications';
+import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
 
 const initRouteInfo = {
     id: '',
@@ -49,7 +61,14 @@ const RoutesMap: React.FC = () => {
      * Helper for navigation back
      */
     const cameFromSharedLinkRef = useRef(false);
-    const globalLcation = useAppSelector(globalLocationSelector);
+    const globalLocation = useAppSelector(globalLocationSelector);
+    const {addToast} = useToastContext();
+    const {t} = useMergedTranslation('Toasts');
+    const {top} = useSafeAreaInsets();
+    const config = useAppSelector(mapReactionsConfigSelector);
+    const reaction = useMemo(() => config?.find(c => c.enumValue === 'like'), [
+        config,
+    ]);
 
     useEffect(() => {
         if (shareID) {
@@ -58,7 +77,7 @@ const RoutesMap: React.FC = () => {
     }, [shareID]);
 
     const {location} = useLocationProvider();
-    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLcation);
+    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLocation);
     const [centerMapAtLocation, setCenterMapAtLocation] = useState<
         BasicCoordsType | undefined
     >();
@@ -146,6 +165,7 @@ const RoutesMap: React.FC = () => {
     const mapData = useAppSelector(
         selectMapDataByIDBasedOnTypeSelector(routeInfo.id, routeInfo.mapType),
     );
+
     const mapImages = getImagesThumbs(mapData?.pictures);
     /* Route has been published */
     const isPublished = useMemo(() => mapData?.isPublic || false, [
@@ -283,7 +303,7 @@ const RoutesMap: React.FC = () => {
      * When no data exists placeholder will be shown.
      */
     useEffect(() => {
-        InteractionManager.runAfterInteractions(() => {
+        customInteractionManager.runAfterInteractions(() => {
             setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
         });
     }, [routeInfo.id, mapID]);
@@ -308,6 +328,11 @@ const RoutesMap: React.FC = () => {
                     setIsAddingToFavourites(true);
                     await dispatch(addPlannedMap(mapId));
                     setIsAddingToFavourites(false);
+                    addToast({
+                        key: 'toast-route-added-to-favorites',
+                        title: t('addRouteToPlanned'),
+                        icon: <Bookmark />,
+                    });
                     break;
                 case 'remove_from_planned':
                     setIsAddingToFavourites(true);
@@ -318,6 +343,11 @@ const RoutesMap: React.FC = () => {
                         routeMapType: RouteMapType.BIKE_MAP,
                     }));
                     setIsAddingToFavourites(false);
+                    addToast({
+                        key: 'toast-route-removed-from-favorites',
+                        title: t('removeRouteFromPlanned'),
+                        icon: <Bookmark />,
+                    });
                     break;
                 case 'share':
                     navigation.navigate('ShareRouteScreen', {
@@ -348,15 +378,53 @@ const RoutesMap: React.FC = () => {
                     setRouteInfo(initRouteInfo);
                     dispatch(removePrivateMapMetaData(mapId));
                     break;
+                case 'reactions':
+                    /**
+                     * Can like only published routes
+                     */
+                    if (reaction?.enumValue && mapData?.isPublic) {
+                        dispatch(
+                            modifyReaction(
+                                mapId,
+                                reaction.enumValue,
+                                !!mapData?.reaction,
+                            ),
+                        );
+                    }
+                    break;
                 default:
                     break;
             }
         },
-        [dispatch, navigation, mapData?.id, routeInfo.mapType, isCreatedByUser],
+        [
+            dispatch,
+            navigation,
+            mapData?.id,
+            mapData?.reaction,
+            mapData?.isPublic,
+            routeInfo.mapType,
+            isCreatedByUser,
+            reaction?.enumValue,
+            t,
+            addToast,
+        ],
     );
 
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
+            <View style={[styles.notificationsContainer, {top}]}>
+                <NotificationList>
+                    {[
+                        <LocationStatusNotification
+                            key={'gps-notification'}
+                            showWhenLocationIsDisabled
+                        />,
+                        <LocationPermissionNotification
+                            key={'location-permission-notification'}
+                        />,
+                    ]}
+                </NotificationList>
+            </View>
             <RoutesMapContainer
                 location={loc}
                 onPressClose={onNavigateBack}
@@ -371,6 +439,7 @@ const RoutesMap: React.FC = () => {
                 {mapData ? (
                     <RouteMapDetailsContainer
                         mapData={mapData}
+                        likeReaction={reaction}
                         mapImages={mapImages}
                         onPressAction={onPressHandler}
                         isPrivate={isCreatedByUser}
@@ -393,3 +462,12 @@ const RoutesMap: React.FC = () => {
 };
 
 export default RoutesMap;
+
+const styles = StyleSheet.create({
+    notificationsContainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        zIndex: 1,
+    },
+});
