@@ -18,6 +18,8 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import colors from '@theme/colors';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import {DropdownItemT} from '@components/types/dropdown';
+import {useAppSelector} from '@src/hooks/redux';
+import {mapsActiveFiltersSelector} from '@src/storage/selectors/map';
 
 interface IProps {
     shouldHide: boolean;
@@ -28,6 +30,7 @@ interface IProps {
     toggleDropdown: (val: boolean) => void;
     onSortByHandler: (val: string | undefined) => void;
     dropdownList: DropdownItemT[];
+    mapMode?: string;
 }
 
 const FiltersHeader = ({
@@ -39,9 +42,10 @@ const FiltersHeader = ({
     toggleDropdown,
     onSortByHandler,
     dropdownList,
+    mapMode = '',
 }: IProps) => {
     const {t} = useMergedTranslation('MainWorld');
-
+    const filtersActive = useAppSelector(mapsActiveFiltersSelector);
     const backgroundColorProgress = useSharedValue(0);
     const backgroundColorAnimation = useAnimatedStyle(() => ({
         backgroundColor: withTiming(
@@ -83,6 +87,7 @@ const FiltersHeader = ({
                                 ...styles.topButton,
                                 ...styles.topButtonRight,
                             }}
+                            isFiltersActive={filtersActive[mapMode]}
                         />
                     </View>
                 </Animated.View>

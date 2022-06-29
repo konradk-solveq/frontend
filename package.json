@@ -1,6 +1,6 @@
 {
   "name": "kross_app",
-  "version": "3.17.2",
+  "version": "3.18.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",

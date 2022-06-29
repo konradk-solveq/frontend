@@ -98,7 +98,6 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();
     const {addToast} = useToastContext();
-
     /**
      * Navigate to map button bottom position modifier
      */
@@ -359,6 +358,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 toggleDropdown={toggleDropdown}
                 onSortByHandler={onSortByHandler}
                 dropdownList={plannedRoutesDropdownList}
+                mapMode={'planned'}
             />
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
@@ -368,6 +368,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 onGetFiltersCount={onGetFiltersCount}
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={plannedMapsCount}
+                mapMode={'planned'}
             />
             {!favouriteMaps?.length ? (
                 <EmptyStateContainer

@@ -207,6 +207,15 @@ const setLoadState = (
     }
 };
 
+export const setMapsAppliedFilters = (
+    mapMode: string,
+    isFiltersApplied: boolean,
+) => ({
+    type: actionTypes.SET_MAPS_FILTERS_ACTIVE,
+    mapMode: mapMode,
+    isFiltersApplied: isFiltersApplied,
+});
+
 export const fetchMapsList = (
     page?: string,
     filters?: PickedFilters,

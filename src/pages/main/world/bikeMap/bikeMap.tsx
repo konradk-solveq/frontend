@@ -324,6 +324,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 toggleDropdown={toggleDropdown}
                 onSortByHandler={onSortByHandler}
                 dropdownList={publicRoutesDropdownList}
+                mapMode={'public'}
             />
             <ShowMoreModal
                 showModal={showModal}
@@ -341,6 +342,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 onGetFiltersCount={onGetFiltersCount}
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={publicMapsCount}
+                mapMode={'public'}
             />
             {mapsData?.length && renderIsFinished ? (
                 <FlatList

@@ -25,6 +25,11 @@ export interface IMapsListError {
     planned?: MapsListError;
 }
 
+type IMapsMode = 'planned' | 'private' | 'public';
+export type ActiveFilters = {
+    [K in IMapsMode as string]?: boolean;
+};
+
 export interface MapsState {
     maps: MapType[];
     totalMaps: number | null;
@@ -46,6 +51,7 @@ export interface MapsState {
     refresh: boolean;
     filters: FiltersState;
     mapsListError: IMapsListError;
+    mapsAppliedFilters: ActiveFilters;
 }
 
 const initialStateList: MapsState = {
@@ -69,6 +75,7 @@ const initialStateList: MapsState = {
     refresh: false,
     filters: {},
     mapsListError: {},
+    mapsAppliedFilters: {},
 };
 
 const mapsReducer = (state = initialStateList, action: any) => {
@@ -372,6 +379,14 @@ const mapsReducer = (state = initialStateList, action: any) => {
         }
         case actionTypes.CLEAR_PLANNED_MAPS_LIST_ERROR: {
             return updateListErrorState(state, '', 200, 'planned');
+        }
+        case actionTypes.SET_MAPS_FILTERS_ACTIVE: {
+            return {
+                ...state,
+                mapsAppliedFilters: {
+                    [action.mapMode]: action.isFiltersApplied,
+                },
+            };
         }
     }
 
