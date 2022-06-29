@@ -119,23 +119,6 @@ export const syncRouteData = async (
     routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
     try {
-        if (
-            !path?.length ||
-            !path?.find(p => p?.odometer >= MIN_ROUTE_LENGTH)
-        ) {
-            if (remoteRouteId) {
-                await removeCeratedRouteIDService(remoteRouteId);
-            }
-            return {
-                data: null,
-                status: 400,
-                error: i18next.t('dataAction.routeData.routeLengthError', {
-                    value: MIN_ROUTE_LENGTH,
-                }),
-                shortRoute: true,
-            };
-        }
-
         let response;
         if (!remoteRouteId) {
             const defaultName = getRouteDefaultName(routeNumber);
@@ -193,7 +176,9 @@ export const syncRouteData = async (
                     response?.data?.statusCode === 400 ||
                     responseFromUpdate.data?.statusCode >= 400)
             ) {
-                errorMessage = i18next.t('dataAction.routeData.updateRouteError');
+                errorMessage = i18next.t(
+                    'dataAction.routeData.updateRouteError',
+                );
                 await removePrivateMapData(routeId);
                 return {
                     data: null,

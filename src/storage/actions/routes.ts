@@ -10,7 +10,7 @@ import {MapsState} from '../reducers/maps';
 import {removeCeratedRouteIDService} from '@services/routesService';
 import {appendRouteDebuggInfoToFIle} from '@storage/actions/app';
 
-import {createNewRouteService, syncRouteData} from '@services';
+import {createNewRouteService, syncRouteData} from '@services/index';
 import {fetchPrivateMapsList, setPrivateMapId} from './maps';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
@@ -275,7 +275,7 @@ export const stopCurrentRoute = (
                     loggErrorMessage(
                         response.error,
                         'stopCurrentRoute',
-                        sentryLogLevel.Log,
+                        sentryLogLevel.Error,
                     );
                 }
             }
@@ -331,8 +331,11 @@ export const stopCurrentRoute = (
 
         /**
          * Added route will be synch with backend in the future.
+         * Wait for process to be finished.
          */
-        dispatch(addToQueueByRouteIdRouteData(currentRouteToEnd.id, true));
+        await dispatch(
+            addToQueueByRouteIdRouteData(currentRouteToEnd.id, true),
+        );
 
         dispatch(clearError());
         dispatch(setLoadingState(false));
@@ -364,7 +367,7 @@ export const addToQueueByRouteIdRouteData = (
             routeData?.length >= 2 &&
             routeData?.find(cr => cr?.odometer >= MIN_ROUTE_LENGTH)
         ) {
-            await dispatch(addRoutesToSynchQueue(routeData, true));
+            await dispatch(addRoutesToSynchQueue(routeId, routeData, true));
         }
 
         dispatch(clearError());
@@ -380,6 +383,7 @@ export const addToQueueByRouteIdRouteData = (
 };
 
 export const addRoutesToSynchQueue = (
+    routeId: string,
     routeDataToSynch: LocationDataI[],
     skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
@@ -393,10 +397,10 @@ export const addRoutesToSynchQueue = (
 
         const {currentRoute}: RoutesState = getState().routes;
 
-        dispatch(setRouteToSynch(currentRoute.id));
+        dispatch(setRouteToSynch(routeId));
         dispatch(
             setRoutesData({
-                id: currentRoute.id,
+                id: routeId,
                 route: routeDataToSynch,
                 remoteRouteId: currentRoute?.remoteRouteId,
             }),
@@ -481,23 +485,34 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             return;
         }
 
+        /**
+         * Abort sync and clear data when there is no location points
+         * (two at least)
+         */
+        if (!currRoutesDat?.length || currRoutesDat?.length < 2) {
+            await dispatch(abortSyncCurrentRouteData(false, false, true));
+
+            dispatch(setLoadingState(false));
+            return;
+        }
+
         const {totalPrivateMaps}: MapsState = getState().maps;
 
         const response = await syncRouteData(
             currRoutesDat,
-            currentRoute?.remoteRouteId /* TODO: check if currentRoute.id shouldn't be used too */,
+            currentRoute?.remoteRouteId,
             getNextRouteNumber(totalPrivateMaps),
         );
 
         if ((response.error && response.status >= 400) || !response?.data?.id) {
             let errorMessage = response.error;
 
-            if (currRoutesDat?.length > 3 && response?.shortRoute) {
+            if (currRoutesDat?.length > 3 && response.status >= 500) {
                 console.log(
                     `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
                 );
 
-                sentryMessager(errorMessage, sentryLogLevel.Log);
+                sentryMessager(errorMessage, sentryLogLevel.Error);
             }
             dispatch(clearCurrentRouteData());
             dispatch(clearCurrentRoute());
@@ -525,6 +540,12 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                 ),
             );
             /* Route debug - end */
+
+            loggErrorMessage(
+                response.error,
+                'syncCurrentRoute',
+                sentryLogLevel.Error,
+            );
             return;
         }
 
@@ -565,11 +586,10 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             ),
         );
         /* Route debug - emd */
-
         dispatch(setLoadingState(false));
 
         await dispatch(fetchPrivateMapsList());
-        syncRouteDataFromQueue(true);
+        await dispatch(syncRouteDataFromQueue(true));
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);
@@ -631,10 +651,16 @@ export const syncRouteDataFromQueue = (
             if (response.error || !response?.data?.id) {
                 newRoutesToSync.push(id);
                 newRoutes.push(routeToSync);
+
+                loggErrorMessage(
+                    response.error,
+                    'syncRouteFromQueue',
+                    sentryLogLevel.Error,
+                );
                 return;
             }
 
-            if (remoteId) {
+            if (remoteId && remoteId === currentRoute?.remoteRouteId) {
                 dispatch(clearCurrentRoute());
             }
         });
@@ -643,6 +669,11 @@ export const syncRouteDataFromQueue = (
         dispatch(setRoutesData(newRoutes, true));
         dispatch(clearError());
         setLoadState(dispatch, true, skipLoadingState);
+
+        /**
+         * Refetch private maps after sync
+         */
+        dispatch(fetchPrivateMapsList());
     } catch (error) {
         console.log(`[syncRouteDataFromQueue] - ${error}`);
         const err = convertToApiError(error);
@@ -654,8 +685,9 @@ export const syncRouteDataFromQueue = (
 export const abortSyncCurrentRouteData = (
     endDebugFile?: boolean,
     skipFetchingMaps?: boolean,
+    skipLoadingState?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    setLoadState(dispatch, true, skipLoadingState);
     try {
         const {currentRoute, currentRouteData}: RoutesState = getState().routes;
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
@@ -700,7 +732,7 @@ export const abortSyncCurrentRouteData = (
         dispatch(clearAverageSpeed());
         dispatch(clearError());
 
-        dispatch(setLoadingState(false));
+        setLoadState(dispatch, false, skipLoadingState);
         if (!skipFetchingMaps) {
             dispatch(fetchPrivateMapsList());
         }
