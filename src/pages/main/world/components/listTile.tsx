@@ -118,15 +118,6 @@ const ListTile: React.FC<PropsI> = ({
         return '';
     };
 
-    const handleDistanceToStart = () => {
-        if (!mapData?.distanceToRoute) {
-            return '-';
-        }
-        return `${(mapData.distanceToRoute / 1000).toFixed(0)}${t(
-            'distanceToStart',
-        )}`;
-    };
-
     const handleDifficultyAndSurface = () => {
         const difficulty = mapData?.firstPickedDifficulty;
         const surface = mapData?.firstPickedSurface;
@@ -189,7 +180,7 @@ const ListTile: React.FC<PropsI> = ({
             imageToDisplay={imageUrl}
             name={mapData?.name || t('noTitle')}
             distanceAndTime={handleDistanceAndTime()}
-            distanceToStart={handleDistanceToStart()}
+            distanceToStart={mapData.distanceToRouteInKilometers}
             difficultyAndSurface={handleDifficultyAndSurface()}
             numberOfLikes={numberOfLikes}
             checkLike={handleCheckLike()}

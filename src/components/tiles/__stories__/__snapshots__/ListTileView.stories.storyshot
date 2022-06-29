@@ -153,7 +153,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   }
                   testID="demi-16-h36-test-id"
                 >
-                  12km od Ciebie
+                  12km od Ciebie MainWorld.Tile.distanceToStart
                 </Text>
                 <Text
                   style={
@@ -573,7 +573,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   }
                   testID="demi-16-h36-test-id"
                 >
-                  12km od Ciebie
+                  12km od Ciebie MainWorld.Tile.distanceToStart
                 </Text>
                 <Text
                   style={
@@ -856,7 +856,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   }
                   testID="demi-16-h36-test-id"
                 >
-                  12km od Ciebie
+                  12km od Ciebie MainWorld.Tile.distanceToStart
                 </Text>
                 <Text
                   style={
@@ -1210,7 +1210,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   }
                   testID="demi-16-h36-test-id"
                 >
-                  12km od Ciebie
+                  12km od Ciebie MainWorld.Tile.distanceToStart
                 </Text>
                 <Text
                   style={

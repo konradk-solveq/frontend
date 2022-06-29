@@ -426,7 +426,7 @@
             "distanceUnit": " km",
             "timeUnit": "h",
             "noTitle": "Brak tytułu",
-            "distanceToStart": " km od Ciebie",
+            "distanceToStart": "km od Ciebie",
             "addToFavAction": "Pobierz trasę",
             "shareRouteAction": "Udostępnij",
             "publishTripAction": "Opublikuj",
@@ -492,7 +492,7 @@
             "separator": " - ",
             "hours": "h",
             "minutes": "m",
-            "distanceToStart": " km od Ciebie",
+            "distanceToStart": "km od Ciebie",
             "public": "publiczna"
         },
         "moreActionsModal": {
@@ -551,7 +551,7 @@
             "tagsTitle": "Tagi",
             "creationPrefix": "Utworzono",
             "publishPrefix": "Na mapie Publicznej od",
-            "distanceToStart": " km od Ciebie",
+            "distanceToStart": "km od Ciebie",
             "noDescription": "Brak opisu.",
             "multiDifficulties": "Różnorodna",
             "actionButtons": {

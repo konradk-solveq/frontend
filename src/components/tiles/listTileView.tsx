@@ -124,7 +124,10 @@ const ListTileView: React.FC<PropsI> = ({
                             <Demi18h28>{distanceAndTime}</Demi18h28>
                             <View style={styles.row}>
                                 <Demi16h36>
-                                    {!hideDistanceToStart && distanceToStart}
+                                    {!hideDistanceToStart &&
+                                        `${distanceToStart} ${t(
+                                            'distanceToStart',
+                                        )}`}
                                 </Demi16h36>
                                 <Demi16h36>{difficultyAndSurface}</Demi16h36>
                             </View>
