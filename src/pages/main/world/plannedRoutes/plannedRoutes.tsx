@@ -56,9 +56,9 @@ import {isIOS} from '@utils/platform';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
 import Bookmark from '@src/components/icons/Bookmark';
 import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import {globalLocationSelector} from '@storage/selectors/app';
+import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
@@ -385,7 +385,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
                         <View style={styles.listHeaderContainer}>
-                            <LocationPermissionNotification
+                            <UnifiedLocationNotification
                                 style={styles.notification}
                             />
                             <Header2 style={styles.header}>

@@ -1036,6 +1036,10 @@
                 "title": "Sprawdź uprawienia lokalizacji",
                 "subtitle": "Nie mamy Twojej zgody na lokalizację",
                 "action": "Ustawienia"
+            },
+            "permissionAlways": {
+                "title": "Wybierz zgodę \"Na zawsze\"",
+                "subtitle": "Twoja trasa zostanie dokładniej nagrana"
             }
         }
     },

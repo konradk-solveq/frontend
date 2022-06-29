@@ -22,7 +22,7 @@ interface IProps {
     showWhenLocationIsDisabled?: boolean;
     containerStyle?: StyleProp<ViewStyle>;
     onLayout?: (event: LayoutChangeEvent) => void;
-    style?: ViewStyle;
+    style?: StyleProp<ViewStyle>;
 }
 
 const GPSNotification: React.FC<IProps> = ({

@@ -28,10 +28,9 @@ import {useNavigation} from '@react-navigation/native';
 import {BottomModal} from '@components/modals';
 
 import {AnimatedContainerPosition} from '@src/containers/World/components';
-import {LocationStatusNotification} from '@notifications';
 import NotificationList from '@components/notifications/NotificationList';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -279,12 +278,9 @@ const ServicesMap: React.FC = () => {
                             onPress={handleShops}
                         />
                     </View>
-                    <LocationStatusNotification
-                        showWhenLocationIsDisabled
-                        key={'gps-notification'}
-                    />
-                    <LocationPermissionNotification
-                        key={'location-permission-notification'}
+                    <UnifiedLocationNotification
+                        showGPSStatus
+                        key={'location-notification'}
                     />
                 </NotificationList>
             </View>

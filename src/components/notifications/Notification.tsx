@@ -1,5 +1,12 @@
 import React from 'react';
-import {View, StyleSheet, Pressable, ViewStyle, TextStyle} from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Pressable,
+    ViewStyle,
+    TextStyle,
+    StyleProp,
+} from 'react-native';
 import {TextIcon} from '@components/icons';
 import {MykrossIconFont, IconFont} from '@theme/enums/iconFonts';
 import {Header3, Subtitle, BodyPrimary} from '@components/texts/texts';
@@ -20,13 +27,13 @@ export interface NotificationDataI {
 }
 
 export interface NotificationI extends NotificationDataI {
-    containerStyle?: ViewStyle;
+    containerStyle?: StyleProp<ViewStyle>;
     iconColor?: string;
     iconSize?: number;
-    iconStyle?: ViewStyle;
-    titleStyle?: TextStyle;
-    subtitleStyle?: TextStyle;
-    actionStyle?: TextStyle;
+    iconStyle?: StyleProp<ViewStyle>;
+    titleStyle?: StyleProp<TextStyle>;
+    subtitleStyle?: StyleProp<TextStyle>;
+    actionStyle?: StyleProp<TextStyle>;
     withoutShadow?: boolean;
 }
 

@@ -41,9 +41,8 @@ import NotificationList, {
     NotificationListItemI,
 } from '@components/notifications/NotificationList';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
-import {LocationStatusNotification} from '@notifications/index';
 import {Notification} from '@components/notifications';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
+import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {useFocusEffect} from '@react-navigation/core';
 
@@ -450,12 +449,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                             ...notifications.map(notification => (
                                 <Notification {...notification} />
                             )),
-                            <LocationStatusNotification
-                                showWhenLocationIsDisabled
-                                key={'gps-notification'}
-                            />,
-                            <LocationPermissionNotification
-                                key={'location-permission-notification'}
+                            <UnifiedLocationNotification
+                                showGPSStatus
+                                locationNotAlwaysNotification
+                                key={'location-notification'}
                             />,
                         ]}
                     </NotificationList>
