@@ -41,9 +41,8 @@ import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation
 import Bookmark from '@src/components/icons/Bookmark';
 import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {LocationStatusNotification} from '@notifications';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
+import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 
 const initRouteInfo = {
     id: '',
@@ -415,12 +414,9 @@ const RoutesMap: React.FC = () => {
             <View style={[styles.notificationsContainer, {top}]}>
                 <NotificationList>
                     {[
-                        <LocationStatusNotification
-                            key={'gps-notification'}
-                            showWhenLocationIsDisabled
-                        />,
-                        <LocationPermissionNotification
-                            key={'location-permission-notification'}
+                        <UnifiedLocationNotification
+                            showGPSStatus
+                            key={'location-notification'}
                         />,
                     ]}
                 </NotificationList>

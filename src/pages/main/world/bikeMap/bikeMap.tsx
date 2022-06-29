@@ -54,9 +54,9 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
 
 import {isIOS} from '@utils/platform';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import {globalLocationSelector} from '@storage/selectors/app';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
@@ -348,7 +348,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     onMomentumScrollEnd={onErrorScrollHandler}
                     ListHeaderComponent={
                         <View style={styles.listHeader}>
-                            <LocationPermissionNotification
+                            <UnifiedLocationNotification
                                 style={styles.notification}
                             />
                             <FeaturedRoutes />

@@ -46,7 +46,7 @@ interface IProps {
     showWhenLocationIsDisabled?: boolean;
     containerStyle?: StyleProp<ViewStyle>;
     onLayout?: (event: LayoutChangeEvent) => void;
-    style?: ViewStyle;
+    style?: StyleProp<ViewStyle>;
 }
 
 const LocationStatusNotification: React.FC<IProps> = ({
@@ -87,7 +87,6 @@ const LocationStatusNotification: React.FC<IProps> = ({
             onLayout && onLayout(defaultLayoutEvent);
         }
     }, [showNotification, whenLocationIsDsiabled, onLayout]);
-
     return showNotification || whenLocationIsDsiabled ? (
         <GPSNotification
             title={
