@@ -8,6 +8,7 @@ import {
     synchRecordingWhenOfflineExpectedActions,
     synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions,
     synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions,
+    stopRecordingExpectedActions,
 } from './expectedAxtions';
 
 export const compareResultsWhenStartRecordingFirstCase = (
@@ -34,6 +35,31 @@ export const compareResultsWhenStartRecordingSecondCase = (
     expect(actionsLog[2]).toEqual(startRecordingWhenKeepExpectedActions[2]);
     /* loading - end */
     expect(actionsLog[3]).toEqual(startRecordingWhenKeepExpectedActions[3]);
+};
+
+export const compareResultsWhenStopRecordingFirstCase = (actionsLog: any[]) => {
+    /* loading - start */
+    expect(actionsLog[0]).toEqual(stopRecordingExpectedActions[0]);
+    /* clear error */
+    expect(actionsLog[1]).toEqual(stopRecordingExpectedActions[1]);
+    /* set route data */
+    expect(actionsLog[2]).toEqual(stopRecordingExpectedActions[2]);
+    /* reset map visibility state */
+    expect(actionsLog[3]).toEqual(stopRecordingExpectedActions[3]);
+    /* set current route to sync */
+    expect(actionsLog[4]).toEqual(stopRecordingExpectedActions[4]);
+    /* add dat ato queue */
+    expect(actionsLog[5]).toEqual(stopRecordingExpectedActions[5]);
+    /* clear average speed */
+    expect(actionsLog[6]).toEqual(stopRecordingExpectedActions[6]);
+    /* set sync error */
+    expect(actionsLog[7]).toEqual(stopRecordingExpectedActions[7]);
+    /* clear errors */
+    expect(actionsLog[8]).toEqual(stopRecordingExpectedActions[8]);
+    /* clear errors */
+    expect(actionsLog[9]).toEqual(stopRecordingExpectedActions[9]);
+    /* loading - end */
+    expect(actionsLog[10]).toEqual(stopRecordingExpectedActions[10]);
 };
 
 export const compareResultsWhenOfflineFirstCase = (actionsLog: any[]) => {

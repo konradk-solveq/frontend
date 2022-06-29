@@ -2,6 +2,7 @@ import * as actionTypes from '../../actionTypes';
 import {endedRoute, startedRoute, stoppedRoute} from './routeData';
 import i18next from '@translations/i18next';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
+import recordedRoutesData from '@storage/actions/__tests__/mocks/recordedRoutesData';
 
 export const startRecordingExpectedActions = [
     {
@@ -54,6 +55,31 @@ export const stopRecordingExpectedActions = [
     {
         isMapVisible: false,
         type: actionTypes.SET_ROUTE_MAP_VISIBILITY,
+    },
+    {
+        type: actionTypes.SET_ROUTE_TO_SYNC,
+        routeId: stoppedRoute.id,
+    },
+    {
+        type: actionTypes.SET_ROUTES_DATA,
+        routes: {
+            id: stoppedRoute.id,
+            route: recordedRoutesData,
+            remoteRouteId: stoppedRoute.remoteRouteId,
+        },
+        refresh: undefined,
+    },
+    {
+        type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
+    },
+    {
+        error: 'dataAction.dataSyncError',
+        routeToShort: undefined,
+        statusCode: 500,
+        type: actionTypes.SET_ROUTES_ERROR,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         type: actionTypes.CLEAR_ROUTES_ERROR,
@@ -293,11 +319,9 @@ export const synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions = [
     },
     {
         type: actionTypes.SET_ROUTES_ERROR,
-        error: i18next.t('dataAction.routeData.routeLengthError', {
-            value: MIN_ROUTE_LENGTH,
-        }),
-        statusCode: 400,
-        routeToShort: true,
+        error: 'Route cannot be empty',
+        statusCode: 404,
+        routeToShort: undefined,
     },
 ];
 
