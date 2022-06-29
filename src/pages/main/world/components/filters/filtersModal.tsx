@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useCallback, useRef, useMemo} from 'react';
-import {useAppSelector} from '@hooks/redux';
+import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {PickedFilters} from '@interfaces/form';
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
 
@@ -9,6 +9,7 @@ import {useMergedState} from '@hooks/useMergedState';
 import {FiltersContainer} from '@containers/World';
 import {getFilterDistance} from '@utils/transformData';
 import {debounce} from '@utils/input/debounce';
+import {setMapsAppliedFilters} from '@src/storage/actions/maps';
 
 const lengthOptions = ['0', '5', '10', '20', '40', '80', '120', '160', '200'];
 
@@ -42,6 +43,7 @@ interface IProps {
     showModal?: boolean;
     allowedFilters?: string[];
     allowMyPublic?: boolean;
+    mapMode: string;
 }
 
 const FiltersModal: React.FC<IProps> = ({
@@ -53,8 +55,10 @@ const FiltersModal: React.FC<IProps> = ({
     allowMyPublic = false,
     onGetFiltersCount,
     onResetFiltersCount,
+    mapMode,
 }: IProps) => {
     const mapOptions = useAppSelector(mapOptionsAndTagsSelector);
+    const dispatch = useAppDispatch();
     const filters = getFilters(mapOptions);
 
     const rangePickerRef = useRef<RangePickerRef>();
@@ -91,7 +95,7 @@ const FiltersModal: React.FC<IProps> = ({
         setPickedFilters(prev => updateFilters(prev, filterName, filtersArr));
     };
 
-    const onSaveHandler = () => {
+    const onSaveHandler = (isApplied: boolean) => {
         const filtersToSave = getFiltersToSave(
             pickedFilters,
             isLoop,
@@ -99,6 +103,7 @@ const FiltersModal: React.FC<IProps> = ({
             minLength,
             maxLength,
         );
+        dispatch(setMapsAppliedFilters(mapMode, isApplied));
         onSave(filtersToSave);
     };
 

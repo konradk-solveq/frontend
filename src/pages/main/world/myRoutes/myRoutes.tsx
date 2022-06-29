@@ -368,6 +368,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 toggleDropdown={toggleDropdown}
                 onSortByHandler={onSortByHandler}
                 dropdownList={privateRoutesDropdownList}
+                mapMode={'private'}
             />
             <FiltersModal
                 onClose={onFiltersModalCloseHandler}
@@ -378,6 +379,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={privateMapsCount}
                 allowMyPublic
+                mapMode={'private'}
             />
 
             {!privateMaps?.length ? (
