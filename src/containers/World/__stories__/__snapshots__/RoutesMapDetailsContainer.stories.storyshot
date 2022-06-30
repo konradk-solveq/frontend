@@ -126,9 +126,10 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
             undefined,
           ]
         }
-        testID="body-secondary-test-id"
+        testID="route-map-details-container-prolog-description-difficulty-surface-info"
       >
         Łatwa
+        
       </Text>
     </View>
     <View
@@ -1259,9 +1260,10 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
             undefined,
           ]
         }
-        testID="body-secondary-test-id"
+        testID="route-map-details-container-prolog-description-difficulty-surface-info"
       >
         Łatwa
+        
       </Text>
     </View>
     <View

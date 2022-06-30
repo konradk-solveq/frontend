@@ -14,6 +14,7 @@ import {
     PrivateActionButtons,
     PrologDescription,
 } from '@containers/World/components';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 interface IProps {
     onPressAction: (actionType: RouteDetailsActionT) => void;
@@ -40,6 +41,8 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
     style,
     testID = 'route-map-details-container',
 }: IProps) => {
+    const {t} = useMergedTranslation('RoutesDetails.details');
+
     const omPressSecondaryButton = useCallback(() => {
         onPressAction(isFavourited ? 'remove_from_planned' : 'add_to_planned');
     }, [isFavourited, onPressAction]);
@@ -49,6 +52,14 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
             !!mapData?.reaction &&
             likeReaction?.enumValue === mapData?.reaction,
         [likeReaction?.enumValue, mapData?.reaction],
+    );
+
+    const surfaceString = useMemo(
+        () =>
+            mapData?.pickedSurfaces && mapData.pickedSurfaces.length > 1
+                ? t('variedSurface')
+                : '',
+        [mapData?.pickedSurfaces, t],
     );
 
     return (
@@ -63,6 +74,7 @@ const RouteMapDetailsContainer: React.FC<IProps> = ({
                     reactions={mapData?.reactions}
                     likeReaction={isLiked}
                     onPressReaction={() => onPressAction('reactions')}
+                    surfaceString={surfaceString}
                     testID={`${testID}-prolog-description`}
                 />
                 {!isPrivate ? (
