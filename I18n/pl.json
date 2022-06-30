@@ -552,6 +552,7 @@
             "creationPrefix": "Utworzono",
             "publishPrefix": "Na mapie Publicznej od",
             "distanceToStart": "km od Ciebie",
+            "variedSurface": "Różnorodna",
             "noDescription": "Brak opisu.",
             "multiDifficulties": "Różnorodna",
             "actionButtons": {

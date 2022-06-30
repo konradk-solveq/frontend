@@ -116,9 +116,10 @@ exports[`Storyshots containers/World/components/PrologDescription Customized 1`]
             undefined,
           ]
         }
-        testID="body-secondary-test-id"
+        testID="prolog-description-test-id-difficulty-surface-info"
       >
         Umiarkowana
+         - Varied
       </Text>
     </View>
     <View
@@ -330,7 +331,7 @@ exports[`Storyshots containers/World/components/PrologDescription Default 1`] = 
             undefined,
           ]
         }
-        testID="body-secondary-test-id"
+        testID="prolog-description-test-id-difficulty-surface-info"
       >
         Umiarkowana
       </Text>
