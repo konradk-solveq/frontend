@@ -5,7 +5,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ENVIRONMENT_TYPE} from '@env';
 
 import {TermsAndConditionsType} from '@models/regulations.model';
-import {setAppCurrentTerms} from '@storage/actions';
+import {setAppCurrentTerms, setNewAppVersion} from '@storage/actions';
 import {RegularStackRoute, BothStackRoute} from '@navigation/route';
 import {getIsNewVersion} from '@helpers/appVersion';
 import NewAppVersionModal from '../newAppVersion/newAppVersionModal';
@@ -40,6 +40,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     );
     const isLoading = useAppSelector<boolean>(state => state.app.sync);
     const showed = useAppSelector<number>(state => state.app.showedRegulations);
+    const appVersion = useAppSelector(state => state.app.appVersion);
     const [showNewRegulations, setShowNewRegulations] = useState<boolean>();
     const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
     const dispatch = useAppDispatch();
@@ -91,6 +92,12 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
         }
     }, [currentVersion, shopAppVersion, showedNewAppVersion, showed, data]);
 
+    const handleGoForward = () => {
+        dispatch(setNewAppVersion(shopAppVersion));
+        setShowNewAppVersion(false);
+        props.navigation.replace(RegularStackRoute.TAB_MENU_SCREEN);
+    };
+
     useEffect(() => {
         if (!isLoading) {
             const getPage = () => {
@@ -141,7 +148,11 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                 </View>
             </OpacityAnimation>
             {ENVIRONMENT_TYPE !== 'production' && <AppVersion />}
-            <NewAppVersionModal showModal={showNewAppVersion} />
+            <NewAppVersionModal
+                showModal={showNewAppVersion}
+                forceUpdate={appVersion.forceUpdate}
+                handleGoForward={handleGoForward}
+            />
         </>
     );
 };

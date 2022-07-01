@@ -215,8 +215,9 @@
         ]
     },
     "newAppVersion": {
-        "title": "Zaktualizuj aplikację Kross",
+        "title": "Zaktualizuj aplikację myKross",
         "content": "Udostępniliśmy nową wersję aplikacji.\nBądź na bieżąco z nowościami, pobierz aktualizację.",
+        "forceUpdateContent": "Obecna wersja nie jest już przez nas\nwspierana. Pobierz nową, aby móc dalej\nkorzystać z aplikacji",
         "updateButton": "Aktualizuj"
     },
     "Login": {

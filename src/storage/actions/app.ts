@@ -18,6 +18,7 @@ import {CurrentRouteI, RoutesState} from '@storage/reducers/routes';
 import {AppConfigI} from '@models/config.model';
 import {BasicCoordsType} from '@type/coords';
 import {
+    AppVersionType,
     FaqType,
     RegulationType,
     TermsAndConditionsType,
@@ -41,6 +42,7 @@ import {AuthState} from '../reducers/auth';
 import {fetchUiTranslation, fetchLanguagesList} from './uiTranslation';
 import {fetchBikesConfig} from '@storage/actions';
 import {checkIfNewTranslationExists} from '@storage/actions/utils/app';
+import {getNewAppVersionService} from '@src/services/appService';
 
 export const setAppStatus = (
     isOffline: boolean,
@@ -75,6 +77,11 @@ export const setAppShowedRegulationsNumber = (showedRegulations: number) => ({
 export const setNewAppVersion = (showedNewAppVersion: string) => ({
     type: actionTypes.SET_APP_SHOWED_NEW_APP_VERSION,
     showedNewAppVersion: showedNewAppVersion,
+});
+
+export const setAppVersion = (appVersion: AppVersionType) => ({
+    type: actionTypes.SET_APP_VERSION,
+    appVersion: appVersion,
 });
 
 export const setAppCurrentTerms = (currentTerms: TermsAndConditionsType) => ({
@@ -274,6 +281,7 @@ export const appSyncData = (
         const {sessionData}: AuthState = getState().authData;
         const {onboardingFinished} = getState().user;
         setUserAgentHeader();
+        dispatch(fetchAppVersion());
 
         if (!onboardingFinished && !forceSyncDataWhenOnboardingIsNotFinished) {
             dispatch(setSyncStatus(false));
@@ -539,6 +547,29 @@ export const synchMapsData = (
 
         loggErrorWithScope(err, 'synchMapsData');
 
+        dispatch(setSyncError(errorMessage, 500));
+    }
+};
+
+export const fetchAppVersion = (): AppThunk<
+    Promise<void>
+> => async dispatch => {
+    try {
+        const response = await getNewAppVersionService();
+
+        if (response.error || response.status >= 400 || !response.data) {
+            dispatch(setSyncError(response.error, response.status));
+            return;
+        }
+
+        dispatch(setAppVersion(response.data.appVersion));
+    } catch (error) {
+        console.log(`[fetchAppVersion] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'fetchAppVersion');
+
+        const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));
     }
 };

@@ -8,11 +8,13 @@ import {
 } from '@api';
 import {AppConfigI} from '@models/config.model';
 import {
+    AppVersionType,
     RegulationType,
     TermsAndConditionsType,
 } from '../models/regulations.model';
 import i18next from '@translations/i18next';
 import TimeoutError from '@utils/apiDataTransform/timeoutError';
+import {getNewAppVersion} from '@src/api';
 
 export const checkInternetConnectionQualityService = async () => {
     try {
@@ -178,6 +180,32 @@ export const getFaqService = async () => {
 
     return {
         data: {faq: response.data},
+        status: response.status,
+        error: '',
+    };
+};
+
+export const getNewAppVersionService = async () => {
+    const response = await getNewAppVersion();
+
+    if (
+        !response?.data ||
+        response.data?.statusCode >= 400 ||
+        response.status >= 400
+    ) {
+        let errorMessage = 'error';
+        if (response.data?.message || response.data?.error) {
+            errorMessage = response.data.message || response.data.error;
+        }
+        return {
+            data: null,
+            status: response.data?.statusCode || response.status,
+            error: errorMessage,
+        };
+    }
+
+    return {
+        data: {appVersion: <AppVersionType>response.data},
         status: response.status,
         error: '',
     };
