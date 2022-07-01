@@ -10,9 +10,13 @@ import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation
 
 interface IProps {
     handlePress: () => void;
+    forceUpdate: boolean;
 }
 
-const NewAppVersionContainer: React.FC<IProps> = ({handlePress}: IProps) => {
+const NewAppVersionContainer: React.FC<IProps> = ({
+    handlePress,
+    forceUpdate,
+}: IProps) => {
     const {t} = useMergedTranslation('newAppVersion');
     return (
         <View style={styles.container}>
@@ -22,7 +26,9 @@ const NewAppVersionContainer: React.FC<IProps> = ({handlePress}: IProps) => {
                     <Header2 algin="center" style={styles.header}>
                         {t('title')}
                     </Header2>
-                    <Paragraph algin="center">{t('content')}</Paragraph>
+                    <Paragraph algin="center">
+                        {forceUpdate ? t('forceUpdateContent') : t('content')}
+                    </Paragraph>
                 </View>
 
                 <PrimaryButton text={t('updateButton')} onPress={handlePress} />

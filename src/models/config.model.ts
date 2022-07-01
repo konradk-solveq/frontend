@@ -37,6 +37,7 @@ export class AppConfig implements SelectEnumOptionsType {
         public reactions: SelectOptionType[],
         public uiTranslations: UiTranslationType,
         public ads: AdsType,
+        public version: string,
     ) {
         this.name = name;
         this.lang = lang;
@@ -47,6 +48,7 @@ export class AppConfig implements SelectEnumOptionsType {
         this.reactions = reactions;
         this.uiTranslations = uiTranslations;
         this.ads = ads;
+        this.version = version;
     }
 }
 

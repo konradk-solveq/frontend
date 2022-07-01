@@ -29,6 +29,12 @@ export type FaqType = {
     answer: string;
 };
 
+export type AppVersionType = {
+    latest: string;
+    current: string;
+    forceUpdate: boolean;
+};
+
 export class AppRegulations {
     constructor(
         public termsAndConditions: TermsAndConditionsType[],

@@ -23,3 +23,5 @@ export const getPolicy = async (versionNr: string) =>
     await axiosGet(`/application/policy/${versionNr}`);
 
 export const getFaq = async () => await axiosGet('/application/faq');
+
+export const getNewAppVersion = async () => await axiosGet('/app-version');

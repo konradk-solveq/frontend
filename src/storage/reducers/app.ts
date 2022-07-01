@@ -9,6 +9,7 @@ import {
     FaqType,
     RegulationType,
     TermsAndConditionsType,
+    AppVersionType,
 } from '@models/regulations.model';
 import {MAJOR_LANGUAGE} from '@helpers/global';
 
@@ -61,6 +62,7 @@ export interface AppState {
     routeDebugMode: boolean;
     initMapsDataSynched: boolean;
     apiAuthHeaderState: boolean;
+    appVersion: AppVersionType | {};
 }
 
 const initialState: AppState = {
@@ -81,6 +83,7 @@ const initialState: AppState = {
         reactions: [],
         uiTranslations: {controlSums: [], codes: []},
         ads: {url: ''},
+        version: '',
     },
     terms: [],
     currentTerms: {
@@ -100,6 +103,7 @@ const initialState: AppState = {
     routeDebugMode: false,
     initMapsDataSynched: false,
     apiAuthHeaderState: false,
+    appVersion: {},
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -167,6 +171,13 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 regulation: newerVersion,
+            };
+        }
+
+        case actionTypes.SET_APP_VERSION: {
+            return {
+                ...state,
+                appVersion: action.appVersion,
             };
         }
 
@@ -266,6 +277,7 @@ const persistConfig = {
         'location',
         'routeDebugMode',
         'showedNewAppVersion',
+        'appVersion',
     ],
     timeout: 20000,
 };

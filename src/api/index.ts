@@ -44,6 +44,7 @@ export {
     getFaq,
     getConfig,
     checkInternetConnectionQuality,
+    getNewAppVersion,
 } from './app';
 export {
     getUiTranslation,
