@@ -210,10 +210,10 @@ const useProviderStaticLocation = () => {
                 setGofenceToMonitor(
                     coordsLocation
                         ? {
-                            location: coordsLocation,
-                              identifier: IDENTIFIER,
-                            action: '',
-                          }
+                              location: coordsLocation,
+                            identifier: IDENTIFIER,
+                              action: '',
+                        }
                         : undefined,
                 );
             }

@@ -27,6 +27,7 @@ import {
     sentryLogLevel,
 } from '@sentryLogger/sentryLogger';
 import {getTimeInUTCMilliseconds} from './transformData';
+import {result} from 'lodash';
 
 const isIOS = Platform.OS === 'ios';
 export const LOCATION_ACCURACY = 60;
@@ -73,9 +74,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             reset: true,
             stopOnTerminate: true,
             startOnBoot: false,
-            desiredAccuracy: isIOS
-                ? BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION
-                : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
+            desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
             locationAuthorizationRequest: 'Always',
             locationAuthorizationAlert: {
                 titleWhenNotEnabled: trans2.titleWhenNotEnabled,
@@ -241,6 +240,7 @@ export const startBackgroundGeolocation = async (
                 sticky: true,
             },
             pausesLocationUpdatesAutomatically: false,
+            disableStopDetection: true,
             showsBackgroundLocationIndicator: true,
         });
         state = await startBackgroundGeolocationPlugin(true);
@@ -279,6 +279,7 @@ export const stopBackgroundGeolocation = async () => {
                 sticky: false,
             },
             pausesLocationUpdatesAutomatically: undefined,
+            disableStopDetection: false,
             showsBackgroundLocationIndicator: undefined,
         });
 
@@ -499,6 +500,17 @@ export const resumeTracingLocation = async (routeId?: string) => {
     }
 };
 
+export const changePaceBackgroundGeolocation = async (state: boolean) => {
+    try {
+        await BackgroundGeolocation.changePace(state);
+    } catch (e) {
+        const errorMessage = transformLocationErrorCode(e);
+        console.log('[changePaceBackgroundGeolocation - error]', errorMessage);
+
+        loggErrorWithScope(errorMessage, 'changePaceBackgroundGeolocation');
+    }
+};
+
 export const pauseBackgroundGeolocation = async () => {
     try {
         await BackgroundGeolocation.changePace(false);
@@ -583,27 +595,19 @@ export const checkAndroidLocationPermission = async () => {
 export const checkDeviceHasLocationAlwaysPermission = async () => {
     let locationPermission = false;
     try {
-        /**
-         * Logged some issues, so added temp solution
-         * https://github.com/facebook/react-native/issues/10009#issuecomment-347839488
-         */
-        locationPermission = await new Promise<boolean>(resolve => {
-            setTimeout(async () => {
-                if (isIOS) {
-                    const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
-                    if (result === RESULTS.GRANTED) {
-                        resolve(true);
-                    }
-                } else {
-                    const result = await check(
-                        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-                    );
-                    if (result === RESULTS.GRANTED) {
-                        resolve(true);
-                    }
-                }
-            }, 0);
-        });
+        if (isIOS) {
+            const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
+            if (result === RESULTS.GRANTED) {
+                locationPermission = true;
+            }
+        } else {
+            const result = await check(
+                PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+            );
+            if (result === RESULTS.GRANTED) {
+                locationPermission = true;
+            }
+        }
     } catch (e) {
         console.log('[checkDeviceHasLocationAlwaysPermission - error]', e);
 
@@ -611,6 +615,26 @@ export const checkDeviceHasLocationAlwaysPermission = async () => {
     }
 
     return locationPermission;
+};
+
+export const askMotionPermission = async () => {
+    let permission = 'unavailable';
+    try {
+        const res = await request(
+            //@ts-ignore
+            Platform.select({
+                android: PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION,
+                ios: PERMISSIONS.IOS.MOTION,
+            }),
+        );
+        permission = res;
+    } catch (e) {
+        console.log('[askMotionPermission - error]', e);
+
+        loggErrorWithScope(e, 'askMotionPermission');
+    } finally {
+        return permission;
+    }
 };
 
 export const openGPSModule = async () => {

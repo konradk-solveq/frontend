@@ -335,7 +335,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (!isActive && !recordingFinishedRef.current) {
             setBeforeRecording(false);
             setRenderPath(true);
-            startTracker(mapID);
+            startTracker(mapID, false, true);
         }
     }, [isActive, mapID, startTracker]);
 

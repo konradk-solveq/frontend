@@ -17,6 +17,7 @@ import {
     stopCurrentRoute,
 } from '../storage/actions/routes';
 import {
+    askMotionPermission,
     getCurrentLocation,
     onWatchPostionChangeListener,
     pauseTracingLocation,
@@ -37,7 +38,7 @@ import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {isLocationValidToPass} from '@src/utils/transformData';
 import {dispatchRouteDebugAction} from '@src/utils/debugging/routeData';
-import {setGlobalLocation} from '@storage/actions/app';
+import {setGlobalLocation, setLocationInfoShowed} from '@storage/actions/app';
 
 export interface DataI {
     distance: string;
@@ -124,7 +125,11 @@ const useLocalizationTracker = (
     };
 
     const startTracker = useCallback(
-        async (routeIdToFollow?: string, skipProcessing?: boolean) => {
+        async (
+            routeIdToFollow?: string,
+            skipProcessing?: boolean,
+            checkPermissions?: boolean,
+        ) => {
             if (!skipProcessing) {
                 setProcessing(true);
             }
@@ -140,6 +145,13 @@ const useLocalizationTracker = (
             isTrackingActivatedHandler(true);
 
             /**
+             * Check if user gave permission to use motion sensor
+             */
+            if (checkPermissions) {
+                await askMotionPermission();
+            }
+
+            /**
              * Dispatch actions, start GPS plugin
              */
             const startAction = await dispatch(
@@ -149,6 +161,12 @@ const useLocalizationTracker = (
             if (startAction?.finished && !startAction?.success) {
                 await stopTracker(true);
             }
+
+            /**
+             * After first user's choice we want to respect it.
+             * It doesn't matter that kind of permission user gave us.
+             */
+            dispatch(setLocationInfoShowed());
 
             setProcessing(false);
         },
