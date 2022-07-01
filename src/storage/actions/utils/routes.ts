@@ -1,4 +1,5 @@
 import {
+    changePaceBackgroundGeolocation,
     startBackgroundGeolocation,
     stopBackgroundGeolocation,
     stopWatchPostionChangeListener,
@@ -25,6 +26,8 @@ export const startRecording = async (
             debugModeActive,
         );
     }
+
+    await changePaceBackgroundGeolocation(true);
 
     return state?.enabled ? true : false;
 };
