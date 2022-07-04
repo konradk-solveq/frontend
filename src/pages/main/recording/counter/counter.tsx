@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef, useCallback, useMemo} from 'react';
 import {StyleSheet, View, GestureResponderEvent} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useFocusEffect} from '@react-navigation/core';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -33,8 +34,6 @@ import {Alert as CustomAlert} from '@components/alerts';
 import {CounterContainer} from '@containers/Recording';
 import GenericScreen from '@pages/template/GenericScreen';
 import Map from './map';
-import CompassButton from '@sharedComponents/buttons/compassBtn';
-import {FindMeButton} from '@sharedComponents/buttons';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import {BOTTOM_MODAL_HEIGHT} from '@containers/Recording/CounterContainer';
 import NotificationList, {
@@ -44,7 +43,8 @@ import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {Notification} from '@components/notifications';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
-import {useFocusEffect} from '@react-navigation/core';
+import {CompassButton, LocationButton} from './components';
+import {LocationButtonT} from './components/LocationButton';
 
 const recordingNotification = {
     key: 'pause-notifications',
@@ -85,6 +85,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const isPlanned = route?.params?.isPlanned;
 
     const [autoFindMe, setAutoFindMe] = useState<number>(1);
+
     const [headingOn, setHeadingOn] = useState<boolean>(true);
     const [pauseTime, setPauseTime] = useState({
         start: 0,
@@ -387,6 +388,59 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         [pauseTracker, resumeTracker],
     );
 
+    const [mapRotated, setMapRotated] = useState(false);
+
+    const [mapToNorth, setMapToNorth] = useState(false);
+
+    const onPressLocationButtonHandler = (actionType: LocationButtonT) => {
+        switch (actionType) {
+            case 'default':
+                /**
+                 * Disable heading, leave following user position
+                 * if enabled
+                 */
+                setHeadingOn(false);
+                break;
+            case 'follow':
+                /**
+                 * If needed enable following user position
+                 * and enable heading
+                 */
+                setHeadingOn(true);
+                setAutoFindMe(prev => ++prev);
+                break;
+            case 'center':
+                /**
+                 * Center on user position
+                 */
+                setAutoFindMe(prev => ++prev);
+                break;
+            case 'north':
+                setMapToNorth(true);
+                setMapRotated(false);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const onMapRotatedHandler = useCallback(
+        (angle: number) => {
+            if (Math.abs(angle - compassHeading) > 10) {
+                setMapRotated(true);
+            }
+        },
+        [compassHeading],
+    );
+
+    const mapHeadingResetHandler = useCallback(() => {
+        setMapToNorth(false);
+    }, []);
+
+    const onCompassButtonPressHandler = useCallback(() => {
+        onPressLocationButtonHandler('north');
+    }, []);
+
     return (
         <GenericScreen
             hideBackArrow
@@ -405,6 +459,9 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     restoredPath={restoredPath}
                     autoFindMeSwith={(e: number) => setAutoFindMe(e)}
                     beforeRecording={beforeRecording}
+                    onMapRotation={onMapRotatedHandler}
+                    resetMapToNorth={mapToNorth}
+                    onMapHeadingReset={mapHeadingResetHandler}
                 />
 
                 <View
@@ -416,14 +473,16 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                                 BOTTOM_MODAL_HEIGHT + 16,
                             ) /* Bottom modal Height + padding 16px */,
                         }}>
-                        <CompassButton
-                            onpress={() => setHeadingOn(prev => !prev)}
-                            toggle={!headingOn}
-                            compassHeading={compassHeading}
-                        />
-                        <FindMeButton
-                            onpress={() => setAutoFindMe(prev => ++prev)}
-                            toggle={!autoFindMe}
+                        {mapRotated && (
+                            <CompassButton
+                                onPress={onCompassButtonPressHandler}
+                                compassHeading={compassHeading}
+                                style={styles.compassButton}
+                            />
+                        )}
+                        <LocationButton
+                            onPress={onPressLocationButtonHandler}
+                            inactive={!autoFindMe}
                         />
                     </View>
                 </View>
@@ -495,6 +554,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: appContainerHorizontalMargin,
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
+    },
+    compassButton: {
+        marginBottom: getFVerticalPx(16),
     },
 });
 

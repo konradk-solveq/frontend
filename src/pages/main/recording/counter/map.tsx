@@ -68,7 +68,10 @@ interface IProps {
     restoredPath?: ShortCoordsType[];
     autoFindMeSwith: (e: number) => void;
     beforeRecording: boolean;
+    onMapRotation: (angle: number) => void;
     isPlanned?: boolean;
+    onMapHeadingReset: () => void;
+    resetMapToNorth?: boolean;
 }
 
 const initCompasHeading = {
@@ -94,6 +97,9 @@ const Map: React.FC<IProps> = ({
     autoFindMeSwith,
     beforeRecording,
     isPlanned = false,
+    onMapRotation,
+    onMapHeadingReset,
+    resetMapToNorth = false,
 }: IProps) => {
     const mapRef = useRef<MapView>(null);
     const mapWasFetchedRef = useRef(false);
@@ -229,11 +235,11 @@ const Map: React.FC<IProps> = ({
      * Deactivates cooldown system imidietly when findMeLocation btn has been triggered
      */
     useEffect(() => {
-        if (autoFindMe) {
+        if (autoFindMe || resetMapToNorth) {
             isAnimatingCameraRef.current = false;
             setCameraAnimCooldown(false);
         }
-    }, [autoFindMe]);
+    }, [autoFindMe, resetMapToNorth]);
 
     const animateCam = useCallback(
         (animation: Partial<Camera>, duration: number, cooldown: boolean) => {
@@ -266,47 +272,55 @@ const Map: React.FC<IProps> = ({
         [headingOn, animateCam],
     );
 
-    const setMapCamera = useCallback(() => {
-        if (cameraAnimCooldown) {
-            return;
-        }
-
-        let animation: Partial<Camera> = {
-            heading: headingOn ? compassHeading : 0,
-        };
-        let cooldown = false;
-        if (autoFindMe > 0 && mapRef.current) {
-            const updatedLocation = getCenterCameraCoords(
-                trackerData?.coords,
-                location,
-                peviousKnownLocation.current,
-            );
-            if (updatedLocation) {
-                animation.center = updatedLocation;
-
-                peviousKnownLocation.current = updatedLocation;
+    const setMapCamera = useCallback(
+        (headingToNorth?: boolean) => {
+            if (cameraAnimCooldown) {
+                return;
             }
 
-            animation.zoom = ZOOM_START_VALUE;
-            cooldown = true;
-        }
-        autoFindMeLastStateRef.current = autoFindMe;
+            let animation: Partial<Camera> = {
+                heading: headingOn && !headingToNorth ? compassHeading : 0,
+            };
+            if (headingToNorth) {
+                onMapHeadingReset();
+            }
 
-        if (isIOS) {
-            animateCameraOnIOS(animation, cooldown);
-        } else {
-            animateCam(animation, 1000, cooldown);
-        }
-    }, [
-        cameraAnimCooldown,
-        headingOn,
-        compassHeading,
-        autoFindMe,
-        trackerData,
-        location,
-        animateCam,
-        animateCameraOnIOS,
-    ]);
+            let cooldown = false;
+            if (autoFindMe > 0 && mapRef.current) {
+                const updatedLocation = getCenterCameraCoords(
+                    trackerData?.coords,
+                    location,
+                    peviousKnownLocation.current,
+                );
+                if (updatedLocation) {
+                    animation.center = updatedLocation;
+
+                    peviousKnownLocation.current = updatedLocation;
+                }
+
+                animation.zoom = ZOOM_START_VALUE;
+                cooldown = true;
+            }
+            autoFindMeLastStateRef.current = autoFindMe;
+
+            if (isIOS) {
+                animateCameraOnIOS(animation, cooldown);
+            } else {
+                animateCam(animation, 1000, cooldown);
+            }
+        },
+        [
+            cameraAnimCooldown,
+            headingOn,
+            compassHeading,
+            autoFindMe,
+            trackerData,
+            location,
+            animateCam,
+            animateCameraOnIOS,
+            onMapHeadingReset,
+        ],
+    );
 
     /**
      * Disable animation when path is not rendered
@@ -314,9 +328,9 @@ const Map: React.FC<IProps> = ({
      */
     useEffect(() => {
         if (mountedRef.current && canAnimateRef.current) {
-            setMapCamera();
+            setMapCamera(resetMapToNorth);
         }
-    }, [setMapCamera]);
+    }, [setMapCamera, resetMapToNorth]);
 
     const cameraInitObj = {
         ...initCompasHeading,
@@ -339,10 +353,18 @@ const Map: React.FC<IProps> = ({
         canAnimateRef.current = true;
     };
 
-    const handleCameraChange = useCallback(() => {
-        setCameraAnimCooldown(true);
-        autoFindMeSwith(0);
-    }, [autoFindMeSwith]);
+    const handleCameraChange = useCallback(
+        _ => {
+            setCameraAnimCooldown(true);
+            autoFindMeSwith(0);
+            mapRef?.current?.getCamera().then(camera => {
+                if (camera.heading !== 0) {
+                    onMapRotation(camera.heading);
+                }
+            });
+        },
+        [autoFindMeSwith, onMapRotation],
+    );
 
     /* TODO: error boundary */
     return showMap ? (
