@@ -15,7 +15,6 @@ import ArrowBtn from './arrowBtn';
 import ImageBtn from './imageBtn';
 import ListBtn from './listButton';
 import ServiceMapBtn from './serviceMap';
-import FindMeButton from './findMeBtn';
 import TypicalRedBtn from './typicalRed';
 import TextBtn from './textBtn';
 import RouteDebugBtn from './routeDebugBtn';
@@ -38,7 +37,6 @@ export {
     ImageBtn,
     ListBtn,
     ServiceMapBtn,
-    FindMeButton,
     TypicalRedBtn,
     TextBtn,
     RouteDebugBtn,
