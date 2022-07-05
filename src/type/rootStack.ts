@@ -300,7 +300,7 @@ export type GeneralParamsListT = {
         redirectToScreen?: keyof GeneralParamsListT | keyof AuthParamsListT;
     };
     TabMenu: undefined;
-    NewRegulations: undefined;
+    Notifications: undefined;
     NewAppVersion: undefined;
 };
 export type SplashScreenRouteT = RouteProp<GeneralParamsListT, 'SplashScreen'>;
@@ -308,13 +308,13 @@ export type SplashScreenNavigationPropT = MainNavigationCompositePropT<
     GeneralParamsListT,
     'SplashScreen'
 >;
-export type NewRegulationsScreenRouteT = RouteProp<
+export type NotificationsScreenRouteT = RouteProp<
     GeneralParamsListT,
-    'NewRegulations'
+    'Notifications'
 >;
-export type NewRegulationsScreenNavigationPropT = MainNavigationCompositePropT<
+export type NotificationsScreenNavigationPropT = MainNavigationCompositePropT<
     GeneralParamsListT,
-    'NewRegulations'
+    'Notifications'
 >;
 export type NewAppVersionScreenRouteT = RouteProp<
     GeneralParamsListT,

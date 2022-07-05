@@ -22,6 +22,8 @@ const config = {
         RoutesMap: {
             path: 'cyclingMap/:shareID',
         },
+        Regulations: {path: 'regulations'},
+        PrivacyPolicy: {path: 'policy'},
     },
 };
 

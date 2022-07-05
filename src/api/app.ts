@@ -13,15 +13,17 @@ export const getConfig = async () => {
     return await axiosGet('/application/config');
 };
 
-export const getTermsAndConditions = async () =>
-    await axiosGet('/application/terms-and-conditions');
-
-export const getRegulation = async (versionNr: string) =>
-    await axiosGet(`/application/regulation/${versionNr}`);
-
-export const getPolicy = async (versionNr: string) =>
-    await axiosGet(`/application/policy/${versionNr}`);
-
 export const getFaq = async () => await axiosGet('/application/faq');
+
+export const getLegalDocuments = async () =>
+    await axiosGet('/publications/localized');
+
+export const getAppNotification = async (lastNotificationDate?: Date) => {
+    return await axiosGet(
+        `/notifications/localized?lastLoginDate=${
+            lastNotificationDate || new Date()
+        }`,
+    );
+};
 
 export const getNewAppVersion = async () => await axiosGet('/app-version');
