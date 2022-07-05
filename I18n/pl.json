@@ -195,24 +195,8 @@
             "hyper": "Aplikacja myKROSS - iOS"
         }
     ],
-    "newRegulations": {
-        "version": "1.0.0",
-        "header": ["Informacja", "Regulamin"],
-        "btnOk": "DALEJ",
-        "btnAccept": "DALEJ",
-        "urls": [{
-                "url": "http://regulations.eu",
-                "hyper": "Regulaminu"
-            },
-            {
-                "url": "http://privacyPolicy.eu",
-                "hyper": "Polityki Prywatności"
-            },
-            {
-                "url": "http://informUs.eu",
-                "hyper": "poinformuj nas"
-            }
-        ]
+    "notifications": {
+        "button": "Dalej"
     },
     "newAppVersion": {
         "title": "Zaktualizuj aplikację myKross",

@@ -3,6 +3,7 @@ import '@components/alerts/__stories__';
 import '@components/backdrop/__stories__';
 import '@components/buttons/__stories__';
 import '@components/divider/__stories__';
+import '@components/documents/__stories__';
 import '@components/dropdown/__stories__';
 import '@components/error/__stories__';
 import '@components/headers/__stories__';

@@ -20,15 +20,15 @@ import {BasicCoordsType} from '@type/coords';
 import {
     AppVersionType,
     FaqType,
-    RegulationType,
-    TermsAndConditionsType,
+    LegalDocumentType,
+    NotificationType,
 } from '@models/regulations.model';
 import {setUserAgentHeader} from '@api/';
 import {
     getAppConfigService,
-    getAppTermsAndConditionsService,
     getFaqService,
-    getNewRegulationsService,
+    getLegalDocumentsService,
+    getAppNotificationService,
 } from '@services/';
 import i18next from '@translations/i18next';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
@@ -64,19 +64,14 @@ export const setAppConfig = (config: AppConfigI) => {
     };
 };
 
-export const setAppTerms = (terms: TermsAndConditionsType[]) => ({
-    type: actionTypes.SET_APP_TERMS,
-    terms: terms,
-});
-
-export const setAppShowedRegulationsNumber = (showedRegulations: number) => ({
-    type: actionTypes.SET_APP_SHOWED_TERMS_VERSION,
-    showedRegulations: showedRegulations,
-});
-
 export const setNewAppVersion = (showedNewAppVersion: string) => ({
     type: actionTypes.SET_APP_SHOWED_NEW_APP_VERSION,
     showedNewAppVersion: showedNewAppVersion,
+});
+
+export const setAppRegulation = (regulation: LegalDocumentType) => ({
+    type: actionTypes.SET_APP_REGULATION,
+    regulation: regulation,
 });
 
 export const setAppVersion = (appVersion: AppVersionType) => ({
@@ -84,27 +79,19 @@ export const setAppVersion = (appVersion: AppVersionType) => ({
     appVersion: appVersion,
 });
 
-export const setAppCurrentTerms = (currentTerms: TermsAndConditionsType) => ({
-    type: actionTypes.SET_APP_CURRENT_TERMS,
-    currentTerms: currentTerms,
-});
-
-export const setAppRegulation = (regulation: {
-    regulation1: RegulationType | null;
-    regulation2: RegulationType | null;
-}) => {
-    return {
-        type: actionTypes.SET_APP_REGULATION,
-        regulation: regulation,
-    };
-};
-
-export const setAppPolicy = (policy: {
-    policy1: RegulationType | null;
-    policy2: RegulationType | null;
-}) => ({
+export const setAppPolicy = (policy: LegalDocumentType) => ({
     type: actionTypes.SET_APP_POLICY,
     policy: policy,
+});
+
+export const setAppNotifications = (notifications: NotificationType[]) => ({
+    type: actionTypes.SET_APP_NOTIFICATIONS,
+    notifications: notifications,
+});
+
+export const setAppNotificationDate = (notificationDate: Date) => ({
+    type: actionTypes.SET_APP_NOTIFICATION_DATE,
+    notificationDate: notificationDate,
 });
 
 export const setAppFaq = (faq: FaqType[]) => ({
@@ -269,6 +256,7 @@ export const appSyncData = (
             isOffline,
             internetConnectionInfo,
             location,
+            notificationDate,
         }: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
@@ -287,11 +275,10 @@ export const appSyncData = (
             dispatch(setSyncStatus(false));
             return;
         }
-
         const {currentRoute}: RoutesState = getState().routes;
-
         batch(async () => {
-            dispatch(fetchAppRegulations(true));
+            dispatch(fetchAppNotification(notificationDate, true));
+            dispatch(fetchAppLegalDocuments(true));
             dispatch(fetchAppConfig(true));
 
             /* Omit synch map data if recording is active */
@@ -346,19 +333,14 @@ export const appSyncData = (
     }
 };
 
-export const fetchAppRegulations = (
+export const fetchAppLegalDocuments = (
     noLoader?: boolean,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     if (!noLoader) {
         dispatch(setSyncStatus(true));
     }
     try {
-        const {
-            terms,
-            currentTerms,
-            isOffline,
-            internetConnectionInfo,
-        } = getState().app;
+        const {isOffline, internetConnectionInfo} = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
@@ -368,59 +350,69 @@ export const fetchAppRegulations = (
             return;
         }
 
-        const response = await getAppTermsAndConditionsService();
+        const response = await getLegalDocumentsService();
 
         if (response.error || response.status >= 400 || !response.data) {
             dispatch(setSyncError(response.error, response.status));
             return;
         }
-        dispatch(setAppTerms(response.data));
 
-        const newTerms = response.data;
-        let currVersion =
-            currentTerms.version || terms?.[terms?.length - 2]?.version;
-
-        /* TODO: temp solution  */
-        if (!currVersion) {
-            currVersion = newTerms?.[newTerms?.length - 2]?.version;
-        }
-
-        const newestVersion =
-            newTerms?.[newTerms?.length - 1]?.version ||
-            terms?.[terms?.length - 1]?.version;
-
-        if (currVersion && newestVersion) {
-            const newRegulations = await getNewRegulationsService(
-                currVersion,
-                newestVersion,
-            );
-            if (
-                newRegulations.error?.trim() ||
-                newRegulations.status >= 400 ||
-                !newRegulations.data?.regulation?.regulation1 ||
-                !newRegulations.data?.policy?.policy1
-            ) {
-                dispatch(
-                    setSyncError(newRegulations.error, newRegulations.status),
-                );
-                return;
-            }
-
-            batch(() => {
-                dispatch(setAppRegulation(newRegulations.data.regulation));
-                dispatch(setAppPolicy(newRegulations.data.policy));
-            });
-        }
+        batch(() => {
+            dispatch(setAppRegulation(response.data.regulations));
+            dispatch(setAppPolicy(response.data.policy));
+        });
 
         dispatch(clearAppError());
         if (!noLoader) {
             dispatch(setSyncStatus(false));
         }
     } catch (error) {
-        console.log(`[fetchAppRegulations] - ${error}`);
+        console.log(`[fetchAppLegalDocuments] - ${error}`);
         const err = convertToApiError(error);
 
-        loggErrorWithScope(err, 'fetchAppRegulations');
+        loggErrorWithScope(err, 'fetchAppLegalDocuments');
+
+        const errorMessage = i18next.t('dataAction.apiError');
+        dispatch(setSyncError(errorMessage, 500));
+    }
+};
+
+export const fetchAppNotification = (
+    notificationDate?: Date,
+    noLoader?: boolean,
+): AppThunk<Promise<void>> => async (dispatch, getState) => {
+    if (!noLoader) {
+        dispatch(setSyncStatus(true));
+    }
+    try {
+        const {isOffline, internetConnectionInfo} = getState().app;
+
+        if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
+            dispatch(
+                setSyncError(i18next.t('dataAction.noInternetConnection'), 500),
+            );
+            dispatch(setSyncStatus(false));
+            return;
+        }
+
+        const response = await getAppNotificationService(notificationDate);
+
+        batch(() => {
+            dispatch(setAppNotifications(response.data));
+            if (!notificationDate) {
+                dispatch(setAppNotificationDate(new Date()));
+            }
+        });
+
+        dispatch(clearAppError());
+        if (!noLoader) {
+            dispatch(setSyncStatus(false));
+        }
+    } catch (error) {
+        console.log(`[fetchAppNotification] - ${error}`);
+        const err = convertToApiError(error);
+
+        loggErrorWithScope(err, 'fetchAppNotification');
 
         const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setSyncError(errorMessage, 500));

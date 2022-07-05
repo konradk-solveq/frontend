@@ -13,13 +13,13 @@ import {
 
 import TabMenu from '@pages/main/tabMenu';
 import SplashScreen from '@pages/main/splashScreen/splashScreen';
-import newRegulations from '@pages/main/newRegulations/newRegulations';
+import Notifications from '@pages/main/notifications/notifications';
 import useAuthorization from '@src/hooks/useAuthorization';
 
 const RegularScreens = () => (
     <>
         <Stack.Screen name="TabMenu" component={TabMenu} />
-        <Stack.Screen name="NewRegulations" component={newRegulations} />
+        <Stack.Screen name="Notifications" component={Notifications} />
         {BikePrivateScreens()}
         {KrossWorldCommonScreens()}
         {RecordRouteCommonScreens()}

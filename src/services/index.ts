@@ -30,11 +30,9 @@ export {
 } from './authService';
 export {
     getAppConfigService,
-    getAppTermsAndConditionsService,
-    getNewRegulationsService,
-    getPolicyService,
-    getRegulationService,
     getFaqService,
+    getLegalDocumentsService,
+    getAppNotificationService,
 } from './appService';
 export {
     getUiTranslationService,
