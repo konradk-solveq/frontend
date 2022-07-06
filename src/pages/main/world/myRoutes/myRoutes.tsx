@@ -20,7 +20,6 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
-import {getImagesThumbs} from '@utils/transformData';
 
 import {Loader as NativeLoader} from '@components/loader';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
@@ -58,6 +57,7 @@ import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocation
 import {globalLocationSelector} from '@storage/selectors/app';
 import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
+import {mapKeyExtractor} from '@utils/transformData';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -114,7 +114,6 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const [activeMapID, setActiveMapID] = useState<string>('');
     const [showFiltersModal, setShowFiltersModal] = useState(false);
     const [savedMapFilters, setSavedMapFilters] = useState<PickedFilters>({});
-    const sortedByDate = !!savedMapFilters.order || true;
     const {onLoadMoreHandler} = useInfiniteScrollLoadMore(privateMaps?.length);
 
     /**
@@ -195,25 +194,12 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         [navigation, privateMaps],
     );
 
-    const shouldShowDate = useCallback(
-        (date: string, index: number) => {
-            const m = privateMaps?.[index];
-            return date !== m?.createdAtDateString;
-        },
-        [privateMaps],
-    );
-
     const renderItem = useCallback(
-        ({item, index}: RenderItem) => {
-            const lastItemStyle =
-                index === privateMaps?.length - 1 ? styles.lastTile : undefined;
-            const images = getImagesThumbs(item?.pictures);
-
+        ({item}: RenderItem) => {
             return (
-                <View key={item.id} style={lastItemStyle}>
+                <View key={item.id}>
                     <ListTile
                         mapData={item}
-                        images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
                         mode={'my'}
@@ -223,14 +209,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                 </View>
             );
         },
-        [
-            privateMaps?.length,
-            shouldShowDate,
-            sortedByDate,
-            onPressTileHandler,
-            location,
-            permissionGranted,
-        ],
+        [onPressTileHandler, location, permissionGranted],
     );
 
     const onEndReachedHandler = useCallback(() => {
@@ -354,8 +333,42 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         return null;
     }, [privateMaps.length, isLoading, listError, showListLoader]);
 
-    const basicTitle = `${userName || t('defaultUserName')} ${t('title')}`;
-    const secondTitle = `${t('routesNumberTitle')} ${totalNumberOfPrivateMaps}`;
+    const basicTitle = useMemo(
+        () => `${userName || t('defaultUserName')} ${t('title')}`,
+        [t, userName],
+    );
+    const secondTitle = useMemo(
+        () => `${t('routesNumberTitle')} ${totalNumberOfPrivateMaps}`,
+        [t, totalNumberOfPrivateMaps],
+    );
+
+    const mapHeaderComponent = useMemo(
+        () => (
+            <View style={styles.listHeaderContainer}>
+                <UnifiedLocationNotification style={styles.notification} />
+                <Header2 style={styles.header}>
+                    {totalNumberOfPrivateMaps && totalNumberOfPrivateMaps > 0
+                        ? secondTitle
+                        : basicTitle}
+                </Header2>
+            </View>
+        ),
+        [basicTitle, secondTitle, totalNumberOfPrivateMaps],
+    );
+
+    const closeDropdownHandler = useCallback(() => toggleDropdown(false), [
+        toggleDropdown,
+    ]);
+
+    const closeBottomSheetHandler = useCallback(
+        () => setBottomSheetWithMoreActions(false),
+        [],
+    );
+
+    const onRouteMapButtonPress = useCallback(
+        () => navigation.navigate('RoutesMap'),
+        [navigation],
+    );
 
     return (
         <View style={styles.background}>
@@ -393,22 +406,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             ) : (
                 <View>
                     <FlatList
-                        keyExtractor={item => item.id}
+                        keyExtractor={mapKeyExtractor}
                         onScroll={onScroll}
                         onMomentumScrollEnd={onErrorScrollHandler}
-                        ListHeaderComponent={
-                            <View style={styles.listHeaderContainer}>
-                                <UnifiedLocationNotification
-                                    style={styles.notification}
-                                />
-                                <Header2 style={styles.header}>
-                                    {totalNumberOfPrivateMaps &&
-                                    totalNumberOfPrivateMaps > 0
-                                        ? secondTitle
-                                        : basicTitle}
-                                </Header2>
-                            </View>
-                        }
+                        ListHeaderComponent={mapHeaderComponent}
                         data={!showListLoader ? privateMaps : []}
                         renderItem={renderItem}
                         showsVerticalScrollIndicator={false}
@@ -420,19 +421,22 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         ListFooterComponent={renderListFooter}
                         refreshing={isLoading && isRefreshing}
                         onRefresh={onRefresh}
+                        maxToRenderPerBatch={5}
+                        windowSize={11}
+                        contentContainerStyle={styles.listContent}
                     />
                 </View>
             )}
 
             <Backdrop
                 isVisible={showBackdrop}
-                onPress={() => toggleDropdown(false)}
+                onPress={closeDropdownHandler}
                 style={styles.fullscreenBackdrop}
             />
 
             {!!privateMaps?.length && (
                 <RoutesMapButton
-                    onPress={() => navigation.navigate('RoutesMap')}
+                    onPress={onRouteMapButtonPress}
                     style={{...styles.mapBtn, ...bottomPosition}}
                 />
             )}
@@ -440,7 +444,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             <MoreActionsModal
                 show={bottomSheetWithMoreActions}
                 onPressAction={onPressMoreHandler}
-                onClose={() => setBottomSheetWithMoreActions(false)}
+                onClose={closeBottomSheetHandler}
             />
         </View>
     );

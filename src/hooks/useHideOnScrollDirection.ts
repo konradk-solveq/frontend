@@ -1,26 +1,28 @@
-import {useCallback} from 'react';
-import {useMergedState} from '@hooks/useMergedState';
+import {useCallback, useRef, useState} from 'react';
 import {NativeSyntheticEvent, NativeScrollEvent} from 'react-native';
 
 export const useHideOnScrollDirection = (initialState = false) => {
-    const [{offset, shouldHide}, setState] = useMergedState({
-        offset: 0,
-        shouldHide: initialState,
-    });
+    const offsetRef = useRef(0);
+
+    const [shouldHide, setState] = useState(initialState);
+
     const onScroll = useCallback(
         (event: NativeSyntheticEvent<NativeScrollEvent>) => {
             const currentOffset = event.nativeEvent.contentOffset.y;
-            if (currentOffset === offset) {
+            if (currentOffset === offsetRef.current) {
                 return;
             }
             if (currentOffset > 0) {
-                const newShouldHide = currentOffset > offset;
-                setState({offset: currentOffset, shouldHide: newShouldHide});
+                const newShouldHide = currentOffset > offsetRef.current;
+                setState(newShouldHide);
             } else {
-                setState({offset: currentOffset, shouldHide: false});
+                setState(false);
             }
+
+            offsetRef.current = currentOffset;
         },
-        [offset, setState],
+        [setState],
     );
+
     return {shouldHide, onScroll};
 };

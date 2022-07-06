@@ -17,7 +17,7 @@ import {
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {getImagesThumbs} from '@utils/transformData';
+import {mapKeyExtractor} from '@utils/transformData';
 import useInfiniteScrollLoadMore from '@hooks/useInfiniteScrollLoadMore';
 
 import {Loader as NativeLoader} from '@components/loader';
@@ -200,17 +200,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     }, [isLoading, isRefreshing, nextCoursor, onLoadMoreHandler, onLoadMore]);
 
     const renderItem = useCallback(
-        ({item, index}: RenderItem) => {
-            const lastItemStyle =
-                index === favouriteMaps?.length - 1
-                    ? styles.lastTile
-                    : undefined;
-            const images = getImagesThumbs(item?.pictures);
+        ({item}: RenderItem) => {
             return (
-                <View key={item.id} style={lastItemStyle}>
+                <View key={item.id}>
                     <ListTile
                         mapData={item}
-                        images={images}
                         onPress={onPressHandler}
                         onPressTile={onPressTileHandler}
                         mode={'saved'}
@@ -220,12 +214,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 </View>
             );
         },
-        [
-            favouriteMaps?.length,
-            location,
-            onPressTileHandler,
-            permissionGranted,
-        ],
+        [location, onPressTileHandler, permissionGranted],
     );
 
     const [showBackdrop, setShowBackdrop] = useState(false);
@@ -315,7 +304,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     break;
             }
         },
-        [dispatch, navigation, activeMapID],
+        [activeMapID, navigation, dispatch, addToast, toastsT],
     );
 
     const renderListFooter = useCallback(() => {
@@ -346,6 +335,33 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
 
         return null;
     }, [favouriteMaps.length, isLoading, listError, showListLoader]);
+
+    const mapHeaderComponent = useMemo(
+        () => (
+            <View style={styles.listHeaderContainer}>
+                <UnifiedLocationNotification style={styles.notification} />
+                <Header2 style={styles.header}>
+                    {userName || t('defaultUserName')}
+                    {t('title')}
+                </Header2>
+            </View>
+        ),
+        [t, userName],
+    );
+
+    const onShowMoreHandler = useCallback(
+        () => setBottomSheetWithMoreActions(false),
+        [],
+    );
+
+    const closeDropdownHandler = useCallback(() => toggleDropdown(false), [
+        toggleDropdown,
+    ]);
+
+    const onRouteMapButtonPress = useCallback(
+        () => navigation.navigate('RoutesMap'),
+        [navigation],
+    );
 
     return (
         <View style={styles.background}>
@@ -380,20 +396,10 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                 />
             ) : (
                 <FlatList
-                    keyExtractor={item => item.id}
+                    keyExtractor={mapKeyExtractor}
                     onScroll={onScroll}
                     onMomentumScrollEnd={onErrorScrollHandler}
-                    ListHeaderComponent={
-                        <View style={styles.listHeaderContainer}>
-                            <UnifiedLocationNotification
-                                style={styles.notification}
-                            />
-                            <Header2 style={styles.header}>
-                                {userName || t('defaultUserName')}
-                                {t('title')}
-                            </Header2>
-                        </View>
-                    }
+                    ListHeaderComponent={mapHeaderComponent}
                     data={!showListLoader ? favouriteMaps : []}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
@@ -405,18 +411,21 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                     ListFooterComponent={renderListFooter}
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefresh}
+                    maxToRenderPerBatch={5}
+                    windowSize={11}
+                    contentContainerStyle={styles.listContent}
                 />
             )}
 
             <Backdrop
                 isVisible={showBackdrop}
-                onPress={() => toggleDropdown(false)}
+                onPress={closeDropdownHandler}
                 style={styles.fullscreenBackdrop}
             />
 
             {!!favouriteMaps?.length && (
                 <RoutesMapButton
-                    onPress={() => navigation.navigate('RoutesMap')}
+                    onPress={onRouteMapButtonPress}
                     style={{...styles.mapBtn, ...bottomPosition}}
                 />
             )}
@@ -424,7 +433,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
             <MoreActionsModal
                 show={bottomSheetWithMoreActions}
                 onPressAction={onPressMoreHandler}
-                onClose={() => setBottomSheetWithMoreActions(false)}
+                onClose={onShowMoreHandler}
                 mapType="favourite"
             />
         </View>
