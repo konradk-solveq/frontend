@@ -402,15 +402,7 @@ const Map: React.FC<IProps> = ({
                         setLocation={onSetLocationHanlder}
                         isRestored={restoreRef.current}
                         setIsRestored={onSetIsRestoredHandler}
-                        show={
-                            !!(
-                                (
-                                    mapRef?.current &&
-                                    mountedRef.current &&
-                                    renderPath
-                                ) //check if renderPath should stay
-                            )
-                        }
+                        show={!!(mapRef?.current && mountedRef.current)}
                         location={location}
                         headingOn={headingOn}
                         compassHeading={compassHeading || 0}

@@ -453,6 +453,9 @@ export const getLastLocationByRoutId = async (
 /* Force plugin to stationary state - doesnt disable tracking permamently */
 export const pauseTracingLocation = async (clearRouteId?: boolean) => {
     try {
+        /**
+         * Clearing routeID avoids collecting data when it is not intended
+         */
         if (clearRouteId) {
             await BackgroundGeolocation.setConfig({extras: {}});
             await setConfig({
@@ -494,7 +497,6 @@ export const resumeTracingLocation = async (routeId?: string) => {
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[resumeTracingLocation - error]', errorMessage);
-        const error = new Error(errorMessage);
 
         loggErrorWithScope(errorMessage, 'resumeTracingLocation');
     }
@@ -849,7 +851,6 @@ export const onWatchPostionChangeListener = async (
         });
     } catch (e) {
         console.log('[onWatchPostionChangeListener - error]', e);
-        const error = new Error(e);
 
         loggErrorWithScope(e, 'onWatchPostionChangeListener');
     }

@@ -135,7 +135,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      */
     const [showToShortRouteAlert, setShowToShortRouteAlert] = useState(false);
 
-    const locData = useLocalizationTracker(true, true);
+    const locData = useLocalizationTracker(true);
     const {
         startTracker,
         stopTracker,
