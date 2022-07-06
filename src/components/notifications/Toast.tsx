@@ -12,7 +12,6 @@ const Toast: React.FC<ToastItem> = ({
     titleStyle,
     subtitleStyle,
     testID,
-    key,
     onDismissAction = () => {},
     ...restProps
 }: ToastItem) => {
@@ -21,7 +20,7 @@ const Toast: React.FC<ToastItem> = ({
         <AnimatedPressable
             entering={FadeInDown}
             exiting={FadeOut}
-            key={`${testID}-container-${key}`}
+            key={`${testID}-container`}
             needsOffscreenAlphaCompositing={true}
             onPress={onDismissAction}
             style={styles.animatedPressableContainer}>
