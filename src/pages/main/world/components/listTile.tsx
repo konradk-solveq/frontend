@@ -16,7 +16,7 @@ import ListTileView from '@components/tiles/listTileView';
 import {getMapType} from '../utils/routes';
 import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 import Bookmark from '@src/components/icons/Bookmark';
-import {deductReactions} from '@utils/mapsData';
+import {StyleProp, ViewStyle} from 'react-native';
 
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
@@ -27,6 +27,7 @@ interface PropsI {
     sectionID?: string;
     testID?: string;
     hideDistanceToStart?: boolean;
+    style?: StyleProp<ViewStyle>;
 }
 
 const ListTile: React.FC<PropsI> = ({
@@ -60,16 +61,16 @@ const ListTile: React.FC<PropsI> = ({
         setNumberOfLikes(likesNumber);
     }, [likesNumber]);
 
-    const onTilePressedHandler = () => {
+    const onTilePressedHandler = useCallback(() => {
         if (!tilePressable || !onPressTile) {
             return;
         }
         onPressTile(mapData.id);
-    };
+    }, [mapData.id, onPressTile, tilePressable]);
 
-    const handleDetailsPressOn = () => {
+    const handleDetailsPressOn = useCallback(() => {
         onPress(true, mapData.id);
-    };
+    }, [mapData.id, onPress]);
 
     const handleLikePressOn = useCallback(
         (state: boolean) => {
@@ -87,9 +88,12 @@ const ListTile: React.FC<PropsI> = ({
         [dispatch, likeValue, mapData?.id, sectionID],
     );
 
-    const handleCheckLike = () => mapData.reaction === likeValue?.enumValue;
+    const handleCheckLike = useCallback(
+        () => mapData.reaction === likeValue?.enumValue,
+        [likeValue?.enumValue, mapData.reaction],
+    );
 
-    const handleDistanceAndTime = () => {
+    const handleDistanceAndTime = useCallback(() => {
         const getDistance = () => {
             if (!mapData?.distance) {
                 return null;
@@ -116,9 +120,9 @@ const ListTile: React.FC<PropsI> = ({
             return time;
         }
         return '';
-    };
+    }, [mapData.distance, mapData.formattedTimeString, t]);
 
-    const handleDifficultyAndSurface = () => {
+    const handleDifficultyAndSurface = useCallback(() => {
         const difficulty = mapData?.firstPickedDifficulty;
         const surface = mapData?.firstPickedSurface;
 
@@ -132,26 +136,29 @@ const ListTile: React.FC<PropsI> = ({
             return capitalize(difficulty);
         }
         return '';
-    };
+    }, [mapData?.firstPickedDifficulty, mapData?.firstPickedSurface, t]);
 
-    const handleToggleFavoritePressOn = (state: boolean) => {
-        const toggleRouteToPlanned = tbm(
-            state ? 'addRouteToPlanned' : 'removeRouteFromPlanned',
-            {
-                name: '',
-            },
-        );
-        addToast({
-            key: `route-${mapData.id}-${state ? 'added' : 'removed'}`,
-            title: toggleRouteToPlanned,
-            icon: <Bookmark />,
-        });
-        state
-            ? dispatch(addPlannedMap(mapData.id))
-            : dispatch(removePlannedMap(mapData.id));
-    };
+    const handleToggleFavoritePressOn = useCallback(
+        (state: boolean) => {
+            const toggleRouteToPlanned = tbm(
+                state ? 'addRouteToPlanned' : 'removeRouteFromPlanned',
+                {
+                    name: '',
+                },
+            );
+            addToast({
+                key: `route-${mapData.id}-${state ? 'added' : 'removed'}`,
+                title: toggleRouteToPlanned,
+                icon: <Bookmark />,
+            });
+            state
+                ? dispatch(addPlannedMap(mapData.id))
+                : dispatch(removePlannedMap(mapData.id));
+        },
+        [addToast, dispatch, mapData.id, tbm],
+    );
 
-    const handleEditPressOn = () => {
+    const handleEditPressOn = useCallback(() => {
         navigation.navigate({
             name: RegularStackRoute.EDIT_DETAILS_SCREEN,
             params: {
@@ -159,7 +166,7 @@ const ListTile: React.FC<PropsI> = ({
                 private: !mapData.isPublic || mapData?.ownerId === userID,
             },
         });
-    };
+    }, [mapData.id, mapData.isPublic, mapData?.ownerId, navigation, userID]);
 
     const onPressShare = useCallback(() => {
         navigation.navigate({

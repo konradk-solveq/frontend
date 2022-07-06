@@ -26,14 +26,13 @@ const styles = StyleSheet.create({
         marginTop: getVerticalPx(30),
         marginHorizontal: getHorizontalPx(16),
     },
-    lastTile: {
-        marginBottom: getVerticalPx(150),
+    listContent: {
+        paddingBottom: getFVerticalPx(150),
     },
     loaderContainer: {
         height: getFVerticalPx(50),
         width: '100%',
-        marginTop: -getFVerticalPx(120),
-        marginBottom: getFVerticalPx(200),
+        marginVertical: getFVerticalPx(20),
     },
     listBodyLoader: {
         marginTop: '50%',

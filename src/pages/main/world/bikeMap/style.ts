@@ -21,15 +21,14 @@ const styles = StyleSheet.create({
         marginBottom: getFVerticalPx(10),
         marginHorizontal: getFHorizontalPx(16),
     },
-    lastTile: {
-        marginBottom: getFVerticalPx(150),
+    listContent: {
+        paddingBottom: getFVerticalPx(150),
     },
     horizontalSpace: {},
     loaderContainer: {
         height: getFHorizontalPx(50),
         width: '100%',
-        marginTop: -getFVerticalPx(120),
-        marginBottom: getFVerticalPx(200),
+        marginVertical: getFVerticalPx(20),
     },
     backdrop: {
         marginTop: -getFVerticalPx(250),

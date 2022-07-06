@@ -791,3 +791,5 @@ export const bikesConfigToClass = (
         return;
     }
 };
+
+export const mapKeyExtractor = (item: Map) => item.id;
