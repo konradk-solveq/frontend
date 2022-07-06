@@ -29,6 +29,8 @@ import {Alert} from '@components/alerts';
 import {IProps as IAlertProps} from '@components/alerts/Alert';
 import {attributes} from '@utils/constants';
 import {SelectEnumOptionsType} from '@models/config.model';
+import ApprovedMarker from '@src/components/icons/ApprovedMarker';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 
 export type RouteEditFormRef = {
     submit: () => void;
@@ -68,6 +70,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
     ) => {
         const {t} = useMergedTranslation('RoutesDetails.form');
         const {t: tvm} = useMergedTranslation('validation.fields.mapDetails');
+        const {t: toastsT} = useMergedTranslation('Toasts');
         const [images, setImages] = useState<string[]>(
             imagesData?.images || [],
         );
@@ -83,6 +86,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             setError,
             getValues,
         } = useFormDataWithMapData(mapData, publish);
+        const toastContext = useToastContext();
 
         const validateFormData = (data: FieldValues) => {
             const isValid = reValidateMapMetadataManually(
@@ -104,11 +108,23 @@ const EditForm: React.FC<IProps> = React.forwardRef(
         const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
             if (!publish && !isRoutePublished) {
                 onSubmit(data, false, imagesToAdd, imagesToRemove);
+                toastContext.addToast({
+                    key: 'toast-details-edit',
+                    title: toastsT('routeSaved'),
+                    icon: <ApprovedMarker />,
+                    leaveOnScreenChange: true,
+                });
                 return;
             }
             const isValid = validateFormData(data);
             if (isValid) {
                 onSubmit(data, publish, imagesToAdd, imagesToRemove);
+                toastContext.addToast({
+                    key: 'toast-details-edit',
+                    title: toastsT('routePublished'),
+                    icon: <ApprovedMarker />,
+                    leaveOnScreenChange: true,
+                });
             }
         };
 

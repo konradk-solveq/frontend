@@ -169,19 +169,11 @@ export const compareResultsWhenOnlineFirstCase = (actionsLog: any[]) => {
     expect(actionsLog[7]).toEqual(synchRecordingExpectedActions[7]);
     /* clear errors */
     expect(actionsLog[8]).toEqual(synchRecordingExpectedActions[8]);
-    /* loading - stop */
+    /* loading maps - start */
     expect(actionsLog[9]).toEqual(synchRecordingExpectedActions[9]);
 
-    /* loading maps - start */
+    /* loading - stop */
     expect(actionsLog[10]).toEqual(synchRecordingExpectedActions[10]);
-    /* set private maps data */
-    expect(actionsLog[11]).toEqual(synchRecordingExpectedActions[11]);
-    /* clear maps error */
-    expect(actionsLog[12]).toEqual(synchRecordingExpectedActions[12]);
-    /* clear private maps error */
-    expect(actionsLog[13]).toEqual(synchRecordingExpectedActions[13]);
-    /* loading maps - stop */
-    expect(actionsLog[14]).toEqual(synchRecordingExpectedActions[14]);
 };
 
 export const compareResultsWhenOnlineSecondCase = (actionsLog: any[]) => {
@@ -217,33 +209,13 @@ export const compareResultsWhenOnlineSecondCase = (actionsLog: any[]) => {
     expect(actionsLog[7]).toEqual(
         synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[7],
     );
-    /* loading - stop */
+    /* set maps loading - start */
     expect(actionsLog[8]).toEqual(
         synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[8],
     );
-    /* set maps loading - start */
+    /* loading - stop */
     expect(actionsLog[9]).toEqual(
         synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[9],
-    );
-    /** set route to synch */
-    expect(actionsLog[10]).toEqual(
-        synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[10],
-    );
-    /* set private maps data */
-    expect(actionsLog[11]).toEqual(
-        synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[11],
-    );
-    /* clear maps error */
-    expect(actionsLog[12]).toEqual(
-        synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[12],
-    );
-    /* clear private maps error */
-    expect(actionsLog[13]).toEqual(
-        synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[13],
-    );
-    /* loading maps - stop */
-    expect(actionsLog[14]).toEqual(
-        synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions[14],
     );
 };
 

@@ -3,6 +3,7 @@ import React, {
     useCallback,
     useContext,
     useEffect,
+    useMemo,
     useRef,
     useState,
 } from 'react';
@@ -57,26 +58,6 @@ const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
     const [toastList, setToastList] = useState<ToastItem[]>([]);
     const listRef = useRef(toastList);
 
-    const addToast = (toastToAdd: ToastItem) => {
-        const key = uuidv4();
-        const newList = [
-            ...toastList,
-            {...toastToAdd, key}, // Add additional key to prevent adding elements with same key in array
-        ];
-        setToastList(newList);
-        setTimeout(
-            () => removeToast(key),
-            toastToAdd.durationTime || DEFAULT_VISIBILITY_TIME,
-        );
-    };
-
-    const removeAllToasts = () => {
-        if (toastList.length > 0) {
-            const newToastList = toastList.filter(el => el.leaveOnScreenChange);
-            newToastList.length === 0 && setToastList(newToastList);
-        }
-    };
-
     const removeToast = useCallback(
         (key: string) => {
             const newToastList = listRef.current.filter(
@@ -87,13 +68,45 @@ const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
         [listRef],
     );
 
+    const addToast = useCallback(
+        (toastToAdd: ToastItem) => {
+            const key = uuidv4();
+            const newList = [
+                ...toastList,
+                {...toastToAdd, key}, // Add additional key to prevent adding elements with same key in array
+            ];
+            setToastList(newList);
+            setTimeout(
+                () => removeToast(key),
+                toastToAdd.durationTime || DEFAULT_VISIBILITY_TIME,
+            );
+        },
+        [removeToast, toastList],
+    );
+
+    const removeAllToasts = useCallback(() => {
+        if (toastList.length > 0) {
+            const newToastList = toastList.filter(el => el.leaveOnScreenChange);
+            newToastList.length === 0 && setToastList(newToastList);
+        }
+    }, [toastList]);
+
     useEffect(() => {
         listRef.current = toastList;
     }, [toastList]);
 
+    const values = useMemo(
+        () => ({
+            toastList,
+            addToast,
+            removeAllToasts,
+            removeToast,
+        }),
+        [toastList, addToast, removeAllToasts, removeToast],
+    );
+
     return (
-        <ToastContext.Provider
-            value={{toastList, addToast, removeToast, removeAllToasts}}>
+        <ToastContext.Provider value={values}>
             {children}
             <View style={styles.container} pointerEvents={'box-none'}>
                 {toastList.map((toast: ToastItem) => {

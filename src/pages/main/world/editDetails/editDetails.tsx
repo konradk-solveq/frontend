@@ -17,7 +17,6 @@ import {ImageType, MapFormDataResult} from '@interfaces/form';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import {EditDetailsRouteT} from '@type/rootStack';
 import {MapType} from '@models/map.model';
-import Loader from '@components/svg/loader/loader';
 import WrongResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import styles from './style';
@@ -31,6 +30,8 @@ import EditForm, {
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
 import ApprovedMarker from '@src/components/icons/ApprovedMarker';
 import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
+import {Loader} from '@components/loader';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 type AlertTranslationT = {
     text: string;
@@ -96,7 +97,6 @@ const EditDetails = () => {
     useEffect(() => {
         if (submit && !isLoading) {
             if (error?.statusCode < 400) {
-                setSubmit(false);
                 onBackHandler();
                 toastContext.addToast({
                     key: `toast-details-edit${publish ? '-publish' : ''}`,
@@ -168,8 +168,12 @@ const EditDetails = () => {
         [alertContent, onBackHandler, publish, showAlert],
     );
 
-    if (isLoading && submit) {
-        return <Loader />;
+    if (isLoading || submit) {
+        return (
+            <View style={styles.loaderContainer}>
+                <Loader color="red" androidSize={getFVerticalPx(48)} />
+            </View>
+        );
     }
 
     return (

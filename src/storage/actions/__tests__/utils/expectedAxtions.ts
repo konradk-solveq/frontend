@@ -126,28 +126,11 @@ export const synchRecordingExpectedActions = [
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
-        state: false,
-    },
-    {
         type: actionTypes.SET_MAPS_LOADING_STATE,
         state: true,
     },
     {
-        type: actionTypes.SET_PRIVATE_MAPS_DATA,
-        privateMaps: [],
-        paginationCoursor: {},
-        totalPrivateMaps: 0,
-        refresh: true,
-    },
-    {
-        type: actionTypes.CLEAR_MAPS_ERROR,
-    },
-    {
-        type: actionTypes.CLEAR_PRIVATE_MAPS_LIST_ERROR,
-    },
-    {
-        type: actionTypes.SET_MAPS_LOADING_STATE,
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: false,
     },
 ];
@@ -272,28 +255,11 @@ export const synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedAct
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
-        type: actionTypes.SET_ROUTES_LOADING_STATE,
-        state: false,
-    },
-    {
         type: actionTypes.SET_MAPS_LOADING_STATE,
         state: true,
     },
     {
-        type: actionTypes.SET_PRIVATE_MAPS_DATA,
-        privateMaps: [],
-        paginationCoursor: {},
-        totalPrivateMaps: 0,
-        refresh: true,
-    },
-    {
-        type: actionTypes.CLEAR_MAPS_ERROR,
-    },
-    {
-        type: actionTypes.CLEAR_PRIVATE_MAPS_LIST_ERROR,
-    },
-    {
-        type: actionTypes.SET_MAPS_LOADING_STATE,
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: false,
     },
 ];

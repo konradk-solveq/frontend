@@ -1,4 +1,5 @@
 import {AppThunk} from '../thunk';
+import {batch} from 'react-redux';
 
 import i18next from '@translations/i18next';
 import {CurrentRouteI, RoutesI, RoutesState} from '../reducers/routes';
@@ -559,37 +560,42 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
         const reducedRoutesDataToSynch = routes?.filter(
             r => r.id !== currentRoute.id,
         );
-        dispatch(setRoutesToSynch(reducedRoutesToSynch));
-        dispatch(setRoutesData(reducedRoutesDataToSynch, true));
 
-        dispatch(setPrivateMapId(response.data.id));
-        dispatch(clearCurrentRouteData());
-        dispatch(clearCurrentRoute());
-        dispatch(clearAverageSpeed());
-        dispatch(clearError());
+        batch(async () => {
+            dispatch(setRoutesToSynch(reducedRoutesToSynch));
+            dispatch(setRoutesData(reducedRoutesDataToSynch, true));
 
-        /* Route debug - start */
-        await dispatch(
-            appendRouteDebuggInfoToFIle(
-                currentRoute.id,
-                'synch',
-                currentRoute,
-                {
-                    distance:
-                        currRoutesDat?.[currRoutesDat?.length - 1]?.odometer,
-                    routesDataLength: currRoutesDat?.length,
-                    synchedDataLength: response?.sentData?.length,
-                    synchErrorMessage: response?.rawError,
-                },
-                currRoutesDat,
-                response?.sentData,
-            ),
-        );
-        /* Route debug - emd */
-        dispatch(setLoadingState(false));
+            dispatch(setPrivateMapId(response.data.id));
+            dispatch(clearCurrentRouteData());
+            dispatch(clearCurrentRoute());
+            dispatch(clearAverageSpeed());
+            dispatch(clearError());
 
-        await dispatch(fetchPrivateMapsList());
-        await dispatch(syncRouteDataFromQueue(true));
+            /* Route debug - start */
+            await dispatch(
+                appendRouteDebuggInfoToFIle(
+                    currentRoute.id,
+                    'synch',
+                    currentRoute,
+                    {
+                        distance:
+                            currRoutesDat?.[currRoutesDat?.length - 1]
+                                ?.odometer,
+                        routesDataLength: currRoutesDat?.length,
+                        synchedDataLength: response?.sentData?.length,
+                        synchErrorMessage: response?.rawError,
+                    },
+                    currRoutesDat,
+                    response?.sentData,
+                ),
+            );
+            /* Route debug - emd */
+
+            dispatch(fetchPrivateMapsList());
+            dispatch(syncRouteDataFromQueue(true));
+
+            dispatch(setLoadingState(false));
+        });
     } catch (error) {
         console.log(`[syncCurrentRouteData] - ${error}`);
         const err = convertToApiError(error);

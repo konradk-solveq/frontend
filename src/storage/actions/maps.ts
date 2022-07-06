@@ -477,11 +477,8 @@ export const editPrivateMapMetaData = (
             return;
         }
 
-        batch(async () => {
-            await dispatch(fetchPrivateMapsList());
-            if (publish) {
-                dispatch(fetchMapsList());
-            }
+        batch(() => {
+            dispatch(fetchPrivateMapsList());
             dispatch(clearPrivateMapId());
             dispatch(clearError());
 
