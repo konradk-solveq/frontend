@@ -98,7 +98,7 @@ describe('<PrologDescription /> - containers/World/components/PrologDescription'
         );
     });
 
-    it("Should render surface string with a dash if there's surface string passed", () => {
+    it("Should render surface string if there's surface string passed", () => {
         const {getByTestId} = render(
             <PrologDescription
                 reactions={routeData.reactions}
@@ -109,7 +109,7 @@ describe('<PrologDescription /> - containers/World/components/PrologDescription'
         const difficultySurfaceInfo = getByTestId(
             PROLOG_DESCRIPTION_DIFFICULTY_SURFACE_TEST_ID,
         );
-        expect(difficultySurfaceInfo.props.children[1]).toContain('- test');
+        expect(difficultySurfaceInfo.props.children[2]).toContain('test');
     });
 
     it("Shouldn't render anything after the difficulty if there's no surface string passed", () => {
@@ -120,7 +120,7 @@ describe('<PrologDescription /> - containers/World/components/PrologDescription'
         const difficultySurfaceInfo = getByTestId(
             PROLOG_DESCRIPTION_DIFFICULTY_SURFACE_TEST_ID,
         );
-        expect(difficultySurfaceInfo.props.children[1]).toBe(undefined);
+        expect(difficultySurfaceInfo.props.children[1]).toBeFalsy();
     });
 
     afterEach(() => {
