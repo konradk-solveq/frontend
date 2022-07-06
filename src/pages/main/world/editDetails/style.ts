@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
     content: {
         marginHorizontal: getFHorizontalPx(16),
     },
+    loaderContainer: {
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+    },
 });
 
 export default styles;

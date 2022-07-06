@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {ScrollView} from 'react-native';
+import {InteractionManager, ScrollView, StyleSheet, View} from 'react-native';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 
-import {useNavigation, useRoute} from '@react-navigation/core';
+import {useNavigation, useRoute, StackActions} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
 
 import {
@@ -16,7 +16,6 @@ import {
     syncCurrentRouteData,
 } from '@storage/actions/routes';
 
-import Loader from '@components/svg/loader/loader';
 import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
 
 import {CounterParamsLsitT, CounterThankYouPageRouteT} from '@type/rootStack';
@@ -27,6 +26,8 @@ import {
 import GenericScreen from '@src/pages/template/GenericScreen';
 import {ThankYouPageContainer} from '@src/containers/Recording';
 import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortRouteModal';
+import {Loader} from '@components/loader';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 
 enum Action {
     next = 'next',
@@ -70,21 +71,20 @@ const CounterThankYouPage: React.FC = () => {
                 dispatch(clearError());
             }, 0);
             if (goForward === Action.home) {
-                navigation.navigate(RegularStackRoute.HOME_SCREEN);
+                navigation.dispatch(StackActions.replace('HomeTab'));
                 return;
             }
             if (goForward === Action.next && !prev) {
-                navigation.navigate({
-                    name: RegularStackRoute.EDIT_DETAILS_SCREEN,
-                    params: {
+                navigation.dispatch(
+                    StackActions.replace('EditDetails', {
                         redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN,
                         publish: true,
-                    },
-                });
+                    }),
+                );
                 return;
             }
 
-            navigation.navigate(RegularStackRoute.HOME_SCREEN);
+            navigation.dispatch(StackActions.replace('HomeTab'));
         },
         [dispatch, goForward, navigation],
     );
@@ -96,7 +96,9 @@ const CounterThankYouPage: React.FC = () => {
                 return;
             }
             if (canGoForwardRef.current) {
-                onGoForward();
+                InteractionManager.runAfterInteractions(() => {
+                    onGoForward();
+                });
             }
         }
     }, [error?.statusCode, isSyncData, onGoForward, goForward, error.message]);
@@ -118,10 +120,12 @@ const CounterThankYouPage: React.FC = () => {
         onGoForward(true);
     };
 
-    if (isSyncData) {
+    if (isSyncData || !!goForward) {
         return (
             <>
-                <Loader />
+                <View style={styles.loaderContainer}>
+                    <Loader color="red" androidSize={getFVerticalPx(48)} />
+                </View>
                 <PoorConnectionModal
                     onAbort={() => onCancelRouteHandler(Action.home)}
                 />
@@ -154,5 +158,13 @@ const CounterThankYouPage: React.FC = () => {
         </GenericScreen>
     );
 };
+
+const styles = StyleSheet.create({
+    loaderContainer: {
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+    },
+});
 
 export default CounterThankYouPage;
