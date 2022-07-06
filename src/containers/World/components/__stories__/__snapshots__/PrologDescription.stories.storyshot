@@ -119,7 +119,8 @@ exports[`Storyshots containers/World/components/PrologDescription Customized 1`]
         testID="prolog-description-test-id-difficulty-surface-info"
       >
         Umiarkowana
-         - Varied
+         - 
+        Varied
       </Text>
     </View>
     <View

@@ -28,6 +28,8 @@ interface IProps {
     testID?: string;
 }
 
+const DIFF_PLACEHOLDER = '-';
+
 const PrologDescription: React.FC<IProps> = ({
     name,
     distance = '-',
@@ -42,13 +44,23 @@ const PrologDescription: React.FC<IProps> = ({
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
     const difficultyLevel = useMemo(
-        () => getDifficultyString(difficultiesLevels, t('multiDifficulties')),
+        () =>
+            getDifficultyString(
+                difficultiesLevels,
+                t('multiDifficulties'),
+                DIFF_PLACEHOLDER,
+            ),
         [difficultiesLevels, t],
     );
 
     const onPressReactionHandler = useCallback(() => {
         onPressReaction && onPressReaction();
     }, [onPressReaction]);
+
+    const isDifficultyPlaceholder = useMemo(
+        () => difficultyLevel !== DIFF_PLACEHOLDER,
+        [difficultyLevel],
+    );
 
     return (
         <>
@@ -67,8 +79,12 @@ const PrologDescription: React.FC<IProps> = ({
                     'distanceToStart',
                 )}`}</BodySecondary>
                 <BodySecondary testID={`${testID}-difficulty-surface-info`}>
-                    {difficultyLevel}
-                    {surfaceString && ` - ${surfaceString}`}
+                    {!(surfaceString && !isDifficultyPlaceholder) &&
+                        difficultyLevel}
+                    {difficultyLevel !== DIFF_PLACEHOLDER &&
+                        !!surfaceString &&
+                        ' - '}
+                    {surfaceString}
                 </BodySecondary>
             </View>
             <View
