@@ -170,9 +170,19 @@ const EditDetails = () => {
 
     if (isLoading || submit) {
         return (
-            <View style={styles.loaderContainer}>
-                <Loader color="red" androidSize={getFVerticalPx(48)} />
-            </View>
+            <>
+                <View style={styles.loaderContainer}>
+                    <Loader
+                        color={colors.red}
+                        androidSize={getFVerticalPx(48)}
+                    />
+                </View>
+                <WrongResponseModal
+                    showModal={showErrorModal}
+                    errorMessage={error?.message}
+                    onClose={() => setShowErrorModal(false)}
+                />
+            </>
         );
     }
 

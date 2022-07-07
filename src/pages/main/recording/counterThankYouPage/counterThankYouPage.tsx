@@ -28,6 +28,7 @@ import {ThankYouPageContainer} from '@src/containers/Recording';
 import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortRouteModal';
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import colors from '@src/theme/colors';
 
 enum Action {
     next = 'next',
@@ -71,12 +72,13 @@ const CounterThankYouPage: React.FC = () => {
                 dispatch(clearError());
             }, 0);
             if (goForward === Action.home) {
-                navigation.dispatch(StackActions.replace('HomeTab'));
+                navigation.navigate('HomeTab');
                 return;
             }
             if (goForward === Action.next && !prev) {
-                navigation.dispatch(
-                    StackActions.replace('EditDetails', {
+                navigation.navigate({
+                    name: 'EditDetails',
+                    params: {
                         redirectTo: RegularStackRoute.KROSS_WORLD_SCREEN,
                         publish: true,
                     }),
@@ -84,7 +86,7 @@ const CounterThankYouPage: React.FC = () => {
                 return;
             }
 
-            navigation.dispatch(StackActions.replace('HomeTab'));
+            navigation.navigate('HomeTab');
         },
         [dispatch, goForward, navigation],
     );
@@ -124,10 +126,22 @@ const CounterThankYouPage: React.FC = () => {
         return (
             <>
                 <View style={styles.loaderContainer}>
-                    <Loader color="red" androidSize={getFVerticalPx(48)} />
+                    <Loader
+                        color={colors.red}
+                        androidSize={getFVerticalPx(48)}
+                    />
                 </View>
-                <PoorConnectionModal
-                    onAbort={() => onCancelRouteHandler(Action.home)}
+                {!goForward && (
+                    <PoorConnectionModal
+                        onAbort={() => onCancelRouteHandler(Action.home)}
+                    />
+                )}
+                <ShortRouteModal
+                    showModal={showErrorModal}
+                    showAlterMessage={
+                        !error?.routeToShort ? error?.message : ''
+                    }
+                    onClose={onCloseErrorModalHandler}
                 />
             </>
         );
