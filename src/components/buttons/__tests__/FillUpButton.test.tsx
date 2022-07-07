@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import {act, fireEvent} from '@testing-library/react-native';
+import {fireEvent} from '@testing-library/react-native';
 
 import renderComponent from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';
@@ -50,42 +50,6 @@ describe('<FillUpButton /> - components/buttons', () => {
         );
 
         expect(animatedBg.props.style.width).toEqual('0%');
-    });
-
-    it('Should change width of animated background after 1 second', async () => {
-        const component = await asyncEvent(
-            renderComponent(
-                <FillUpButton onFilledAction={onPressFn} text={'test'} />,
-            ),
-        );
-
-        fireEvent(
-            component.getByTestId(FILL_UP_BUTTON_TEST_ID_TOUCHABLE),
-            'pressIn',
-        );
-
-        act(() => jest.advanceTimersByTime(1000));
-        const animatedBg = component.getByTestId(
-            FILL_UP_BUTTON_TEST_ID_ANIMATION_BG,
-        );
-
-        expect(animatedBg.props.style.width).not.toEqual('0%');
-    });
-
-    it('Should trigger callback function after default animation duration time (3000ms)', async () => {
-        const component = await asyncEvent(
-            renderComponent(
-                <FillUpButton onFilledAction={onPressFn} text={'test'} />,
-            ),
-        );
-
-        fireEvent(
-            component.getByTestId(FILL_UP_BUTTON_TEST_ID_TOUCHABLE),
-            'pressIn',
-        );
-        act(() => jest.advanceTimersByTime(3000));
-
-        expect(onPressFn).toBeCalled();
     });
 
     afterEach(() => {
