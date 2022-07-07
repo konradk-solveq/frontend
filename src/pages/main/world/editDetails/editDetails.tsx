@@ -28,10 +28,10 @@ import EditForm, {
     RouteEditFormRef,
 } from '@containers/World/EditDetailsContainer';
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
-import ApprovedMarker from '@src/components/icons/ApprovedMarker';
-import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import ApprovedMarker from '@src/components/icons/ApprovedMarker';
+import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
 
 type AlertTranslationT = {
     text: string;
@@ -170,9 +170,19 @@ const EditDetails = () => {
 
     if (isLoading || submit) {
         return (
-            <View style={styles.loaderContainer}>
-                <Loader color="red" androidSize={getFVerticalPx(48)} />
-            </View>
+            <>
+                <View style={styles.loaderContainer}>
+                    <Loader
+                        color={colors.red}
+                        androidSize={getFVerticalPx(48)}
+                    />
+                </View>
+                <WrongResponseModal
+                    showModal={showErrorModal}
+                    errorMessage={error?.message}
+                    onClose={() => setShowErrorModal(false)}
+                />
+            </>
         );
     }
 

@@ -2,7 +2,7 @@ import * as actionTypes from '../../actionTypes';
 import {endedRoute, startedRoute, stoppedRoute} from './routeData';
 import i18next from '@translations/i18next';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
-import recordedRoutesData from '@storage/actions/__tests__/mocks/recordedRoutesData';
+import recordedRoutesData from '../mocks/recordedRoutesData';
 
 export const startRecordingExpectedActions = [
     {
