@@ -131,8 +131,17 @@ const CounterThankYouPage: React.FC = () => {
                         androidSize={getFVerticalPx(48)}
                     />
                 </View>
-                <PoorConnectionModal
-                    onAbort={() => onCancelRouteHandler(Action.home)}
+                {!goForward && (
+                    <PoorConnectionModal
+                        onAbort={() => onCancelRouteHandler(Action.home)}
+                    />
+                )}
+                <ShortRouteModal
+                    showModal={showErrorModal}
+                    showAlterMessage={
+                        !error?.routeToShort ? error?.message : ''
+                    }
+                    onClose={onCloseErrorModalHandler}
                 />
                 <ShortRouteModal
                     showModal={showErrorModal}
