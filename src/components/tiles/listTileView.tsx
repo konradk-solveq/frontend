@@ -133,7 +133,8 @@ const ListTileView: React.FC<PropsI> = ({
                             </View>
 
                             <View style={styles.reactions}>
-                                {mode !== 'my' && (
+                                {((mode === 'my' && checkPublic) ||
+                                    mode !== 'my') && (
                                     <PressableComponent
                                         onPress={handleLikeOnPress}>
                                         <View style={styles.iconWrap}>
@@ -168,7 +169,8 @@ const ListTileView: React.FC<PropsI> = ({
                                     </View>
                                 )}
 
-                                {mode !== 'my' && (
+                                {((mode === 'my' && checkPublic) ||
+                                    mode !== 'my') && (
                                     <PressableComponent
                                         onPress={onPressShareHandler}>
                                         <TextIcon
@@ -180,7 +182,7 @@ const ListTileView: React.FC<PropsI> = ({
                                     </PressableComponent>
                                 )}
 
-                                {mode === 'my' && (
+                                {mode === 'my' && !checkPublic && (
                                     <PressableComponent onPress={editPressOn}>
                                         <TextIcon
                                             icon={
