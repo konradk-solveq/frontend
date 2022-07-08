@@ -43,7 +43,7 @@ export const buildStore = (initState?: Partial<RootState>) => {
     const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-    // const middlewares = [ReduxThunk];
+    const middlewares = [ReduxThunk];
 
     /**
      * Temporary reomved - "react-native-flipper" on IOS error occures during the build
@@ -56,7 +56,7 @@ export const buildStore = (initState?: Partial<RootState>) => {
     const store = createStore(
         persistedReducer,
         initState,
-        composeEnhancers(applyMiddleware(ReduxThunk)),
+        composeEnhancers(applyMiddleware(...middlewares)),
     );
 
     return store;

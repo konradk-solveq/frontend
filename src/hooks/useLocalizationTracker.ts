@@ -281,7 +281,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
      * to make it actual for the whole app
      */
     useEffect(() => {
-        if (!isTrackerActive) {
+        if (!isTrackerActive && !isActive) {
             trackerData?.coords.lat &&
                 trackerData?.coords.lon &&
                 dispatch(
@@ -293,6 +293,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
         }
     }, [
         dispatch,
+        isActive,
         isTrackerActive,
         trackerData?.coords?.lat,
         trackerData?.coords?.lon,

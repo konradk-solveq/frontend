@@ -1,15 +1,11 @@
 import {useEffect, useState, useCallback, useRef} from 'react';
-import {Platform} from 'react-native';
 
 import {GeofenceEvent} from '@interfaces/geolocation';
 import {BasicCoordsType} from '@type/coords';
 import {locationTypeEnum} from '@type/location';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {setGlobalLocation} from '@storage/actions/app';
-import {
-    showedLocationInfoSelector,
-    globalLocationSelector,
-} from '@storage/selectors/app';
+import {showedLocationInfoSelector} from '@storage/selectors/app';
 import {
     cleanUpListener,
     getLatLngFromForeground,
@@ -30,16 +26,24 @@ import {
     IDENTIFIER,
     shouldOmit,
     transfromToProperFormat,
-    transformCoordsToLocation,
-} from '@src/providers/staticLocationProvider/utils/geofenceData';
+} from '@providers/staticLocationProvider/utils/geofenceData';
 import useAppState from '@hooks/useAppState';
+import {getHaversineDistance} from '@utils/locationData';
+import {MINIMAL_DISTANCE_FOR_LOCATION_UPDATE} from '@utils/system/location';
+import {ANDROID_VERSION_10, isIOS} from '@utils/platform';
 
-const isIOS = Platform.OS === 'ios';
-const intervalToRefreshLocation = __DEV__ ? 12000 : 120000;
+const INTERVAL_TO_REFRESH_LOCATION = __DEV__ ? 30000 : 300000;
+const DELAY_TO_RERUN_GEOFANCE = 15000;
+
+const ANDROID_IS_VERSION_10 = !isIOS && ANDROID_VERSION_10;
+const ACCURACY_FOR_LOCATION_UPDATES = 50;
 
 const useProviderStaticLocation = () => {
     const dispatch = useAppDispatch();
     const initLocationRef = useRef(false);
+    const currentLocationRef = useRef<BasicCoordsType | undefined>();
+    const initialGeofence = useRef(false);
+
     const {appIsActive} = useAppState();
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
@@ -49,13 +53,9 @@ const useProviderStaticLocation = () => {
     const isAuthanticated = useAppSelector(
         authUserIsAuthenticatedStateSelector,
     );
-    const globalLocation = useAppSelector(globalLocationSelector);
 
     const {locationType, permissionGranted} = useCheckLocationType();
-
-    const [location, setLocation] = useState<BasicCoordsType | undefined>();
     const [isTrackingActivated, setIsTrackingActivated] = useState(false);
-    const [isCounterScreen, setIsCounterScreen] = useState(false);
 
     /**
      * Get initial location with low accuracy.
@@ -75,19 +75,15 @@ const useProviderStaticLocation = () => {
                         latitude: loc?.coords?.latitude,
                         longitude: loc?.coords?.longitude,
                     };
-                    setLocation(l);
+
+                    currentLocationRef.current = l;
                     dispatch(setGlobalLocation(l));
                 }
             };
 
             getLocation();
-
             initLocationRef.current = true;
         }
-
-        return () => {
-            initLocationRef.current = false;
-        };
     }, [dispatch, permissionGranted, isOnboardingFinished, isAuthanticated]);
 
     /**
@@ -111,13 +107,35 @@ const useProviderStaticLocation = () => {
         setLocationConfig();
     }, [locationType, locationDialogHasBeenShown]);
 
+    /**
+     * Stores location in global state
+     */
     const storeCurrentLocation = useCallback(
-        (loc: BasicCoordsType) => {
+        (loc: BasicCoordsType, skipDistanceCount?: boolean) => {
             if (!initLocationRef.current) {
                 return;
             }
-            setLocation(loc);
-            dispatch(setGlobalLocation(loc));
+
+            const distance = getHaversineDistance(
+                {
+                    latitude: currentLocationRef.current?.latitude,
+                    longitude: currentLocationRef.current?.longitude,
+                },
+                loc,
+                true,
+            );
+            /**
+             * Update location only when minimum distance is reached.
+             * It prevents to update location too often when geofencing is not active.
+             */
+            if (
+                (distance &&
+                    distance >= MINIMAL_DISTANCE_FOR_LOCATION_UPDATE) ||
+                skipDistanceCount
+            ) {
+                currentLocationRef.current = loc;
+                dispatch(setGlobalLocation(loc));
+            }
         },
         [dispatch],
     );
@@ -125,10 +143,7 @@ const useProviderStaticLocation = () => {
     const setGofenceToMonitor = useCallback(
         (event?: GeofenceEvent) => {
             const setLoc = async () => {
-                if (
-                    event?.action === 'EXIT' ||
-                    (!event?.action && initLocationRef.current)
-                ) {
+                if (event?.action === 'EXIT' || !initialGeofence.current) {
                     const omit = shouldOmit(event?.identifier);
 
                     const geofenceLocation = transfromToProperFormat(
@@ -142,11 +157,12 @@ const useProviderStaticLocation = () => {
                         false,
                         true,
                         false,
-                        omit,
+                        omit && initialGeofence.current,
                     );
 
                     if (loc) {
-                        storeCurrentLocation(loc);
+                        storeCurrentLocation(loc, !initialGeofence.current);
+                        initialGeofence.current = true;
                     }
                 }
             };
@@ -162,15 +178,18 @@ const useProviderStaticLocation = () => {
      * of the location library
      */
     const setLocationWithInterval = useCallback(
-        async (force?: boolean) => {
+        async (
+            force?: boolean,
+            accuracy?: number,
+            skipDistanceCount?: boolean,
+        ) => {
             if (!initLocationRef.current) {
                 return;
             }
 
-            const loc = await getLatLngFromForeground(force);
-
+            const loc = await getLatLngFromForeground(force, accuracy);
             if (loc) {
-                storeCurrentLocation(loc);
+                storeCurrentLocation(loc, skipDistanceCount);
             }
         },
         [storeCurrentLocation],
@@ -180,50 +199,17 @@ const useProviderStaticLocation = () => {
      * Refresh location after opening the app from the background
      */
     useEffect(() => {
-        if (appIsActive) {
+        /**
+         * There is a bug in Android 10 where the appstatus updates in infinite loop.
+         */
+        if (ANDROID_IS_VERSION_10) {
+            return;
+        }
+
+        if (appIsActive && !isRouteRecordingActive!) {
             setLocationWithInterval(true);
         }
-    }, [appIsActive, setLocationWithInterval]);
-
-    const setInitLocationWithInterval = useCallback(async () => {
-        if (!location && initLocationRef.current) {
-            setLocationWithInterval();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    /**
-     * set a new geofence to track if the global location has changed and the user
-     * isn't in the counter screen
-     * (the location is tracked continuously there, so there's no need to set geofences)
-     */
-    useEffect(() => {
-        if (!isCounterScreen) {
-            if (globalLocation?.latitude && globalLocation?.longitude) {
-                const longitude = globalLocation.longitude;
-                const latitude = globalLocation.latitude;
-                setLocation({latitude, longitude});
-                const coordsLocation = transformCoordsToLocation({
-                    longitude,
-                    latitude,
-                });
-                setGofenceToMonitor(
-                    coordsLocation
-                        ? {
-                              location: coordsLocation,
-                            identifier: IDENTIFIER,
-                              action: '',
-                        }
-                        : undefined,
-                );
-            }
-        }
-    }, [
-        globalLocation?.latitude,
-        globalLocation?.longitude,
-        isCounterScreen,
-        setGofenceToMonitor,
-    ]);
+    }, [appIsActive, setLocationWithInterval, isRouteRecordingActive]);
 
     /**
      * Start plugin only if route tracking is disabled.
@@ -260,20 +246,17 @@ const useProviderStaticLocation = () => {
     }, []);
 
     /**
-     * Set information about being on the counter screen to prevent geofencing
-     * on every update during the recording a route.
+     * Refresh locationon every "EXIT" event when geofencing is active and route tracking is disabled.
      */
-    const isCounterScreenHandler = useCallback((state: boolean) => {
-        setIsCounterScreen(state);
-    }, []);
-
     useEffect(() => {
         let t: NodeJS.Timeout;
         if (
             locationType === locationTypeEnum.ALWAYS &&
             isOnboardingFinished &&
-            !isTrackingActivated
+            !isTrackingActivated &&
+            !isRouteRecordingActive
         ) {
+            initialGeofence.current = false;
             startGeofenceMonitoring();
             /**
              * BackgroundGeolocation plugin returns Promise.resolved even it still shuts down.
@@ -283,17 +266,19 @@ const useProviderStaticLocation = () => {
              */
             t = setTimeout(() => {
                 startGeofenceMonitoring();
-            }, 15000);
+            }, DELAY_TO_RERUN_GEOFANCE);
+
+            console.log(
+                '[=== STATIIC LOCATION PROVIDER -- geofence started ===]',
+            );
         }
 
         return () => {
-            if (locationType === locationTypeEnum.ALWAYS) {
-                clearTimeout(t);
-                stopGeofenceMonitoring();
-                console.log(
-                    '[=== STATIIC LOCATION PROVIDER -- cleanup geofence finished ===]',
-                );
-            }
+            clearTimeout(t);
+            stopGeofenceMonitoring();
+            console.log(
+                '[=== STATIIC LOCATION PROVIDER -- cleanup geofence finished ===]',
+            );
         };
     }, [
         isOnboardingFinished,
@@ -301,49 +286,58 @@ const useProviderStaticLocation = () => {
         startGeofenceMonitoring,
         stopGeofenceMonitoring,
         isTrackingActivated,
+        isRouteRecordingActive,
     ]);
 
+    /**
+     * Refresh location every ${INTERVAL_TO_REFRESH_LOCATION} when geofencing is not active and route tracking is disabled.
+     */
     useEffect(() => {
         let t: NodeJS.Timeout;
         let interval: NodeJS.Timeout;
         if (
             locationType === locationTypeEnum.WHEN_IN_USE &&
             isOnboardingFinished &&
-            !isTrackingActivated
+            !isTrackingActivated &&
+            !isRouteRecordingActive
         ) {
             t = setTimeout(() => {
-                setInitLocationWithInterval();
+                if (initLocationRef.current) {
+                    setLocationWithInterval(true, undefined, true);
+                }
             }, 1000);
 
-            interval = setInterval(async () => {
-                await setLocationWithInterval();
-            }, intervalToRefreshLocation);
+            interval = setInterval(() => {
+                setLocationWithInterval(true, ACCURACY_FOR_LOCATION_UPDATES);
+            }, INTERVAL_TO_REFRESH_LOCATION);
+
+            console.log(
+                '[=== STATIIC LOCATION PROVIDER -- interval started ===]',
+            );
         }
 
         return () => {
-            if (locationType === locationTypeEnum.WHEN_IN_USE) {
-                clearTimeout(t);
-                clearInterval(interval);
-                console.log(
-                    '[=== STATIIC LOCATION PROVIDER -- cleanup interval finished ===]',
-                );
-            }
+            clearTimeout(t);
+            clearInterval(interval);
+            console.log(
+                '[=== STATIIC LOCATION PROVIDER -- cleanup interval finished ===]',
+            );
         };
     }, [
         isOnboardingFinished,
         locationType,
         setLocationWithInterval,
-        setInitLocationWithInterval,
         isTrackingActivated,
+        isRouteRecordingActive,
     ]);
 
     return {
-        location,
+        location:
+            currentLocationRef.current /* TODO: remove, other components should read location from globalLocation value (redux) */,
         locationType,
         setLocationWithInterval,
         isTrackingActivated,
-        isTrackingActivatedHandler,
-        isCounterScreenHandler,
+        isTrackingActivatedHandler /* TODO: check if this method stil should be used (we keep information about recording status in redux store) */,
     };
 };
 

@@ -1,4 +1,4 @@
-import React, {createContext, useContext} from 'react';
+import React, {createContext, useContext, useMemo} from 'react';
 
 import {BasicCoordsType} from '@type/coords';
 import {locationTypeEnum} from '@type/location';
@@ -9,14 +9,12 @@ type contType = {
     location: BasicCoordsType | undefined;
     locationType: locationTypeEnum;
     isTrackingActivatedHandler: (a: boolean) => void;
-    isCounterScreenHandler: (state: boolean) => void;
 };
 
 export const LocationDataContext = createContext<contType>({
     location: undefined,
     locationType: locationTypeEnum.NONE,
-    isTrackingActivatedHandler: (a: boolean) => {},
-    isCounterScreenHandler: (state: boolean) => {},
+    isTrackingActivatedHandler: (_: boolean) => {},
 });
 
 export const useLocationProvider = () => useContext(LocationDataContext);
@@ -30,21 +28,23 @@ const StaticLocationProvider: React.FC<IProps> = ({children}: IProps) => {
         location,
         locationType,
         isTrackingActivatedHandler,
-        isCounterScreenHandler,
     } = useProviderStaticLocation();
+
+    const values = useMemo(
+        () => ({
+            location,
+            locationType,
+            isTrackingActivatedHandler,
+        }),
+        [location, locationType, isTrackingActivatedHandler],
+    );
 
     if (!children) {
         return null;
     }
 
     return (
-        <LocationDataContext.Provider
-            value={{
-                location,
-                locationType,
-                isTrackingActivatedHandler,
-                isCounterScreenHandler,
-            }}>
+        <LocationDataContext.Provider value={values}>
             {children}
         </LocationDataContext.Provider>
     );

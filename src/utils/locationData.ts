@@ -71,9 +71,13 @@ const getLongitudeValue = (coord: CoordType) => {
  * @param {Object<CoordType>} coord2
  * @returns
  */
-export const getHaversineDistance = (coord1: CoordType, coord2: CoordType) => {
+export const getHaversineDistance = (
+    coord1: CoordType,
+    coord2: CoordType,
+    returnZero?: boolean,
+) => {
     if (isDistanceZero(coord1, coord2)) {
-        return;
+        return returnZero ? 0 : undefined;
     }
 
     // equatorial mean radius of Earth (in meters)
