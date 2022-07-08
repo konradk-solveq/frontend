@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef, useCallback, useMemo} from 'react';
 import {StyleSheet, View, GestureResponderEvent} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useFocusEffect} from '@react-navigation/core';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
@@ -75,7 +74,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const {top} = useSafeAreaInsets();
     const dispatch = useAppDispatch();
     const mountedRef = useRef(false);
-    const {isCounterScreenHandler} = useLocationProvider();
     const recordingState = useAppSelector(trackerRecordingStateSelector);
 
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -96,17 +94,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const [notifications, setNotifications] = useState<NotificationListItemI[]>(
         [],
     );
-
-    /**
-     * Communicate the 'before recording' state to the StaticLocationProvider
-     */
-    useFocusEffect(() => {
-        isCounterScreenHandler(true);
-
-        return () => {
-            isCounterScreenHandler(false);
-        };
-    });
 
     /**
      * Read notifications container height

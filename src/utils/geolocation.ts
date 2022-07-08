@@ -172,11 +172,12 @@ export const getCurrentLocation = async (
 
 export const getLatLngFromForeground = async (
     force?: boolean,
+    accuracy?: number,
 ): Promise<BasicCoordsType | undefined> => {
     const location = await getCurrentLocation(
         '',
         4,
-        10,
+        accuracy || 10,
         true,
         undefined,
         undefined,
