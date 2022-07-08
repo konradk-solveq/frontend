@@ -95,10 +95,10 @@ const ListTile: React.FC<PropsI> = ({
 
     const handleDistanceAndTime = useCallback(() => {
         const getDistance = () => {
-            if (!mapData?.distance) {
+            if (!mapData.distanceInKilometers) {
                 return null;
             }
-            return (mapData.distance / 1000).toFixed(0) + t('distanceUnit');
+            return mapData.distanceInKilometers + t('distanceUnit');
         };
 
         const getTime = () => {
@@ -120,7 +120,7 @@ const ListTile: React.FC<PropsI> = ({
             return time;
         }
         return '';
-    }, [mapData.distance, mapData.formattedTimeString, t]);
+    }, [mapData.distanceInKilometers, mapData.formattedTimeString, t]);
 
     const handleDifficultyAndSurface = useCallback(() => {
         const difficulty = mapData?.firstPickedDifficulty;
