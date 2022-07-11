@@ -2,7 +2,7 @@ import React from 'react';
 import {Linking} from 'react-native';
 
 import {setNewAppVersion} from '@src/storage/actions';
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useAppDispatch} from '@hooks/redux';
 import {getFVerticalPx} from '@src/helpers/appLayoutDimensions';
 import {BottomModal, ModalHeader} from '@components/modals';
 import colors from '@src/theme/colors';
@@ -16,20 +16,19 @@ interface IProps {
     showModal: boolean;
     forceUpdate: boolean;
     handleGoForward: () => void;
+    shopAppVersion: string;
 }
 
 const NewAppVersionModal: React.FC<IProps> = ({
     showModal = false,
     forceUpdate,
     handleGoForward,
+    shopAppVersion,
 }: IProps) => {
     const dispatch = useAppDispatch();
-    const shopAppVersion = useAppSelector<string>(
-        state => state.app.config.version,
-    );
 
     const handleLinkToShop = () => {
-        dispatch(setNewAppVersion(shopAppVersion));
+        !forceUpdate && dispatch(setNewAppVersion(shopAppVersion));
         if (isIOS) {
             Linking.openURL(storeUrls.apple);
         } else {

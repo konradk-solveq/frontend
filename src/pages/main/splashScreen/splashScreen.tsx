@@ -35,15 +35,9 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     const isLoading = useAppSelector<boolean>(state => state.app.sync);
     const appVersion = useAppSelector(state => state.app.appVersion);
     const dispatch = useAppDispatch();
-
-    const shopAppVersion = useAppSelector<string>(
-        state => state.app.config.version,
-    );
-
     const showedNewAppVersion = useAppSelector<string>(
         state => state.app.showedNewAppVersion,
     );
-
     const [showNewAppVersion, setShowNewAppVersion] = useState<boolean>(false);
 
     const notifications = useAppSelector(notificationDataSelector);
@@ -51,7 +45,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     const shouldShowRegulations = notifications.length;
 
     const handleGoForward = () => {
-        dispatch(setNewAppVersion(shopAppVersion));
+        dispatch(setNewAppVersion(appVersion.latest));
         setShowNewAppVersion(false);
         props.navigation.replace(RegularStackRoute.TAB_MENU_SCREEN);
     };
@@ -73,8 +67,9 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
             const t = setTimeout(() => {
                 customInteractionManager.runAfterInteractions(() => {
                     if (
-                        showedNewAppVersion < shopAppVersion &&
-                        getIsNewVersion(shopAppVersion)
+                        appVersion.forceUpdate ||
+                        (showedNewAppVersion < appVersion.latest &&
+                            getIsNewVersion(appVersion.latest))
                     ) {
                         setShowNewAppVersion(true);
                     } else {
@@ -89,11 +84,11 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
     }, [
         isLoading,
         props.navigation,
-        shopAppVersion,
         showedNewAppVersion,
         props.route.params?.redirectToScreen,
         shouldShowRegulations,
         showNewAppVersion,
+        appVersion,
     ]);
 
     return (
@@ -113,6 +108,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
                 showModal={showNewAppVersion}
                 forceUpdate={appVersion.forceUpdate}
                 handleGoForward={handleGoForward}
+                shopAppVersion={appVersion.latest}
             />
         </>
     );
