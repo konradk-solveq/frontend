@@ -27,7 +27,7 @@ const Notifications: React.FC<Props> = (props: Props) => {
     const notifications = useAppSelector(notificationDataSelector);
 
     const shopAppVersion = useAppSelector<string>(
-        state => state.app.config.version,
+        state => state.app.appVersion.latest,
     );
     const showedNewAppVersion = useAppSelector<string>(
         state => state.app.showedNewAppVersion,
