@@ -7,6 +7,7 @@ import MapView, {
     LatLng,
 } from 'react-native-maps';
 
+import {globalLocationSelector} from '@storage/selectors';
 import {RouteMapType} from '@models/places.model';
 import useAppState from '@hooks/useAppState';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/redux';
@@ -23,7 +24,6 @@ import mapStyle from '../../../../sharedComponents/maps/styles';
 import Polyline from './polyline/polyline';
 import AnimatedMarker from './animatedMarker/AnimatedMarker';
 import SinglePolyline from './polyline/singlePolyline';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {ShortCoordsType} from '@type/coords';
 import {isLocationValidate} from '@utils/locationData';
 import {getCenterCameraCoords} from '@src/utils/mapCameraAnimation';
@@ -113,7 +113,7 @@ const Map: React.FC<IProps> = ({
     const canAnimateRef = useRef(true);
     const pastDistanceRef = useRef<number | null>(null);
 
-    const globalLocation = useLocationProvider()?.location;
+    const globalLocation = useAppSelector(globalLocationSelector);
 
     const {appStateVisible, appPrevStateVisible} = useAppState();
     const [showMap, setShowMap] = useState(false);

@@ -28,7 +28,6 @@ import {
     getLocationData,
     getTrackerData,
 } from '@hooks/utils/localizationTracker';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {Location} from '@interfaces/geolocation';
 import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
 import {ShortCoordsType} from '@type/coords';
@@ -54,8 +53,6 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
-
-    const {isTrackingActivatedHandler} = useLocationProvider();
 
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -85,7 +82,6 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
             if (stopAction?.finished) {
                 setIsActive(false);
-                isTrackingActivatedHandler(false);
             }
 
             /**
@@ -95,7 +91,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
             setProcessing(false);
         },
-        [dispatch, isTrackingActivatedHandler],
+        [dispatch],
     );
 
     /**
@@ -119,10 +115,6 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
              * Enables screen to stay awake
              */
             activateKeepAwake();
-            /**
-             * Should update state befeore change redux.
-             */
-            isTrackingActivatedHandler(true);
             /**
              * Check if user gave permission to use motion sensor
              */
@@ -152,7 +144,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
                 setProcessing(false);
             }
         },
-        [dispatch, isTrackingActivatedHandler, onStopTracker],
+        [dispatch, onStopTracker],
     );
 
     /**

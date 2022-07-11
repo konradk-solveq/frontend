@@ -33,6 +33,7 @@ export interface AppState {
     initMapsDataSynched: boolean;
     apiAuthHeaderState: boolean;
     appVersion: AppVersionType | {};
+    focusedOnRecordingScreen: boolean;
 }
 
 const initialState: AppState = {
@@ -78,6 +79,7 @@ const initialState: AppState = {
     initMapsDataSynched: false,
     apiAuthHeaderState: false,
     appVersion: {},
+    focusedOnRecodringScreen: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -185,6 +187,11 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 apiAuthHeaderState: action.apiAuthHeaderState,
+            };
+        case actionTypes.SET_FOCUESD_ON_RECORDING_SCREEN:
+            return {
+                ...state,
+                focusedOnRecodringScreen: action.focusedOnRecodringScreenState,
             };
         case actionTypes.CLEAR_APP_ERROR:
             return {

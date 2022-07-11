@@ -119,3 +119,8 @@ export const notificationDateSelector = createSelector(
     appSelector,
     app => app.notificationDate,
 );
+
+export const focusedOnRecodringScreenSelector = createSelector(
+    appSelector,
+    app => app.focusedOnRecordingScreen,
+);

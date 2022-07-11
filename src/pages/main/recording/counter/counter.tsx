@@ -11,6 +11,7 @@ import {
     setCurrentRoutePauseTime,
     abortSyncCurrentRouteData,
 } from '@storage/actions/routes';
+import {setFocusedOnRecordingScreenState} from '@storage/actions/app';
 
 import {DEFAULT_DISTANCE} from '@hooks/utils/localizationTracker';
 import {
@@ -41,7 +42,6 @@ import NotificationList, {
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {Notification} from '@components/notifications';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {CompassButton, LocationButton} from './components';
 import {LocationButtonT} from './components/LocationButton';
 
@@ -171,6 +171,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
             mountedRef.current = false;
         };
     }, []);
+
+    useEffect(() => {
+        dispatch(setFocusedOnRecordingScreenState(true));
+
+        return () => {
+            dispatch(setFocusedOnRecordingScreenState(false));
+        };
+    }, [dispatch]);
 
     /**
      * Reset params on unmount
