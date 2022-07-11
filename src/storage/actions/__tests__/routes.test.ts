@@ -343,19 +343,6 @@ describe('[Recording Route actions]', () => {
                             data: {id: 'remote-route-test-id'},
                         }),
                     );
-                const getPrivateMapsDataSuccessSpy = jest
-                    .spyOn(instance, 'get')
-                    .mockImplementation(() =>
-                        Promise.resolve({
-                            data: {
-                                elements: [],
-                                links: {},
-                                total: 0,
-                            },
-                            status: 200,
-                            error: '',
-                        }),
-                    );
                 const dataToCompare = routesDataToAPIRequest(
                     routesDataToUpdateMock,
                 );
@@ -372,7 +359,6 @@ describe('[Recording Route actions]', () => {
                             },
                         },
                     );
-                    expect(getPrivateMapsDataSuccessSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */
@@ -428,19 +414,6 @@ describe('[Recording Route actions]', () => {
                             error: '',
                         }),
                     );
-                const getPrivateMapsDataSuccessSpy = jest
-                    .spyOn(instance, 'get')
-                    .mockImplementation(() =>
-                        Promise.resolve({
-                            data: {
-                                elements: [],
-                                links: {},
-                                total: 0,
-                            },
-                            status: 200,
-                            error: '',
-                        }),
-                    );
                 const dataToCompare = routesDataToAPIRequest(
                     routesDataToUpdateMock,
                 );
@@ -458,7 +431,6 @@ describe('[Recording Route actions]', () => {
                             },
                         },
                     );
-                    expect(getPrivateMapsDataSuccessSpy).toBeCalledTimes(1);
                     /**
                      * Check if all expected actions have been called.
                      */

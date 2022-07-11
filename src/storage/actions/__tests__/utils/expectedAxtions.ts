@@ -10,11 +10,15 @@ export const startRecordingExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
+        type: actionTypes.SET_CURRENT_ROUTE,
+        currentRoute: startedRoute,
+    },
+    {
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
-        type: actionTypes.SET_CURRENT_ROUTE,
-        currentRoute: startedRoute,
+        remoteRouteId: 'remote-route-test-id',
+        type: actionTypes.SET_REMOTE_ROUTE_ID,
     },
     {
         state: false,
@@ -28,11 +32,11 @@ export const startRecordingWhenKeepExpectedActions = [
         state: true,
     },
     {
-        type: actionTypes.CLEAR_ROUTES_ERROR,
-    },
-    {
         type: actionTypes.SET_CURRENT_ROUTE,
         currentRoute: undefined,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
         state: false,
@@ -73,12 +77,6 @@ export const stopRecordingExpectedActions = [
         type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
     },
     {
-        error: 'dataAction.dataSyncError',
-        routeToShort: undefined,
-        statusCode: 500,
-        type: actionTypes.SET_ROUTES_ERROR,
-    },
-    {
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
@@ -99,15 +97,6 @@ export const synchRecordingExpectedActions = [
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
-        type: actionTypes.SET_ROUTES_TO_SYNC,
-        routeIds: undefined,
-    },
-    {
-        type: actionTypes.SET_ROUTES_DATA,
-        routes: [],
-        refresh: true,
-    },
-    {
         type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
         privateMapId: endedRoute.remoteRouteId,
     },
@@ -124,10 +113,6 @@ export const synchRecordingExpectedActions = [
     },
     {
         type: actionTypes.CLEAR_ROUTES_ERROR,
-    },
-    {
-        type: actionTypes.SET_MAPS_LOADING_STATE,
-        state: true,
     },
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
@@ -228,15 +213,6 @@ export const synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedAct
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
-        type: actionTypes.SET_ROUTES_TO_SYNC,
-        routeIds: undefined,
-    },
-    {
-        type: actionTypes.SET_ROUTES_DATA,
-        routes: [],
-        refresh: true,
-    },
-    {
         type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
         privateMapId: endedRoute.remoteRouteId,
     },
@@ -253,10 +229,6 @@ export const synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedAct
     },
     {
         type: actionTypes.CLEAR_ROUTES_ERROR,
-    },
-    {
-        type: actionTypes.SET_MAPS_LOADING_STATE,
-        state: true,
     },
     {
         type: actionTypes.SET_ROUTES_LOADING_STATE,

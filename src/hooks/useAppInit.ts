@@ -13,18 +13,15 @@ import {
     authUserIsAuthenticatedStateSelector,
     onboardingFinishedSelector,
     userIdSelector,
-} from '@storage/selectors/index';
-import {
     appErrorSelector,
     isOnlineAppStatusSelector,
     syncAppSelector,
     userNameSelector,
-} from '@storage/selectors';
-import {
+    focusedOnRecodringScreenSelector,
     globalLocationSelector,
     isGoodConnectionQualitySelector,
     isInitMapsDataSynchedSelector,
-} from '@storage/selectors/app';
+} from '@storage/selectors';
 
 import {setAutorizationHeader} from '@api/api';
 import {cleanUp, initBGeolocalization} from '@utils/geolocation';
@@ -59,6 +56,9 @@ const useAppInit = () => {
         appErrorSelector,
     ); /* TODO: check all errors from sync requests */
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const isAppFocusedOnRecordingScreen = useAppSelector(
+        focusedOnRecodringScreenSelector,
+    );
 
     const clearAppSyncError = () => {
         dispatch(clearAppError());
@@ -138,10 +138,20 @@ const useAppInit = () => {
      * Fetch map data if initially wasn't
      */
     useEffect(() => {
-        if (!initMapsDataSynched && location && dataInitializedref.current) {
+        if (
+            !initMapsDataSynched &&
+            location &&
+            dataInitializedref.current &&
+            !isAppFocusedOnRecordingScreen
+        ) {
             dispatch(synchMapsData());
         }
-    }, [dispatch, location, initMapsDataSynched]);
+    }, [
+        dispatch,
+        location,
+        initMapsDataSynched,
+        isAppFocusedOnRecordingScreen,
+    ]);
 
     return {
         isOnline,

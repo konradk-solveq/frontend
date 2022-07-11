@@ -42,6 +42,7 @@ type AlertTranslationT = {
 const EditDetails = () => {
     const {t} = useMergedTranslation('RoutesDetails.EditScreen');
     const {t: toastsT} = useMergedTranslation('Toasts');
+    const formSubmitedRef = useRef(false);
 
     const wasPublishedBeforeRef = useRef(false);
 
@@ -97,7 +98,6 @@ const EditDetails = () => {
     useEffect(() => {
         if (submit && !isLoading) {
             if (error?.statusCode < 400) {
-                onBackHandler();
                 toastContext.addToast({
                     key: `toast-details-edit${publish ? '-publish' : ''}`,
                     title: publish
@@ -106,10 +106,11 @@ const EditDetails = () => {
                     icon: <ApprovedMarker />,
                     leaveOnScreenChange: true,
                 });
+                onBackHandler();
                 return;
             }
-            setShowErrorModal(true);
             setSubmit(false);
+            setShowErrorModal(true);
         }
     }, [isLoading, error?.statusCode, submit, onBackHandler]);
 
@@ -119,6 +120,7 @@ const EditDetails = () => {
         imgsToAdd?: ImageType[],
         imgsToRemove?: string[],
     ) => {
+        formSubmitedRef.current = true;
         const iToRemove: string[] = [];
         images.images.forEach(i => {
             if (imgsToRemove?.includes(i)) {
@@ -168,7 +170,7 @@ const EditDetails = () => {
         [alertContent, onBackHandler, publish, showAlert],
     );
 
-    if (isLoading || submit) {
+    if ((isLoading && formSubmitedRef.current) || submit) {
         return (
             <>
                 <View style={styles.loaderContainer}>

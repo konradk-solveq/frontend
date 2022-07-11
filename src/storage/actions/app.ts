@@ -134,6 +134,11 @@ export const setApiAuthHeaderState = (apiAuthHeaderState: boolean) => ({
     apiAuthHeaderState: apiAuthHeaderState,
 });
 
+export const setFocusedOnRecordingScreenState = (state: boolean) => ({
+    type: actionTypes.SET_FOCUESD_ON_RECORDING_SCREEN,
+    focusedOnRecodringScreenState: state,
+});
+
 export const clearAppError = () => ({
     type: actionTypes.CLEAR_APP_ERROR,
 });
@@ -445,12 +450,11 @@ export const appendRouteDebuggInfoToFIle = (
             internetConnectionInfo,
             routeDebugMode,
         }: AppState = getState().app;
-        const {currentRoute}: RoutesState = getState().routes;
-
         if (!routeDebugMode) {
             return;
         }
 
+        const {currentRoute}: RoutesState = getState().routes;
         /**
          * Pause and resume does not pass info about current route
          */

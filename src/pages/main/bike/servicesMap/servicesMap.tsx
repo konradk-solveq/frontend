@@ -6,10 +6,10 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {fetchPlacesData} from '@storage/actions';
+import {globalLocationSelector} from '@storage/selectors';
 
 import {markerTypes, Place, PointDetails} from '@models/places.model';
 import {BasicCoordsType} from '@type/coords';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {getMapInitLocation} from '@utils/webView';
 import {jsonParse, jsonStringify} from '@utils/transformJson';
 
@@ -40,7 +40,7 @@ const ServicesMap: React.FC = () => {
 
     const {permissionGranted, permissionResult} = useCheckLocationType();
 
-    const {location} = useLocationProvider();
+    const location = useAppSelector(globalLocationSelector);
     const [initLocation, setInitLocation] = useState<
         BasicCoordsType | undefined
     >();

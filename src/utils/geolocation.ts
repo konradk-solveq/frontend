@@ -284,7 +284,7 @@ export const stopBackgroundGeolocation = async () => {
             showsBackgroundLocationIndicator: undefined,
         });
 
-        const state = await stopBackgroundGeolocationPlugin();
+        const state = await stopBackgroundGeolocationPlugin(true);
         if (state?.odometer && state?.odometer > 0) {
             BackgroundGeolocation.resetOdometer();
         }
@@ -795,10 +795,17 @@ export const startMonitoringGeofences = async (forceToStart?: boolean) => {
     }
 };
 
-export const stopBackgroundGeolocationPlugin = async () => {
+export const stopBackgroundGeolocationPlugin = async (
+    stopWhenRecordingIsNotActive?: boolean,
+) => {
     try {
         let state = await getBackgroundGeolocationState();
-        if (state?.enabled) {
+        /**
+         * Prevent disabling plugin when recording is active
+         */
+        const shouldPreventStop =
+            stopWhenRecordingIsNotActive && state?.extras?.route_id;
+        if (state?.enabled && !shouldPreventStop) {
             state = await BackgroundGeolocation.stop();
         }
         return state;

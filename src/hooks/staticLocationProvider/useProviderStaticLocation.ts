@@ -332,12 +332,11 @@ const useProviderStaticLocation = () => {
     ]);
 
     return {
-        location:
-            currentLocationRef.current /* TODO: remove, other components should read location from globalLocation value (redux) */,
+        location: currentLocationRef.current,
         locationType,
         setLocationWithInterval,
         isTrackingActivated,
-        isTrackingActivatedHandler /* TODO: check if this method stil should be used (we keep information about recording status in redux store) */,
+        isTrackingActivatedHandler,
     };
 };
 
