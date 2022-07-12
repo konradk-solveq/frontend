@@ -19,6 +19,7 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import useCompassHook from '@src/hooks/useCompassHook';
 
 import {AnimatedContainerPosition} from './components';
+import {googleMapId} from '@src/utils/constants/googleMapId';
 
 interface IProps {
     onWebViewMessage: (e: WebViewMessageEvent) => void;
@@ -197,6 +198,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
                     html:
                         '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
                         loc +
+                        googleMapId +
                         mapSource +
                         '</body></html>',
                     baseUrl: isIOS ? '' : 'file:///android_asset/',
