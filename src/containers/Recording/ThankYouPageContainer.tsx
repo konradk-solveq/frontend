@@ -1,5 +1,9 @@
 import React, {useMemo} from 'react';
-import {PrimaryButton, SecondaryButton} from '@src/components/buttons';
+import {
+    PrimaryButton,
+    SecondaryButton,
+    IconButton,
+} from '@src/components/buttons';
 import LeafSvg from '@src/components/svg/LeafSvg';
 import MoneySvg from '@src/components/svg/MoneySvg';
 import ThankYouSvg from '@src/components/svg/ThankYouSvg';
@@ -16,6 +20,7 @@ import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation
 import {View, StyleSheet} from 'react-native';
 import SavingPanel from './components/SavingPanel';
 import StatisticElement from './components/StatisticElement';
+import {MykrossIconFont} from '@theme/enums/iconFonts';
 
 interface IProps {
     userName: string;
@@ -26,6 +31,7 @@ interface IProps {
     };
     onPublishAction: () => void;
     onSaveAction: () => void;
+    onCloseAction: () => void;
 }
 
 const ThankYouPageContainer: React.FC<IProps> = ({
@@ -34,6 +40,7 @@ const ThankYouPageContainer: React.FC<IProps> = ({
     savingsValues,
     onSaveAction,
     onPublishAction,
+    onCloseAction,
 }) => {
     const {t} = useMergedTranslation('ThankYouPage');
     const quantityCountText = useMemo(
@@ -50,6 +57,13 @@ const ThankYouPageContainer: React.FC<IProps> = ({
         <View style={styles.container}>
             <View style={styles.imgContainer}>
                 <ThankYouSvg />
+            </View>
+            <View style={styles.closeButton}>
+                <IconButton
+                    iconColor={colors.black}
+                    onPress={onCloseAction}
+                    icon={MykrossIconFont.MYKROSS_ICON_EXIT}
+                />
             </View>
             <Header1 color={colors.altGreen}>
                 {t('goodJobTitle')} {userName ? userName : ''}
@@ -118,6 +132,12 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         paddingHorizontal: appContainerHorizontalMargin,
+        position: 'relative',
+    },
+    closeButton: {
+        position: 'absolute',
+        top: getFVerticalPx(16),
+        left: getFHorizontalPx(12),
     },
     imgContainer: {
         marginTop: getFVerticalPx(23),

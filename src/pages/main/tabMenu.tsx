@@ -17,6 +17,7 @@ import {
     BikeIcon,
     ProfileIcon,
 } from '@components/icons/tabMenu';
+import CounterThankYouPage from '@pages/main/recording/counterThankYouPage/counterThankYouPage';
 
 interface Props {
     navigation: any;
@@ -47,7 +48,15 @@ const TabMenu: React.FC<Props> = () => {
     };
 
     return (
-        <Tab.Navigator initialRouteName="HomeTab" tabBarOptions={tabBarOptions}>
+        <Tab.Navigator
+            initialRouteName="HomeTab"
+            tabBarOptions={tabBarOptions}
+            // hides the thank you page icon completely
+            screenOptions={({route}) => ({
+                tabBarButton: ['ThankYouPageTab'].includes(route.name)
+                    ? () => null
+                    : undefined,
+            })}>
             <Tab.Screen
                 name="HomeTab"
                 component={Home}
@@ -95,6 +104,16 @@ const TabMenu: React.FC<Props> = () => {
                     tabBarIcon: ({focused}) => (
                         <ProfileIcon isFocused={focused} />
                     ),
+                }}
+            />
+
+            <Tab.Screen
+                name={'ThankYouPageTab'}
+                component={CounterThankYouPage}
+                options={{
+                    tabBarLabel: '',
+                    tabBarVisible: false,
+                    unmountOnBlur: true,
                 }}
             />
         </Tab.Navigator>
