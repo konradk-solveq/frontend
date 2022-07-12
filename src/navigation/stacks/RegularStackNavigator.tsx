@@ -8,7 +8,6 @@ import {
     BikePrivateScreens,
     KrossWorldCommonScreens,
     ProfileCommonScreens,
-    RecordRouteCommonScreens,
 } from '@navigation/screens/index';
 
 import TabMenu from '@pages/main/tabMenu';
@@ -22,7 +21,6 @@ const RegularScreens = () => (
         <Stack.Screen name="Notifications" component={Notifications} />
         {BikePrivateScreens()}
         {KrossWorldCommonScreens()}
-        {RecordRouteCommonScreens()}
         {ProfileCommonScreens()}
     </>
 );

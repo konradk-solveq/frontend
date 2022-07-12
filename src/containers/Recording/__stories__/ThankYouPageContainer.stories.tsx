@@ -38,6 +38,7 @@ storiesOf('containers/Recording/ThankYouPageContainer', module)
             })}
             onPublishAction={action('onPublishAction')}
             onSaveAction={action('onSaveAction')}
+            onCloseAction={action('onCloseAction')}
         />
     ));
 

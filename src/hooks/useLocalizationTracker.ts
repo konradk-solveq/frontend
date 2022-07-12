@@ -107,6 +107,10 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
                 setProcessing(true);
             }
             /**
+             * clear current tracker data
+             */
+            setTrackerData(undefined);
+            /**
              * State os hook is set to active
              * which means that location data is collected
              */

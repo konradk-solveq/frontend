@@ -212,6 +212,12 @@ export type ProfileParamsListT = {
     Contact: undefined;
     Consents: undefined;
 };
+/* ThankYouPage */
+export type THPParamsListT = {
+    distance?: string;
+    time?: number;
+    pause?: number;
+};
 export type NameChangeRouteT = RouteProp<ProfileParamsListT, 'NameChange'>;
 export type NameChangeNavigationPropT = MainNavigationCompositePropT<
     ProfileParamsListT,

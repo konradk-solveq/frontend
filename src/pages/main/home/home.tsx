@@ -9,7 +9,6 @@ import {syncAppSelector, userNameSelector} from '@storage/selectors';
 
 import {useAppSelector} from '@hooks/redux';
 import {nfcIsSupported} from '@helpers/nfc';
-import {RegularStackRoute} from '@navigation/route';
 
 import Loader from '@components/svg/loader/loader';
 import GenericScreen from '@pages/template/GenericScreen';
@@ -38,7 +37,7 @@ const Home: React.FC = () => {
     const redirectToCoutnerScreen = useCallback(() => {
         if (isTrackerActive && !mountedRef.current) {
             mountedRef.current = true;
-            navigation.navigate(RegularStackRoute.COUNTER_SCREEN);
+            navigation.navigate('RecordTab');
         }
     }, [isTrackerActive, navigation]);
 

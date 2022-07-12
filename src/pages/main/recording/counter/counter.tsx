@@ -28,7 +28,7 @@ import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import useCompassHook from '@hooks/useCompassHook';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
 
-import {BothStackRoute, RegularStackRoute} from '@navigation/route';
+import {BothStackRoute} from '@navigation/route';
 import {CounterDataContext} from '@pages/main/recording/counter/context/counterContext';
 import {Alert as CustomAlert} from '@components/alerts';
 import {CounterContainer} from '@containers/Recording';
@@ -159,7 +159,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (recordingState && recordingState !== 'not-started') {
             navigation.setOptions({
                 tabBarVisible: false,
-                tabBarIcon: () => null,
             });
         }
     }, [navigation, recordingState]);
@@ -265,7 +264,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         dispatch(setCurrentRoutePauseTime(totTime));
 
         navigation.navigate({
-            name: RegularStackRoute.COUNTER_THANK_YOU_PAGE_SCREEN,
+            name: 'ThankYouPageTab',
             params: {
                 distance: totalDistanceRef.current,
                 time: trackerStartTime

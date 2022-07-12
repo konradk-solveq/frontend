@@ -757,7 +757,12 @@
         "errorCloseBtn": "Zamknij",
         "errorTitle": "Coś poszło nie tak!",
         "errorMessageTitle": "Przejechany dystans jest **zbyt krótki**.",
-        "errorMessageContent": "Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów)."
+        "errorMessageContent": "Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).",
+        "abandonAlert": {
+            "text": "Czy chcesz wyjść bez zapisania trasy?",
+            "pressText": "Tak, usuń",
+            "cancelText": "Wróć"
+        }
     },
     "ServicesMap": {
         "services": "Serwisy",
