@@ -31,6 +31,7 @@ import {AnimatedContainerPosition} from '@src/containers/World/components';
 import NotificationList from '@components/notifications/NotificationList';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
+import {googleMapId} from '@src/utils/constants/googleMapId';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -249,6 +250,7 @@ const ServicesMap: React.FC = () => {
                         html:
                             '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
                             initMapPos +
+                            googleMapId +
                             mapSource +
                             '</body></html>',
                         baseUrl:
