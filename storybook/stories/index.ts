@@ -8,6 +8,7 @@ import '@components/dropdown/__stories__';
 import '@components/error/__stories__';
 import '@components/headers/__stories__';
 import '@components/icons/__stories__';
+import '@components/images/__stories__';
 import '@components/inputs/__stories__';
 import '@components/modals/__stories__';
 import '@components/navigation/__stories__';

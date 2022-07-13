@@ -629,7 +629,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
           showsHorizontalScrollIndicator={false}
           style={
             Array [
-              undefined,
               Object {
                 "height": 126.44549763033176,
               },
@@ -657,6 +656,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
+                testID="https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg"
               >
                 <Image
                   resizeMode="cover"
@@ -1763,7 +1763,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
           showsHorizontalScrollIndicator={false}
           style={
             Array [
-              undefined,
               Object {
                 "height": 126.44549763033176,
               },
@@ -1791,6 +1790,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 onResponderTerminate={[Function]}
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
+                testID="https://public.pre.mykross.kross.pl/cycling-map/hePDDh_LE--EhM5XSDXxQiHtrOhGDQNq/44jRA77p0nKJPt_H4usR_square_480.jpg"
               >
                 <Image
                   resizeMode="cover"
