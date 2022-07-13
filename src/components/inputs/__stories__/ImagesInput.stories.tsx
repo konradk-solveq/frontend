@@ -17,7 +17,7 @@ storiesOf('components/input/ImagesInput', module)
     ))
     .add('Default', () => (
         <ImagesInput
-            onAddImage={action('on-add-image')}
+            onAddImages={action('on-add-image')}
             onRemoveImage={action('on-remove-image')}
             images={[]}
             placeholderText={'Placeholder Text'}
@@ -25,7 +25,7 @@ storiesOf('components/input/ImagesInput', module)
     ))
     .add('Customized', () => (
         <ImagesInput
-            onAddImage={action('on-add-image')}
+            onAddImages={action('on-add-image')}
             onRemoveImage={action('on-remove-image')}
             images={array('images', [])}
             placeholderText={text('Placeholder Text', 'Placeholder Text')}
