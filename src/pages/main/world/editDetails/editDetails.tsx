@@ -40,6 +40,8 @@ type AlertTranslationT = {
 const EditDetails = () => {
     const {t} = useMergedTranslation('RoutesDetails.EditScreen');
 
+    const formSubmitedRef = useRef(false);
+
     const wasPublishedBeforeRef = useRef(false);
 
     const options = useAppSelector(mapOptionsAndTagsSelector);
@@ -79,9 +81,9 @@ const EditDetails = () => {
 
     useCustomBackNavButton(onBackHandler, true);
 
-    const onScrollToTopHandler = () => {
+    const onScrollToTopHandler = useCallback(() => {
         scrollViewRef.current && scrollViewRef.current?.scrollTo({y: 0});
-    };
+    }, []);
 
     useEffect(() => {
         if (mapData?.isPublic) {
@@ -101,38 +103,48 @@ const EditDetails = () => {
         }
     }, [isLoading, error?.statusCode, submit, onBackHandler]);
 
-    const onSubmitHandler = (
-        data: MapFormDataResult,
-        publishRoute: boolean,
-        imgsToAdd?: ImageType[],
-        imgsToRemove?: string[],
-    ) => {
-        const iToRemove: string[] = [];
-        images.images.forEach(i => {
-            if (imgsToRemove?.includes(i)) {
-                const iTD = mapData?.pictures?.images?.find(
-                    im => i.includes(im.id) && im.type !== 'map',
-                );
-                if (iTD?.id) {
-                    iToRemove.push(iTD?.id);
+    const onSubmitHandler = useCallback(
+        (
+            data: MapFormDataResult,
+            publishRoute: boolean,
+            imgsToAdd?: ImageType[],
+            imgsToRemove?: string[],
+        ) => {
+            formSubmitedRef.current = true;
+            const iToRemove: string[] = [];
+            images.images.forEach(i => {
+                if (imgsToRemove?.includes(i)) {
+                    const iTD = mapData?.pictures?.images?.find(
+                        im => i.includes(im.id) && im.type !== 'map',
+                    );
+                    if (iTD?.id) {
+                        iToRemove.push(iTD?.id);
+                    }
                 }
-            }
-        });
-        const imgsToChange: ImagesMetadataType = {
-            save: imgsToAdd,
-            delete: iToRemove,
-        };
-        dispatch(
-            editPrivateMapMetaData(
-                data,
-                imgsToChange,
-                publishRoute,
-                mapID || newPrivateMapID,
-            ),
-        );
-        setSubmit(true);
-        setShowAlert(false);
-    };
+            });
+            const imgsToChange: ImagesMetadataType = {
+                save: imgsToAdd,
+                delete: iToRemove,
+            };
+            dispatch(
+                editPrivateMapMetaData(
+                    data,
+                    imgsToChange,
+                    publishRoute,
+                    mapID || newPrivateMapID,
+                ),
+            );
+            setSubmit(true);
+            setShowAlert(false);
+        },
+        [
+            dispatch,
+            images.images,
+            mapData?.pictures?.images,
+            mapID,
+            newPrivateMapID,
+        ],
+    );
 
     const formRef = useRef<RouteEditFormRef>();
 
@@ -156,7 +168,7 @@ const EditDetails = () => {
         [alertContent, onBackHandler, publish, showAlert],
     );
 
-    if (isLoading || submit) {
+    if ((isLoading && formSubmitedRef.current) || submit) {
         return (
             <>
                 <View style={styles.loaderContainer}>

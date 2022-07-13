@@ -20,7 +20,7 @@ export const getTimeString = (date: Date) => {
     });
 };
 
-export const convertToDateWithTime = (date: string | undefined) => {
+export const convertToDateWithTime = (date: string | Date | undefined) => {
     if (!date) {
         return '';
     }

@@ -1,0 +1,403 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/images/ImageSwiper Customized 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTScrollView
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+    style={
+      Array [
+        Object {},
+      ]
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                Object {},
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                Object {},
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                Object {},
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                Object {},
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Storyshots components/images/ImageSwiper Default 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RCTScrollView
+    horizontal={true}
+    showsHorizontalScrollIndicator={false}
+    style={
+      Array [
+        undefined,
+      ]
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <View
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              Object {
+                "uri": undefined,
+              }
+            }
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#ededed",
+                  "borderRadius": 15.80568720379147,
+                  "height": 128.0260663507109,
+                  "marginRight": 15.384615384615385,
+                  "width": 209.6153846153846,
+                },
+                undefined,
+              ]
+            }
+          />
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

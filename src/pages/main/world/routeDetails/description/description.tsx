@@ -9,13 +9,13 @@ import {Map, Thumbnails} from '@models/map.model';
 import {RegularStackRoute} from '@navigation/route';
 import {ImageBtn} from '@sharedComponents/buttons';
 
-import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
 import {userNameSelector} from '@storage/selectors';
 import {convertToDateWithTime} from '@utils/dateTime';
 import FullScreenGallery from '../fullScreenGallery/FullScreenGallery';
 import RideTile from './rideTile';
 
 import styles from './styles';
+import {ImageSwiper} from '@components/images';
 
 interface IProps {
     mapData: Map | undefined;

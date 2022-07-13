@@ -12,9 +12,10 @@ import {convertToDateWithTime} from '@utils/dateTime';
 import {firstLetterToUpperCase} from '@utils/strings';
 
 import FullScreenGallery from '@pages/main/world/routeDetails/fullScreenGallery/FullScreenGallery';
-import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
+
 import {Header3, Paragraph, Subtitle} from '@components/texts/texts';
 import {Tags} from '@containers/World/components';
+import {ImageSwiper} from '@components/images';
 
 const getSurfaceString = (
     surfaces?: string[],
