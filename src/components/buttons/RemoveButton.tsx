@@ -8,11 +8,19 @@ interface IProps {
     onPress: () => void;
     containerStyle?: ViewStyle;
     iconStyle?: ViewStyle;
+    testID?: string;
 }
 
-const RemoveBtn: React.FC<IProps> = ({onPress, containerStyle}: IProps) => {
+const RemoveBtn: React.FC<IProps> = ({
+    onPress,
+    containerStyle,
+    testID,
+}: IProps) => {
     return (
-        <Pressable onPress={() => onPress()} hitSlop={getFVerticalPx(10)}>
+        <Pressable
+            onPress={onPress}
+            hitSlop={getFVerticalPx(10)}
+            testID={testID}>
             <View style={[styles.container, containerStyle]}>
                 <RemoveSvg />
             </View>

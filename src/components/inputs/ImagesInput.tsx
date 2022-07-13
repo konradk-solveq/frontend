@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {StyleSheet, View, Pressable} from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {AddBtn} from '@sharedComponents/buttons';
-import ImageSwiper from '@sharedComponents/imageSwiper/imageSwiper';
 import {ImageType} from '@interfaces/form';
 import {getFVerticalPx, getFHorizontalPx} from '@helpers/appLayoutDimensions';
 import CameraSvg from '../svg/CameraSvg';
 import colors from '@theme/colors';
 import {Header3} from '@components/texts/texts';
 import {prepareImage} from '@utils/images';
+import {ImageSwiper} from '@components/images';
 
 interface IProps {
     images: string[];
-    onAddImage: (imageUri: ImageType) => void;
+    onAddImages: (images: ImageType[]) => void;
     onRemoveImage: (imageUri: string) => void;
     placeholderText: string;
 }
@@ -31,14 +31,14 @@ const Placeholder = ({message}: IPlaceholderProps) => (
 );
 const ImagesInput: React.FC<IProps> = ({
     images,
-    onAddImage,
+    onAddImages,
     onRemoveImage,
     placeholderText,
 }: IProps) => {
-    const [isBlocked, setIsBocked] = useState(false);
+    const [isBlocked, setIsBlocked] = useState(false);
 
-    const onAddImageHandler = () => {
-        setIsBocked(true);
+    const onAddImageHandler = useCallback(() => {
+        setIsBlocked(true);
         ImagePicker.openPicker({
             mediaType: 'photo',
             compressImageMaxWidth: 2056,
@@ -47,20 +47,25 @@ const ImagesInput: React.FC<IProps> = ({
             maxFiles: 0, //iOS only, passing 0 allows to pick any number of photos (default - maxFiles: 5)
         })
             .then(selectedImages => {
-                /* TODO: on error */
-                selectedImages.forEach(img => {
-                    if (
-                        typeof img?.sourceURL !== 'undefined' ||
-                        typeof img?.path !== 'undefined'
-                    ) {
-                        onAddImage(prepareImage(img));
-                    }
-                });
+                const imagesToAdd = selectedImages
+                    .map(image => {
+                        if (
+                            typeof image?.sourceURL !== 'undefined' ||
+                            typeof image?.path !== 'undefined'
+                        ) {
+                            return prepareImage(image);
+                        }
+                    })
+                    .filter((image): image is ImageType => !!image);
+                onAddImages(imagesToAdd);
+            })
+            .catch(err => {
+                console.error(err);
             })
             .finally(() => {
-                setIsBocked(false);
+                setIsBlocked(false);
             });
-    };
+    }, [onAddImages]);
 
     return (
         <View style={styles.container}>
@@ -116,4 +121,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ImagesInput;
+export default React.memo(ImagesInput);

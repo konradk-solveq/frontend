@@ -1,4 +1,10 @@
-import React, {useState, useImperativeHandle, Ref, useMemo} from 'react';
+import React, {
+    useState,
+    useImperativeHandle,
+    Ref,
+    useMemo,
+    useCallback,
+} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SubmitErrorHandler, SubmitHandler, FieldValues} from 'react-hook-form';
 
@@ -29,6 +35,7 @@ import {Alert} from '@components/alerts';
 import {IProps as IAlertProps} from '@components/alerts/Alert';
 import {attributes} from '@utils/constants';
 import {SelectEnumOptionsType} from '@models/config.model';
+import {isTruthyString} from '@utils/strings';
 
 export type RouteEditFormRef = {
     submit: () => void;
@@ -36,7 +43,7 @@ export type RouteEditFormRef = {
 
 interface IProps {
     mapData: Map | undefined;
-    imagesData: {images: string[]; mapImg: string};
+    imagesData: {images: string[]};
     onSubmit: (
         data: MapFormDataResult,
         publish: boolean,
@@ -84,73 +91,89 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             getValues,
         } = useFormDataWithMapData(mapData, publish);
 
-        const validateFormData = (data: FieldValues) => {
-            const isValid = reValidateMapMetadataManually(
-                data,
-                tvm('formErrors', {returnObjects: true}),
-                setError,
-                ['publishWithName'],
-            );
-            if (!isValid) {
-                scrollTop();
-            }
+        const validateFormData = useCallback(
+            (data: FieldValues) => {
+                const isValid = reValidateMapMetadataManually(
+                    data,
+                    tvm('formErrors', {returnObjects: true}),
+                    setError,
+                    ['publishWithName'],
+                );
+                if (!isValid) {
+                    scrollTop();
+                }
 
-            return isValid;
-        };
-
-        /**
-         * Validate data when publish or route is already published
-         */
-        const onSubmitHandler: SubmitHandler<MapFormDataResult> = data => {
-            if (!publish && !isRoutePublished) {
-                onSubmit(data, false, imagesToAdd, imagesToRemove);
-                return;
-            }
-            const isValid = validateFormData(data);
-            if (isValid) {
-                onSubmit(data, publish, imagesToAdd, imagesToRemove);
-            }
-        };
+                return isValid;
+            },
+            [scrollTop, setError, tvm],
+        );
 
         /**
          * Validate data when publish or route is already published
          */
-        const onInvalidSubmitHandler: SubmitErrorHandler<MapFormDataResult> = () => {
+        const onSubmitHandler: SubmitHandler<MapFormDataResult> = useCallback(
+            data => {
+                if (!publish && !isRoutePublished) {
+                    onSubmit(data, false, imagesToAdd, imagesToRemove);
+                    return;
+                }
+                const isValid = validateFormData(data);
+                if (isValid) {
+                    onSubmit(data, publish, imagesToAdd, imagesToRemove);
+                }
+            },
+            [
+                imagesToAdd,
+                imagesToRemove,
+                isRoutePublished,
+                onSubmit,
+                publish,
+                validateFormData,
+            ],
+        );
+
+        /**
+         * Validate data when publish or route is already published
+         */
+        const onInvalidSubmitHandler: SubmitErrorHandler<MapFormDataResult> = useCallback(() => {
             if (!publish && !isRoutePublished) {
                 return;
             }
             const formValues = getValues();
             validateFormData(formValues);
-        };
+        }, [getValues, isRoutePublished, publish, validateFormData]);
 
-        const onValidateHandler = (
-            val: string | number | boolean | string[] | undefined,
-            fieldName: string,
-        ) => {
-            if (!publish) {
-                return true;
-            }
-            const rules =
-                publishMapValidationRules[
-                    fieldName as keyof PublishMapValidationRulesI
-                ];
-            const isValid = validateData(rules, val);
-
-            if (!isValid) {
-                scrollTop();
-            }
-            return isValid || tvm(`formErrors.${fieldName}`);
-        };
-
-        const onAddImageHandler = (img: ImageType) => {
-            if (img) {
-                if (img.uri) {
-                    const imgUrl = img.uri;
-                    setImages(prev => [imgUrl, ...prev]);
+        const onValidateHandler = useCallback(
+            (
+                val: string | number | boolean | string[] | undefined,
+                fieldName: string,
+            ) => {
+                if (!publish) {
+                    return true;
                 }
-                setImagesToAdd(prev => [img, ...prev]);
+                const rules =
+                    publishMapValidationRules[
+                        fieldName as keyof PublishMapValidationRulesI
+                    ];
+                const isValid = validateData(rules, val);
+
+                if (!isValid) {
+                    scrollTop();
+                }
+                return isValid || tvm(`formErrors.${fieldName}`);
+            },
+            [publish, scrollTop, tvm],
+        );
+
+        const onAddImageHandler = useCallback((imagesTab: ImageType[]) => {
+            if (imagesTab && imagesTab.length) {
+                const imageUrls = imagesTab
+                    .map(image => image.uri)
+                    .filter(isTruthyString);
+                setImages(prev => [...imageUrls, ...prev]);
+                setImagesToAdd(prev => [...imagesTab, ...prev]);
             }
-        };
+        }, []);
 
         /**
          * Validate data when publish or route is already published
@@ -159,7 +182,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             submit: handleSubmit(onSubmitHandler, onInvalidSubmitHandler),
         }));
 
-        const onRemoveImageHandler = (imageUri: string) => {
+        const onRemoveImageHandler = useCallback((imageUri: string) => {
             if (imageUri) {
                 setImages(prev => [...prev].filter(i => i !== imageUri));
                 setImagesToAdd(prev =>
@@ -167,7 +190,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                 );
                 setImagesToRemove(prev => [imageUri, ...prev]);
             }
-        };
+        }, []);
 
         return (
             <View>
@@ -276,7 +299,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                     </Header3>
                     <ImagesInput
                         images={images}
-                        onAddImage={onAddImageHandler}
+                        onAddImages={onAddImageHandler}
                         onRemoveImage={onRemoveImageHandler}
                         placeholderText={t('photos.placeholder')}
                     />
@@ -355,7 +378,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
     },
 );
 
-export default EditForm;
+export default React.memo(EditForm);
 
 const styles = StyleSheet.create({
     checkboxContainer: {
