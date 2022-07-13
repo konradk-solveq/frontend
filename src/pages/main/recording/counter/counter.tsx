@@ -159,6 +159,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (recordingState && recordingState !== 'not-started') {
             navigation.setOptions({
                 tabBarVisible: false,
+                tabBarIcon: () => null,
             });
         }
     }, [navigation, recordingState]);
