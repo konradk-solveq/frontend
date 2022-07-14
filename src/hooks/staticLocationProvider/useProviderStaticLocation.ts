@@ -5,7 +5,10 @@ import {BasicCoordsType} from '@type/coords';
 import {locationTypeEnum} from '@type/location';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {setGlobalLocation} from '@storage/actions/app';
-import {showedLocationInfoSelector} from '@storage/selectors/app';
+import {
+    heavyTaskProcessingSelector,
+    showedLocationInfoSelector,
+} from '@storage/selectors/app';
 import {
     cleanUpListener,
     getLatLngFromForeground,
@@ -47,6 +50,13 @@ const useProviderStaticLocation = () => {
     const {appIsActive} = useAppState();
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
+    /**
+     * Temporary solution. In the end those action
+     * like sync data, should be run on background thread
+     */
+    const isAppDuringHeavyTaskProcess = useAppSelector(
+        heavyTaskProcessingSelector,
+    );
     const locationDialogHasBeenShown = useAppSelector(
         showedLocationInfoSelector,
     );
@@ -202,14 +212,19 @@ const useProviderStaticLocation = () => {
         /**
          * There is a bug in Android 10 where the appstatus updates in infinite loop.
          */
-        if (ANDROID_IS_VERSION_10) {
+        if (ANDROID_IS_VERSION_10 || isAppDuringHeavyTaskProcess) {
             return;
         }
 
         if (appIsActive && !isRouteRecordingActive!) {
             setLocationWithInterval(true);
         }
-    }, [appIsActive, setLocationWithInterval, isRouteRecordingActive]);
+    }, [
+        appIsActive,
+        setLocationWithInterval,
+        isRouteRecordingActive,
+        isAppDuringHeavyTaskProcess,
+    ]);
 
     /**
      * Start plugin only if route tracking is disabled.
