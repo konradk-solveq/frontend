@@ -19,6 +19,8 @@ import {
     isOnlineAppStatusSelector,
     syncAppSelector,
     userNameSelector,
+    focusedOnRecordingScreenSelector,
+    heavyTaskProcessingSelector,
 } from '@storage/selectors';
 import {
     globalLocationSelector,
@@ -59,6 +61,16 @@ const useAppInit = () => {
         appErrorSelector,
     ); /* TODO: check all errors from sync requests */
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
+    const isAppFocusedOnRecordingScreen = useAppSelector(
+        focusedOnRecordingScreenSelector,
+    );
+    /**
+     * Temporary solution. In the end those action
+     * like sync data, should be run on background thread
+     */
+    const isAppDuringHeavyTaskPRocess = useAppSelector(
+        heavyTaskProcessingSelector,
+    );
 
     const clearAppSyncError = () => {
         dispatch(clearAppError());
@@ -138,10 +150,22 @@ const useAppInit = () => {
      * Fetch map data if initially wasn't
      */
     useEffect(() => {
-        if (!initMapsDataSynched && location && dataInitializedref.current) {
+        if (
+            !initMapsDataSynched &&
+            location &&
+            dataInitializedref.current &&
+            !isAppFocusedOnRecordingScreen &&
+            !isAppDuringHeavyTaskPRocess
+        ) {
             dispatch(synchMapsData());
         }
-    }, [dispatch, location, initMapsDataSynched]);
+    }, [
+        dispatch,
+        location,
+        initMapsDataSynched,
+        isAppFocusedOnRecordingScreen,
+        isAppDuringHeavyTaskPRocess,
+    ]);
 
     return {
         isOnline,

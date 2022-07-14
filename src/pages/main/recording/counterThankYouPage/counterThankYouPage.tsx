@@ -6,6 +6,7 @@ import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import {useNavigation, useRoute} from '@react-navigation/core';
 import {RegularStackRoute} from '@navigation/route';
 
+import {setHeavyTaskProcessingState} from '@storage/actions/app';
 import {
     trackerErrorSelector,
     trackerLoadingSelector,
@@ -72,6 +73,7 @@ const CounterThankYouPage: React.FC = () => {
                 dispatch(clearError());
             }, 0);
             if (goForward === Action.home) {
+                dispatch(setHeavyTaskProcessingState(false));
                 navigation.navigate('HomeTab');
                 return;
             }
@@ -86,6 +88,7 @@ const CounterThankYouPage: React.FC = () => {
                 return;
             }
 
+            dispatch(setHeavyTaskProcessingState(false));
             navigation.navigate('HomeTab');
         },
         [dispatch, goForward, navigation],

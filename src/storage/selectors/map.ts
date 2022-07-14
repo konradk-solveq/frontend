@@ -5,7 +5,8 @@ import {mapsListToClass} from '../../utils/transformData';
 import routes from '../reducers/routes';
 import {getMapFromFeaturedSections} from './utils/map';
 import {NestedPaginationType} from '@src/interfaces/api';
-import {FiltersState, IMapsListError} from '@storage/reducers/maps';
+import {FiltersState, IMapsListError, MapsState} from '@storage/reducers/maps';
+import {appConfigSelector} from './app';
 
 export enum selectorMapTypeEnum {
     regular = 'regular',
@@ -14,14 +15,40 @@ export enum selectorMapTypeEnum {
     featured = 'featured',
 }
 
-export const mapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.maps, state.app.config);
+export const mapSelector = (state: RootState): MapsState => state.maps;
 
-export const privateMapsListSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.privateMaps, state.app.config);
+export const rawMapsListSelector = createSelector(
+    mapSelector,
+    maps => maps.maps,
+);
 
-export const favouritesMapsSelector = (state: RootState): Map[] =>
-    mapsListToClass(state.maps.plannedMaps, state.app.config);
+export const rawPrivateMapsListSelector = createSelector(
+    mapSelector,
+    maps => maps.privateMaps,
+);
+
+export const rawFavouritesMapsListSelector = createSelector(
+    mapSelector,
+    maps => maps.plannedMaps,
+);
+
+export const mapsListSelector = createSelector(
+    rawMapsListSelector,
+    appConfigSelector,
+    (maps, appConfig) => mapsListToClass(maps, appConfig),
+);
+
+export const privateMapsListSelector = createSelector(
+    rawPrivateMapsListSelector,
+    appConfigSelector,
+    (maps, appConfig) => mapsListToClass(maps, appConfig),
+);
+
+export const favouritesMapsSelector = createSelector(
+    rawFavouritesMapsListSelector,
+    appConfigSelector,
+    (maps, appConfig) => mapsListToClass(maps, appConfig),
+);
 
 export const mapsCountSelector = (state: RootState): FiltersState =>
     state.maps.filters;
@@ -49,27 +76,33 @@ export const featuredMapsSelector = (state: RootState): FeaturedMapType[] =>
 export const favouritesMapsIDSSelector = (state: RootState): string[] =>
     state.maps.favourites;
 
-export const loadingMapsSelector = (state: RootState): boolean =>
-    state.maps.loading;
+export const loadingMapsSelector = createSelector(
+    mapSelector,
+    maps => maps.loading,
+);
 
-export const mapsErrorSelector = (
-    state: RootState,
-): {message: string; statusCode: number} => ({
-    message: state.maps.error,
-    statusCode: state.maps.statusCode,
-});
+export const mapsErroSelector = createSelector(mapSelector, maps => maps.error);
+export const mapsStatusCodeSelector = createSelector(
+    mapSelector,
+    maps => maps.statusCode,
+);
+
+export const mapsErrorSelector = createSelector(
+    mapsErroSelector,
+    mapsStatusCodeSelector,
+    (error, status) => ({
+        message: error,
+        statusCode: status,
+    }),
+);
 
 export const refreshMapsSelector = (state: RootState): boolean =>
     state.maps.refresh;
 
-export const mapIdToAddSelector = (state: RootState): string =>
-    state.maps.mapToAddId;
-
-// export const favouritesMapsSelector = createSelector(
-//     favouritesMapsIDSSelector,
-//     mapsListSelector,
-//     (fav, maps) => maps.filter(m => fav.includes(m.id)),
-// );
+export const mapIdToAddSelector = createSelector(
+    mapSelector,
+    maps => maps.mapToAddId,
+);
 
 export const mapDataByIDSelector = (mapID?: string) =>
     createSelector(mapsListSelector, (maps: Map[]) =>
