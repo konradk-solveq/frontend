@@ -35,6 +35,8 @@ import {Alert} from '@components/alerts';
 import {IProps as IAlertProps} from '@components/alerts/Alert';
 import {attributes} from '@utils/constants';
 import {SelectEnumOptionsType} from '@models/config.model';
+import ApprovedMarker from '@src/components/icons/ApprovedMarker';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 import {isTruthyString} from '@utils/strings';
 
 export type RouteEditFormRef = {
@@ -170,7 +172,10 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                 const imageUrls = imagesTab
                     .map(image => image.uri)
                     .filter(isTruthyString);
-                setImages(prev => [...imageUrls, ...prev]);
+
+                if (imageUrls.length) {
+                    setImages(prev => [...imageUrls, ...prev]);
+                }
                 setImagesToAdd(prev => [...imagesTab, ...prev]);
             }
         }, []);

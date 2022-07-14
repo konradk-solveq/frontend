@@ -17,7 +17,10 @@ import {
     isOnlineAppStatusSelector,
     syncAppSelector,
     userNameSelector,
-    focusedOnRecodringScreenSelector,
+    focusedOnRecordingScreenSelector,
+    heavyTaskProcessingSelector,
+} from '@storage/selectors';
+import {
     globalLocationSelector,
     isGoodConnectionQualitySelector,
     isInitMapsDataSynchedSelector,
@@ -57,7 +60,14 @@ const useAppInit = () => {
     ); /* TODO: check all errors from sync requests */
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isAppFocusedOnRecordingScreen = useAppSelector(
-        focusedOnRecodringScreenSelector,
+        focusedOnRecordingScreenSelector,
+    );
+    /**
+     * Temporary solution. In the end those action
+     * like sync data, should be run on background thread
+     */
+    const isAppDuringHeavyTaskPRocess = useAppSelector(
+        heavyTaskProcessingSelector,
     );
 
     const clearAppSyncError = () => {
@@ -142,7 +152,8 @@ const useAppInit = () => {
             !initMapsDataSynched &&
             location &&
             dataInitializedref.current &&
-            !isAppFocusedOnRecordingScreen
+            !isAppFocusedOnRecordingScreen &&
+            !isAppDuringHeavyTaskPRocess
         ) {
             dispatch(synchMapsData());
         }
@@ -151,6 +162,7 @@ const useAppInit = () => {
         location,
         initMapsDataSynched,
         isAppFocusedOnRecordingScreen,
+        isAppDuringHeavyTaskPRocess,
     ]);
 
     return {

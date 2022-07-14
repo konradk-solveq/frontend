@@ -136,7 +136,12 @@ export const setApiAuthHeaderState = (apiAuthHeaderState: boolean) => ({
 
 export const setFocusedOnRecordingScreenState = (state: boolean) => ({
     type: actionTypes.SET_FOCUESD_ON_RECORDING_SCREEN,
-    focusedOnRecodringScreenState: state,
+    focusedOnRecordingScreenState: state,
+});
+
+export const setHeavyTaskProcessingState = (state: boolean) => ({
+    type: actionTypes.SET_HEAVY_TASK_IS_PROCESSING,
+    heavyTaskProcessingState: state,
 });
 
 export const clearAppError = () => ({
