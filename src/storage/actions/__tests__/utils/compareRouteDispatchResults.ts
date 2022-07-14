@@ -1,7 +1,6 @@
 import {
     startRecordingExpectedActions,
     startRecordingWhenKeepExpectedActions,
-    synchRecordingExpectedActions,
     synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActions,
     synchRecordingWhenOfflineAndErrorOnApiRequestExpectedActionsB,
     synchRecordingWhenOfflineAndHasNoDataToSynchExpectedActions,
@@ -9,6 +8,7 @@ import {
     synchRecordingWhenOnlineAndHasNoDataToSynchExpectedActions,
     synchRecordingWhenOnlineWithSuccessOnCreateRemoteRouteIdExpectedActions,
     stopRecordingExpectedActions,
+    synchRecordingExpectedSecondActions,
 } from './expectedAxtions';
 
 export const compareResultsWhenStartRecordingFirstCase = (
@@ -152,22 +152,27 @@ export const compareResultsWhenOfflineFourthCase = (actionsLog: any[]) => {
 
 export const compareResultsWhenOnlineFirstCase = (actionsLog: any[]) => {
     /* loading - start */
-    expect(actionsLog[0]).toEqual(synchRecordingExpectedActions[0]);
+    expect(actionsLog[0]).toEqual(synchRecordingExpectedSecondActions[0]);
     /* clear errors */
-    expect(actionsLog[1]).toEqual(synchRecordingExpectedActions[1]);
+    expect(actionsLog[1]).toEqual(synchRecordingExpectedSecondActions[1]);
     /* set private map id */
-    expect(actionsLog[2]).toEqual(synchRecordingExpectedActions[2]);
+    expect(actionsLog[2]).toEqual(synchRecordingExpectedSecondActions[2]);
     /* clear current route location data */
-    expect(actionsLog[3]).toEqual(synchRecordingExpectedActions[3]);
+    expect(actionsLog[3]).toEqual(synchRecordingExpectedSecondActions[3]);
     /* clear current route */
-    expect(actionsLog[4]).toEqual(synchRecordingExpectedActions[4]);
+    expect(actionsLog[4]).toEqual(synchRecordingExpectedSecondActions[4]);
     /* reset avergae speed */
-    expect(actionsLog[5]).toEqual(synchRecordingExpectedActions[5]);
+    expect(actionsLog[5]).toEqual(synchRecordingExpectedSecondActions[5]);
     /* clear errors */
-    expect(actionsLog[6]).toEqual(synchRecordingExpectedActions[6]);
-
+    expect(actionsLog[6]).toEqual(synchRecordingExpectedSecondActions[6]);
+    /* set private map id to add  */
+    expect(actionsLog[7]).toEqual(synchRecordingExpectedSecondActions[7]);
+    /* clear courent route data  */
+    expect(actionsLog[8]).toEqual(synchRecordingExpectedSecondActions[8]);
+    /* maps loading - start */
+    expect(actionsLog[9]).toEqual(synchRecordingExpectedSecondActions[9]);
     /* loading - stop */
-    expect(actionsLog[7]).toEqual(synchRecordingExpectedActions[7]);
+    expect(actionsLog[10]).toEqual(synchRecordingExpectedSecondActions[10]);
 };
 
 export const compareResultsWhenOnlineSecondCase = (actionsLog: any[]) => {

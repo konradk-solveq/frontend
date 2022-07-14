@@ -43,6 +43,7 @@ const ImagesInput: React.FC<IProps> = ({
             mediaType: 'photo',
             compressImageMaxWidth: 2056,
             compressImageMaxHeight: 2056,
+            compressImageQuality: 0.8,
             multiple: true,
             maxFiles: 0, //iOS only, passing 0 allows to pick any number of photos (default - maxFiles: 5)
         })
@@ -57,7 +58,10 @@ const ImagesInput: React.FC<IProps> = ({
                         }
                     })
                     .filter((image): image is ImageType => !!image);
-                onAddImages(imagesToAdd);
+
+                if (imagesToAdd.length > 0) {
+                    onAddImages(imagesToAdd);
+                }
             })
             .catch(err => {
                 console.error(err);

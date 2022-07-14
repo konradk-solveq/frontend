@@ -115,6 +115,54 @@ export const synchRecordingExpectedActions = [
         type: actionTypes.CLEAR_ROUTES_ERROR,
     },
     {
+        type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
+        privateMapId: 'remote-route-test-id',
+    },
+    {
+        type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
+        removeDuplicates: undefined,
+    },
+    {
+        type: actionTypes.SET_MAPS_LOADING_STATE,
+        state: true,
+    },
+    {
+        type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
+        removeDuplicates: undefined,
+    },
+    {
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
+        state: false,
+    },
+];
+
+export const synchRecordingExpectedSecondActions = [
+    {
+        type: actionTypes.SET_ROUTES_LOADING_STATE,
+        state: true,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
+        type: actionTypes.SET_PRIVATE_MAPID_TO_ADD,
+        privateMapId: endedRoute.remoteRouteId,
+    },
+    {
+        type: actionTypes.CLEAR_CURRENT_ROUTE_DATA,
+        removeDuplicates: undefined,
+    },
+    {
+        type: actionTypes.CLEAR_CURRENT_ROUTE,
+        keepId: undefined,
+    },
+    {
+        type: actionTypes.SET_AVERAGE_ROUTE_SPEED,
+    },
+    {
+        type: actionTypes.CLEAR_ROUTES_ERROR,
+    },
+    {
         type: actionTypes.SET_ROUTES_LOADING_STATE,
         state: false,
     },

@@ -4,6 +4,7 @@ import {useNavigation, useRoute} from '@react-navigation/core';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {ImagesMetadataType} from '@interfaces/api';
+import {setHeavyTaskProcessingState} from '@storage/actions/app';
 import {
     loadingMapsSelector,
     mapDataByIDSelector,
@@ -42,6 +43,7 @@ type AlertTranslationT = {
 const EditDetails = () => {
     const {t} = useMergedTranslation('RoutesDetails.EditScreen');
     const {t: toastsT} = useMergedTranslation('Toasts');
+
     const formSubmitedRef = useRef(false);
 
     const wasPublishedBeforeRef = useRef(false);
@@ -83,6 +85,19 @@ const EditDetails = () => {
     }, [navigation, redirectToScreen]);
 
     useCustomBackNavButton(onBackHandler, true);
+
+    /**
+     * To prevent any fetching data when editing a form.
+     * We should remove this after we will have a proper way to handle havy task
+     * with background thread.
+     */
+    useEffect(() => {
+        dispatch(setHeavyTaskProcessingState(true));
+
+        return () => {
+            dispatch(setHeavyTaskProcessingState(false));
+        };
+    }, [dispatch]);
 
     const onScrollToTopHandler = useCallback(() => {
         scrollViewRef.current && scrollViewRef.current?.scrollTo({y: 0});

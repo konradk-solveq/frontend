@@ -47,10 +47,11 @@ export {
     isOnlineAppStatusSelector,
     syncAppSelector,
     apiAuthHeaderStateSelector,
-    focusedOnRecodringScreenSelector,
+    focusedOnRecordingScreenSelector,
     globalLocationSelector,
     isGoodConnectionQualitySelector,
     isInitMapsDataSynchedSelector,
+    heavyTaskProcessingSelector,
 } from './app';
 export {
     authErrorSelector,
