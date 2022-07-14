@@ -61,6 +61,8 @@ export interface AppState {
     routeDebugMode: boolean;
     initMapsDataSynched: boolean;
     apiAuthHeaderState: boolean;
+    focusedOnRecordingScreen: boolean;
+    heavyTaskProcessing: boolean;
 }
 
 const initialState: AppState = {
@@ -100,6 +102,8 @@ const initialState: AppState = {
     routeDebugMode: false,
     initMapsDataSynched: false,
     apiAuthHeaderState: false,
+    focusedOnRecordingScreen: false,
+    heavyTaskProcessing: false,
 };
 
 const appReducer = (state = initialState, action: any) => {
@@ -236,6 +240,16 @@ const appReducer = (state = initialState, action: any) => {
             return {
                 ...state,
                 apiAuthHeaderState: action.apiAuthHeaderState,
+            };
+        case actionTypes.SET_FOCUESD_ON_RECORDING_SCREEN:
+            return {
+                ...state,
+                focusedOnRecordingScreen: action.focusedOnRecordingScreenState,
+            };
+        case actionTypes.SET_HEAVY_TASK_IS_PROCESSING:
+            return {
+                ...state,
+                heavyTaskProcessing: action.heavyTaskProcessingState,
             };
         case actionTypes.CLEAR_APP_ERROR:
             return {

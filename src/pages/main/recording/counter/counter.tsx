@@ -11,6 +11,10 @@ import {
     setCurrentRoutePauseTime,
     abortSyncCurrentRouteData,
 } from '@storage/actions/routes';
+import {
+    setFocusedOnRecordingScreenState,
+    setHeavyTaskProcessingState,
+} from '@storage/actions/app';
 
 import {DEFAULT_DISTANCE} from '@hooks/utils/localizationTracker';
 import {
@@ -185,6 +189,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         };
     }, []);
 
+    useEffect(() => {
+        dispatch(setFocusedOnRecordingScreenState(true));
+
+        return () => {
+            dispatch(setFocusedOnRecordingScreenState(false));
+        };
+    }, [dispatch]);
+
     /**
      * Reset params on unmount
      */
@@ -263,6 +275,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      * Navigation to next screen with route summary
      */
     const navigateToTHPPage = useCallback(() => {
+        dispatch(setHeavyTaskProcessingState(true));
         /**
          * Copied from previous version
          */

@@ -67,15 +67,6 @@ export const mapOptionsSelector = () => {
     );
 };
 
-export const mapOptionsAndTagsSelector = (
-    state: RootState,
-): SelectEnumOptionsType => ({
-    difficulties: state.app.config.difficulties,
-    reactions: state.app.config.reactions,
-    surfaces: state.app.config.surfaces,
-    tags: state.app.config.tags,
-});
-
 export const faqDataSelector = (state: RootState): FaqType[] => state.app.faq;
 
 export const showedLocationInfoSelector = (state: RootState): boolean =>
@@ -99,3 +90,23 @@ export const apiAuthHeaderStateSelector = (state: RootState): boolean =>
     state.app.apiAuthHeaderState;
 
 export const appConfigSelector = createSelector(appSelector, a => a.config);
+
+export const focusedOnRecordingScreenSelector = createSelector(
+    appSelector,
+    app => app.focusedOnRecordingScreen,
+);
+
+export const mapOptionsAndTagsSelector = createSelector(
+    appConfigSelector,
+    config => ({
+        difficulties: config.difficulties,
+        reactions: config.reactions,
+        surfaces: config.surfaces,
+        tags: config.tags,
+    }),
+);
+
+export const heavyTaskProcessingSelector = createSelector(
+    appSelector,
+    app => app.heavyTaskProcessing,
+);

@@ -188,7 +188,10 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                 const imageUrls = imagesTab
                     .map(image => image.uri)
                     .filter(isTruthyString);
-                setImages(prev => [...imageUrls, ...prev]);
+
+                if (imageUrls.length) {
+                    setImages(prev => [...imageUrls, ...prev]);
+                }
                 setImagesToAdd(prev => [...imagesTab, ...prev]);
             }
         }, []);
