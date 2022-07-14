@@ -77,7 +77,6 @@ const EditForm: React.FC<IProps> = React.forwardRef(
     ) => {
         const {t} = useMergedTranslation('RoutesDetails.form');
         const {t: tvm} = useMergedTranslation('validation.fields.mapDetails');
-        const {t: toastsT} = useMergedTranslation('Toasts');
         const [images, setImages] = useState<string[]>(
             imagesData?.images || [],
         );
@@ -93,7 +92,6 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             setError,
             getValues,
         } = useFormDataWithMapData(mapData, publish);
-        const toastContext = useToastContext();
 
         const validateFormData = useCallback(
             (data: FieldValues) => {
@@ -119,23 +117,11 @@ const EditForm: React.FC<IProps> = React.forwardRef(
             data => {
                 if (!publish && !isRoutePublished) {
                     onSubmit(data, false, imagesToAdd, imagesToRemove);
-                    toastContext.addToast({
-                        key: 'toast-details-edit',
-                        title: toastsT('routeSaved'),
-                        icon: <ApprovedMarker />,
-                        leaveOnScreenChange: true,
-                    });
                     return;
                 }
                 const isValid = validateFormData(data);
                 if (isValid) {
                     onSubmit(data, publish, imagesToAdd, imagesToRemove);
-                    toastContext.addToast({
-                        key: 'toast-details-edit',
-                        title: toastsT('routePublished'),
-                        icon: <ApprovedMarker />,
-                        leaveOnScreenChange: true,
-                    });
                 }
             },
             [
@@ -144,8 +130,6 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                 isRoutePublished,
                 onSubmit,
                 publish,
-                toastContext,
-                toastsT,
                 validateFormData,
             ],
         );

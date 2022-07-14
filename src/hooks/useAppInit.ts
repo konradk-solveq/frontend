@@ -13,8 +13,6 @@ import {
     authUserIsAuthenticatedStateSelector,
     onboardingFinishedSelector,
     userIdSelector,
-} from '@storage/selectors/index';
-import {
     appErrorSelector,
     isOnlineAppStatusSelector,
     syncAppSelector,
@@ -26,7 +24,7 @@ import {
     globalLocationSelector,
     isGoodConnectionQualitySelector,
     isInitMapsDataSynchedSelector,
-} from '@storage/selectors/app';
+} from '@storage/selectors';
 
 import {setAutorizationHeader} from '@api/api';
 import {cleanUp, initBGeolocalization} from '@utils/geolocation';

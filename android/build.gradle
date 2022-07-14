@@ -11,7 +11,7 @@ buildscript {
         supportLibVersion = "28.0.0"
         googlePlayServicesVersion = "11.8.0"
         androidMapsUtilsVersion = "0.5+"
-        googlePlayServicesLocationVersion = "18.0.0"
+        googlePlayServicesLocationVersion = "19.0.1"
         appCompatVersion = "1.1.0"
     }
     repositories {

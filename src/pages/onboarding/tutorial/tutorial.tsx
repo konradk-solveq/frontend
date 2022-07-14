@@ -1,9 +1,5 @@
 import React, {useEffect, useCallback, useMemo, useState} from 'react';
-import {
-    fetchAppRegulations,
-    fetchUiTranslation,
-    setLanguage,
-} from '@storage/actions';
+import {fetchUiTranslation, setLanguage} from '@storage/actions';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {OnboardingStackRoute} from '@navigation/route';
 import OnboardingContainer from '@containers/Onboarding/OnboardingContainer';
@@ -23,6 +19,7 @@ import Loader from '@sharedComponents/loader/loader';
 import {getHorizontalPx} from '@helpers/layoutFoo';
 import useLanguageReloader from '@hooks/useLanguageReloader';
 import ChangeLanguageModal from '@components/modals/ChangeLanguageModal';
+import {fetchAppLegalDocuments} from '@storage/actions/app';
 
 const ReloadItem = () => {
     useLanguageReloader();
@@ -44,7 +41,7 @@ const Tutorial: React.FC = () => {
      * Fetch data when user device has not been registered yet.
      */
     useEffect(() => {
-        dispatch(fetchAppRegulations());
+        dispatch(fetchAppLegalDocuments());
     }, [dispatch]);
     const language: string = useAppSelector(state => state.user.language);
     const languageList: languagesListT = useAppSelector(languagesListSelector);

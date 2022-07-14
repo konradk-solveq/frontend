@@ -14,6 +14,7 @@ import {
     KrossWorldParamsListT,
     ProfileParamsListT,
     RootStackType,
+    THPParamsListT,
 } from '@type/rootStack';
 
 type NestedNavigatorParamsT<RootStackType> = NavigatorScreenParams<
@@ -66,6 +67,7 @@ export type TabStackType = {
     RecordTab: NestedNavigatorParamsT<RecordParamsListT>;
     BikeTab: NestedNavigatorParamsT<BikeParamsListT>;
     ProfileTab: NestedNavigatorParamsT<ProfileParamsListT>;
+    ThankYouPageTab: NestedNavigatorParamsT<THPParamsListT>;
 };
 
 export type HomeTabRouteT = RouteProp<TabStackType, 'HomeTab'>;

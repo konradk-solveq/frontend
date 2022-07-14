@@ -6,91 +6,72 @@ import {
 
 import {useAppDispatch, useAppSelector} from './redux';
 import {
-    trackerCurrentRouteAverrageSpeedSelector,
     trackerFollowedRouteIdSelector,
     trackerRouteIdSelector,
     trackerActiveSelector,
-} from '../storage/selectors/routes';
+} from '@storage/selectors/routes';
 import {
     setRecordingState,
     startRecordingRoute,
     stopCurrentRoute,
-} from '../storage/actions/routes';
+} from '@storage/actions/routes';
 import {
-    getCurrentLocation,
+    askMotionPermission,
     onWatchPostionChangeListener,
     pauseTracingLocation,
     requestGeolocationPermission,
     resumeTracingLocation,
     stopWatchPostionChangeListener,
-} from '../utils/geolocation';
+} from '@utils/geolocation';
 import {
     DEFAULT_SPEED,
-    getAverageSpeedData,
+    getLocationData,
     getTrackerData,
-    speedToLow,
-} from './utils/localizationTracker';
-import {useLocationProvider} from '@src/providers/staticLocationProvider/staticLocationProvider';
+} from '@hooks/utils/localizationTracker';
 import {Location} from '@interfaces/geolocation';
 import {getCurrentRoutePathByIdWithLastRecord} from '@utils/routePath';
 import {ShortCoordsType} from '@type/coords';
-import {isLocationValidate} from '@utils/locationData';
-import {isLocationValidToPass} from '@src/utils/transformData';
-import {dispatchRouteDebugAction} from '@src/utils/debugging/routeData';
-import {setGlobalLocation} from '@storage/actions/app';
+import {dispatchRouteDebugAction} from '@utils/debugging/routeData';
+import {setGlobalLocation, setLocationInfoShowed} from '@storage/actions/app';
 
 export interface DataI {
     distance: string;
     speed: string;
-    averageSpeed: string;
     odometer: number;
     coords: {
         lat: number;
         lon: number;
     };
-    timestamp: number;
+    /**
+     * `ISO-8601 UTC`
+     */
+    timestamp: string;
 }
 
-let speed: number[] = [];
-
-const useLocalizationTracker = (
-    persist: boolean,
-    omitRequestingPermission?: boolean,
-) => {
+const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
     const dispatch = useAppDispatch();
 
-    const initialTrackerDataRef = useRef(false);
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
 
-    const {isTrackingActivatedHandler} = useLocationProvider();
-
-    const currentRouteAverageSpeed = useAppSelector(
-        trackerCurrentRouteAverrageSpeedSelector,
-    );
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
     const [isActive, setIsActive] = useState(false);
     const [trackerData, setTrackerData] = useState<DataI>();
-    const [initTrackerData, setInitTrackerData] = useState<DataI>();
-    const [lastDistance, setLastDistance] = useState<number>(0);
-    const [averageSpeed, setCurrentAverageSpeed] = useState<
-        number | undefined
-    >();
+    /**
+     * State shows if tarcker is changing its state
+     */
     const [processing, setProcessing] = useState(false);
-
+    /**
+     * Path restored from sql after app is restarted when recording is active
+     */
     const [restoredPath, setRestoredPath] = useState<ShortCoordsType[]>([]);
 
-    const setAverageSpeedOnStart = useCallback(() => {
-        if (!averageSpeed && currentRouteAverageSpeed) {
-            const as = getAverageSpeedData([currentRouteAverageSpeed]);
-            setCurrentAverageSpeed(parseFloat(as));
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const stopTracker = useCallback(
+    /**
+     * Stop recording location data
+     */
+    const onStopTracker = useCallback(
         async (omitPersist?: boolean) => {
             setProcessing(true);
 
@@ -101,67 +82,104 @@ const useLocalizationTracker = (
 
             if (stopAction?.finished) {
                 setIsActive(false);
-                isTrackingActivatedHandler(false);
             }
 
+            /**
+             * Dsiables screen to stay awake
+             */
             deactivateKeepAwake();
 
             setProcessing(false);
         },
-        [dispatch, isTrackingActivatedHandler],
+        [dispatch],
     );
 
-    const startLocalize = () => {
-        const setLocation = (location: Location) => {
-            if (!mountedRef.current) {
-                return;
-            }
-
-            setCurrentLocation(location);
-        };
-
-        onWatchPostionChangeListener(setLocation);
-    };
-
-    const startTracker = useCallback(
-        async (routeIdToFollow?: string, skipProcessing?: boolean) => {
+    /**
+     * Start recording location data
+     */
+    const onStartTracker = useCallback(
+        async (
+            routeIdToFollow?: string,
+            skipProcessing?: boolean,
+            checkPermissions?: boolean,
+        ) => {
             if (!skipProcessing) {
                 setProcessing(true);
             }
-
-            speed = [];
-
-            setIsActive(true);
-            activateKeepAwake();
-
             /**
-             * Should update state befeore change redux.
+             * clear current tracker data
              */
-            isTrackingActivatedHandler(true);
-
+            setTrackerData(undefined);
+            /**
+             * State os hook is set to active
+             * which means that location data is collected
+             */
+            setIsActive(true);
+            /**
+             * Enables screen to stay awake
+             */
+            activateKeepAwake();
+            /**
+             * Check if user gave permission to use motion sensor
+             */
+            if (checkPermissions) {
+                await askMotionPermission();
+            }
             /**
              * Dispatch actions, start GPS plugin
              */
             const startAction = await dispatch(
                 startRecordingRoute(routeIdToFollow),
             );
-
+            /**
+             * If any crash occurs, stop the tracker
+             * to allow users start it again
+             */
             if (startAction?.finished && !startAction?.success) {
-                await stopTracker(true);
+                await onStopTracker(true);
             }
+            /**
+             * After first user's choice we want to respect it.
+             * It doesn't matter what kind of permission user gave us
+             */
+            dispatch(setLocationInfoShowed());
 
-            setProcessing(false);
+            if (!skipProcessing) {
+                setProcessing(false);
+            }
         },
-        [dispatch, isTrackingActivatedHandler, stopTracker],
+        [dispatch, onStopTracker],
     );
 
     /**
-     * Manual pause. Stops watching locations.
+     * Updates user location before recording is started
+     * to update location on the map
+     */
+    const updateLocationWithoutPersistingData = useCallback(() => {
+        const setLocation = (location: Location) => {
+            if (!mountedRef.current || !location) {
+                return;
+            }
+
+            const res = getTrackerData(location, true);
+            if (!res) {
+                return;
+            }
+
+            setTrackerData(res);
+        };
+
+        onWatchPostionChangeListener(setLocation);
+    }, []);
+
+    /**
+     * Manual pause. Stops watching locations
      */
     const onPauseTracker = useCallback(async () => {
         dispatch(setRecordingState('paused'));
         await pauseTracingLocation(true);
         stopWatchPostionChangeListener();
+
         setTrackerData(prev => {
             if (prev) {
                 return {
@@ -179,7 +197,10 @@ const useLocalizationTracker = (
         setIsActive(false);
     }, [dispatch, currentRouteId]);
 
-    const onStartTracker = useCallback(async () => {
+    /**
+     * Resume recording location data
+     */
+    const onResumeTracker = useCallback(async () => {
         dispatch(setRecordingState('recording'));
         await resumeTracingLocation(currentRouteId);
 
@@ -190,25 +211,57 @@ const useLocalizationTracker = (
         setIsActive(true);
     }, [dispatch, currentRouteId]);
 
+    /**
+     * Current tracker data based on location data.
+     */
+    const setCurrentTrackerData = useCallback(
+        async (fastTimeout?: boolean, locationData?: Location) => {
+            const trackerDataToUpdate = await getLocationData(
+                currentRouteId,
+                fastTimeout,
+                locationData,
+            );
+
+            if (trackerDataToUpdate) {
+                setTrackerData(prev => {
+                    if (trackerDataToUpdate?.lowSpeed) {
+                        if (!prev) {
+                            return undefined;
+                        }
+
+                        return {
+                            ...prev,
+                            speed: trackerDataToUpdate.trackerData.speed,
+                        };
+                    } else {
+                        return trackerDataToUpdate.trackerData;
+                    }
+                });
+            }
+        },
+        [currentRouteId],
+    );
+
     useEffect(() => {
         mountedRef.current = true;
 
         return () => {
             mountedRef.current = false;
-        };
-    }, []);
-
-    useEffect(() => {
-        speed = [];
-    }, []);
-
-    useEffect(() => {
-        if (!isTrackerActive) {
-            startLocalize();
-        }
-        return () => {
+            /**
+             * Clear location changes listener
+             */
             stopWatchPostionChangeListener();
         };
+    }, []);
+
+    /**
+     * Update location (only) initially
+     * when recording is not still active
+     */
+    useEffect(() => {
+        if (!isTrackerActive) {
+            updateLocationWithoutPersistingData();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -219,26 +272,12 @@ const useLocalizationTracker = (
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const setCurrentLocation = useCallback(async (locationData?: Location) => {
-        if (!locationData) {
-            return;
-        }
-
-        const res = getTrackerData(locationData, '0,0', true);
-
-        if (!res) {
-            return;
-        }
-
-        setTrackerData(res);
-
-        if (locationData) {
-            initialTrackerDataRef.current = true;
-        }
-    }, []);
-
+    /**
+     * Sets global location on end of recording route
+     * to make it actual for the whole app
+     */
     useEffect(() => {
-        if (!isTrackerActive) {
+        if (!isTrackerActive && !isActive) {
             trackerData?.coords.lat &&
                 trackerData?.coords.lon &&
                 dispatch(
@@ -250,108 +289,16 @@ const useLocalizationTracker = (
         }
     }, [
         dispatch,
+        isActive,
         isTrackerActive,
         trackerData?.coords?.lat,
         trackerData?.coords?.lon,
     ]);
 
-    const setCurrentTrackerData = useCallback(
-        async (fastTimeout?: boolean, locationData?: Location) => {
-            const currentLocationData =
-                locationData ||
-                (await getCurrentLocation(
-                    currentRouteId,
-                    fastTimeout ? 4 : undefined,
-                    undefined,
-                    fastTimeout,
-                    fastTimeout ? 5 : 15,
-                    fastTimeout ? 2000 : 500,
-                    fastTimeout,
-                ));
-
-            if (!currentLocationData) {
-                return;
-            }
-
-            if (!isLocationValidate(currentLocationData)) {
-                return;
-            }
-
-            if (
-                !fastTimeout &&
-                !isLocationValidToPass(currentLocationData, currentRouteId)
-            ) {
-                return;
-            }
-
-            const notMoving = false;
-            const lowSpeed = speedToLow(currentLocationData);
-
-            setAverageSpeedOnStart();
-            let aSpeed = getAverageSpeedData(speed);
-            if (notMoving || lowSpeed) {
-                setTrackerData(prev => {
-                    if (!prev) {
-                        return undefined;
-                    }
-                    return {
-                        ...prev,
-                        averageSpeed: getAverageSpeedData(
-                            speed,
-                            currentRouteAverageSpeed,
-                        ),
-                        speed: '0,0',
-                    };
-                });
-                return;
-            }
-
-            if (
-                currentLocationData?.coords?.speed &&
-                currentLocationData?.coords?.speed > 0 &&
-                !fastTimeout
-            ) {
-                speed.push(currentLocationData?.coords?.speed);
-            }
-
-            if (
-                ((currentLocationData?.odometer &&
-                    currentLocationData?.odometer - lastDistance > 10) ||
-                    !lastDistance) &&
-                !notMoving &&
-                parseFloat(aSpeed) >= 0.1 &&
-                !fastTimeout
-            ) {
-                aSpeed = getAverageSpeedData(speed, currentRouteAverageSpeed);
-            }
-
-            const res = getTrackerData(currentLocationData, aSpeed);
-
-            if (!res) {
-                return;
-            }
-
-            setTrackerData(res);
-            setCurrentAverageSpeed(parseFloat(aSpeed));
-
-            if (persist) {
-                /* TODO: High disk usage - to verify and eventually delete */
-                // onPersistData(d?.odometer);
-            }
-
-            if (locationData) {
-                initialTrackerDataRef.current = true;
-            }
-        },
-        [
-            persist,
-            currentRouteAverageSpeed,
-            lastDistance,
-            setAverageSpeedOnStart,
-            currentRouteId,
-        ],
-    );
-
+    /**
+     * Restore path after app relaunch
+     * when recording is active
+     */
     useEffect(() => {
         if (!restoredRef.current && currentRouteId && isTrackerActive) {
             const runInitLocationSet = async () => {
@@ -365,74 +312,49 @@ const useLocalizationTracker = (
                     setRestoredPath(recordedPath.data);
                 }
 
-                if (!trackerData) {
-                    setCurrentTrackerData(true);
-                }
-
                 restoredRef.current = true;
             };
-
             runInitLocationSet();
 
             return;
         }
 
         restoredRef.current = true;
-
-        return () => {
-            // restoredRef.current = false;
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentRouteId, isTrackerActive]);
 
     useEffect(() => {
-        if (isActive && !trackerData && initTrackerData) {
-            setTrackerData(initTrackerData);
-        }
-    }, [isActive, initTrackerData, trackerData]);
-
-    useEffect(() => {
         if (isActive) {
+            /**
+             * Initial location with lower accuracy
+             */
+            setCurrentTrackerData(true);
+
             const setLocation = (location: Location) => {
                 if (!mountedRef.current) {
                     return;
                 }
 
                 setCurrentTrackerData(undefined, location);
-                setInitTrackerData(undefined);
             };
 
             const runListener = async () => {
+                /**
+                 * Stop previous listener if any active
+                 */
                 await stopWatchPostionChangeListener();
                 onWatchPostionChangeListener(setLocation);
             };
             runListener();
         }
-
-        return () => {
-            initialTrackerDataRef.current = false;
-        };
-    }, [isActive, setCurrentTrackerData]);
-
-    useEffect(() => {
-        if (isActive) {
-            /**
-             * Initial tracker data
-             */
-            setCurrentTrackerData(true);
-        }
     }, [isActive, setCurrentTrackerData]);
 
     return {
         trackerData,
-        lastDistance,
         isActive,
         pauseTracker: onPauseTracker,
-        resumeTracker: onStartTracker,
-        startLocalize,
-        startTracker,
-        stopTracker,
-        averageSpeed,
+        resumeTracker: onResumeTracker,
+        startTracker: onStartTracker,
+        stopTracker: onStopTracker,
         followedRouteId,
         setCurrentTrackerData,
         currentRouteId,

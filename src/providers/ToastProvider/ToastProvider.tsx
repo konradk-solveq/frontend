@@ -7,7 +7,7 @@ import React, {
     useRef,
     useState,
 } from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, TextStyle, View, ViewStyle} from 'react-native';
 
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import {
@@ -28,16 +28,26 @@ export interface ToastItem extends NotificationI {
     onDismissAction?: () => void;
     leaveOnScreenChange?: boolean;
     durationTime?: number;
+    titleStyle?: TextStyle;
+    subtitleStyle: TextStyle;
+    containerStyle: ViewStyle;
 }
 
 interface IToastProps {
     children?: React.ReactNode;
 }
 
-const initialState = {
+interface InitialState {
+    toastList: ToastItem[];
+    addToast: (toast: ToastItem) => void;
+    removeToast: (toast: string) => void;
+    removeAllToasts: () => void;
+}
+
+const initialState: InitialState = {
     toastList: [],
-    addToast: (toast: ToastItem) => {},
-    removeToast: (toast: ToastItem) => {},
+    addToast: () => {},
+    removeToast: () => {},
     removeAllToasts: () => {},
 };
 
@@ -104,6 +114,7 @@ const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
                         <Toast
                             {...toast}
                             key={toast.key}
+                            testID={toast.key}
                             onDismissAction={() =>
                                 toast.onPressDismiss && removeToast(toast.key)
                             }

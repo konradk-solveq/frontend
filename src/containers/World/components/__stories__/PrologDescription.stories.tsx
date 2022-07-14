@@ -45,6 +45,7 @@ storiesOf('containers/World/components/PrologDescription', module)
                 'Route difficulty levels',
                 routeData.pickedDifficulties,
             )}
+            surfaceString={text('Surface string', 'Varied')}
             reactions={object('Likes', routeData.reactions)}
         />
     ));

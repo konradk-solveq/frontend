@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState, useMemo} from 'react';
 import {InteractionManager, ScrollView, StyleSheet, View} from 'react-native';
 import {useAppSelector, useAppDispatch} from '@hooks/redux';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
@@ -30,12 +30,21 @@ import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortR
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import colors from '@src/theme/colors';
+import {Alert} from '@components/alerts';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 enum Action {
     next = 'next',
     prev = 'prev',
     home = 'home',
+    abandon = 'abandon',
 }
+
+type AlertTranslationT = {
+    text: string;
+    approve: string;
+    cancel: string;
+};
 
 const CounterThankYouPage: React.FC = () => {
     const scrollRef = useRef<null | ScrollView>(null);
@@ -54,6 +63,23 @@ const CounterThankYouPage: React.FC = () => {
 
     const [goForward, setGoForward] = useState('');
     const [showErrorModal, setShowErrorModal] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+
+    const {t} = useMergedTranslation('CounterThankYouPage');
+
+    const abandonAlertTranslation = useMemo(
+        () => t('abandonAlert', {returnObjects: true}) as AlertTranslationT,
+        [t],
+    );
+
+    const alertData = {
+        ...abandonAlertTranslation,
+        onPress: () => {
+            setShowAlert(false);
+            onCancelRouteHandler(Action.abandon);
+        },
+        onCancel: () => setShowAlert(false),
+    };
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -87,9 +113,14 @@ const CounterThankYouPage: React.FC = () => {
                 });
                 return;
             }
+            if (goForward === Action.abandon && !prev) {
+                dispatch(setHeavyTaskProcessingState(false));
+                navigation.navigate('RecordTab');
+                return;
+            }
 
             dispatch(setHeavyTaskProcessingState(false));
-            navigation.navigate('HomeTab');
+            navigation.navigate('WorldMyRoutes');
         },
         [dispatch, goForward, navigation],
     );
@@ -115,7 +146,12 @@ const CounterThankYouPage: React.FC = () => {
 
     const onCancelRouteHandler = (forward: string) => {
         setGoForward(forward);
-        dispatch(abortSyncCurrentRouteData(true));
+        dispatch(abortSyncCurrentRouteData(true)).then(() => {
+            /**
+             * prevent going back to counter after recording the new route after the 'x' button was pressed
+             */
+            setGoForward('');
+        });
     };
 
     const onCloseErrorModalHandler = () => {
@@ -151,7 +187,7 @@ const CounterThankYouPage: React.FC = () => {
     }
 
     return (
-        <GenericScreen hideBackArrow>
+        <GenericScreen hideBackArrow noHeader>
             <ThankYouPageContainer
                 userName={userName}
                 routeParams={params}
@@ -165,6 +201,7 @@ const CounterThankYouPage: React.FC = () => {
                 }}
                 onSaveAction={() => handleRouteAction(Action.prev)}
                 onPublishAction={() => handleRouteAction(Action.next)}
+                onCloseAction={() => setShowAlert(true)}
             />
 
             <ShortRouteModal
@@ -172,6 +209,8 @@ const CounterThankYouPage: React.FC = () => {
                 showAlterMessage={!error?.routeToShort ? error?.message : ''}
                 onClose={onCloseErrorModalHandler}
             />
+
+            <Alert show={showAlert} {...alertData} />
         </GenericScreen>
     );
 };

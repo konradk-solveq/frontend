@@ -31,6 +31,8 @@ import EditForm, {
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import ApprovedMarker from '@src/components/icons/ApprovedMarker';
+import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
 
 type AlertTranslationT = {
     text: string;
@@ -40,6 +42,7 @@ type AlertTranslationT = {
 
 const EditDetails = () => {
     const {t} = useMergedTranslation('RoutesDetails.EditScreen');
+    const {t: toastsT} = useMergedTranslation('Toasts');
 
     const formSubmitedRef = useRef(false);
 
@@ -63,6 +66,7 @@ const EditDetails = () => {
     );
     const error = useAppSelector(mapsErrorSelector);
     const isLoading = useAppSelector(loadingMapsSelector);
+    const toastContext = useToastContext();
 
     const images = getImagesThumbs(mapData?.pictures);
     const [submit, setSubmit] = useState(false);
@@ -109,11 +113,19 @@ const EditDetails = () => {
     useEffect(() => {
         if (submit && !isLoading) {
             if (error?.statusCode < 400) {
+                toastContext.addToast({
+                    key: `toast-details-edit${publish ? '-publish' : ''}`,
+                    title: publish
+                        ? toastsT('routePublished')
+                        : toastsT('routeSaved'),
+                    icon: <ApprovedMarker />,
+                    leaveOnScreenChange: true,
+                });
                 onBackHandler();
                 return;
             }
-            setShowErrorModal(true);
             setSubmit(false);
+            setShowErrorModal(true);
         }
     }, [isLoading, error?.statusCode, submit, onBackHandler]);
 

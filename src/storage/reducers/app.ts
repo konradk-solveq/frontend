@@ -7,40 +7,11 @@ import {InternetConnectionInfoType} from '@interfaces/internetConnection';
 import {BasicCoordsType} from '@type/coords';
 import {
     FaqType,
-    RegulationType,
-    TermsAndConditionsType,
+    LegalDocumentType,
+    NotificationType,
+    AppVersionType,
 } from '@models/regulations.model';
 import {MAJOR_LANGUAGE} from '@helpers/global';
-
-const getVersion = (v: string) => {
-    if (typeof v !== 'string') {
-        return 0;
-    }
-    let splitted = v.split('.');
-    let num = '';
-    for (let s of splitted) {
-        if (s.length === 2) {
-            num += '0' + s;
-        }
-        if (s.length === 1) {
-            num += '00' + s;
-        }
-    }
-    return Number(num);
-};
-
-const getNewerVersion = (oldVersion: any, newVersion: any, term: any) => {
-    let result;
-
-    if (Date.parse(term?.publishDate) > Date.now() && oldVersion) {
-        result = oldVersion;
-        result.paragraph = result?.paragraph?.concat(newVersion?.paragraph);
-    } else {
-        result = newVersion;
-    }
-
-    return result;
-};
 
 export interface AppState {
     isOffline: boolean;
@@ -49,18 +20,19 @@ export interface AppState {
     error: string;
     statusCode: number;
     config: AppConfigI;
-    terms: TermsAndConditionsType[];
-    currentTerms: TermsAndConditionsType;
     faq: {faq: FaqType[]} | {};
     showedRegulations: number | null;
     showedNewAppVersion: string;
-    regulation: RegulationType | {};
-    policy: RegulationType | {};
+    regulation: LegalDocumentType;
+    policy: LegalDocumentType;
+    notifications: NotificationType[];
+    notificationDate: Date | undefined;
     showedLocationInfo: boolean;
     location: BasicCoordsType | undefined;
     routeDebugMode: boolean;
     initMapsDataSynched: boolean;
     apiAuthHeaderState: boolean;
+    appVersion: AppVersionType | {};
     focusedOnRecordingScreen: boolean;
     heavyTaskProcessing: boolean;
 }
@@ -83,25 +55,31 @@ const initialState: AppState = {
         reactions: [],
         uiTranslations: {controlSums: [], codes: []},
         ads: {url: ''},
-    },
-    terms: [],
-    currentTerms: {
-        version: undefined,
-        showDate: undefined,
-        publishDate: undefined,
-        text: '',
-        title: '',
+        version: '',
     },
     faq: {},
     showedRegulations: null,
     showedNewAppVersion: '1.0.0',
-    regulation: {},
-    policy: {},
+    regulation: {
+        current: {
+            content: undefined,
+            actions: [],
+        },
+    },
+    policy: {
+        current: {
+            content: undefined,
+            actions: [],
+        },
+    },
+    notifications: [],
+    notificationDate: undefined,
     showedLocationInfo: false,
     location: undefined,
     routeDebugMode: false,
     initMapsDataSynched: false,
     apiAuthHeaderState: false,
+    appVersion: {},
     focusedOnRecordingScreen: false,
     heavyTaskProcessing: false,
 };
@@ -144,59 +122,30 @@ const appReducer = (state = initialState, action: any) => {
                 ...state,
                 showedNewAppVersion: action.showedNewAppVersion,
             };
-        case actionTypes.SET_APP_REGULATION: {
-            const term1version = getVersion(
-                action.regulation?.regulation1?.version,
-            );
-            const term2version = getVersion(
-                action.regulation?.regulation2?.version,
-            );
-
-            const oldRegulations =
-                term1version < term2version
-                    ? action.regulation.regulation1
-                    : action.regulation.regulation2;
-            const newRegulations =
-                term1version > term2version
-                    ? action.regulation.regulation1
-                    : action.regulation.regulation2;
-            const lastTerm = state.terms[state.terms.length - 1];
-
-            const newerVersion = getNewerVersion(
-                oldRegulations,
-                newRegulations,
-                lastTerm,
-            );
-
+        case actionTypes.SET_APP_REGULATION:
             return {
                 ...state,
-                regulation: newerVersion,
+                regulation: action.regulation,
             };
-        }
-
-        case actionTypes.SET_APP_POLICY: {
-            const term1version = getVersion(action.policy?.policy1?.version);
-            const term2version = getVersion(action.policy?.policy2?.version);
-
-            const oldPolicy =
-                term1version < term2version
-                    ? action.policy.policy1
-                    : action.policy.policy2;
-            const newPolicy =
-                term1version > term2version
-                    ? action.policy.policy1
-                    : action.policy.policy2;
-            const lastTerm = state.terms[state.terms.length - 1];
-
-            const newerVersion = getNewerVersion(
-                oldPolicy,
-                newPolicy,
-                lastTerm,
-            );
-
+        case actionTypes.SET_APP_POLICY:
             return {
                 ...state,
-                policy: newerVersion,
+                policy: action.policy,
+            };
+        case actionTypes.SET_APP_NOTIFICATIONS:
+            return {
+                ...state,
+                notifications: action.notifications,
+            };
+        case actionTypes.SET_APP_NOTIFICATION_DATE:
+            return {
+                ...state,
+                notificationDate: action.notificationDate,
+            };
+        case actionTypes.SET_APP_VERSION: {
+            return {
+                ...state,
+                appVersion: action.appVersion,
             };
         }
         case actionTypes.SET_APP_FAQ:
@@ -273,6 +222,7 @@ const persistConfig = {
         'terms',
         'regulation',
         'policy',
+        'notificationDate',
         'currentTerms',
         'showedRegulations',
         'faq',
@@ -280,6 +230,7 @@ const persistConfig = {
         'location',
         'routeDebugMode',
         'showedNewAppVersion',
+        'appVersion',
     ],
     timeout: 20000,
 };

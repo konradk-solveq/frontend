@@ -4,6 +4,10 @@ import {transformMetersToKilometersString} from '@utils/metersToKilometers';
 import {getAverageSpeed, msToKH} from '@utils/speed';
 import {isLocationValidate} from '@utils/locationData';
 import {CurrentRouteI} from '@storage/reducers/routes';
+import {Location} from '@interfaces/geolocation';
+import {DataI} from '@hooks/useLocalizationTracker';
+import {getCurrentLocation} from '@utils/geolocation';
+import {isLocationValidToPass} from '@src/utils/transformData';
 
 export const DEFAULT_SPEED = '0.0';
 export const DEFAULT_DISTANCE = '0.00';
@@ -12,12 +16,12 @@ export const getAverageSpeedData = (
     speedData: number[],
     oldAverageSpeed?: number,
 ) => {
-    let aSpeed = getAverageSpeed(speedData);
+    let avgSpeed = getAverageSpeed([...speedData]);
     if (oldAverageSpeed) {
-        aSpeed = getAverageSpeed([parseFloat(aSpeed), oldAverageSpeed]);
+        avgSpeed = getAverageSpeed([parseFloat(avgSpeed), oldAverageSpeed]);
     }
 
-    return aSpeed;
+    return avgSpeed;
 };
 
 export const startCurrentRoute = async (
@@ -36,10 +40,9 @@ export const startCurrentRoute = async (
 };
 
 export const getTrackerData = (
-    gpsData: any,
-    averageSpeed?: string,
+    gpsData: Location,
     noSpeed?: boolean,
-) => {
+): DataI | undefined => {
     if (!gpsData || !isLocationValidate(gpsData)) {
         return;
     }
@@ -57,8 +60,6 @@ export const getTrackerData = (
     const res = {
         distance: distance || DEFAULT_DISTANCE,
         speed: speed || DEFAULT_SPEED,
-        // speed: !notMoving ? speed : DEFAULT_SPEED,
-        averageSpeed: msToKH(averageSpeed) || DEFAULT_SPEED,
         odometer: gpsData?.odometer,
         coords: {
             lat: gpsData?.coords?.latitude,
@@ -89,4 +90,46 @@ export const deviceIsNotMoving = (gpsData: any) => {
 
 export const speedToLow = (gpsData: any) => {
     return gpsData?.odometer < 1 && gpsData?.coords?.speed <= 1;
+};
+
+export const getLocationData = async (
+    routeId?: string,
+    fastTimeout?: boolean,
+    locationData?: Location,
+) => {
+    const currentLocationData =
+        locationData ||
+        (await getCurrentLocation(
+            routeId,
+            fastTimeout ? 4 : undefined,
+            undefined,
+            fastTimeout,
+            fastTimeout ? 5 : 15,
+            fastTimeout ? 2000 : 500,
+            fastTimeout,
+        ));
+
+    if (!currentLocationData) {
+        return;
+    }
+
+    if (!isLocationValidate(currentLocationData)) {
+        return;
+    }
+
+    if (!fastTimeout && !isLocationValidToPass(currentLocationData, routeId)) {
+        return;
+    }
+
+    const lowSpeed = speedToLow(currentLocationData);
+    const res = getTrackerData(currentLocationData, lowSpeed);
+
+    if (!res) {
+        return;
+    }
+
+    return {
+        trackerData: res,
+        lowSpeed: lowSpeed,
+    };
 };

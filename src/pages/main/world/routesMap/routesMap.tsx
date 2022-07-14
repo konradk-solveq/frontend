@@ -6,7 +6,6 @@ import {StackActions} from '@react-navigation/native';
 import {Point, RouteMapType} from '@models/places.model';
 import {RouteDetailsActionT} from '@type/screens/routesMap';
 import useGetRouteMapMarkers from '@hooks/useGetRouteMapMarkers';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {jsonParse} from '@utils/transformJson';
 import {getImagesThumbs} from '@utils/transformData';
 import {useAppNavigation} from '@navigation/hooks/useAppNavigation';
@@ -41,9 +40,8 @@ import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation
 import Bookmark from '@src/components/icons/Bookmark';
 import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {LocationStatusNotification} from '@notifications';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
+import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 
 const initRouteInfo = {
     id: '',
@@ -76,8 +74,6 @@ const RoutesMap: React.FC = () => {
         }
     }, [shareID]);
 
-    const {location} = useLocationProvider();
-    const [loc, setLoc] = useState<BasicCoordsType | undefined>(globalLocation);
     const [centerMapAtLocation, setCenterMapAtLocation] = useState<
         BasicCoordsType | undefined
     >();
@@ -150,12 +146,6 @@ const RoutesMap: React.FC = () => {
     };
 
     useEffect(() => {
-        if (location) {
-            setLoc(location);
-        }
-    }, [location]);
-
-    useEffect(() => {
         const {id, routeMapType} = routeInfo;
         if (id) {
             dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
@@ -220,7 +210,7 @@ const RoutesMap: React.FC = () => {
                  * Check if location is already set
                  * to avoid uneccessary http requests.
                  */
-                if (loc !== locationToSet) {
+                if (globalLocation !== locationToSet) {
                     /**
                      * Clear param after new location has been set.
                      */
@@ -233,7 +223,7 @@ const RoutesMap: React.FC = () => {
     }, [
         markerToShowDetails,
         navigation,
-        loc,
+        globalLocation,
         nearestPoint,
         mapID,
         shareID,
@@ -270,13 +260,13 @@ const RoutesMap: React.FC = () => {
                         {lat: newBox.west, lng: newBox.south},
                     ];
 
-                    if (loc) {
+                    if (globalLocation) {
                         routeMapMarkers.fetchRoutesMarkers(
                             {
                                 bbox: bbox,
                                 width: 500,
                             },
-                            loc,
+                            globalLocation,
                         );
                     }
                     break;
@@ -295,7 +285,7 @@ const RoutesMap: React.FC = () => {
                     break;
             }
         },
-        [loc, routeMapMarkers, navigation],
+        [globalLocation, routeMapMarkers, navigation],
     );
 
     /**
@@ -415,18 +405,15 @@ const RoutesMap: React.FC = () => {
             <View style={[styles.notificationsContainer, {top}]}>
                 <NotificationList>
                     {[
-                        <LocationStatusNotification
-                            key={'gps-notification'}
-                            showWhenLocationIsDisabled
-                        />,
-                        <LocationPermissionNotification
-                            key={'location-permission-notification'}
+                        <UnifiedLocationNotification
+                            showGPSStatus
+                            key={'location-notification'}
                         />,
                     ]}
                 </NotificationList>
             </View>
             <RoutesMapContainer
-                location={loc}
+                location={globalLocation}
                 onPressClose={onNavigateBack}
                 onWebViewMessage={onWebViewMessageHandler}
                 routesMarkers={routeMapMarkers.routeMarkres}

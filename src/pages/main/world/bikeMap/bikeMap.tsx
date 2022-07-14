@@ -10,7 +10,7 @@ import {useIsFocused} from '@react-navigation/native';
 
 import {Map} from '@models/map.model';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {getImagesThumbs} from '@utils/transformData';
+import {mapKeyExtractor} from '@utils/transformData';
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {
     featuredMapsLengthSelector,
@@ -54,9 +54,9 @@ import FiltersHeader from '@pages/main/world/components/filters/FiltersHeader';
 import InfiniteScrollError from '@components/error/InfiniteScrollError';
 
 import {isIOS} from '@utils/platform';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import {globalLocationSelector} from '@storage/selectors/app';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 
 const length = getFVerticalPx(311);
@@ -220,25 +220,20 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     }, [isLoading, isRefreshing, mapsData?.length, onRefresh]);
 
     const renderItem = useCallback(
-        ({item, index}: RenderItem) => {
-            const lastItemStyle =
-                index === mapsData?.length - 1 ? styles.lastTile : undefined;
-            const images = getImagesThumbs(item?.pictures);
+        ({item}: RenderItem) => {
             return (
-                <View key={item.id} style={lastItemStyle}>
-                    <ListTile
-                        mapData={item}
-                        images={images}
-                        onPress={onPressHandler}
-                        onPressTile={onPressTileHandler}
-                        mode={'public'}
-                        tilePressable
-                        hideDistanceToStart={!location || !permissionGranted}
-                    />
-                </View>
+                <ListTile
+                    key={item.id}
+                    mapData={item}
+                    onPress={onPressHandler}
+                    onPressTile={onPressTileHandler}
+                    mode={'public'}
+                    tilePressable
+                    hideDistanceToStart={!location || !permissionGranted}
+                />
             );
         },
-        [location, mapsData?.length, onPressTileHandler, permissionGranted],
+        [location, onPressTileHandler, permissionGranted],
     );
 
     const renderListFooter = useCallback(() => {
@@ -311,10 +306,33 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         },
         [publicRoutesDropdownList],
     );
+
+    const mapHeaderComponent = useMemo(
+        () => (
+            <View style={styles.listHeader}>
+                <UnifiedLocationNotification style={styles.notification} />
+                <FeaturedRoutes />
+                <Header2 style={styles.header}>{t('BikeMap.title')}</Header2>
+            </View>
+        ),
+        [t],
+    );
+
+    const handleLayout = useCallback(() => setRenderIsFinished(true), []);
+
+    const onShowMoreHandler = useCallback(() => onPressHandler(false), []);
+
+    const closeDropdownHandler = useCallback(() => toggleDropdown(false), [
+        toggleDropdown,
+    ]);
+
+    const onRouteMapButtonPress = useCallback(
+        () => navigation.navigate('RoutesMap'),
+        [navigation],
+    );
+
     return (
-        <View
-            style={styles.background}
-            onLayout={() => setRenderIsFinished(true)}>
+        <View style={styles.background} onLayout={handleLayout}>
             <FiltersHeader
                 shouldHide={shouldHide}
                 sortButtonName={sButtonName}
@@ -324,11 +342,12 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 toggleDropdown={toggleDropdown}
                 onSortByHandler={onSortByHandler}
                 dropdownList={publicRoutesDropdownList}
+                mapMode={'public'}
             />
             <ShowMoreModal
                 showModal={showModal}
                 mapID={activeMapID}
-                onPressCancel={() => onPressHandler(false)}
+                onPressCancel={onShowMoreHandler}
                 backdropStyle={styles.backdrop}
                 isPublished
                 mapType={selectorMapTypeEnum.regular}
@@ -341,23 +360,14 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                 onGetFiltersCount={onGetFiltersCount}
                 onResetFiltersCount={onResetFiltersCount}
                 itemsCount={publicMapsCount}
+                mapMode={'public'}
             />
             {mapsData?.length && renderIsFinished ? (
                 <FlatList
                     onScroll={onScroll}
                     onMomentumScrollEnd={onErrorScrollHandler}
-                    ListHeaderComponent={
-                        <View style={styles.listHeader}>
-                            <LocationPermissionNotification
-                                style={styles.notification}
-                            />
-                            <FeaturedRoutes />
-                            <Header2 style={styles.header}>
-                                {t('BikeMap.title')}
-                            </Header2>
-                        </View>
-                    }
-                    keyExtractor={item => item.id}
+                    ListHeaderComponent={mapHeaderComponent}
+                    keyExtractor={mapKeyExtractor}
                     data={!showListLoader ? mapsData : []}
                     renderItem={renderItem}
                     showsVerticalScrollIndicator={false}
@@ -369,17 +379,20 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     ListFooterComponent={renderListFooter}
                     refreshing={isLoading && isRefreshing}
                     onRefresh={onRefreshHandler}
+                    maxToRenderPerBatch={5}
+                    windowSize={11}
+                    contentContainerStyle={styles.listContent}
                 />
             ) : null}
 
             <Backdrop
                 isVisible={showBackdrop}
-                onPress={() => toggleDropdown(false)}
+                onPress={closeDropdownHandler}
                 style={styles.fullscreenBackdrop}
             />
 
             <RoutesMapButton
-                onPress={() => navigation.navigate('RoutesMap')}
+                onPress={onRouteMapButtonPress}
                 style={{...styles.mapBtn, ...bottomPosition}}
             />
         </View>

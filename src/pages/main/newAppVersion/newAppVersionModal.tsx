@@ -1,11 +1,8 @@
 import React from 'react';
 import {Linking} from 'react-native';
 
-import {RegularStackRoute} from '@navigation/route';
-import {useNavigation} from '@react-navigation/core';
-
 import {setNewAppVersion} from '@src/storage/actions';
-import {useAppDispatch, useAppSelector} from '@hooks/redux';
+import {useAppDispatch} from '@hooks/redux';
 import {getFVerticalPx} from '@src/helpers/appLayoutDimensions';
 import {BottomModal, ModalHeader} from '@components/modals';
 import colors from '@src/theme/colors';
@@ -17,23 +14,21 @@ import {storeUrls} from '@src/utils/constants/storeUrls';
 
 interface IProps {
     showModal: boolean;
+    forceUpdate: boolean;
+    handleGoForward: () => void;
+    shopAppVersion: string;
 }
 
-const NewAppVersionModal: React.FC<IProps> = ({showModal = false}: IProps) => {
-    const navigation = useNavigation();
-
+const NewAppVersionModal: React.FC<IProps> = ({
+    showModal = false,
+    forceUpdate,
+    handleGoForward,
+    shopAppVersion,
+}: IProps) => {
     const dispatch = useAppDispatch();
-    const shopAppVersion = useAppSelector<string>(
-        state => state.app.config.version,
-    );
-
-    const handleGoForward = () => {
-        dispatch(setNewAppVersion(shopAppVersion));
-        navigation.navigate(RegularStackRoute.TAB_MENU_SCREEN);
-    };
 
     const handleLinkToShop = () => {
-        dispatch(setNewAppVersion(shopAppVersion));
+        !forceUpdate && dispatch(setNewAppVersion(shopAppVersion));
         if (isIOS) {
             Linking.openURL(storeUrls.apple);
         } else {
@@ -48,15 +43,20 @@ const NewAppVersionModal: React.FC<IProps> = ({showModal = false}: IProps) => {
                 openModalHeight={getFVerticalPx(688)}
                 header={
                     <>
-                        <HorizontalSpacer height={16} />
-                        <ModalHeader onPress={handleGoForward} />
+                        <HorizontalSpacer height={forceUpdate ? 60 : 22} />
+                        {!forceUpdate && (
+                            <ModalHeader onPress={handleGoForward} />
+                        )}
                     </>
                 }
                 style={{
                     backgroundColor: colors.white,
                 }}
                 testID={'bottom-modal-new-app-version'}>
-                <NewAppVersionContainer handlePress={handleLinkToShop} />
+                <NewAppVersionContainer
+                    handlePress={handleLinkToShop}
+                    forceUpdate={forceUpdate}
+                />
             </BottomModal>
             <Backdrop isVisible={showModal} />
         </>

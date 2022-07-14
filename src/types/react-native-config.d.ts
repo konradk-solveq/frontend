@@ -17,4 +17,5 @@ declare module 'react-native-config' {
     export const DEEPLINKING_HOST: string;
     export const DEEPLINKING_PREFIX: string;
     export const LOAD_STORYBOOK: 'true' | 'false';
+    export const GOOGLE_MAP_ID: string;
 }

@@ -4,7 +4,6 @@ import {SelectOptionType} from '@models/map.model';
 import {FaqType} from '@models/regulations.model';
 import {BasicCoordsType} from '@type/coords';
 import {RootState} from '@storage/storage';
-import {SelectEnumOptionsType} from '@models/config.model';
 import {InternetConnectionInfoType} from '@interfaces/internetConnection';
 import {AppState} from '@storage/reducers/app';
 
@@ -90,6 +89,26 @@ export const apiAuthHeaderStateSelector = (state: RootState): boolean =>
     state.app.apiAuthHeaderState;
 
 export const appConfigSelector = createSelector(appSelector, a => a.config);
+
+export const regulationsDataSelector = createSelector(
+    appSelector,
+    app => app.regulation,
+);
+
+export const privacyPolicyDataSelector = createSelector(
+    appSelector,
+    app => app.policy,
+);
+
+export const notificationDataSelector = createSelector(
+    appSelector,
+    app => app.notifications,
+);
+
+export const notificationDateSelector = createSelector(
+    appSelector,
+    app => app.notificationDate,
+);
 
 export const focusedOnRecordingScreenSelector = createSelector(
     appSelector,

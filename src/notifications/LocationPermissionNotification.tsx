@@ -5,9 +5,8 @@ import {NotificationDataI} from '@components/notifications/Notification';
 import Approved from '@components/icons/Approved';
 import {handleOpenSettings} from '@utils/system/settings';
 import {MykrossIconFont, IconFont} from '@theme/enums/iconFonts';
-import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import SettingsNotification from '@components/notifications/SettingsNotification';
-import {StyleSheet, ViewStyle} from 'react-native';
+import {StyleSheet, ViewStyle, StyleProp} from 'react-native';
 import {getFHorizontalPx} from '@helpers/appLayoutDimensions';
 
 interface IProps {
@@ -16,7 +15,7 @@ interface IProps {
     subtitle?: string;
     action?: () => void;
     actionText?: string;
-    style?: ViewStyle;
+    style?: StyleProp<ViewStyle>;
 }
 
 const LocationPermissionNotification: React.FC<IProps> = ({
@@ -27,8 +26,6 @@ const LocationPermissionNotification: React.FC<IProps> = ({
     subtitle,
     style,
 }: IProps) => {
-    const {permissionGranted, permissionResult} = useCheckLocationType();
-
     const {t} = useMergedTranslation('Notifications.location.permission');
 
     const notificationData: NotificationDataI = {
@@ -38,9 +35,9 @@ const LocationPermissionNotification: React.FC<IProps> = ({
         icon: icon || <Approved style={styles.notificationIcon} />,
         action: action || handleOpenSettings,
     };
-    return !permissionGranted && permissionResult ? (
+    return (
         <SettingsNotification {...notificationData} containerStyle={style} />
-    ) : null;
+    );
 };
 
 export default React.memo(LocationPermissionNotification);

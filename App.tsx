@@ -40,12 +40,12 @@ const App: () => Node = () => {
             <Provider store={storage}>
                 <PersistGate persistor={persistor}>
                     <NetworkStatus />
+                    {/* TODO: refactor or rename this component (StaticLocationProvider) */}
+                    <StaticLocationProvider />
                     <ToastProvider>
-                        <StaticLocationProvider>
-                            <Suspense fallback={null}>
-                                <NavContainer />
-                            </Suspense>
-                        </StaticLocationProvider>
+                        <Suspense fallback={null}>
+                            <NavContainer />
+                        </Suspense>
                     </ToastProvider>
                 </PersistGate>
             </Provider>

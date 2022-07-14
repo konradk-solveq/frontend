@@ -150,7 +150,7 @@ const BottomModal: React.FC<IProps> = ({
 
     const modalAnimation = useAnimatedStyle(() => ({
         height: withTiming(modalHeight.value, {
-            duration: isSwipeable ? 0 : 750,
+            duration: isReactive ? 0 : 750,
         }),
     }));
     /**

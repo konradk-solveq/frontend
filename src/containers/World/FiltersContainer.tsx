@@ -39,7 +39,7 @@ interface IProps {
     setIsMyPublic: (val: boolean) => void;
     rangePickerRef?: Ref<RangePickerRef | undefined>;
     allowMyPublic: boolean;
-    onSaveHandler: () => void;
+    onSaveHandler: (filterApplied: boolean) => void;
     isDirty: boolean;
     itemsCount?: number;
     filters: FiltersI;
@@ -180,13 +180,13 @@ const FiltersContainer: React.FC<IProps> = ({
                     {isDirty ? (
                         <PrimaryButton
                             text={`${t('filtersSaveBtn')}` + itemsCountText}
-                            onPress={onSaveHandler}
+                            onPress={() => onSaveHandler(true)}
                             testID={'filters-container-save-button'}
                         />
                     ) : (
                         <SecondaryButton
                             text={t('filtersShowAllBtn')}
-                            onPress={onSaveHandler}
+                            onPress={() => onSaveHandler(false)}
                             testID={'filters-container-show-all-button'}
                         />
                     )}

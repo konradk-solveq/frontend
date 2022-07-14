@@ -38,12 +38,12 @@ export {
     registerDevice,
 } from './auth';
 export {
-    getTermsAndConditions,
-    getPolicy,
-    getRegulation,
     getFaq,
     getConfig,
     checkInternetConnectionQuality,
+    getLegalDocuments,
+    getAppNotification,
+    getNewAppVersion,
 } from './app';
 export {
     getUiTranslation,

@@ -195,28 +195,13 @@
             "hyper": "Aplikacja myKROSS - iOS"
         }
     ],
-    "newRegulations": {
-        "version": "1.0.0",
-        "header": ["Informacja", "Regulamin"],
-        "btnOk": "DALEJ",
-        "btnAccept": "DALEJ",
-        "urls": [{
-                "url": "http://regulations.eu",
-                "hyper": "Regulaminu"
-            },
-            {
-                "url": "http://privacyPolicy.eu",
-                "hyper": "Polityki Prywatności"
-            },
-            {
-                "url": "http://informUs.eu",
-                "hyper": "poinformuj nas"
-            }
-        ]
+    "notifications": {
+        "button": "Dalej"
     },
     "newAppVersion": {
-        "title": "Zaktualizuj aplikację Kross",
+        "title": "Zaktualizuj aplikację myKross",
         "content": "Udostępniliśmy nową wersję aplikacji.\nBądź na bieżąco z nowościami, pobierz aktualizację.",
+        "forceUpdateContent": "Obecna wersja nie jest już przez nas\nwspierana. Pobierz nową, aby móc dalej\nkorzystać z aplikacji",
         "updateButton": "Aktualizuj"
     },
     "Login": {
@@ -426,7 +411,7 @@
             "distanceUnit": " km",
             "timeUnit": "h",
             "noTitle": "Brak tytułu",
-            "distanceToStart": " km od Ciebie",
+            "distanceToStart": "km od Ciebie",
             "addToFavAction": "Pobierz trasę",
             "shareRouteAction": "Udostępnij",
             "publishTripAction": "Opublikuj",
@@ -492,7 +477,7 @@
             "separator": " - ",
             "hours": "h",
             "minutes": "m",
-            "distanceToStart": " km od Ciebie",
+            "distanceToStart": "km od Ciebie",
             "public": "publiczna"
         },
         "moreActionsModal": {
@@ -551,7 +536,8 @@
             "tagsTitle": "Tagi",
             "creationPrefix": "Utworzono",
             "publishPrefix": "Na mapie Publicznej od",
-            "distanceToStart": " km od Ciebie",
+            "distanceToStart": "km od Ciebie",
+            "variedSurface": "Różnorodna",
             "noDescription": "Brak opisu.",
             "multiDifficulties": "Różnorodna",
             "actionButtons": {
@@ -771,7 +757,12 @@
         "errorCloseBtn": "Zamknij",
         "errorTitle": "Coś poszło nie tak!",
         "errorMessageTitle": "Przejechany dystans jest **zbyt krótki**.",
-        "errorMessageContent": "Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów)."
+        "errorMessageContent": "Nagraj dłuższą trasę (minimalna długość trasy powinna być większa niż 100 metrów).",
+        "abandonAlert": {
+            "text": "Czy chcesz wyjść bez zapisania trasy?",
+            "pressText": "Tak, usuń",
+            "cancelText": "Wróć"
+        }
     },
     "ServicesMap": {
         "services": "Serwisy",
@@ -1036,6 +1027,10 @@
                 "title": "Sprawdź uprawienia lokalizacji",
                 "subtitle": "Nie mamy Twojej zgody na lokalizację",
                 "action": "Ustawienia"
+            },
+            "permissionAlways": {
+                "title": "Wybierz zgodę \"Na zawsze\"",
+                "subtitle": "Twoja trasa zostanie dokładniej nagrana"
             }
         }
     },

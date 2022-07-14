@@ -50,6 +50,7 @@ const useCheckLocationType = (isEnabled?: boolean, skipChecking?: boolean) => {
         checkLocationType,
         permissionGranted: permissionResult === 'granted',
         permissionResult,
+        permissionAlways: locationType === 'ALWAYS',
     };
 };
 

@@ -6,10 +6,10 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {fetchPlacesData} from '@storage/actions';
+import {globalLocationSelector} from '@storage/selectors';
 
 import {markerTypes, Place, PointDetails} from '@models/places.model';
 import {BasicCoordsType} from '@type/coords';
-import {useLocationProvider} from '@providers/staticLocationProvider/staticLocationProvider';
 import {getMapInitLocation} from '@utils/webView';
 import {jsonParse, jsonStringify} from '@utils/transformJson';
 
@@ -28,10 +28,10 @@ import {useNavigation} from '@react-navigation/native';
 import {BottomModal} from '@components/modals';
 
 import {AnimatedContainerPosition} from '@src/containers/World/components';
-import {LocationStatusNotification} from '@notifications';
 import NotificationList from '@components/notifications/NotificationList';
-import LocationPermissionNotification from '@notifications/LocationPermissionNotification';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
+import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
+import {googleMapId} from '@src/utils/constants/googleMapId';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -41,7 +41,7 @@ const ServicesMap: React.FC = () => {
 
     const {permissionGranted, permissionResult} = useCheckLocationType();
 
-    const {location} = useLocationProvider();
+    const location = useAppSelector(globalLocationSelector);
     const [initLocation, setInitLocation] = useState<
         BasicCoordsType | undefined
     >();
@@ -250,6 +250,7 @@ const ServicesMap: React.FC = () => {
                         html:
                             '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
                             initMapPos +
+                            googleMapId +
                             mapSource +
                             '</body></html>',
                         baseUrl:
@@ -279,12 +280,9 @@ const ServicesMap: React.FC = () => {
                             onPress={handleShops}
                         />
                     </View>
-                    <LocationStatusNotification
-                        showWhenLocationIsDisabled
-                        key={'gps-notification'}
-                    />
-                    <LocationPermissionNotification
-                        key={'location-permission-notification'}
+                    <UnifiedLocationNotification
+                        showGPSStatus
+                        key={'location-notification'}
                     />
                 </NotificationList>
             </View>

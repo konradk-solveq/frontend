@@ -27,6 +27,7 @@ import {
     sentryLogLevel,
 } from '@sentryLogger/sentryLogger';
 import {getTimeInUTCMilliseconds} from './transformData';
+import {result} from 'lodash';
 
 const isIOS = Platform.OS === 'ios';
 export const LOCATION_ACCURACY = 60;
@@ -73,9 +74,7 @@ export const initBGeolocalization = async (notificationTitle: string) => {
             reset: true,
             stopOnTerminate: true,
             startOnBoot: false,
-            desiredAccuracy: isIOS
-                ? BackgroundGeolocation.DESIRED_ACCURACY_NAVIGATION
-                : BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
+            desiredAccuracy: BackgroundGeolocation.DESIRED_ACCURACY_HIGH,
             locationAuthorizationRequest: 'Always',
             locationAuthorizationAlert: {
                 titleWhenNotEnabled: trans2.titleWhenNotEnabled,
@@ -173,11 +172,12 @@ export const getCurrentLocation = async (
 
 export const getLatLngFromForeground = async (
     force?: boolean,
+    accuracy?: number,
 ): Promise<BasicCoordsType | undefined> => {
     const location = await getCurrentLocation(
         '',
         4,
-        10,
+        accuracy || 10,
         true,
         undefined,
         undefined,
@@ -241,6 +241,7 @@ export const startBackgroundGeolocation = async (
                 sticky: true,
             },
             pausesLocationUpdatesAutomatically: false,
+            disableStopDetection: true,
             showsBackgroundLocationIndicator: true,
         });
         state = await startBackgroundGeolocationPlugin(true);
@@ -279,10 +280,11 @@ export const stopBackgroundGeolocation = async () => {
                 sticky: false,
             },
             pausesLocationUpdatesAutomatically: undefined,
+            disableStopDetection: false,
             showsBackgroundLocationIndicator: undefined,
         });
 
-        const state = await stopBackgroundGeolocationPlugin();
+        const state = await stopBackgroundGeolocationPlugin(true);
         if (state?.odometer && state?.odometer > 0) {
             BackgroundGeolocation.resetOdometer();
         }
@@ -452,6 +454,9 @@ export const getLastLocationByRoutId = async (
 /* Force plugin to stationary state - doesnt disable tracking permamently */
 export const pauseTracingLocation = async (clearRouteId?: boolean) => {
     try {
+        /**
+         * Clearing routeID avoids collecting data when it is not intended
+         */
         if (clearRouteId) {
             await BackgroundGeolocation.setConfig({extras: {}});
             await setConfig({
@@ -493,9 +498,19 @@ export const resumeTracingLocation = async (routeId?: string) => {
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.log('[resumeTracingLocation - error]', errorMessage);
-        const error = new Error(errorMessage);
 
         loggErrorWithScope(errorMessage, 'resumeTracingLocation');
+    }
+};
+
+export const changePaceBackgroundGeolocation = async (state: boolean) => {
+    try {
+        await BackgroundGeolocation.changePace(state);
+    } catch (e) {
+        const errorMessage = transformLocationErrorCode(e);
+        console.log('[changePaceBackgroundGeolocation - error]', errorMessage);
+
+        loggErrorWithScope(errorMessage, 'changePaceBackgroundGeolocation');
     }
 };
 
@@ -583,27 +598,19 @@ export const checkAndroidLocationPermission = async () => {
 export const checkDeviceHasLocationAlwaysPermission = async () => {
     let locationPermission = false;
     try {
-        /**
-         * Logged some issues, so added temp solution
-         * https://github.com/facebook/react-native/issues/10009#issuecomment-347839488
-         */
-        locationPermission = await new Promise<boolean>(resolve => {
-            setTimeout(async () => {
-                if (isIOS) {
-                    const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
-                    if (result === RESULTS.GRANTED) {
-                        resolve(true);
-                    }
-                } else {
-                    const result = await check(
-                        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-                    );
-                    if (result === RESULTS.GRANTED) {
-                        resolve(true);
-                    }
-                }
-            }, 0);
-        });
+        if (isIOS) {
+            const result = await check(PERMISSIONS.IOS.LOCATION_ALWAYS);
+            if (result === RESULTS.GRANTED) {
+                locationPermission = true;
+            }
+        } else {
+            const result = await check(
+                PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+            );
+            if (result === RESULTS.GRANTED) {
+                locationPermission = true;
+            }
+        }
     } catch (e) {
         console.log('[checkDeviceHasLocationAlwaysPermission - error]', e);
 
@@ -611,6 +618,26 @@ export const checkDeviceHasLocationAlwaysPermission = async () => {
     }
 
     return locationPermission;
+};
+
+export const askMotionPermission = async () => {
+    let permission = 'unavailable';
+    try {
+        const res = await request(
+            //@ts-ignore
+            Platform.select({
+                android: PERMISSIONS.ANDROID.ACTIVITY_RECOGNITION,
+                ios: PERMISSIONS.IOS.MOTION,
+            }),
+        );
+        permission = res;
+    } catch (e) {
+        console.log('[askMotionPermission - error]', e);
+
+        loggErrorWithScope(e, 'askMotionPermission');
+    } finally {
+        return permission;
+    }
 };
 
 export const openGPSModule = async () => {
@@ -768,10 +795,17 @@ export const startMonitoringGeofences = async (forceToStart?: boolean) => {
     }
 };
 
-export const stopBackgroundGeolocationPlugin = async () => {
+export const stopBackgroundGeolocationPlugin = async (
+    stopWhenRecordingIsNotActive?: boolean,
+) => {
     try {
         let state = await getBackgroundGeolocationState();
-        if (state?.enabled) {
+        /**
+         * Prevent disabling plugin when recording is active
+         */
+        const shouldPreventStop =
+            stopWhenRecordingIsNotActive && state?.extras?.route_id;
+        if (state?.enabled && !shouldPreventStop) {
             state = await BackgroundGeolocation.stop();
         }
         return state;
@@ -825,7 +859,6 @@ export const onWatchPostionChangeListener = async (
         });
     } catch (e) {
         console.log('[onWatchPostionChangeListener - error]', e);
-        const error = new Error(e);
 
         loggErrorWithScope(e, 'onWatchPostionChangeListener');
     }

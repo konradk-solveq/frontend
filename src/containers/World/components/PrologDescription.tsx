@@ -24,8 +24,11 @@ interface IProps {
     reactions?: ReactionsType;
     likeReaction?: boolean;
     onPressReaction?: () => void;
+    surfaceString?: string;
     testID?: string;
 }
+
+const DIFF_PLACEHOLDER = '-';
 
 const PrologDescription: React.FC<IProps> = ({
     name,
@@ -36,17 +39,28 @@ const PrologDescription: React.FC<IProps> = ({
     reactions,
     likeReaction = false,
     onPressReaction,
+    surfaceString,
     testID = 'prolog-description-test-id',
 }: IProps) => {
     const {t} = useMergedTranslation('RoutesDetails.details');
     const difficultyLevel = useMemo(
-        () => getDifficultyString(difficultiesLevels, t('multiDifficulties')),
+        () =>
+            getDifficultyString(
+                difficultiesLevels,
+                t('multiDifficulties'),
+                DIFF_PLACEHOLDER,
+            ),
         [difficultiesLevels, t],
     );
 
     const onPressReactionHandler = useCallback(() => {
         onPressReaction && onPressReaction();
     }, [onPressReaction]);
+
+    const isDifficultyPlaceholder = useMemo(
+        () => difficultyLevel !== DIFF_PLACEHOLDER,
+        [difficultyLevel],
+    );
 
     return (
         <>
@@ -64,7 +78,14 @@ const PrologDescription: React.FC<IProps> = ({
                 <BodySecondary>{`${distanceToRoute} ${t(
                     'distanceToStart',
                 )}`}</BodySecondary>
-                <BodySecondary>{difficultyLevel}</BodySecondary>
+                <BodySecondary testID={`${testID}-difficulty-surface-info`}>
+                    {!(surfaceString && !isDifficultyPlaceholder) &&
+                        difficultyLevel}
+                    {difficultyLevel !== DIFF_PLACEHOLDER &&
+                        !!surfaceString &&
+                        ' - '}
+                    {surfaceString}
+                </BodySecondary>
             </View>
             <View
                 style={[styles.row, styles.flexStart]}

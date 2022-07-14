@@ -31,12 +31,21 @@ const mockStore = configureStore(middlewares);
 describe('[useProviderStaticLocation]', () => {
     let store: MockStoreEnhanced<unknown, {}>;
 
-    it('Should set location on mount for geofence listener [ALWAYS]', async () => {
+    it('Should set location on mount for geofence listener [ALWAYS] when recording is not active', async () => {
         jest.spyOn(Permissions, 'check').mockReturnValue(
             Promise.resolve(Permissions.RESULTS.GRANTED),
         );
 
-        store = mockStore(initState);
+        store = mockStore({
+            ...initState,
+            routes: {
+                currentRoute: {
+                    ...startedRoute,
+                    isActive: false,
+                    recordingState: 'non-started',
+                },
+            },
+        });
         const {result, waitForNextUpdate} = renderHook(
             () => useProviderStaticLocation(),
             {
@@ -49,6 +58,10 @@ describe('[useProviderStaticLocation]', () => {
         );
 
         await waitForNextUpdate();
+        /**
+         * Force update cause jest not see changes in useRef value
+         */
+        await act(async () => result.current.isTrackingActivatedHandler(false));
 
         const locationToCompare = {
             latitude: trackerDataResult.coords.lat,

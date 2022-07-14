@@ -5,8 +5,13 @@ import {mapsListToClass} from '../../utils/transformData';
 import routes from '../reducers/routes';
 import {getMapFromFeaturedSections} from './utils/map';
 import {NestedPaginationType} from '@src/interfaces/api';
-import {FiltersState, IMapsListError, MapsState} from '@storage/reducers/maps';
-import {appConfigSelector} from './app';
+import {
+    ActiveFilters,
+    FiltersState,
+    IMapsListError,
+    MapsState,
+} from '@storage/reducers/maps';
+import {appConfigSelector} from '@storage/selectors/app';
 
 export enum selectorMapTypeEnum {
     regular = 'regular',
@@ -52,6 +57,9 @@ export const favouritesMapsSelector = createSelector(
 
 export const mapsCountSelector = (state: RootState): FiltersState =>
     state.maps.filters;
+
+export const mapsActiveFiltersSelector = (state: RootState): ActiveFilters =>
+    state.maps.mapsAppliedFilters;
 
 export const featuredMapsSelector = (state: RootState): FeaturedMapType[] =>
     state.maps.featuredMaps.map((e: FeaturedMapType) => {

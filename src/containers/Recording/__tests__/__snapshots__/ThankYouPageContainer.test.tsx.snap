@@ -9,6 +9,7 @@ Array [
         "flex": 1,
         "height": "100%",
         "paddingHorizontal": 30.76923076923077,
+        "position": "relative",
         "width": "100%",
       }
     }
@@ -288,6 +289,66 @@ Array [
           </RNSVGDefs>
         </RNSVGGroup>
       </RNSVGSvgView>
+    </View>
+    <View
+      style={
+        Object {
+          "left": 23.076923076923077,
+          "position": "absolute",
+          "top": 25.28909952606635,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="icon-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "height": 84.61538461538461,
+                "justifyContent": "center",
+                "width": 84.61538461538461,
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#333333",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+            testID="icon-btn-test-id-icon"
+          >
+            X
+          </Text>
+        </View>
+      </View>
     </View>
     <Text
       adjustsFontSizeToFit={false}
@@ -980,6 +1041,7 @@ Array [
         "flex": 1,
         "height": "100%",
         "paddingHorizontal": 30.76923076923077,
+        "position": "relative",
         "width": "100%",
       }
     }
@@ -1259,6 +1321,66 @@ Array [
           </RNSVGDefs>
         </RNSVGGroup>
       </RNSVGSvgView>
+    </View>
+    <View
+      style={
+        Object {
+          "left": 23.076923076923077,
+          "position": "absolute",
+          "top": 25.28909952606635,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        testID="icon-btn-test-id"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "alignContent": "center",
+                "backgroundColor": "#FFFFFF",
+                "borderRadius": 30.76923076923077,
+                "height": 84.61538461538461,
+                "justifyContent": "center",
+                "width": 84.61538461538461,
+              },
+              undefined,
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontFamily": "mykross",
+                  "textAlign": "center",
+                },
+                Object {
+                  "color": "#333333",
+                  "fontSize": 24,
+                },
+                undefined,
+              ]
+            }
+            testID="icon-btn-test-id-icon"
+          >
+            X
+          </Text>
+        </View>
+      </View>
     </View>
     <Text
       adjustsFontSizeToFit={false}

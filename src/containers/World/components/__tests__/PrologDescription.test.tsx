@@ -15,6 +15,7 @@ const PROLOG_DESCRIPTION_TEST_ID = 'prolog-description-test-id';
 const PROLOG_DESCRIPTION_HEADER2_TEST_ID = 'header2-test-id';
 const PROLOG_DESCRIPTION_DIFFICULITES_TEST_ID = `${PROLOG_DESCRIPTION_TEST_ID}-row2`;
 const PROLOG_DESCRIPTION_LIKES_TEST_ID = `${PROLOG_DESCRIPTION_TEST_ID}-row3`;
+const PROLOG_DESCRIPTION_DIFFICULTY_SURFACE_TEST_ID = `${PROLOG_DESCRIPTION_TEST_ID}-difficulty-surface-info`;
 
 describe('<PrologDescription /> - containers/World/components/PrologDescription', () => {
     it('Should render route name, distance and time', () => {
@@ -71,11 +72,13 @@ describe('<PrologDescription /> - containers/World/components/PrologDescription'
             /* CHeck if renders suffix for multi difficulties */
             if (difficulty && difficulty?.length > 1) {
                 expect(
-                    difficultiesFromSecondRow.props.children[1].props.children,
+                    difficultiesFromSecondRow.props.children[1].props
+                        .children[0],
                 ).toContain(suffix);
             } else {
                 expect(
-                    difficultiesFromSecondRow.props.children[1].props.children,
+                    difficultiesFromSecondRow.props.children[1].props
+                        .children[0],
                 ).not.toContain(suffix);
             }
         },
@@ -93,6 +96,31 @@ describe('<PrologDescription /> - containers/World/components/PrologDescription'
         expect(headersFromThirdRow.props.children).toEqual(
             routeData.reactions?.like,
         );
+    });
+
+    it("Should render surface string if there's surface string passed", () => {
+        const {getByTestId} = render(
+            <PrologDescription
+                reactions={routeData.reactions}
+                surfaceString={'test'}
+            />,
+        );
+
+        const difficultySurfaceInfo = getByTestId(
+            PROLOG_DESCRIPTION_DIFFICULTY_SURFACE_TEST_ID,
+        );
+        expect(difficultySurfaceInfo.props.children[2]).toContain('test');
+    });
+
+    it("Shouldn't render anything after the difficulty if there's no surface string passed", () => {
+        const {getByTestId} = render(
+            <PrologDescription reactions={routeData.reactions} />,
+        );
+
+        const difficultySurfaceInfo = getByTestId(
+            PROLOG_DESCRIPTION_DIFFICULTY_SURFACE_TEST_ID,
+        );
+        expect(difficultySurfaceInfo.props.children[1]).toBeFalsy();
     });
 
     afterEach(() => {

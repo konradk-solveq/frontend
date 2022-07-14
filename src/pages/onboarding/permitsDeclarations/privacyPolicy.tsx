@@ -1,54 +1,26 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {useAppSelector} from '@hooks/redux';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
-import {onboardingFinishedSelector} from '@src/storage/selectors';
-import {OnboardingStackRoute, RegularStackRoute} from '@src/navigation/route';
 import GenericScreen from '@src/pages/template/GenericScreen';
 import {getFVerticalPx} from '@helpers/appLayoutDimensions';
-import {Header3} from '@components/texts/texts';
-import JsonParagraph from './jsonParagraph';
+import {privacyPolicyDataSelector} from '@storage/selectors/app';
+import LegalDocument from '@components/documents/LegalDocument';
 
 const PrivacyPolicy: React.FC = () => {
-    const data = useAppSelector(state => state.app.policy);
-    const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
-    const privacyPolicyRouteName = useMemo(
-        () =>
-            !isOnboardingFinished
-                ? OnboardingStackRoute.REGULATIONS_ONBOARDING_SCREEN
-                : RegularStackRoute.REGULATIONS_SCREEN,
-        [isOnboardingFinished],
-    );
-
-    const styles = StyleSheet.create({
-        scrollWrapper: {
-            marginTop: getFVerticalPx(105),
-        },
-        wrap: {
-            marginBottom: getFVerticalPx(100),
-            paddingHorizontal: appContainerHorizontalMargin,
-        },
-    });
+    const data = useAppSelector(privacyPolicyDataSelector);
 
     return (
-        <GenericScreen screenTitle={data?.header} transculentStatusBar>
+        <GenericScreen
+            screenTitle={data?.current?.content?.header}
+            transculentStatusBar>
             <ScrollView style={styles.scrollWrapper}>
                 <View style={styles.wrap}>
-                    {data.title && <Header3>{data.title}</Header3>}
-
-                    {data.paragraph &&
-                        data.paragraph.map((e: any, i: number) => (
-                            <JsonParagraph
-                                regulationsScreenRouteName={
-                                    privacyPolicyRouteName
-                                }
-                                marginTop={e.marginTop}
-                                font={e.font}
-                                text={e.text}
-                                num={i}
-                                key={'pgrap_' + i}
-                            />
-                        ))}
+                    <LegalDocument
+                        message={data.current}
+                        style={styles.document}
+                    />
+                    {data?.next && <LegalDocument message={data.next} />}
                 </View>
             </ScrollView>
         </GenericScreen>
@@ -56,3 +28,17 @@ const PrivacyPolicy: React.FC = () => {
 };
 
 export default PrivacyPolicy;
+
+const styles = StyleSheet.create({
+    scrollWrapper: {
+        marginTop: getFVerticalPx(105),
+        width: '100%',
+    },
+    wrap: {
+        marginBottom: getFVerticalPx(100),
+        paddingHorizontal: appContainerHorizontalMargin,
+    },
+    document: {
+        marginBottom: getFVerticalPx(48),
+    },
+});

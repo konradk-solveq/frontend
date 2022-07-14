@@ -1,4 +1,5 @@
 import {
+    changePaceBackgroundGeolocation,
     startBackgroundGeolocation,
     stopBackgroundGeolocation,
     stopWatchPostionChangeListener,
@@ -26,6 +27,8 @@ export const startRecording = async (
         );
     }
 
+    await changePaceBackgroundGeolocation(true);
+
     return state?.enabled ? true : false;
 };
 
@@ -42,3 +45,11 @@ export const getNextRouteNumber = (
     const nextNumber = totalNumbers ? totalNumbers + 1 : 1;
     return modifier === 0 ? nextNumber : nextNumber + modifier;
 };
+
+export const checkIfDataLengthAreDifferent = <T, U>(
+    newArray?: T[],
+    oldArray?: U[],
+) =>
+    newArray?.length &&
+    newArray?.length > 0 &&
+    newArray?.length !== oldArray?.length;
