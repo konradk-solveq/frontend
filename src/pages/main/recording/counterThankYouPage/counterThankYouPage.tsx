@@ -116,7 +116,7 @@ const CounterThankYouPage: React.FC = () => {
                 return;
             }
 
-            navigation.navigate('HomeTab');
+            navigation.navigate('WorldMyRoutes');
         },
         [dispatch, goForward, navigation],
     );
