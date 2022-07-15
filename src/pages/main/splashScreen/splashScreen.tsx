@@ -42,7 +42,7 @@ const SplashScreen: React.FC<Props> = (props: Props) => {
 
     const notifications = useAppSelector(notificationDataSelector);
 
-    const shouldShowRegulations = notifications.length;
+    const shouldShowRegulations = notifications?.length;
 
     const handleGoForward = () => {
         dispatch(setNewAppVersion(appVersion.latest));
