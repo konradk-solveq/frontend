@@ -1,10 +1,11 @@
 import {useEffect} from 'react';
-import {useForm, FieldValues} from 'react-hook-form';
+import {useForm, FieldValues, Control} from 'react-hook-form';
 import {Map} from '../models/map.model';
 import {mapDataToFormData} from '../utils/transformData';
 import {FormData} from '@type/editDetailsForm';
 
 type ValueType = string | boolean | undefined | string[];
+export type FormControlT = Control<FieldValues>;
 
 const useFormDataWithMapData = (mapData: Map | undefined, publish: boolean) => {
     const {

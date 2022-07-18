@@ -82,6 +82,7 @@ const FullDescription: React.FC<IProps> = ({mapData, images}: IProps) => {
                         onPress={() => setShowImgPreview(true)}
                         imageStyle={styles.imagesStyle}
                         containerStyle={styles.imagesCarouselContainer}
+                        initialImagesNumber={4}
                     />
                 </View>
             ) : null}

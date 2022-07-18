@@ -1075,6 +1075,7 @@ viewBox=\\"0 0 414 414\\">
                 </Text>
                 <RCTScrollView
                   horizontal={true}
+                  onScroll={[Function]}
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
@@ -3036,6 +3037,7 @@ viewBox=\\"0 0 414 414\\">
                 </Text>
                 <RCTScrollView
                   horizontal={true}
+                  onScroll={[Function]}
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
@@ -5114,6 +5116,7 @@ viewBox=\\"0 0 414 414\\">
                 </Text>
                 <RCTScrollView
                   horizontal={true}
+                  onScroll={[Function]}
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
@@ -7075,6 +7078,7 @@ viewBox=\\"0 0 414 414\\">
                 </Text>
                 <RCTScrollView
                   horizontal={true}
+                  onScroll={[Function]}
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
@@ -9092,6 +9096,7 @@ viewBox=\\"0 0 414 414\\">
                 </Text>
                 <RCTScrollView
                   horizontal={true}
+                  onScroll={[Function]}
                   showsHorizontalScrollIndicator={false}
                   style={
                     Array [
