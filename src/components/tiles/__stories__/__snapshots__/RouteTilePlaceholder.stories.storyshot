@@ -1,0 +1,2049 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/tiles/RouteTilePlaceholder No Data available 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="placeholder-list-tile"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
+    >
+      <View
+        style={
+          Object {
+            "left": 30.76923076923077,
+            "width": 688.4615384615385,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 14,
+                "lineHeight": 48,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="demi-14-h48-test-id"
+        >
+          01.01.2022
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
+              "marginTop": 15.384615384615385,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  bbHeight={63.22274881516588}
+                  bbWidth={186.53846153846155}
+                  focusable={false}
+                  height={63.22274881516588}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 63,
+                        "width": 186,
+                      },
+                    ]
+                  }
+                  width={186.53846153846155}
+                >
+                  <RNSVGGroup>
+                    <RNSVGPath
+                      d="M23.712 6.209c-4.26-4.205-11.165-4.205-15.424 0a10.672 10.672 0 0 0 0 15.228l5.728 5.654a2.832 2.832 0 0 0 3.968 0l5.728-5.654a10.672 10.672 0 0 0 0-15.228Z"
+                      fill={4286102069}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                        ]
+                      }
+                      stroke={4294967295}
+                      strokeWidth={2}
+                    />
+                    <RNSVGPath
+                      d="m12 14.008 2.797 2.761 5.594-5.523"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeWidth",
+                          "strokeLinecap",
+                        ]
+                      }
+                      stroke={4294967295}
+                      strokeLinecap={1}
+                      strokeWidth={2.5}
+                    />
+                    <RNSVGPath
+                      d="M88.712 6.209c-4.26-4.205-11.165-4.205-15.424 0a10.672 10.672 0 0 0 0 15.228l5.728 5.654a2.832 2.832 0 0 0 3.968 0l5.728-5.654a10.672 10.672 0 0 0 0-15.228Z"
+                      fill={4281545523}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                        ]
+                      }
+                      stroke={4294967295}
+                      strokeWidth={2}
+                    />
+                    <RNSVGPath
+                      clipRule={0}
+                      d="M78.465 9.275a.795.795 0 0 0-.795.794v4.296c0 .44.356.795.795.795H84.9a.795.795 0 0 0 .607-1.307l-.947-1.123a.795.795 0 0 1 0-1.025l.947-1.123a.795.795 0 0 0-.607-1.307h-6.435Zm-.199 7.356a.596.596 0 0 0-.596.596v1.75c0 .33.267.597.596.597h1.043c.33 0 .596-.267.596-.596v-1.75a.596.596 0 0 0-.596-.597h-1.043Z"
+                      fill={4294967295}
+                      fillRule={0}
+                      propList={
+                        Array [
+                          "fill",
+                          "fillRule",
+                        ]
+                      }
+                    />
+                    <RNSVGPath
+                      d="M16 33.076h16.089A6.911 6.911 0 0 0 39 26.165v-1.412a5.5 5.5 0 0 1 5.5-5.5v0a5.5 5.5 0 0 1 5.5 5.5V36c0 1.657 1.362 3 3.02 3v0c1.635 0 2.98-1.326 2.98-2.962v0a2.962 2.962 0 0 1 2.962-2.962H80.5"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeWidth",
+                          "strokeDasharray",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4291180339}
+                      strokeDasharray={
+                        Array [
+                          "3",
+                          "4",
+                        ]
+                      }
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                      strokeWidth={2}
+                    />
+                    <RNSVGEllipse
+                      cx={15.5}
+                      cy={33.076}
+                      fill={4291180339}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                      rx={3.5}
+                      ry={3.456}
+                    />
+                    <RNSVGEllipse
+                      cx={81.5}
+                      cy={33.076}
+                      fill={4291180339}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                      rx={3.5}
+                      ry={3.456}
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+                <Text
+                  adjustsFontSizeToFit={false}
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#C63733",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 18,
+                        "fontWeight": "600",
+                        "lineHeight": 24,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "marginTop": 28.450236966824647,
+                      },
+                    ]
+                  }
+                  testID="header3-test-id"
+                >
+                  MainWorld.Tile.routePlaceholderTitle...
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-crop-test-id"
+              >
+                Trasa testowa
+              </Text>
+              <View>
+                <RNCMaskedView
+                  style={
+                    Array [
+                      Object {
+                        "height": 31.61137440758294,
+                        "width": 250,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="animated-placeholder"
+                >
+                  <View
+                    pointerEvents="none"
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "transparent",
+                          },
+                          Object {
+                            "backgroundColor": "#717171",
+                            "borderRadius": 11.538461538461538,
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "height": "100%",
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexGrow": 1,
+                        },
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                        },
+                      ]
+                    }
+                    testID="animated-placeholder-background-color"
+                  />
+                  <View
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "transform": Array [
+                          Object {
+                            "translateX": -750,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <RNCMaskedView
+                      style={
+                        Object {
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <View
+                        pointerEvents="none"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      >
+                        <BVLinearGradient
+                          colors={
+                            Array [
+                              0,
+                              4278190080,
+                              0,
+                            ]
+                          }
+                          endPoint={
+                            Object {
+                              "x": 1,
+                              "y": 0,
+                            }
+                          }
+                          locations={null}
+                          startPoint={
+                            Object {
+                              "x": 0,
+                              "y": 0,
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "bottom": 0,
+                                "left": 0,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              },
+                            ]
+                          }
+                        />
+                      </View>
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "bottom": 0,
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                            },
+                            Object {
+                              "backgroundColor": "#BDBDBD",
+                            },
+                          ]
+                        }
+                        testID="animated-placeholder-highlight-color"
+                      />
+                    </RNCMaskedView>
+                  </View>
+                </RNCMaskedView>
+              </View>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginTop": 23.708530805687204,
+                    }
+                  }
+                >
+                  <View>
+                    <RNCMaskedView
+                      style={
+                        Array [
+                          Object {
+                            "height": 31.61137440758294,
+                            "width": 134.6153846153846,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="animated-placeholder"
+                    >
+                      <View
+                        pointerEvents="none"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "backgroundColor": "#717171",
+                                "borderRadius": 11.538461538461538,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            style={
+                              Object {
+                                "height": "100%",
+                              }
+                            }
+                          />
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flexGrow": 1,
+                            },
+                            Object {
+                              "backgroundColor": "#eaeaea",
+                            },
+                          ]
+                        }
+                        testID="animated-placeholder-background-color"
+                      />
+                      <View
+                        collapsable={false}
+                        nativeID="animatedComponent"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "transform": Array [
+                              Object {
+                                "translateX": -750,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNCMaskedView
+                          style={
+                            Object {
+                              "bottom": 0,
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                            }
+                          }
+                        >
+                          <View
+                            pointerEvents="none"
+                            style={
+                              Object {
+                                "bottom": 0,
+                                "left": 0,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              }
+                            }
+                          >
+                            <BVLinearGradient
+                              colors={
+                                Array [
+                                  0,
+                                  4278190080,
+                                  0,
+                                ]
+                              }
+                              endPoint={
+                                Object {
+                                  "x": 1,
+                                  "y": 0,
+                                }
+                              }
+                              locations={null}
+                              startPoint={
+                                Object {
+                                  "x": 0,
+                                  "y": 0,
+                                }
+                              }
+                              style={
+                                Array [
+                                  Object {
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "position": "absolute",
+                                    "right": 0,
+                                    "top": 0,
+                                  },
+                                ]
+                              }
+                            />
+                          </View>
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "bottom": 0,
+                                  "left": 0,
+                                  "position": "absolute",
+                                  "right": 0,
+                                  "top": 0,
+                                },
+                                Object {
+                                  "backgroundColor": "#BDBDBD",
+                                },
+                              ]
+                            }
+                            testID="animated-placeholder-highlight-color"
+                          />
+                        </RNCMaskedView>
+                      </View>
+                    </RNCMaskedView>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "marginTop": 23.708530805687204,
+                    }
+                  }
+                >
+                  <View>
+                    <RNCMaskedView
+                      style={
+                        Array [
+                          Object {
+                            "height": 31.61137440758294,
+                            "width": 192.30769230769232,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="animated-placeholder"
+                    >
+                      <View
+                        pointerEvents="none"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "backgroundColor": "#717171",
+                                "borderRadius": 11.538461538461538,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            style={
+                              Object {
+                                "borderRadius": 15.80568720379147,
+                                "height": "100%",
+                              }
+                            }
+                          />
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flexGrow": 1,
+                            },
+                            Object {
+                              "backgroundColor": "#eaeaea",
+                            },
+                          ]
+                        }
+                        testID="animated-placeholder-background-color"
+                      />
+                      <View
+                        collapsable={false}
+                        nativeID="animatedComponent"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "transform": Array [
+                              Object {
+                                "translateX": -750,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNCMaskedView
+                          style={
+                            Object {
+                              "bottom": 0,
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                            }
+                          }
+                        >
+                          <View
+                            pointerEvents="none"
+                            style={
+                              Object {
+                                "bottom": 0,
+                                "left": 0,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              }
+                            }
+                          >
+                            <BVLinearGradient
+                              colors={
+                                Array [
+                                  0,
+                                  4278190080,
+                                  0,
+                                ]
+                              }
+                              endPoint={
+                                Object {
+                                  "x": 1,
+                                  "y": 0,
+                                }
+                              }
+                              locations={null}
+                              startPoint={
+                                Object {
+                                  "x": 0,
+                                  "y": 0,
+                                }
+                              }
+                              style={
+                                Array [
+                                  Object {
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "position": "absolute",
+                                    "right": 0,
+                                    "top": 0,
+                                  },
+                                ]
+                              }
+                            />
+                          </View>
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "bottom": 0,
+                                  "left": 0,
+                                  "position": "absolute",
+                                  "right": 0,
+                                  "top": 0,
+                                },
+                                Object {
+                                  "backgroundColor": "#BDBDBD",
+                                },
+                              ]
+                            }
+                            testID="animated-placeholder-highlight-color"
+                          />
+                        </RNCMaskedView>
+                      </View>
+                    </RNCMaskedView>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      E
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RNGestureHandlerButton>
+</View>
+`;
+
+exports[`Storyshots components/tiles/RouteTilePlaceholder Route details available 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="placeholder-list-tile"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
+    >
+      <View
+        style={
+          Object {
+            "left": 30.76923076923077,
+            "width": 688.4615384615385,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 14,
+                "lineHeight": 48,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="demi-14-h48-test-id"
+        >
+          01.01.2022
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
+              "marginTop": 15.384615384615385,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "display": "flex",
+                    "height": "100%",
+                    "justifyContent": "center",
+                    "width": "100%",
+                  }
+                }
+              >
+                <RNSVGSvgView
+                  bbHeight={63.22274881516588}
+                  bbWidth={186.53846153846155}
+                  focusable={false}
+                  height={63.22274881516588}
+                  style={
+                    Array [
+                      Object {
+                        "backgroundColor": "transparent",
+                        "borderWidth": 0,
+                      },
+                      Object {
+                        "flex": 0,
+                        "height": 63,
+                        "width": 186,
+                      },
+                    ]
+                  }
+                  width={186.53846153846155}
+                >
+                  <RNSVGGroup>
+                    <RNSVGPath
+                      d="M23.712 6.209c-4.26-4.205-11.165-4.205-15.424 0a10.672 10.672 0 0 0 0 15.228l5.728 5.654a2.832 2.832 0 0 0 3.968 0l5.728-5.654a10.672 10.672 0 0 0 0-15.228Z"
+                      fill={4286102069}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                        ]
+                      }
+                      stroke={4294967295}
+                      strokeWidth={2}
+                    />
+                    <RNSVGPath
+                      d="m12 14.008 2.797 2.761 5.594-5.523"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeWidth",
+                          "strokeLinecap",
+                        ]
+                      }
+                      stroke={4294967295}
+                      strokeLinecap={1}
+                      strokeWidth={2.5}
+                    />
+                    <RNSVGPath
+                      d="M88.712 6.209c-4.26-4.205-11.165-4.205-15.424 0a10.672 10.672 0 0 0 0 15.228l5.728 5.654a2.832 2.832 0 0 0 3.968 0l5.728-5.654a10.672 10.672 0 0 0 0-15.228Z"
+                      fill={4281545523}
+                      propList={
+                        Array [
+                          "fill",
+                          "stroke",
+                          "strokeWidth",
+                        ]
+                      }
+                      stroke={4294967295}
+                      strokeWidth={2}
+                    />
+                    <RNSVGPath
+                      clipRule={0}
+                      d="M78.465 9.275a.795.795 0 0 0-.795.794v4.296c0 .44.356.795.795.795H84.9a.795.795 0 0 0 .607-1.307l-.947-1.123a.795.795 0 0 1 0-1.025l.947-1.123a.795.795 0 0 0-.607-1.307h-6.435Zm-.199 7.356a.596.596 0 0 0-.596.596v1.75c0 .33.267.597.596.597h1.043c.33 0 .596-.267.596-.596v-1.75a.596.596 0 0 0-.596-.597h-1.043Z"
+                      fill={4294967295}
+                      fillRule={0}
+                      propList={
+                        Array [
+                          "fill",
+                          "fillRule",
+                        ]
+                      }
+                    />
+                    <RNSVGPath
+                      d="M16 33.076h16.089A6.911 6.911 0 0 0 39 26.165v-1.412a5.5 5.5 0 0 1 5.5-5.5v0a5.5 5.5 0 0 1 5.5 5.5V36c0 1.657 1.362 3 3.02 3v0c1.635 0 2.98-1.326 2.98-2.962v0a2.962 2.962 0 0 1 2.962-2.962H80.5"
+                      propList={
+                        Array [
+                          "stroke",
+                          "strokeWidth",
+                          "strokeDasharray",
+                          "strokeLinecap",
+                          "strokeLinejoin",
+                        ]
+                      }
+                      stroke={4291180339}
+                      strokeDasharray={
+                        Array [
+                          "3",
+                          "4",
+                        ]
+                      }
+                      strokeLinecap={1}
+                      strokeLinejoin={1}
+                      strokeWidth={2}
+                    />
+                    <RNSVGEllipse
+                      cx={15.5}
+                      cy={33.076}
+                      fill={4291180339}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                      rx={3.5}
+                      ry={3.456}
+                    />
+                    <RNSVGEllipse
+                      cx={81.5}
+                      cy={33.076}
+                      fill={4291180339}
+                      propList={
+                        Array [
+                          "fill",
+                        ]
+                      }
+                      rx={3.5}
+                      ry={3.456}
+                    />
+                  </RNSVGGroup>
+                </RNSVGSvgView>
+                <Text
+                  adjustsFontSizeToFit={false}
+                  numberOfLines={0}
+                  style={
+                    Array [
+                      Object {
+                        "color": "#C63733",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 18,
+                        "fontWeight": "600",
+                        "lineHeight": 24,
+                        "textAlign": "left",
+                      },
+                      Object {
+                        "marginTop": 28.450236966824647,
+                      },
+                    ]
+                  }
+                  testID="header3-test-id"
+                >
+                  MainWorld.Tile.routePlaceholderTitle...
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-crop-test-id"
+              >
+                Trasa testowa
+              </Text>
+              <Text
+                adjustsFontSizeToFit={false}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-test-id"
+              >
+                55km - 3h 44m
+              </Text>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="demi-16-h36-test-id"
+                >
+                  3
+                   
+                  MainWorld.Tile.distanceToStart
+                </Text>
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#717171",
+                        "fontFamily": "DIN2014-Demi",
+                        "fontSize": 16,
+                        "lineHeight": 36,
+                        "textAlign": "left",
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="demi-16-h36-test-id"
+                >
+                  Trudna - Szutrowa
+                </Text>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      E
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RNGestureHandlerButton>
+</View>
+`;
+
+exports[`Storyshots components/tiles/RouteTilePlaceholder Route image available 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingHorizontal": 30.76923076923077,
+      },
+      undefined,
+    ]
+  }
+>
+  <RNGestureHandlerButton
+    collapsable={false}
+    onGestureEvent={[Function]}
+    onGestureHandlerEvent={[Function]}
+    onGestureHandlerStateChange={[Function]}
+    onHandlerStateChange={[Function]}
+    rippleColor={0}
+    testID="placeholder-list-tile"
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      nativeID="animatedComponent"
+      style={Object {}}
+    >
+      <View
+        style={
+          Object {
+            "left": 30.76923076923077,
+            "width": 688.4615384615385,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#717171",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 14,
+                "lineHeight": 48,
+                "textAlign": "left",
+              },
+              undefined,
+            ]
+          }
+          testID="demi-14-h48-test-id"
+        >
+          01.01.2022
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 598.0769230769231,
+              "marginBottom": 15.384615384615385,
+              "marginTop": 15.384615384615385,
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#fff",
+                "borderRadius": 23.076923076923077,
+                "height": "100%",
+                "overflow": "hidden",
+                "width": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "height": 313.46153846153845,
+                  "overflow": "hidden",
+                  "width": "100%",
+                }
+              }
+            >
+              <Image
+                resizeMode="cover"
+                source={
+                  Object {
+                    "uri": "https://as1.ftcdn.net/v2/jpg/02/65/42/54/1000_F_265425492_PhSiiKoD3CnX9KwVuGDvYsBJuSLoyflE.jpg",
+                  }
+                }
+                style={
+                  Object {
+                    "height": "100%",
+                    "width": "100%",
+                  }
+                }
+              />
+            </View>
+            <View
+              style={
+                Object {
+                  "height": 238.46153846153848,
+                  "left": 30.76923076923077,
+                  "top": 15.384615384615385,
+                  "width": 626.9230769230769,
+                }
+              }
+            >
+              <Text
+                adjustsFontSizeToFit={false}
+                numberOfLines={1}
+                style={
+                  Array [
+                    Object {
+                      "color": "#333333",
+                      "fontFamily": "DIN2014-Demi",
+                      "fontSize": 18,
+                      "lineHeight": 28,
+                      "overflow": "hidden",
+                      "textAlign": "left",
+                    },
+                    undefined,
+                  ]
+                }
+                testID="demi-18-h28-crop-test-id"
+              >
+                Trasa testowa
+              </Text>
+              <View>
+                <RNCMaskedView
+                  style={
+                    Array [
+                      Object {
+                        "height": 31.61137440758294,
+                        "width": 250,
+                      },
+                      undefined,
+                    ]
+                  }
+                  testID="animated-placeholder"
+                >
+                  <View
+                    pointerEvents="none"
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Array [
+                          Object {
+                            "backgroundColor": "transparent",
+                          },
+                          Object {
+                            "backgroundColor": "#717171",
+                            "borderRadius": 11.538461538461538,
+                          },
+                        ]
+                      }
+                    >
+                      <View
+                        style={
+                          Object {
+                            "height": "100%",
+                          }
+                        }
+                      />
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "flexGrow": 1,
+                        },
+                        Object {
+                          "backgroundColor": "#eaeaea",
+                        },
+                      ]
+                    }
+                    testID="animated-placeholder-background-color"
+                  />
+                  <View
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={
+                      Object {
+                        "bottom": 0,
+                        "left": 0,
+                        "position": "absolute",
+                        "right": 0,
+                        "top": 0,
+                        "transform": Array [
+                          Object {
+                            "translateX": -750,
+                          },
+                        ],
+                      }
+                    }
+                  >
+                    <RNCMaskedView
+                      style={
+                        Object {
+                          "bottom": 0,
+                          "left": 0,
+                          "position": "absolute",
+                          "right": 0,
+                          "top": 0,
+                        }
+                      }
+                    >
+                      <View
+                        pointerEvents="none"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      >
+                        <BVLinearGradient
+                          colors={
+                            Array [
+                              0,
+                              4278190080,
+                              0,
+                            ]
+                          }
+                          endPoint={
+                            Object {
+                              "x": 1,
+                              "y": 0,
+                            }
+                          }
+                          locations={null}
+                          startPoint={
+                            Object {
+                              "x": 0,
+                              "y": 0,
+                            }
+                          }
+                          style={
+                            Array [
+                              Object {
+                                "bottom": 0,
+                                "left": 0,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              },
+                            ]
+                          }
+                        />
+                      </View>
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "bottom": 0,
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                            },
+                            Object {
+                              "backgroundColor": "#BDBDBD",
+                            },
+                          ]
+                        }
+                        testID="animated-placeholder-highlight-color"
+                      />
+                    </RNCMaskedView>
+                  </View>
+                </RNCMaskedView>
+              </View>
+              <View
+                style={
+                  Object {
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                  }
+                }
+              >
+                <View
+                  style={
+                    Object {
+                      "marginTop": 23.708530805687204,
+                    }
+                  }
+                >
+                  <View>
+                    <RNCMaskedView
+                      style={
+                        Array [
+                          Object {
+                            "height": 31.61137440758294,
+                            "width": 134.6153846153846,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="animated-placeholder"
+                    >
+                      <View
+                        pointerEvents="none"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "backgroundColor": "#717171",
+                                "borderRadius": 11.538461538461538,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            style={
+                              Object {
+                                "height": "100%",
+                              }
+                            }
+                          />
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flexGrow": 1,
+                            },
+                            Object {
+                              "backgroundColor": "#eaeaea",
+                            },
+                          ]
+                        }
+                        testID="animated-placeholder-background-color"
+                      />
+                      <View
+                        collapsable={false}
+                        nativeID="animatedComponent"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "transform": Array [
+                              Object {
+                                "translateX": -750,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNCMaskedView
+                          style={
+                            Object {
+                              "bottom": 0,
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                            }
+                          }
+                        >
+                          <View
+                            pointerEvents="none"
+                            style={
+                              Object {
+                                "bottom": 0,
+                                "left": 0,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              }
+                            }
+                          >
+                            <BVLinearGradient
+                              colors={
+                                Array [
+                                  0,
+                                  4278190080,
+                                  0,
+                                ]
+                              }
+                              endPoint={
+                                Object {
+                                  "x": 1,
+                                  "y": 0,
+                                }
+                              }
+                              locations={null}
+                              startPoint={
+                                Object {
+                                  "x": 0,
+                                  "y": 0,
+                                }
+                              }
+                              style={
+                                Array [
+                                  Object {
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "position": "absolute",
+                                    "right": 0,
+                                    "top": 0,
+                                  },
+                                ]
+                              }
+                            />
+                          </View>
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "bottom": 0,
+                                  "left": 0,
+                                  "position": "absolute",
+                                  "right": 0,
+                                  "top": 0,
+                                },
+                                Object {
+                                  "backgroundColor": "#BDBDBD",
+                                },
+                              ]
+                            }
+                            testID="animated-placeholder-highlight-color"
+                          />
+                        </RNCMaskedView>
+                      </View>
+                    </RNCMaskedView>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "marginTop": 23.708530805687204,
+                    }
+                  }
+                >
+                  <View>
+                    <RNCMaskedView
+                      style={
+                        Array [
+                          Object {
+                            "height": 31.61137440758294,
+                            "width": 192.30769230769232,
+                          },
+                          undefined,
+                        ]
+                      }
+                      testID="animated-placeholder"
+                    >
+                      <View
+                        pointerEvents="none"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                          }
+                        }
+                      >
+                        <View
+                          style={
+                            Array [
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "backgroundColor": "#717171",
+                                "borderRadius": 11.538461538461538,
+                              },
+                            ]
+                          }
+                        >
+                          <View
+                            style={
+                              Object {
+                                "borderRadius": 15.80568720379147,
+                                "height": "100%",
+                              }
+                            }
+                          />
+                        </View>
+                      </View>
+                      <View
+                        style={
+                          Array [
+                            Object {
+                              "flexGrow": 1,
+                            },
+                            Object {
+                              "backgroundColor": "#eaeaea",
+                            },
+                          ]
+                        }
+                        testID="animated-placeholder-background-color"
+                      />
+                      <View
+                        collapsable={false}
+                        nativeID="animatedComponent"
+                        style={
+                          Object {
+                            "bottom": 0,
+                            "left": 0,
+                            "position": "absolute",
+                            "right": 0,
+                            "top": 0,
+                            "transform": Array [
+                              Object {
+                                "translateX": -750,
+                              },
+                            ],
+                          }
+                        }
+                      >
+                        <RNCMaskedView
+                          style={
+                            Object {
+                              "bottom": 0,
+                              "left": 0,
+                              "position": "absolute",
+                              "right": 0,
+                              "top": 0,
+                            }
+                          }
+                        >
+                          <View
+                            pointerEvents="none"
+                            style={
+                              Object {
+                                "bottom": 0,
+                                "left": 0,
+                                "position": "absolute",
+                                "right": 0,
+                                "top": 0,
+                              }
+                            }
+                          >
+                            <BVLinearGradient
+                              colors={
+                                Array [
+                                  0,
+                                  4278190080,
+                                  0,
+                                ]
+                              }
+                              endPoint={
+                                Object {
+                                  "x": 1,
+                                  "y": 0,
+                                }
+                              }
+                              locations={null}
+                              startPoint={
+                                Object {
+                                  "x": 0,
+                                  "y": 0,
+                                }
+                              }
+                              style={
+                                Array [
+                                  Object {
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "position": "absolute",
+                                    "right": 0,
+                                    "top": 0,
+                                  },
+                                ]
+                              }
+                            />
+                          </View>
+                          <View
+                            style={
+                              Array [
+                                Object {
+                                  "bottom": 0,
+                                  "left": 0,
+                                  "position": "absolute",
+                                  "right": 0,
+                                  "top": 0,
+                                },
+                                Object {
+                                  "backgroundColor": "#BDBDBD",
+                                },
+                              ]
+                            }
+                            testID="animated-placeholder-highlight-color"
+                          />
+                        </RNCMaskedView>
+                      </View>
+                    </RNCMaskedView>
+                  </View>
+                </View>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "display": "flex",
+                    "flexDirection": "row",
+                    "position": "absolute",
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      E
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+              <View
+                style={
+                  Object {
+                    "bottom": 0,
+                    "position": "absolute",
+                    "right": 0,
+                  }
+                }
+              >
+                <RNGestureHandlerButton
+                  collapsable={false}
+                  onGestureEvent={[Function]}
+                  onGestureHandlerEvent={[Function]}
+                  onGestureHandlerStateChange={[Function]}
+                  onHandlerStateChange={[Function]}
+                  rippleColor={0}
+                >
+                  <View
+                    accessible={true}
+                    collapsable={false}
+                    nativeID="animatedComponent"
+                    style={Object {}}
+                  >
+                    <Text
+                      style={
+                        Array [
+                          Object {
+                            "fontFamily": "mykross",
+                            "textAlign": "center",
+                          },
+                          Object {
+                            "color": "#C63733",
+                            "fontSize": 20,
+                          },
+                          Object {
+                            "color": "#333333",
+                            "fontSize": 46.15384615384615,
+                            "height": 46.15384615384615,
+                            "textAlign": "center",
+                            "width": 46.15384615384615,
+                          },
+                        ]
+                      }
+                      testID="text-icon-test-id"
+                    >
+                      Y
+                    </Text>
+                  </View>
+                </RNGestureHandlerButton>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RNGestureHandlerButton>
+</View>
+`;

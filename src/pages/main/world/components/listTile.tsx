@@ -17,6 +17,7 @@ import {getMapType} from '../utils/routes';
 import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 import Bookmark from '@src/components/icons/Bookmark';
 import {StyleProp, ViewStyle} from 'react-native';
+import {RouteTilePlaceholder} from '@src/components/tiles';
 
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
@@ -28,6 +29,7 @@ interface PropsI {
     testID?: string;
     hideDistanceToStart?: boolean;
     style?: StyleProp<ViewStyle>;
+    isRouteNewest?: boolean;
 }
 
 const ListTile: React.FC<PropsI> = ({
@@ -39,6 +41,7 @@ const ListTile: React.FC<PropsI> = ({
     sectionID,
     testID,
     hideDistanceToStart,
+    isRouteNewest,
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
     const {t: tbm} = useMergedTranslation('MainWorld.BikeMap');
@@ -180,7 +183,34 @@ const ListTile: React.FC<PropsI> = ({
         [mapData.mapsImages],
     );
 
-    return (
+    const isDataNotComplete = useCallback(() => {
+        return (
+            !mapData?.name ||
+            !mapData.distance ||
+            !mapData.time ||
+            !mapData?.distanceToRoute
+        );
+    }, [mapData]);
+
+    const isNewestRouteLackingData = useCallback(() => {
+        return isRouteNewest && (isDataNotComplete() || !imageUrl);
+    }, [isRouteNewest, imageUrl, isDataNotComplete]);
+
+    return isNewestRouteLackingData() ? (
+        <RouteTilePlaceholder
+            isDataNotComplete={isDataNotComplete()}
+            name={mapData?.name}
+            imageUrl={imageUrl}
+            distanceAndTime={handleDistanceAndTime()}
+            distanceToStart={mapData.distanceToRouteInKilometers}
+            difficultyAndSurface={handleDifficultyAndSurface()}
+            fullDate={getFullDate(mapData?.createdAt)}
+            tilePressOn={onTilePressedHandler}
+            detailsPressOn={handleDetailsPressOn}
+            editPressOn={handleEditPressOn}
+            testID={testID}
+        />
+    ) : (
         <ListTileView
             tilePressOn={onTilePressedHandler}
             fullDate={getFullDate(mapData?.createdAt)}

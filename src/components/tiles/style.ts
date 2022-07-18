@@ -1,5 +1,8 @@
 import {StyleSheet} from 'react-native';
-import {getFHorizontalPx} from '@src/helpers/appLayoutDimensions';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@src/helpers/appLayoutDimensions';
 import colors from '@theme/colors';
 
 export const styles = StyleSheet.create({
@@ -39,6 +42,16 @@ export const styles = StyleSheet.create({
     noImage: {
         marginTop: getFHorizontalPx(-106),
     },
+    imagePlaceholder: {
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    placeholderText: {
+        marginTop: getFVerticalPx(18),
+    },
     publicWrap: {
         position: 'absolute',
         top: getFHorizontalPx(8),
@@ -61,6 +74,9 @@ export const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    placeholderRow: {
+        marginTop: getFVerticalPx(15),
     },
     reactions: {
         display: 'flex',

@@ -6,7 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useRoute} from '@react-navigation/native';
 
 import {
     userNameSelector,
@@ -58,6 +58,7 @@ import {globalLocationSelector} from '@storage/selectors/app';
 import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 import {mapKeyExtractor} from '@utils/transformData';
+import {RoutesMapRouteT} from '@src/type/rootStack';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -88,6 +89,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
+    const route = useRoute<RoutesMapRouteT>();
+    const navigateAfterSave = route.params?.navigateAfterSave;
     const {permissionGranted, permissionResult} = useCheckLocationType();
     const location = useAppSelector(globalLocationSelector);
     const privateRoutesDropdownList = useMemo(
@@ -107,6 +110,15 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         () => ({bottom: getFVerticalPx(129) - bottom}),
         [bottom],
     );
+
+    const newestRouteId = useMemo(() => {
+        if (privateMaps.length) {
+            const newestMap = privateMaps.reduce((prev, next) =>
+                prev.createdAt > next.createdAt ? prev : next,
+            );
+            return newestMap.id;
+        }
+    }, [privateMaps]);
 
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
@@ -151,6 +163,15 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             return;
         }
     }, [dispatch, savedMapFilters]);
+
+    useEffect(() => {
+        if (navigateAfterSave && isTabFocused) {
+            onRefresh();
+        }
+        if (!isTabFocused) {
+            navigation.setParams({navigateAfterSave: false});
+        }
+    }, [navigateAfterSave, onRefresh, navigation, isTabFocused]);
 
     const onFiltersModalOpenHandler = () => {
         setShowFiltersModal(true);
@@ -205,11 +226,20 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         mode={'my'}
                         tilePressable
                         hideDistanceToStart={!location || !permissionGranted}
+                        isRouteNewest={
+                            newestRouteId === item.id && navigateAfterSave
+                        }
                     />
                 </View>
             );
         },
-        [onPressTileHandler, location, permissionGranted],
+        [
+            onPressTileHandler,
+            location,
+            permissionGranted,
+            newestRouteId,
+            navigateAfterSave,
+        ],
     );
 
     const onEndReachedHandler = useCallback(() => {

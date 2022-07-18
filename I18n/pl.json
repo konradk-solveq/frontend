@@ -478,7 +478,8 @@
             "hours": "h",
             "minutes": "m",
             "distanceToStart": "km od Ciebie",
-            "public": "publiczna"
+            "public": "publiczna",
+            "routePlaceholderTitle": "Trwa generowanie najnowszej trasy"
         },
         "moreActionsModal": {
             "actions": {

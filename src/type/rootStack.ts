@@ -60,6 +60,7 @@ export type KrossWorldParamsListT = {
               favourite?: boolean;
               featured?: boolean;
               shareID?: string;
+              navigateAfterSave?: boolean;
           }
         | undefined;
     RouteDetails: {
