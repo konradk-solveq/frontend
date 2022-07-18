@@ -1,3 +1,4 @@
+import React, {useCallback} from 'react';
 import {
     Image,
     ImageStyle,
@@ -7,7 +8,6 @@ import {
     View,
 } from 'react-native';
 import {RemoveButton} from '@components/buttons';
-import React, {useCallback} from 'react';
 import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
 
 interface IProps {
@@ -16,6 +16,7 @@ interface IProps {
     onPress?: (i: string) => void;
     imageUri: string;
     style?: StyleProp<ImageStyle>;
+    showImage?: boolean;
     testID?: string;
 }
 
@@ -25,6 +26,7 @@ const ImageItem: React.FC<IProps> = ({
     onPress,
     imageUri,
     style,
+    showImage = false,
     testID,
 }) => {
     const handleImagePress = useCallback(() => {
@@ -38,11 +40,13 @@ const ImageItem: React.FC<IProps> = ({
     return (
         <View style={styles.container}>
             <Pressable onPress={handleImagePress} testID={testID}>
-                <Image
-                    source={{uri: imageUri}}
-                    style={[styles.image, style]}
-                    resizeMode="cover"
-                />
+                {showImage && (
+                    <Image
+                        source={{uri: imageUri}}
+                        style={[styles.image, style]}
+                        resizeMode="cover"
+                    />
+                )}
             </Pressable>
             {withRemoveButton && onRemove && (
                 <View style={styles.buttonContainer}>

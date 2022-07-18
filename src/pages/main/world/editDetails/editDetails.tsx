@@ -31,8 +31,8 @@ import EditForm, {
 import {mapOptionsAndTagsSelector} from '@storage/selectors/app';
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import ApprovedMarker from '@src/components/icons/ApprovedMarker';
-import {useToastContext} from '@src/providers/ToastProvider/ToastProvider';
+import ApprovedMarker from '@components/icons/ApprovedMarker';
+import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 
 type AlertTranslationT = {
     text: string;
