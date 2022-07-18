@@ -42,6 +42,8 @@ import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
+import {debounce} from '@utils/input/debounce';
+import {mapMarkersDebounceTime} from '@utils/constants';
 
 const initRouteInfo = {
     id: '',
@@ -243,6 +245,15 @@ const RoutesMap: React.FC = () => {
         }
     }, [navigation]);
 
+    const debouncedMarkersFetch = useMemo(
+        () =>
+            debounce(
+                routeMapMarkers.fetchRoutesMarkers,
+                mapMarkersDebounceTime,
+            ),
+        [routeMapMarkers.fetchRoutesMarkers],
+    );
+
     const onWebViewMessageHandler = useCallback(
         (e: WebViewMessageEvent) => {
             const webviewMessage = e.nativeEvent?.data?.split('#$#');
@@ -261,7 +272,7 @@ const RoutesMap: React.FC = () => {
                     ];
 
                     if (globalLocation) {
-                        routeMapMarkers.fetchRoutesMarkers(
+                        debouncedMarkersFetch(
                             {
                                 bbox: bbox,
                                 width: 500,

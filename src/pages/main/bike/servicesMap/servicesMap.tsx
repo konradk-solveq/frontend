@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef, useCallback} from 'react';
+import React, {useEffect, useState, useRef, useCallback, useMemo} from 'react';
 import {WebView} from 'react-native-webview';
 
 import {StyleSheet, View, Platform} from 'react-native';
@@ -32,6 +32,8 @@ import NotificationList from '@components/notifications/NotificationList';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 import {googleMapId} from '@src/utils/constants/googleMapId';
+import {debounce} from '@utils/input/debounce';
+import {mapMarkersDebounceTime} from '@utils/constants';
 
 const ServicesMap: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -53,6 +55,15 @@ const ServicesMap: React.FC = () => {
     ]);
     const [adress, setAdress] = useState<PointDetails | null>(null);
     const [mapLoaded, setMapLoaded] = useState<boolean>(false);
+
+    const getServices = useCallback(bbox => dispatch(fetchPlacesData(bbox)), [
+        dispatch,
+    ]);
+
+    const debouncedFetchServices = useMemo(
+        () => debounce(getServices, mapMarkersDebounceTime),
+        [getServices],
+    );
 
     useEffect(() => {
         if (location) {
@@ -141,12 +152,10 @@ const ServicesMap: React.FC = () => {
 
                     const getMapData = async () => {
                         try {
-                            await dispatch(
-                                fetchPlacesData({
-                                    bbox: bbox,
-                                    width: 500,
-                                }),
-                            );
+                            await debouncedFetchServices({
+                                bbox: bbox,
+                                width: 500,
+                            });
                         } catch (error) {
                             /* TODO: add ui info */
                             console.log('[Get places error]', error);
