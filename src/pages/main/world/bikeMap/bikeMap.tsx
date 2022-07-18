@@ -58,6 +58,7 @@ import {globalLocationSelector} from '@storage/selectors/app';
 import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocationType';
 import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
+import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -85,6 +86,7 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const containsFeaturedMaps = useAppSelector(featuredMapsLengthSelector);
     const {permissionGranted, permissionResult} = useCheckLocationType();
+    const {isGPSEnabled, isGPSStatusRead} = useOpenGPSSettings();
     const location = useAppSelector(globalLocationSelector);
     const publicRoutesDropdownList = useMemo(
         () =>
@@ -229,11 +231,21 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
                     onPressTile={onPressTileHandler}
                     mode={'public'}
                     tilePressable
-                    hideDistanceToStart={!location || !permissionGranted}
+                    hideDistanceToStart={
+                        !location ||
+                        !permissionGranted ||
+                        (!isGPSEnabled && isGPSStatusRead)
+                    }
                 />
             );
         },
-        [location, onPressTileHandler, permissionGranted],
+        [
+            isGPSEnabled,
+            isGPSStatusRead,
+            location,
+            onPressTileHandler,
+            permissionGranted,
+        ],
     );
 
     const renderListFooter = useCallback(() => {
@@ -310,7 +322,11 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const mapHeaderComponent = useMemo(
         () => (
             <View style={styles.listHeader}>
-                <UnifiedLocationNotification style={styles.notification} />
+                <UnifiedLocationNotification
+                    style={styles.notification}
+                    showGPSStatus
+                    hideSearchSignal
+                />
                 <FeaturedRoutes />
                 <Header2 style={styles.header}>{t('BikeMap.title')}</Header2>
             </View>
