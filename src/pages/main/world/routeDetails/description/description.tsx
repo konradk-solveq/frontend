@@ -139,6 +139,7 @@ const Description: React.FC<IProps> = ({
                         <ImageSwiper
                             images={images?.images}
                             onPress={() => setShowImgPreview(true)}
+                            initialImagesNumber={4}
                         />
                     )}
                 </View>
