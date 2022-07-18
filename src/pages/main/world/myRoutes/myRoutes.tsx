@@ -59,6 +59,7 @@ import UnifiedLocationNotification from '../../../../notifications/UnifiedLocati
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 import {mapKeyExtractor} from '@utils/transformData';
 import {RoutesMapRouteT} from '@src/type/rootStack';
+import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -92,6 +93,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const route = useRoute<RoutesMapRouteT>();
     const navigateAfterSave = route.params?.navigateAfterSave;
     const {permissionGranted, permissionResult} = useCheckLocationType();
+    const {isGPSEnabled, isGPSStatusRead} = useOpenGPSSettings();
     const location = useAppSelector(globalLocationSelector);
     const privateRoutesDropdownList = useMemo(
         () =>
@@ -225,7 +227,11 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         onPressTile={onPressTileHandler}
                         mode={'my'}
                         tilePressable
-                        hideDistanceToStart={!location || !permissionGranted}
+                        hideDistanceToStart={
+                            !location ||
+                            !permissionGranted ||
+                            (!isGPSEnabled && isGPSStatusRead)
+                        }
                         isRouteNewest={
                             newestRouteId === item.id && navigateAfterSave
                         }
@@ -237,6 +243,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             onPressTileHandler,
             location,
             permissionGranted,
+            isGPSEnabled,
+            isGPSStatusRead,
             newestRouteId,
             navigateAfterSave,
         ],
@@ -375,7 +383,11 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const mapHeaderComponent = useMemo(
         () => (
             <View style={styles.listHeaderContainer}>
-                <UnifiedLocationNotification style={styles.notification} />
+                <UnifiedLocationNotification
+                    style={styles.notification}
+                    showGPSStatus
+                    hideSearchSignal
+                />
                 <Header2 style={styles.header}>
                     {totalNumberOfPrivateMaps && totalNumberOfPrivateMaps > 0
                         ? secondTitle

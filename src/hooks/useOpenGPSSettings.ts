@@ -1,32 +1,31 @@
-import {useEffect, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
-import {openGPSModule} from '../utils/geolocation';
+import {openGPSModule} from '@utils/geolocation';
+import BackgroundGeolocation from 'react-native-background-geolocation-android';
 
-const useOpenGPSSettings = (stopOnInit?: boolean) => {
-    const [isGPSEnabled, setIsGPSEnabled] = useState(false);
+const useOpenGPSSettings = () => {
+    const [isGPSEnabled, setIsGPSEnabled] = useState<boolean>();
 
-    const openLocationSettings = async () => {
+    useEffect(() => {
+        BackgroundGeolocation.onProviderChange(event => {
+            setIsGPSEnabled(event.gps);
+        });
+    }, []);
+
+    const openLocationSettings = useCallback(async () => {
         const res = await openGPSModule();
         if (res === 'enabled' || res === 'already-enabled') {
             setIsGPSEnabled(true);
             return;
         }
         setIsGPSEnabled(false);
+    }, []);
+
+    return {
+        isGPSEnabled,
+        openLocationSettings,
+        isGPSStatusRead: typeof isGPSEnabled !== 'undefined',
     };
-
-    useEffect(() => {
-        if (!stopOnInit) {
-            const t = setTimeout(() => {
-                openLocationSettings();
-            }, 500);
-
-            return () => {
-                clearTimeout(t);
-            };
-        }
-    }, [stopOnInit]);
-
-    return {isGPSEnabled, openLocationSettings};
 };
 
 export default useOpenGPSSettings;

@@ -1022,7 +1022,9 @@
                 "title": "Szukanie sygnału GPS"
             },
             "disabled": {
-                "title": "Wyłączony GPS"
+                "title": "Włącz lokalizację urządzenia",
+                "subtitle": "GPS telefonu jest wyłączony",
+                "action": "Włącz"
             },
             "permission": {
                 "title": "Sprawdź uprawienia lokalizacji",
