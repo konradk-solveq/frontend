@@ -15,6 +15,7 @@ interface IProps {
     onRemove?: (i: string) => void;
     onPress?: (i: string) => void;
     imageUri: string;
+    showImage?: boolean;
     style?: StyleProp<ImageStyle>;
     testID?: string;
 }
@@ -24,6 +25,7 @@ const ImageItem: React.FC<IProps> = ({
     onRemove,
     onPress,
     imageUri,
+    showImage = false,
     style,
     testID,
 }) => {
@@ -38,11 +40,13 @@ const ImageItem: React.FC<IProps> = ({
     return (
         <View style={styles.container}>
             <Pressable onPress={handleImagePress} testID={testID}>
-                <Image
-                    source={{uri: imageUri}}
-                    style={[styles.image, style]}
-                    resizeMode="cover"
-                />
+                {showImage && (
+                    <Image
+                        source={{uri: imageUri}}
+                        style={[styles.image, style]}
+                        resizeMode="cover"
+                    />
+                )}
             </Pressable>
             {withRemoveButton && onRemove && (
                 <View style={styles.buttonContainer}>

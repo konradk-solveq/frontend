@@ -138,6 +138,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
         </Text>
         <RCTScrollView
           horizontal={true}
+          onScroll={[Function]}
           showsHorizontalScrollIndicator={false}
           style={
             Array [
@@ -787,6 +788,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
         </Text>
         <RCTScrollView
           horizontal={true}
+          onScroll={[Function]}
           showsHorizontalScrollIndicator={false}
           style={
             Array [
