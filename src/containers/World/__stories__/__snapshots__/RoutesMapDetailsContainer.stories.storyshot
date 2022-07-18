@@ -625,6 +625,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
         </Text>
         <RCTScrollView
           horizontal={true}
+          onScroll={[Function]}
           showsHorizontalScrollIndicator={false}
           style={
             Array [
@@ -1758,6 +1759,7 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
         </Text>
         <RCTScrollView
           horizontal={true}
+          onScroll={[Function]}
           showsHorizontalScrollIndicator={false}
           style={
             Array [
