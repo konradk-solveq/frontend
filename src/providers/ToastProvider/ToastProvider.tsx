@@ -29,8 +29,8 @@ export interface ToastItem extends NotificationI {
     leaveOnScreenChange?: boolean;
     durationTime?: number;
     titleStyle?: TextStyle;
-    subtitleStyle: TextStyle;
-    containerStyle: ViewStyle;
+    subtitleStyle?: TextStyle;
+    containerStyle?: ViewStyle;
 }
 
 interface IToastProps {
