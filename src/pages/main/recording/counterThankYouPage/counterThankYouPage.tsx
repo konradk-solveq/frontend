@@ -120,7 +120,7 @@ const CounterThankYouPage: React.FC = () => {
             }
 
             dispatch(setHeavyTaskProcessingState(false));
-            navigation.navigate('WorldMyRoutes');
+            navigation.navigate('WorldTab', {screen: 'WorldMyRoutes'});
         },
         [dispatch, goForward, navigation],
     );
