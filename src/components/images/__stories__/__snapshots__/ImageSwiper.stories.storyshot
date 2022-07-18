@@ -16,6 +16,7 @@ exports[`Storyshots components/images/ImageSwiper Customized 1`] = `
 >
   <RCTScrollView
     horizontal={true}
+    onScroll={[Function]}
     showsHorizontalScrollIndicator={false}
     style={
       Array [
@@ -217,6 +218,7 @@ exports[`Storyshots components/images/ImageSwiper Default 1`] = `
 >
   <RCTScrollView
     horizontal={true}
+    onScroll={[Function]}
     showsHorizontalScrollIndicator={false}
     style={
       Array [

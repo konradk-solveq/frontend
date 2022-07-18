@@ -9,7 +9,9 @@ import {action} from '@storybook/addon-actions';
 
 storiesOf('components/images/ImageItem', module)
     .addDecorator(getStory => <LayoutCenter>{getStory()}</LayoutCenter>)
-    .add('Default', () => <ImageItem imageUri={images[0] as string} />)
+    .add('Default', () => (
+        <ImageItem imageUri={images[0] as string} showImage />
+    ))
     .add('Customized', () => (
         <ImageItem
             imageUri={text('Image uri', images[0] as string)}
@@ -17,5 +19,6 @@ storiesOf('components/images/ImageItem', module)
             onRemove={action('on-remove')}
             onPress={action('on-press')}
             style={object('Style', {})}
+            showImage={boolean('Show image', true)}
         />
     ));

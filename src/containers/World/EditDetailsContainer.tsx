@@ -13,7 +13,7 @@ import {
     reValidateMapMetadataManually,
     validateData,
 } from '@utils/validation/validation';
-import useFormDataWithMapData from '@hooks/formDataWithMapData';
+import useFormDataWithMapData, {FormControlT} from '@hooks/formDataWithMapData';
 import {
     Map,
     publishMapValidationRules,
@@ -35,8 +35,7 @@ import {Alert} from '@components/alerts';
 import {IProps as IAlertProps} from '@components/alerts/Alert';
 import {attributes} from '@utils/constants';
 import {SelectEnumOptionsType} from '@models/config.model';
-import ApprovedMarker from '@src/components/icons/ApprovedMarker';
-import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+
 import {isTruthyString} from '@utils/strings';
 
 export type RouteEditFormRef = {
@@ -309,6 +308,76 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                         placeholderText={t('photos.placeholder')}
                     />
                 </View>
+
+                <Tags
+                    control={control}
+                    onValidateHandler={onValidateHandler}
+                    options={options}
+                />
+
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton
+                        text={publish ? t('publishButton') : t('saveButton')}
+                        testID={`${testID}-submit-button`}
+                        onPress={handleSubmit(
+                            onSubmitHandler,
+                            onInvalidSubmitHandler,
+                        )}
+                    />
+                </View>
+            </View>
+        );
+    },
+);
+
+export default React.memo(EditForm);
+
+const styles = StyleSheet.create({
+    checkboxContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    checkboxLabel: {
+        marginLeft: getFHorizontalPx(19),
+    },
+    divider: {
+        marginVertical: getFVerticalPx(20),
+    },
+    input: {
+        marginTop: getFVerticalPx(24),
+    },
+    inputGroup: {
+        marginTop: getFVerticalPx(32),
+    },
+    photosLabel: {
+        marginBottom: getFVerticalPx(8),
+    },
+    buttonContainer: {
+        flex: 1,
+        marginBottom: getFVerticalPx(50),
+        marginTop: getFVerticalPx(24),
+        alignItems: 'center',
+    },
+    error: {
+        marginLeft: getFHorizontalPx(16),
+    },
+});
+
+interface ITagsProps {
+    control: FormControlT;
+    onValidateHandler: (
+        val: string | number | boolean | string[] | undefined,
+        fieldName: string,
+    ) => void;
+    options: SelectEnumOptionsType;
+}
+
+const Tags: React.FC<ITagsProps> = React.memo(
+    ({control, onValidateHandler, options}: ITagsProps) => {
+        const {t} = useMergedTranslation('RoutesDetails.form');
+
+        return (
+            <>
                 <View style={styles.inputGroup}>
                     <ControlledInput
                         fieldName="difficulty"
@@ -368,50 +437,7 @@ const EditForm: React.FC<IProps> = React.forwardRef(
                         onValidate={onValidateHandler}
                     />
                 </View>
-                <View style={styles.buttonContainer}>
-                    <PrimaryButton
-                        text={publish ? t('publishButton') : t('saveButton')}
-                        testID={`${testID}-submit-button`}
-                        onPress={handleSubmit(
-                            onSubmitHandler,
-                            onInvalidSubmitHandler,
-                        )}
-                    />
-                </View>
-            </View>
+            </>
         );
     },
 );
-
-export default React.memo(EditForm);
-
-const styles = StyleSheet.create({
-    checkboxContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    checkboxLabel: {
-        marginLeft: getFHorizontalPx(19),
-    },
-    divider: {
-        marginVertical: getFVerticalPx(20),
-    },
-    input: {
-        marginTop: getFVerticalPx(24),
-    },
-    inputGroup: {
-        marginTop: getFVerticalPx(32),
-    },
-    photosLabel: {
-        marginBottom: getFVerticalPx(8),
-    },
-    buttonContainer: {
-        flex: 1,
-        marginBottom: getFVerticalPx(50),
-        marginTop: getFVerticalPx(24),
-        alignItems: 'center',
-    },
-    error: {
-        marginLeft: getFHorizontalPx(16),
-    },
-});
