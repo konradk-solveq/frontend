@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, ViewStyle, StyleProp} from 'react-native';
+import {StyleSheet, Text, StyleProp, TextStyle} from 'react-native';
 
 import {getFFontSize} from '@theme/utils/appLayoutDimensions';
 
@@ -10,7 +10,7 @@ interface IProps {
     icon: MykrossIconFont | IconFont /* Font symbol from 'mykross' font */;
     iconColor?: string;
     iconSize?: number;
-    style?: StyleProp<ViewStyle>;
+    style?: StyleProp<TextStyle>;
     testID?: string;
 }
 

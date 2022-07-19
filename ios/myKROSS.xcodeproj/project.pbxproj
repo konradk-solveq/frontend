@@ -820,7 +820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -849,7 +849,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1069,7 +1069,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.development;
@@ -1181,7 +1181,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1291,7 +1291,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.test;
@@ -1398,7 +1398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1516,7 +1516,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.test;
@@ -1635,7 +1635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.28.0;
+				MARKETING_VERSION = 3.28.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
