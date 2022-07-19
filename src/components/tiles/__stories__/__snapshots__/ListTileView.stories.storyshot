@@ -214,16 +214,10 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                               "textAlign": "center",
                             },
                             Object {
-                              "color": "#C63733",
-                              "fontSize": 20,
-                            },
-                            Object {
                               "color": "#333333",
-                              "fontSize": 46.15384615384615,
-                              "height": 46.15384615384615,
-                              "textAlign": "center",
-                              "width": 46.15384615384615,
+                              "fontSize": 24,
                             },
+                            undefined,
                           ]
                         }
                         testID="text-icon-test-id"
@@ -285,16 +279,10 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                               "textAlign": "center",
                             },
                             Object {
-                              "color": "#C63733",
-                              "fontSize": 20,
-                            },
-                            Object {
                               "color": "#333333",
-                              "fontSize": 46.15384615384615,
-                              "height": 46.15384615384615,
-                              "textAlign": "center",
-                              "width": 46.15384615384615,
+                              "fontSize": 24,
                             },
+                            undefined,
                           ]
                         }
                         testID="text-icon-test-id"
@@ -326,16 +314,10 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -376,16 +358,10 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -625,16 +601,10 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -675,16 +645,10 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -917,16 +881,10 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                               "textAlign": "center",
                             },
                             Object {
-                              "color": "#C63733",
-                              "fontSize": 20,
-                            },
-                            Object {
                               "color": "#333333",
-                              "fontSize": 46.15384615384615,
-                              "height": 46.15384615384615,
-                              "textAlign": "center",
-                              "width": 46.15384615384615,
+                              "fontSize": 24,
                             },
+                            undefined,
                           ]
                         }
                         testID="text-icon-test-id"
@@ -988,16 +946,10 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                               "textAlign": "center",
                             },
                             Object {
-                              "color": "#C63733",
-                              "fontSize": 20,
-                            },
-                            Object {
                               "color": "#333333",
-                              "fontSize": 46.15384615384615,
-                              "height": 46.15384615384615,
-                              "textAlign": "center",
-                              "width": 46.15384615384615,
+                              "fontSize": 24,
                             },
+                            undefined,
                           ]
                         }
                         testID="text-icon-test-id"
@@ -1029,16 +981,10 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -1271,16 +1217,10 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                               "textAlign": "center",
                             },
                             Object {
-                              "color": "#C63733",
-                              "fontSize": 20,
-                            },
-                            Object {
                               "color": "#333333",
-                              "fontSize": 46.15384615384615,
-                              "height": 46.15384615384615,
-                              "textAlign": "center",
-                              "width": 46.15384615384615,
+                              "fontSize": 24,
                             },
+                            undefined,
                           ]
                         }
                         testID="text-icon-test-id"
@@ -1335,16 +1275,10 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -1385,16 +1319,10 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                             "textAlign": "center",
                           },
                           Object {
-                            "color": "#C63733",
-                            "fontSize": 20,
-                          },
-                          Object {
                             "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
+                            "fontSize": 24,
                           },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"

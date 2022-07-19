@@ -798,13 +798,7 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder No Data available 1`] 
                             "color": "#C63733",
                             "fontSize": 20,
                           },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -848,13 +842,7 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder No Data available 1`] 
                             "color": "#C63733",
                             "fontSize": 20,
                           },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -1240,13 +1228,7 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route details availabl
                             "color": "#C63733",
                             "fontSize": 20,
                           },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -1290,13 +1272,7 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route details availabl
                             "color": "#C63733",
                             "fontSize": 20,
                           },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -1973,13 +1949,7 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route image available 
                             "color": "#C63733",
                             "fontSize": 20,
                           },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
@@ -2023,13 +1993,7 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route image available 
                             "color": "#C63733",
                             "fontSize": 20,
                           },
-                          Object {
-                            "color": "#333333",
-                            "fontSize": 46.15384615384615,
-                            "height": 46.15384615384615,
-                            "textAlign": "center",
-                            "width": 46.15384615384615,
-                          },
+                          undefined,
                         ]
                       }
                       testID="text-icon-test-id"
