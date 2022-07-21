@@ -41,14 +41,14 @@ const ThankYouPageContainer: React.FC<IProps> = ({
     onSaveAction,
     onPublishAction,
     onCloseAction,
-}) => {
+}: IProps) => {
     const {t} = useMergedTranslation('ThankYouPage');
     const quantityCountText = useMemo(
         () =>
             savingsValues.fuel !== undefined
                 ? `${savingsValues.fuel} ${t('savedFuelCount', {
-                    count: parseFloat(savingsValues.fuel),
-                  })}`
+                      count: parseFloat(savingsValues.fuel),
+                })}`
                 : '',
         [t, savingsValues.fuel],
     );
@@ -80,13 +80,13 @@ const ThankYouPageContainer: React.FC<IProps> = ({
                     text={t('tripTime')}
                     value={`${simplyTimer(
                         routeParams.time - routeParams.pause,
-                    )} ${t('pauseSuffix')}`}
+                    )} ${t('tripTimeSuffix')}`}
                 />
                 <StatisticElement
                     testID="thank-you-page-container-route-pause-time"
                     text={t('pauseTime')}
                     value={`${simplyTimer(routeParams.pause)} ${t(
-                        'tripTimeSuffix',
+                        'pauseSuffix',
                     )}`}
                 />
             </View>

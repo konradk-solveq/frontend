@@ -380,6 +380,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     return {
                         ...prevPT,
                         total: newTotalTime,
+                        start: 0 /* clear to avoid double counting when recording is finished */,
                     };
                 });
             }
