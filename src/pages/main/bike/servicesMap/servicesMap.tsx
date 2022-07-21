@@ -134,6 +134,20 @@ const ServicesMap: React.FC = () => {
         });
     };
 
+    /**
+     * Only one filter can be inactive at the same time.
+     */
+    const refreshFilters = useCallback(() => {
+        if (!markersFilters?.includes(markerTypes.SHOP)) {
+            setJs('setShops(false);true;');
+            return;
+        }
+
+        if (!markersFilters?.includes(markerTypes.SERVICE)) {
+            setJs('setServices(false);true;');
+        }
+    }, [markersFilters]);
+
     const heandleOnMessage = e => {
         let val = e.nativeEvent.data.split('#$#');
 
@@ -202,8 +216,13 @@ const ServicesMap: React.FC = () => {
             if (p) {
                 setJs(`setMarks(${p});true;`);
             }
+
+            /**
+             * Filter new markers with existing settings.
+             */
+            refreshFilters();
         }
-    }, [places, mapLoaded]);
+    }, [places, mapLoaded, refreshFilters]);
 
     const buttonProps = (markerType: markerTypes) => {
         return {
