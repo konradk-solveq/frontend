@@ -468,7 +468,7 @@ Array [
           }
           testID="header3-test-id"
         >
-          0:07 ThankYouPage.pauseSuffix
+          0:07 ThankYouPage.tripTimeSuffix
         </Text>
       </View>
       <View
@@ -510,7 +510,7 @@ Array [
           }
           testID="header3-test-id"
         >
-          0:07 ThankYouPage.tripTimeSuffix
+          0:07 ThankYouPage.pauseSuffix
         </Text>
       </View>
     </View>
@@ -1500,7 +1500,7 @@ Array [
           }
           testID="header3-test-id"
         >
-          0:07 ThankYouPage.pauseSuffix
+          0:07 ThankYouPage.tripTimeSuffix
         </Text>
       </View>
       <View
@@ -1542,7 +1542,7 @@ Array [
           }
           testID="header3-test-id"
         >
-          0:07 ThankYouPage.tripTimeSuffix
+          0:07 ThankYouPage.pauseSuffix
         </Text>
       </View>
     </View>
