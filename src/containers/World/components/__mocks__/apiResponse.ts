@@ -17,3 +17,5 @@ export const apiResponseWithFailure = {
     },
     status: 404,
 };
+
+export const mockMapId = '3aaf7f5216b0c40b';

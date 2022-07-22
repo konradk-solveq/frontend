@@ -88,7 +88,6 @@ export type KrossWorldParamsListT = {
         sectionName: string;
         featuredMapData?: MapType[];
     };
-    ShareRouteScreen: {mapID: string; mapType?: selectorMapTypeEnum};
 };
 export type RoutesMapRouteT = RouteProp<KrossWorldParamsListT, 'RoutesMap'>;
 export type RoutesMapNavigationPropT = MainNavigationCompositePropT<
@@ -120,14 +119,6 @@ export type FeaturedMapsScreenRouteT = RouteProp<
 export type FeaturedMapsScreenNavigationPropT = MainNavigationCompositePropT<
     KrossWorldParamsListT,
     'FeaturedRoutesScreen'
->;
-export type ShareRouteScreenRouteT = RouteProp<
-    KrossWorldParamsListT,
-    'ShareRouteScreen'
->;
-export type ShareRouteScreenNavigationPropT = MainNavigationCompositePropT<
-    KrossWorldParamsListT,
-    'ShareRouteScreen'
 >;
 /* WORLD */
 
