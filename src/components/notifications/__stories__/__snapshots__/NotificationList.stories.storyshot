@@ -46,11 +46,6 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
     >
       <View>
         <View
-          exiting={
-            Object {
-              "delay": [MockFunction],
-            }
-          }
           onLayout={[Function]}
           style={Object {}}
         >
@@ -213,11 +208,6 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
           </View>
         </View>
         <View
-          exiting={
-            Object {
-              "delay": [MockFunction],
-            }
-          }
           onLayout={[Function]}
           style={Object {}}
         >
@@ -359,11 +349,6 @@ exports[`Storyshots components/notifications/NotificationList Default 1`] = `
           </View>
         </View>
         <View
-          exiting={
-            Object {
-              "delay": [MockFunction],
-            }
-          }
           onLayout={[Function]}
           style={Object {}}
         >
