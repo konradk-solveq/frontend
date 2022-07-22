@@ -1,9 +1,6 @@
 import React, {useEffect, useMemo, useState, useCallback} from 'react';
-import {StyleSheet, ScrollView, LayoutChangeEvent} from 'react-native';
+import {StyleSheet, ScrollView, LayoutChangeEvent, View} from 'react-native';
 import Animated, {
-    FadeIn,
-    Layout,
-    FadeOut,
     useSharedValue,
     useAnimatedStyle,
     withTiming,
@@ -29,19 +26,16 @@ interface IItemProps {
 const ListItem = ({item}: IItemProps) => {
     const [height, setHeight] = useState(0);
     return (
-        <Animated.View
+        <View
             onLayout={e => {
                 if (!e?.nativeEvent?.layout) {
                     return;
                 }
                 setHeight(e.nativeEvent.layout.height);
             }}
-            style={height ? styles.listItem : {}}
-            entering={FadeIn.delay(300)}
-            layout={Layout.damping(1).delay(150)}
-            exiting={FadeOut}>
+            style={height ? styles.listItem : {}}>
             {item}
-        </Animated.View>
+        </View>
     );
 };
 
