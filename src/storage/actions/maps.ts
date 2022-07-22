@@ -35,6 +35,23 @@ import {defaultLocation} from '@utils/constants/location';
 
 const TEST_ENV = process.env.JEST_WORKER_ID;
 
+const getTotalNumber = (totalNumber?: string | number) => {
+    if (!totalNumber) {
+        return 0;
+    }
+
+    if (typeof totalNumber === 'number') {
+        return totalNumber;
+    }
+
+    const total = parseInt(totalNumber, 10);
+    if (isNaN(total)) {
+        return 0;
+    }
+
+    return total;
+};
+
 export const setMapsData = (
     maps: MapType[],
     paginationCoursor: MapPagination,
@@ -430,7 +447,7 @@ export const fetchPrivateMapsList = (
                 setPrivateMapsData(
                     response.data?.elements,
                     response.data?.links,
-                    response.data?.total,
+                    getTotalNumber(response.data?.total),
                     refresh,
                 ),
             );
