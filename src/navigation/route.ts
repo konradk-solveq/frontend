@@ -53,7 +53,6 @@ export const RegularStackRoute = {
     ROUTES_MAP_SCREEN: 'RoutesMap',
     FEATURED_ROUTES_SCRREN: 'FeaturedRoutesScreen',
     SHORT_ROUTE_SCREEN: 'ShortRouteScreen',
-    SHARE_ROUTE_SCREEN: 'ShareRouteScreen',
 
     // Bike
     BIKE_SCREEN: 'BikeTab',

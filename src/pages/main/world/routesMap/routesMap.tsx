@@ -44,6 +44,7 @@ import customInteractionManager from '@utils/customInteractionManager/customInte
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 import {debounce} from '@utils/input/debounce';
 import {mapMarkersDebounceTime} from '@utils/constants';
+import RouteShareModal from '@src/containers/World/components/RouteShareModal';
 
 const initRouteInfo = {
     id: '',
@@ -117,6 +118,7 @@ const RoutesMap: React.FC = () => {
         bottomSheetWithMoreActions,
         setBottomSheetWithMoreActions,
     ] = useState(false);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -351,10 +353,7 @@ const RoutesMap: React.FC = () => {
                     });
                     break;
                 case 'share':
-                    navigation.navigate('ShareRouteScreen', {
-                        mapID: mapId,
-                        mapType: routeInfo.mapType,
-                    });
+                    setShareModalOpen(true);
                     break;
                 case 'edit':
                     navigation.navigate('EditDetails', {
@@ -403,13 +402,16 @@ const RoutesMap: React.FC = () => {
             mapData?.id,
             mapData?.reaction,
             mapData?.isPublic,
-            routeInfo.mapType,
             isCreatedByUser,
             reaction?.enumValue,
             t,
             addToast,
         ],
     );
+
+    const closeShareModal = useCallback(() => {
+        setShareModalOpen(false);
+    }, [setShareModalOpen]);
 
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
@@ -449,6 +451,12 @@ const RoutesMap: React.FC = () => {
                     <RoutesMapDetailsPlaceholderContainer />
                 )}
             </BottomModal>
+
+            <RouteShareModal
+                showModal={shareModalOpen}
+                mapId={mapID ? mapID : ''}
+                onClose={closeShareModal}
+            />
 
             <MoreActionsModal
                 show={bottomSheetWithMoreActions}

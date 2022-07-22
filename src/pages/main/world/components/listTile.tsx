@@ -18,6 +18,7 @@ import {useToastContext} from '@providers/ToastProvider/ToastProvider';
 import Bookmark from '@src/components/icons/Bookmark';
 import {StyleProp, ViewStyle} from 'react-native';
 import {RouteTilePlaceholder} from '@src/components/tiles';
+import RouteShareModal from '@src/containers/World/components/RouteShareModal';
 
 interface PropsI {
     onPress: (state: boolean, mapID: string) => void;
@@ -45,6 +46,8 @@ const ListTile: React.FC<PropsI> = ({
 }) => {
     const {t} = useMergedTranslation('MainWorld.Tile');
     const {t: tbm} = useMergedTranslation('MainWorld.BikeMap');
+    const [showShareModal, setShowShareModal] = useState(false);
+    const [mapToShareId, setMapToShareId] = useState('');
 
     const dispatch = useAppDispatch();
     const navigation = useNavigation();
@@ -171,12 +174,15 @@ const ListTile: React.FC<PropsI> = ({
         });
     }, [mapData.id, mapData.isPublic, mapData?.ownerId, navigation, userID]);
 
-    const onPressShare = useCallback(() => {
-        navigation.navigate({
-            name: RegularStackRoute.SHARE_ROUTE_SCREEN,
-            params: {mapID: mapData.id, mapType: mapType},
-        });
-    }, [navigation, mapData.id, mapType]);
+    const onSharePressedHandler = useCallback(() => {
+        setMapToShareId(mapData.id);
+        setShowShareModal(true);
+    }, [mapData.id]);
+
+    const onShareModalCloseHandler = () => {
+        setShowShareModal(false);
+        setMapToShareId('');
+    };
 
     const imageUrl = useMemo(
         () => getMapImageToDisplay(mapData.mapsImages)?.url,
@@ -196,42 +202,52 @@ const ListTile: React.FC<PropsI> = ({
         return isRouteNewest && (isDataNotComplete() || !imageUrl);
     }, [isRouteNewest, imageUrl, isDataNotComplete]);
 
-    return isNewestRouteLackingData() ? (
-        <RouteTilePlaceholder
-            isDataNotComplete={isDataNotComplete()}
-            name={mapData?.name}
-            imageUrl={imageUrl}
-            distanceAndTime={handleDistanceAndTime()}
-            distanceToStart={mapData.distanceToRouteInKilometers}
-            difficultyAndSurface={handleDifficultyAndSurface()}
-            fullDate={getFullDate(mapData?.createdAt)}
-            tilePressOn={onTilePressedHandler}
-            detailsPressOn={handleDetailsPressOn}
-            editPressOn={handleEditPressOn}
-            testID={testID}
-        />
-    ) : (
-        <ListTileView
-            tilePressOn={onTilePressedHandler}
-            fullDate={getFullDate(mapData?.createdAt)}
-            imageToDisplay={imageUrl}
-            name={mapData?.name || t('noTitle')}
-            distanceAndTime={handleDistanceAndTime()}
-            distanceToStart={mapData.distanceToRouteInKilometers}
-            difficultyAndSurface={handleDifficultyAndSurface()}
-            numberOfLikes={numberOfLikes}
-            checkLike={handleCheckLike()}
-            checkPublic={mapData?.isPublic}
-            checkUserFavorite={mapData?.isUserFavorite}
-            likePressOn={handleLikePressOn}
-            toggleFavoritePressOn={handleToggleFavoritePressOn}
-            editPressOn={handleEditPressOn}
-            detailsPressOn={handleDetailsPressOn}
-            onPressShare={onPressShare}
-            mode={mode}
-            hideDistanceToStart={hideDistanceToStart}
-            testID={testID}
-        />
+    return (
+        <>
+            {isNewestRouteLackingData() ? (
+                <RouteTilePlaceholder
+                    isDataNotComplete={isDataNotComplete()}
+                    name={mapData?.name}
+                    imageUrl={imageUrl}
+                    distanceAndTime={handleDistanceAndTime()}
+                    distanceToStart={mapData.distanceToRouteInKilometers}
+                    difficultyAndSurface={handleDifficultyAndSurface()}
+                    fullDate={getFullDate(mapData?.createdAt)}
+                    tilePressOn={onTilePressedHandler}
+                    detailsPressOn={handleDetailsPressOn}
+                    editPressOn={handleEditPressOn}
+                    testID={testID}
+                />
+            ) : (
+                <ListTileView
+                    tilePressOn={onTilePressedHandler}
+                    fullDate={getFullDate(mapData?.createdAt)}
+                    imageToDisplay={imageUrl}
+                    name={mapData?.name || t('noTitle')}
+                    distanceAndTime={handleDistanceAndTime()}
+                    distanceToStart={mapData.distanceToRouteInKilometers}
+                    difficultyAndSurface={handleDifficultyAndSurface()}
+                    numberOfLikes={numberOfLikes}
+                    checkLike={handleCheckLike()}
+                    checkPublic={mapData?.isPublic}
+                    checkUserFavorite={mapData?.isUserFavorite}
+                    likePressOn={handleLikePressOn}
+                    toggleFavoritePressOn={handleToggleFavoritePressOn}
+                    editPressOn={handleEditPressOn}
+                    detailsPressOn={handleDetailsPressOn}
+                    onPressShare={onSharePressedHandler}
+                    mode={mode}
+                    hideDistanceToStart={hideDistanceToStart}
+                    testID={testID}
+                />
+            )}
+
+            <RouteShareModal
+                showModal={showShareModal}
+                mapId={mapToShareId}
+                onClose={onShareModalCloseHandler}
+            />
+        </>
     );
 };
 
