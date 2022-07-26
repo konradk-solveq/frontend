@@ -74,6 +74,7 @@ const LocationStatusNotification: React.FC<IProps> = ({
         locationEnabled,
         highDesiredAccuracy,
         initialized,
+        gpsAvailable,
     } = useLocationProvider();
     /**
      * Show notification when location is disabled and user wants to see it
@@ -89,8 +90,8 @@ const LocationStatusNotification: React.FC<IProps> = ({
         () =>
             initialized &&
             locationEnabled &&
-            (!isGPSEnabled || !highDesiredAccuracy),
-        [initialized, isGPSEnabled, highDesiredAccuracy, locationEnabled],
+            (!gpsAvailable || !highDesiredAccuracy),
+        [initialized, gpsAvailable, highDesiredAccuracy, locationEnabled],
     );
 
     useEffect(() => {
