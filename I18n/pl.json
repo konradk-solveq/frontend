@@ -1044,5 +1044,9 @@
         "routePublished": "Trasa została opublikowana",
         "addRouteToPlanned": "Trasa została dodana do zapisanych",
         "removeRouteFromPlanned": "Trasa została usunięta z zapisanych"
+    },
+    "ErrorModal": {
+        "retry": "Ponów",
+        "close": "Zamknij"
     }
 }
