@@ -185,7 +185,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
         setShowListLoader(true);
-        setSavedMapFilters({...picked});
+        setSavedMapFilters(prev => ({...prev, ...picked}));
     };
 
     const emptyListButtonHandler = () => {
