@@ -1,9 +1,10 @@
-import {getHorizontalPx} from '@src/helpers/layoutFoo';
 import React from 'react';
-import {StyleSheet, View, Animated} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Svg, {Circle, Path} from 'react-native-svg';
 
-const size = getHorizontalPx(31);
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+
+const size = getFVerticalPx(31);
 
 const MarkPointer: React.FC = () => {
     const styles = StyleSheet.create({
@@ -22,7 +23,7 @@ const MarkPointer: React.FC = () => {
 
     return (
         <View style={styles.markWrap} pointerEvents="none">
-            <Animated.View style={styles.mark}>
+            <View style={styles.mark}>
                 <Svg viewBox="0 0 31 31">
                     <Circle cx="15.5" cy="15.5" r="15.5" fill="#fff" />
                     <Path
@@ -30,7 +31,7 @@ const MarkPointer: React.FC = () => {
                         fill="#d8232a"
                     />
                 </Svg>
-            </Animated.View>
+            </View>
         </View>
     );
 };

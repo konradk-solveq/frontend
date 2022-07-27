@@ -28,6 +28,8 @@ interface IProps {
     restoredPath?: ShortCoordsType[];
 }
 
+const DELAY = 300;
+
 const SinglePolyline: React.FC<IProps> = ({
     coords,
     renderPath,
@@ -155,6 +157,7 @@ const SinglePolyline: React.FC<IProps> = ({
      * Render path after SQL data has been restored.
      */
     useEffect(() => {
+        let timer: NodeJS.Timeout;
         if (coords?.coords && restoreRef.current) {
             if (!coords.coords?.lat || !coords.coords?.lon) {
                 return;
@@ -165,8 +168,21 @@ const SinglePolyline: React.FC<IProps> = ({
                 timestamp: coords.timestamp,
             };
 
-            setRoute(prev => [...prev, pos]);
+            if (restoredAfterBackground.current) {
+                /**
+                 * Delay setting new coord to allow marker (user location) animate to new position
+                 */
+                timer = setTimeout(() => {
+                    setRoute(prev => [...prev, pos]);
+                }, DELAY);
+            } else {
+                setRoute(prev => [...prev, pos]);
+            }
         }
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, [coords?.coords, coords?.timestamp]);
 
     if (!route.length || !renderPath) {

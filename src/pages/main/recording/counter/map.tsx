@@ -82,9 +82,9 @@ const initCompasHeading = {
     pitch: 0,
     altitude: 0,
     heading: 0,
-    zoom: isIOS ? 18 : 17,
+    zoom: 17,
 };
-const ZOOM_START_VALUE = isIOS ? 18 : 17;
+const ZOOM_START_VALUE = 17;
 
 const Map: React.FC<IProps> = ({
     routeId = '',

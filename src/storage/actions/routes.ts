@@ -513,7 +513,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
          * Abort sync and clear data when there is no location points
          * (two at least)
          */
-        if (!currRoutesDat?.length || currRoutesDat?.length < 2) {
+        if (!currRoutesDat?.length || currRoutesDat?.length <= 2) {
             await dispatch(abortSyncCurrentRouteData(false, true, true));
 
             sentryMessager(
@@ -681,7 +681,7 @@ export const syncRouteDataFromQueue = (
         let newRoutesToSync: string[] = [];
         routesToSync.forEach(async (id: string, idx: number) => {
             const routeToSync = routes.find((r: RoutesI) => r.id === id);
-            if (!routeToSync || routeToSync?.route?.length < 2) {
+            if (!routeToSync || routeToSync?.route?.length <= 2) {
                 return;
             }
 

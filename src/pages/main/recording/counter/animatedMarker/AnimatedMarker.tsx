@@ -1,17 +1,15 @@
 import React, {useRef, useEffect, useCallback} from 'react';
-import {Platform} from 'react-native';
 import {
-    Marker,
+    MapMarker,
     MarkerAnimated,
     AnimatedRegion,
     LatLng,
 } from 'react-native-maps';
 
-import {getHorizontalPx} from '@helpers/layoutFoo';
-
+import {isIOS} from '@utils/platform';
 import MarkPointer from '../markPointer';
 
-const isIOS = Platform.OS === 'ios';
+const ANIMATION_DURATION = 500;
 
 interface IProps {
     coords: any;
@@ -36,10 +34,10 @@ const AnimatedMarker: React.FC<IProps> = ({
     headingOn,
     compassHeading,
 }: IProps) => {
-    const markerRef = useRef<Marker>(null);
+    const markerRef = useRef<MapMarker>(null);
     const canAnimateIOSMarker = useRef(true);
 
-    const animatedMarkerRef = useRef<MarkerAnimated>(null);
+    const animatedMarkerRef = useRef<MapMarker>(null);
     const animatedPostion = useRef<AnimatedRegion>(
         new AnimatedRegion({
             latitude: 51.023,
@@ -62,22 +60,23 @@ const AnimatedMarker: React.FC<IProps> = ({
                 longitude: coords?.lon,
             };
 
-            let ratio = 1;
+            // let ratio = 1;
             const latitudeDelta = mapRegion?.latitudeDelta || 1;
             const longitudeDelta = mapRegion?.longitudeDelta || 1;
-            if (typeof latitudeDelta !== 'undefined') {
-                const zoom =
-                    Math.log2(
-                        360 * (getHorizontalPx(414) / 256 / latitudeDelta),
-                    ) + 1;
+            // if (typeof latitudeDelta !== 'undefined') {
+            //     const zoom =
+            //         Math.log2(
+            //             360 * (getHorizontalPx(414) / 256 / latitudeDelta),
+            //         ) +
+            //         1; /* TODO: this won't work since props are always undefined */
 
-                if (zoom > 17 && zoom < 20) {
-                    ratio = -((zoom - 20) / 3);
-                }
-                if (zoom >= 20) {
-                    ratio = 0;
-                }
-            }
+            //     if (zoom > 17 && zoom < 20) {
+            //         ratio = -((zoom - 20) / 3);
+            //     }
+            //     if (zoom >= 20) {
+            //         ratio = 0;
+            //     }
+            // }
 
             if (
                 !isRestored &&
@@ -95,7 +94,7 @@ const AnimatedMarker: React.FC<IProps> = ({
             if (!isIOS) {
                 markerRef?.current?.animateMarkerToCoordinate(
                     pos,
-                    1200 + 500 * ratio,
+                    ANIMATION_DURATION,
                 );
             } else {
                 if (canAnimateIOSMarker.current) {
@@ -105,8 +104,9 @@ const AnimatedMarker: React.FC<IProps> = ({
                             ...pos,
                             latitudeDelta: latitudeDelta,
                             longitudeDelta: longitudeDelta,
-                            duration: 1200 * ratio,
+                            duration: ANIMATION_DURATION,
                             useNativeDriver: false,
+                            toValue: 0,
                         })
                         .start(({finished}) => {
                             if (finished) {
@@ -146,12 +146,19 @@ const AnimatedMarker: React.FC<IProps> = ({
                     longitudeDelta: 1,
                     duration: 50,
                     useNativeDriver: false,
+                    toValue: 0,
                 })
-                .start();
+                .start(({finished}) => {
+                    if (finished) {
+                        canAnimateIOSMarker.current = true;
+                    }
+                });
         }
 
         return () => {
-            animatedPostion?.stopAnimation();
+            animatedPostion?.stopAnimation(regionToStop => {
+                console.log('Stoped animation of MarkerAnimated', regionToStop);
+            });
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -166,8 +173,9 @@ const AnimatedMarker: React.FC<IProps> = ({
                 ref={animatedMarkerRef}
                 identifier="direction_arrow"
                 anchor={{x: 0.5, y: 0.5}}
-                coordinate={animatedPostion || location}
+                coordinate={animatedPostion?.__getValue()}
                 tracksViewChanges={true}
+                stopPropagation
                 tracksInfoWindowChanges={false}
                 rotation={!headingOn ? compassHeading : 0}>
                 <MarkPointer />
@@ -180,16 +188,14 @@ const AnimatedMarker: React.FC<IProps> = ({
     }
 
     return (
-        <Marker
+        <MapMarker
             ref={markerRef}
             identifier="direction_arrow"
             coordinate={location}
             anchor={{x: 0.5, y: 0.5}}
-            tracksViewChanges={false}
-            tracksInfoWindowChanges={false}
             rotation={!headingOn ? compassHeading : 0}>
             <MarkPointer />
-        </Marker>
+        </MapMarker>
     );
 };
 
