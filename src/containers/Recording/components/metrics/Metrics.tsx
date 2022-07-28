@@ -38,7 +38,8 @@ const Metrics: React.FC<IProps> = ({
     const distance =
         useContext(CounterDataContext).trackerData?.distance ||
         DEFAULT_DISTANCE;
-    const time = useRecordingTimer(startTime, started);
+    const pauseTime = useContext(CounterDataContext).pauseTime;
+    const time = useRecordingTimer(startTime, started, pauseTime);
     const avgSpeed = useGetAverageSpeed(startTime, started);
     const averageSpeed = useMemo(() => avgSpeed, [avgSpeed]);
 

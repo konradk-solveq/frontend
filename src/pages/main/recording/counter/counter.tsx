@@ -360,11 +360,12 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                  */
                 setNotifications(prev => [...prev, recordingNotification]);
 
-                pauseTracker();
+                const pauseDT = Date.now();
                 setPauseTime(prevPT => ({
                     ...prevPT,
-                    start: Date.now(),
+                    start: pauseDT,
                 }));
+                pauseTracker();
             } else {
                 /**
                  * Remove pause notification
@@ -372,8 +373,6 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setNotifications(prev => [
                     ...prev.filter(n => n.key !== 'pause-notifications'),
                 ]);
-
-                resumeTracker();
 
                 setPauseTime(prevPT => {
                     const newTotalTime = setTotalTime(prevPT);
@@ -383,6 +382,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                         start: 0 /* clear to avoid double counting when recording is finished */,
                     };
                 });
+                resumeTracker();
             }
         },
         [pauseTracker, resumeTracker],

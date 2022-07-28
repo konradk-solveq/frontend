@@ -153,8 +153,8 @@ android {
         applicationId "pl.kross.mykross"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 278
-        versionName "3.31.2"
+        versionCode 279
+        versionName "3.32.0"
     }
     splits {
         abi {
