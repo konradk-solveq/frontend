@@ -6,11 +6,11 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {ImagesMetadataType} from '@interfaces/api';
 import {setHeavyTaskProcessingState} from '@storage/actions/app';
 import {
-    loadingMapsSelector,
     mapDataByIDSelector,
     mapIdToAddSelector,
     privateDataByIDSelector,
     mapsErrorSelector,
+    formLoadingMapsSelector,
 } from '@storage/selectors/map';
 import {editPrivateMapMetaData} from '@storage/actions/maps';
 import {getImagesThumbs} from '@utils/transformData';
@@ -65,7 +65,7 @@ const EditDetails = () => {
             : privateDataByIDSelector(mapID || newPrivateMapID),
     );
     const error = useAppSelector(mapsErrorSelector);
-    const isLoading = useAppSelector(loadingMapsSelector);
+    const isLoading = useAppSelector(formLoadingMapsSelector);
     const toastContext = useToastContext();
 
     const images = getImagesThumbs(mapData?.pictures);
