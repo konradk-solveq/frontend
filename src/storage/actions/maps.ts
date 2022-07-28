@@ -35,6 +35,14 @@ import {defaultLocation} from '@utils/constants/location';
 
 const TEST_ENV = process.env.JEST_WORKER_ID;
 
+const totalIsValid = (total?: number | string) => {
+    if (!total && total !== 0) {
+        return false;
+    }
+
+    return true;
+};
+
 const getTotalNumber = (totalNumber?: string | number) => {
     if (!totalNumber) {
         return 0;
@@ -327,7 +335,11 @@ export const fetchMapsCount = (
 
         const response = await getMapsListCount(location, filters);
 
-        if (response.error || !response.data || !response.data.total) {
+        if (
+            response.error ||
+            !response.data ||
+            !totalIsValid(response.data.total)
+        ) {
             return;
         }
         const total = parseInt(response.data.total, 10);
@@ -361,7 +373,11 @@ export const fetchPrivateMapsCount = (
 
         const response = await getPrivateMapsListCount(location, filters);
 
-        if (response.error || !response.data || !response.data.total) {
+        if (
+            response.error ||
+            !response.data ||
+            !totalIsValid(response.data.total)
+        ) {
             return;
         }
         const total = parseInt(response.data.total, 10);
@@ -396,7 +412,11 @@ export const fetchPlannedMapsCount = (
 
         const response = await getPlannedMapsListCount(location, filters);
 
-        if (response.error || !response.data || !response.data.total) {
+        if (
+            response.error ||
+            !response.data ||
+            !totalIsValid(response.data.total)
+        ) {
             return;
         }
         const total = parseInt(response.data.total, 10);
