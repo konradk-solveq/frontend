@@ -117,7 +117,7 @@ const FullDescription: React.FC<IProps> = ({mapData, images}: IProps) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: getFVerticalPx(24),
+        marginTop: getFVerticalPx(28),
     },
     bottomPadding: {
         paddingBottom: getFVerticalPx(24),
