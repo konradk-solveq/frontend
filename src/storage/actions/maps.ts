@@ -167,6 +167,11 @@ export const setLoadingState = (state: boolean) => ({
     state: state,
 });
 
+export const setFormLoadingState = (state: boolean) => ({
+    type: actionTypes.SET_MAPS_FORM_LOADING_STATE,
+    state: state,
+});
+
 export const setError = (error: string, statusCode: number) => ({
     type: actionTypes.SET_MAPS_ERROR,
     error: error,
@@ -473,14 +478,14 @@ export const editPrivateMapMetaData = (
     publish?: boolean,
     id?: string,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    dispatch(setFormLoadingState(true));
     try {
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
                 setError(i18next.t('dataAction.noInternetConnection'), 500),
             );
-            dispatch(setLoadingState(false));
+            dispatch(setFormLoadingState(false));
             return;
         }
 
@@ -496,7 +501,7 @@ export const editPrivateMapMetaData = (
 
         if (response.error || response.status >= 400) {
             dispatch(setError(response.error, response.status));
-            dispatch(setLoadingState(false));
+            dispatch(setFormLoadingState(false));
             return;
         }
 
@@ -505,7 +510,7 @@ export const editPrivateMapMetaData = (
             dispatch(clearPrivateMapId());
             dispatch(clearError());
 
-            dispatch(setLoadingState(false));
+            dispatch(setFormLoadingState(false));
         });
     } catch (error) {
         console.log(`[editPrivateMapMetaData] - ${error}`);

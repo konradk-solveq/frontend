@@ -89,6 +89,11 @@ export const loadingMapsSelector = createSelector(
     maps => maps.loading,
 );
 
+export const formLoadingMapsSelector = createSelector(
+    mapSelector,
+    maps => maps.formLoading,
+);
+
 export const mapsErroSelector = createSelector(mapSelector, maps => maps.error);
 export const mapsStatusCodeSelector = createSelector(
     mapSelector,
