@@ -3,6 +3,8 @@ import BackdropModal from './BackdropModal';
 import ModalHeader from './ModalHeader';
 import ChangeLanguageModal from './ChangeLanguageModal';
 import ErrorModal from './ErrorModal';
+import PoorConnectionModal from './PoorConnectionModal';
+import ShortRouteModal from './ShortRouteModal';
 
 export {
     BottomModal,
@@ -10,4 +12,6 @@ export {
     ModalHeader,
     ChangeLanguageModal,
     ErrorModal,
+    PoorConnectionModal,
+    ShortRouteModal,
 };

@@ -17,7 +17,8 @@ import {
     syncCurrentRouteData,
 } from '@storage/actions/routes';
 
-import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
+import {PoorConnectionModal} from '@components/modals';
+import {ShortRouteModal} from '@components/modals';
 
 import {CounterParamsLsitT, CounterThankYouPageRouteT} from '@type/rootStack';
 import {
@@ -26,7 +27,6 @@ import {
 } from '@utils/transformData';
 import GenericScreen from '@src/pages/template/GenericScreen';
 import {ThankYouPageContainer} from '@src/containers/Recording';
-import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortRouteModal';
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import colors from '@src/theme/colors';
@@ -180,6 +180,7 @@ const CounterThankYouPage: React.FC = () => {
                 )}
                 <ShortRouteModal
                     showModal={showErrorModal}
+                    errorTitle={t('errorTitle')}
                     showAlterMessage={
                         !error?.routeToShort ? error?.message : ''
                     }
@@ -209,6 +210,7 @@ const CounterThankYouPage: React.FC = () => {
 
             <ShortRouteModal
                 showModal={showErrorModal}
+                errorTitle={t('errorTitle')}
                 showAlterMessage={!error?.routeToShort ? error?.message : ''}
                 onClose={onCloseErrorModalHandler}
             />

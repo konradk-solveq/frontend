@@ -221,7 +221,8 @@
         "ShareContent": {
             "Route": {
                 "title": "Hej! Polecam Ci ciekawą trasę rowerową nagraną w aplikacji myKROSS.",
-                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
+                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
+                "errorTitle": "Coś poszło nie tak!"
             }
         }
     },
@@ -632,7 +633,8 @@
             "imagesTitle": "Zdjęcia z trasy",
             "removeRouteBtn": "Tak, usuń",
             "cancelRemoveRouteBtn": "Anuluj",
-            "defaultUser": "Rowerzysta"
+            "defaultUser": "Rowerzysta",
+            "errorTitle": "Coś poszło nie tak!"
         }
 
     },

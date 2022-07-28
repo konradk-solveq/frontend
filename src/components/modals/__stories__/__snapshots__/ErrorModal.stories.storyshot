@@ -1,14 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Storyshots components/modals/ErrorModal Default 1`] = `
-<View
-  style={
-    Object {
-      "height": "100%",
-      "width": "100%",
-    }
-  }
->
+Array [
   <View
     collapsable={false}
     onGestureHandlerEvent={[Function]}
@@ -67,9 +60,11 @@ exports[`Storyshots components/modals/ErrorModal Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "marginHorizontal": 30.76923076923077,
-                "paddingBottom": 25.28909952606635,
+                "paddingBottom": 63.22274881516588,
+                "paddingTop": 25.28909952606635,
               }
             }
+            testID="error-modal-test-id"
           >
             <RNSVGSvgView
               align="xMidYMid"
@@ -232,7 +227,9 @@ exports[`Storyshots components/modals/ErrorModal Default 1`] = `
                       "lineHeight": 24,
                       "textAlign": "center",
                     },
-                    undefined,
+                    Object {
+                      "marginTop": 12.644549763033176,
+                    },
                   ]
                 }
                 testID="error-modal-test-id-error-message"
@@ -336,7 +333,7 @@ exports[`Storyshots components/modals/ErrorModal Default 1`] = `
         </View>
       </RCTScrollView>
     </View>
-  </View>
+  </View>,
   <View
     pointerEvents="auto"
     style={
@@ -384,19 +381,12 @@ exports[`Storyshots components/modals/ErrorModal Default 1`] = `
         ]
       }
     />
-  </View>
-</View>
+  </View>,
+]
 `;
 
 exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
-<View
-  style={
-    Object {
-      "height": "100%",
-      "width": "100%",
-    }
-  }
->
+Array [
   <View
     collapsable={false}
     onGestureHandlerEvent={[Function]}
@@ -455,9 +445,11 @@ exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "marginHorizontal": 30.76923076923077,
-                "paddingBottom": 25.28909952606635,
+                "paddingBottom": 63.22274881516588,
+                "paddingTop": 25.28909952606635,
               }
             }
+            testID="error-modal-test-id"
           >
             <RNSVGSvgView
               align="xMidYMid"
@@ -620,7 +612,9 @@ exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
                       "lineHeight": 24,
                       "textAlign": "center",
                     },
-                    undefined,
+                    Object {
+                      "marginTop": 12.644549763033176,
+                    },
                   ]
                 }
                 testID="error-modal-test-id-error-message"
@@ -716,7 +710,7 @@ exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
                   }
                   testID="error-modal-test-id-retry-button-text"
                 >
-                  ErrorModal.retry
+                  Custom Primary Button Text
                 </Text>
               </View>
             </View>
@@ -808,7 +802,7 @@ exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
                   }
                   testID="error-modal-test-id-close-button-text"
                 >
-                  Custom Primary Button Text
+                  ErrorModal.close
                 </Text>
               </View>
             </View>
@@ -816,7 +810,7 @@ exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
         </View>
       </RCTScrollView>
     </View>
-  </View>
+  </View>,
   <View
     pointerEvents="auto"
     style={
@@ -864,6 +858,6 @@ exports[`Storyshots components/modals/ErrorModal Full Screen 1`] = `
         ]
       }
     />
-  </View>
-</View>
+  </View>,
+]
 `;

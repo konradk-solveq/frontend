@@ -18,7 +18,6 @@ import {ImageType, MapFormDataResult} from '@interfaces/form';
 import useCustomBackNavButton from '@hooks/useCustomBackNavBtn';
 import {EditDetailsRouteT} from '@type/rootStack';
 import {MapType} from '@models/map.model';
-import WrongResponseModal from '@sharedComponents/modals/fail/failedResponseModal';
 
 import styles from './style';
 import GenericScreen from '@pages/template/GenericScreen';
@@ -33,6 +32,7 @@ import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import ApprovedMarker from '@components/icons/ApprovedMarker';
 import {useToastContext} from '@providers/ToastProvider/ToastProvider';
+import ErrorModal from '@src/components/modals/ErrorModal';
 
 type AlertTranslationT = {
     text: string;
@@ -203,10 +203,11 @@ const EditDetails = () => {
                         androidSize={getFVerticalPx(48)}
                     />
                 </View>
-                <WrongResponseModal
+                <ErrorModal
                     showModal={showErrorModal}
+                    errorTitle={t('errorTitle')}
                     errorMessage={error?.message}
-                    onClose={() => setShowErrorModal(false)}
+                    handleClose={() => setShowErrorModal(false)}
                 />
             </>
         );
@@ -251,10 +252,11 @@ const EditDetails = () => {
                     />
                 </ScrollView>
             </View>
-            <WrongResponseModal
+            <ErrorModal
                 showModal={showErrorModal}
+                errorTitle={t('errorTitle')}
                 errorMessage={error?.message}
-                onClose={() => setShowErrorModal(false)}
+                handleClose={() => setShowErrorModal(false)}
             />
         </GenericScreen>
     );
