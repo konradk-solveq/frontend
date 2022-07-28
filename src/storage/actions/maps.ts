@@ -35,6 +35,14 @@ import {defaultLocation} from '@utils/constants/location';
 
 const TEST_ENV = process.env.JEST_WORKER_ID;
 
+const totalIsValid = (total?: number | string) => {
+    if (!total && total !== 0) {
+        return false;
+    }
+
+    return true;
+};
+
 const getTotalNumber = (totalNumber?: string | number) => {
     if (!totalNumber) {
         return 0;
@@ -164,6 +172,11 @@ export const clearError = () => ({
 
 export const setLoadingState = (state: boolean) => ({
     type: actionTypes.SET_MAPS_LOADING_STATE,
+    state: state,
+});
+
+export const setFormLoadingState = (state: boolean) => ({
+    type: actionTypes.SET_MAPS_FORM_LOADING_STATE,
     state: state,
 });
 
@@ -322,7 +335,11 @@ export const fetchMapsCount = (
 
         const response = await getMapsListCount(location, filters);
 
-        if (response.error || !response.data || !response.data.total) {
+        if (
+            response.error ||
+            !response.data ||
+            !totalIsValid(response.data.total)
+        ) {
             return;
         }
         const total = parseInt(response.data.total, 10);
@@ -356,7 +373,11 @@ export const fetchPrivateMapsCount = (
 
         const response = await getPrivateMapsListCount(location, filters);
 
-        if (response.error || !response.data || !response.data.total) {
+        if (
+            response.error ||
+            !response.data ||
+            !totalIsValid(response.data.total)
+        ) {
             return;
         }
         const total = parseInt(response.data.total, 10);
@@ -391,7 +412,11 @@ export const fetchPlannedMapsCount = (
 
         const response = await getPlannedMapsListCount(location, filters);
 
-        if (response.error || !response.data || !response.data.total) {
+        if (
+            response.error ||
+            !response.data ||
+            !totalIsValid(response.data.total)
+        ) {
             return;
         }
         const total = parseInt(response.data.total, 10);
@@ -473,14 +498,14 @@ export const editPrivateMapMetaData = (
     publish?: boolean,
     id?: string,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
-    dispatch(setLoadingState(true));
+    dispatch(setFormLoadingState(true));
     try {
         const {isOffline, internetConnectionInfo}: AppState = getState().app;
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             dispatch(
                 setError(i18next.t('dataAction.noInternetConnection'), 500),
             );
-            dispatch(setLoadingState(false));
+            dispatch(setFormLoadingState(false));
             return;
         }
 
@@ -496,7 +521,7 @@ export const editPrivateMapMetaData = (
 
         if (response.error || response.status >= 400) {
             dispatch(setError(response.error, response.status));
-            dispatch(setLoadingState(false));
+            dispatch(setFormLoadingState(false));
             return;
         }
 
@@ -505,7 +530,7 @@ export const editPrivateMapMetaData = (
             dispatch(clearPrivateMapId());
             dispatch(clearError());
 
-            dispatch(setLoadingState(false));
+            dispatch(setFormLoadingState(false));
         });
     } catch (error) {
         console.log(`[editPrivateMapMetaData] - ${error}`);

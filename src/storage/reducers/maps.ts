@@ -47,6 +47,7 @@ export interface MapsState {
     ownes: string[];
     error: string;
     loading: boolean;
+    formLoading: boolean;
     statusCode: number;
     refresh: boolean;
     filters: FiltersState;
@@ -71,6 +72,7 @@ const initialStateList: MapsState = {
     ownes: [],
     error: '',
     loading: false,
+    formLoading: false,
     statusCode: 200,
     refresh: false,
     filters: {},
@@ -85,6 +87,13 @@ const mapsReducer = (state = initialStateList, action: any) => {
                 ...state,
                 refresh: false,
                 loading: action.state,
+            };
+        }
+        case actionTypes.SET_MAPS_FORM_LOADING_STATE: {
+            return {
+                ...state,
+                refresh: false,
+                formLoading: action.state,
             };
         }
         case actionTypes.SET_MAPS_ERROR: {
