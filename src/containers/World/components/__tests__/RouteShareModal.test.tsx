@@ -5,11 +5,9 @@ import asyncEvent from '@jestUtils/asyncEvent';
 import {postApiCallMock} from '@utils/testUtils/apiCalls';
 
 import RouteShareModal from '@src/containers/World/components/RouteShareModal';
-import {
-    apiResponseWithFailure,
-    apiResponseWithSuccess,
-    mockMapId,
-} from '../__mocks__/apiResponse';
+import {apiResponseWithFailure, mockMapId} from '../__mocks__/apiResponse';
+
+const ROUTE_SHARE_MODAL_ERROR = 'share-route-modal-error';
 
 jest.useFakeTimers();
 
@@ -44,28 +42,10 @@ describe('<RouteShareModal />', () => {
             );
 
             const errorResponseModal = component.getByTestId(
-                'share-route-modal-error',
+                ROUTE_SHARE_MODAL_ERROR,
             );
+
             expect(errorResponseModal).not.toBeNull();
-            expect(errorResponseModal.props.visible).toBe(true);
-        });
-
-        it('Should not render error modal when API returned success', async () => {
-            await postApiCallMock(apiResponseWithSuccess, 'post');
-            const component = await asyncEvent(
-                render(
-                    <RouteShareModal
-                        showModal={true}
-                        onClose={onCloseFn}
-                        mapId={''}
-                    />,
-                ),
-            );
-
-            const errorResponseModal = component.getByTestId(
-                'share-route-modal-error',
-            );
-            expect(errorResponseModal.props.visible).toBe(false);
         });
 
         it('Should close error modal when API returned error and user clicked on button', async () => {
@@ -81,15 +61,12 @@ describe('<RouteShareModal />', () => {
             );
 
             const errorResponseModalButton = component.getByTestId(
-                'big-red-btn',
+                `${ROUTE_SHARE_MODAL_ERROR}-close-button`,
             );
 
             fireEvent.press(errorResponseModalButton);
 
-            const errorResponseModal = component.getByTestId(
-                'share-route-modal-error',
-            );
-            expect(errorResponseModal.props.visible).toBe(false);
+            expect(onCloseFn).toBeCalled();
         });
 
         afterEach(() => {

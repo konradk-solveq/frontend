@@ -267,7 +267,6 @@ export type CounterParamsLsitT = {
         time?: number;
         pause?: number;
     };
-    ShortRouteScreen: undefined;
 };
 export type CounterRouteT = RouteProp<CounterParamsLsitT, 'Counter'>;
 export type CounterNavigationPropT = MainNavigationCompositePropT<
@@ -281,14 +280,6 @@ export type CounterThankYouPageRouteT = RouteProp<
 export type CounterThankYouPageNavigationPropT = MainNavigationCompositePropT<
     CounterParamsLsitT,
     'CounterThankYouPage'
->;
-export type ShortRouteScreenRouteT = RouteProp<
-    CounterParamsLsitT,
-    'ShortRouteScreen'
->;
-export type ShortRouteScreenNavigationPropT = MainNavigationCompositePropT<
-    CounterParamsLsitT,
-    'ShortRouteScreen'
 >;
 /* COUNTER */
 

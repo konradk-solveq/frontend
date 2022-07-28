@@ -5,9 +5,9 @@ import {Loader} from '@src/components/loader';
 import useFetchShareLink from '@src/hooks/useFetchShareLink';
 import {callSystemShare} from '@src/utils/callSystemShare';
 import customInteractionManager from '@src/utils/customInteractionManager/customInteractionManager';
-import FailedResponseModal from '@src/sharedComponents/modals/fail/failedResponseModal';
 import {useFocusEffect} from '@react-navigation/native';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
+import {ErrorModal} from '@src/components/modals';
 
 interface IProps {
     showModal: boolean;
@@ -79,11 +79,13 @@ const RouteShareModal: React.FC<IProps> = ({showModal, mapId, onClose}) => {
                     )}
                 </View>
 
-                <FailedResponseModal
+                <ErrorModal
                     testID={'share-route-modal-error'}
                     showModal={showErrorModal}
+                    errorTitle={t('errorTitle')}
                     errorMessage={shareError}
-                    onClose={onCloseModalHandler}
+                    handleClose={onCloseModalHandler}
+                    isFullScreen
                 />
             </Modal>
         </>

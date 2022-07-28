@@ -2,7 +2,7 @@ import {getFHorizontalPx, getFVerticalPx} from '@helpers/appLayoutDimensions';
 import {SecondaryButton} from '@components/buttons';
 import colors from '@theme/colors';
 import {BottomModal} from '@components/modals';
-import React, {useMemo} from 'react';
+import React, {ReactNode, useMemo} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {BodyPrimary, Header1} from '@components/texts/texts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -19,6 +19,7 @@ interface IProps {
     handleClose: () => void;
     errorTitle: string;
     errorMessage?: string;
+    errorMessageComponent?: ReactNode;
     primaryActionButtonText?: string;
     secondaryActionButtonText?: string;
     testID?: string;
@@ -33,6 +34,7 @@ const ErrorModal = ({
     handleClose,
     errorTitle,
     errorMessage,
+    errorMessageComponent,
     primaryActionButtonText,
     secondaryActionButtonText,
     testID = 'error-modal-test-id',
@@ -54,12 +56,12 @@ const ErrorModal = ({
     }, [bottom, isFullScreen]);
 
     return (
-        <View style={styles.mainContainer}>
+        <>
             <BottomModal
                 show={showModal}
                 openModalHeight={modalHeight}
                 style={styles.modalContainer}>
-                <View style={styles.contentContainer}>
+                <View style={styles.contentContainer} testID={testID}>
                     <ErrorSvg />
                     <View style={styles.textContainer}>
                         <Header1
@@ -70,15 +72,21 @@ const ErrorModal = ({
                         {errorMessage ? (
                             <BodyPrimary
                                 algin="center"
-                                testID={`${testID}-error-message`}>
+                                testID={`${testID}-error-message`}
+                                style={styles.messageContainer}>
                                 {errorMessage}
                             </BodyPrimary>
                         ) : null}
+                        {errorMessageComponent && (
+                            <View style={styles.errorComponentContainer}>
+                                {errorMessageComponent}
+                            </View>
+                        )}
                     </View>
                     {handleRetryAction && (
                         <SecondaryButton
                             style={styles.buttonMargin}
-                            text={secondaryActionButtonText || t('retry')}
+                            text={primaryActionButtonText || t('retry')}
                             onPress={handleRetryAction}
                             testID={`${testID}-retry-button`}
                         />
@@ -86,24 +94,20 @@ const ErrorModal = ({
 
                     <SecondaryButton
                         style={styles.buttonMargin}
-                        text={primaryActionButtonText || t('close')}
+                        text={secondaryActionButtonText || t('close')}
                         onPress={handleClose}
                         testID={`${testID}-close-button`}
                     />
                 </View>
             </BottomModal>
             <Backdrop isVisible={showModal} />
-        </View>
+        </>
     );
 };
 
 export default ErrorModal;
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        width: '100%',
-        height: '100%',
-    },
     modalContainer: {
         height: '100%',
         width: '100%',
@@ -116,7 +120,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginHorizontal: getFHorizontalPx(16),
-        paddingBottom: getFVerticalPx(16),
+        paddingBottom: getFVerticalPx(16 + BOTTOM_PADDING_HEIGHT),
+        paddingTop: getFVerticalPx(16),
+    },
+    messageContainer: {
+        marginTop: getFVerticalPx(8),
+    },
+    errorComponentContainer: {
+        marginTop: getFVerticalPx(24),
     },
     buttonMargin: {
         marginTop: getFVerticalPx(16),
