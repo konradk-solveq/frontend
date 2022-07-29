@@ -163,7 +163,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
         setShowListLoader(true);
-        setSavedMapFilters(prev => ({...prev, ...picked}));
+        setSavedMapFilters(prev => ({
+            created: prev.created,
+            distance: prev.distance,
+            ...picked,
+        }));
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
