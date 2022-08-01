@@ -1,19 +1,20 @@
 import {useRef, useState, useEffect} from 'react';
 import {AppState, AppStateStatus} from 'react-native';
 
+const MATRCH_STATE = /inactive|background|uknown/;
+
 const useAppState = () => {
     const appState = useRef<AppStateStatus>(AppState.currentState);
-    const [appStateVisible, setAppStateVisible] = useState(appState.current);
+    const [appStateVisible, setAppStateVisible] = useState(
+        appState.current,
+    ); /* TODO: refactor state name */
     const [appPrevStateVisible, setAppPrevStateVisible] = useState(
         appState.current,
-    );
+    ); /* TODO: refactor state name */
     const [appIsActive, setAppIsActive] = useState(true);
 
     const handleAppStateChange = (nextAppState: AppStateStatus) => {
-        if (
-            appState.current.match(/inactive|background/) &&
-            nextAppState === 'active'
-        ) {
+        if (appState.current.match(MATRCH_STATE) && nextAppState === 'active') {
             setAppIsActive(true);
         } else {
             setAppIsActive(false);

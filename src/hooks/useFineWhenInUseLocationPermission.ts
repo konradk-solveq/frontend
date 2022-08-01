@@ -6,20 +6,18 @@ import useAppState from '@hooks/useAppState';
 const useFineWhenInUseLocationPermission = (omitCheck?: boolean) => {
     const [permissionResult, setPermissionResult] = useState<string>('');
 
-    const {appIsActive} = useAppState();
+    const {appStateVisible} = useAppState();
 
     useEffect(() => {
-        if (appIsActive) {
+        if (appStateVisible === 'active' && !omitCheck) {
             const perm = async () => {
                 const resp = await askFineLocationPermission();
                 setPermissionResult(resp);
             };
 
-            if (!omitCheck) {
-                perm();
-            }
+            perm();
         }
-    }, [omitCheck, appIsActive]);
+    }, [omitCheck, appStateVisible]);
 
     return {permissionResult};
 };
