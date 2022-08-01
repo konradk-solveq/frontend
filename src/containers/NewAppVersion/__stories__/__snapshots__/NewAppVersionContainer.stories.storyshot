@@ -19,170 +19,192 @@ exports[`Storyshots containers/NewAppVersion/NewAppVersionContainer Default 1`] 
       Object {
         "alignItems": "center",
         "height": "100%",
+        "paddingBottom": 25.28909952606635,
         "paddingHorizontal": 30.76923076923077,
         "width": "100%",
       }
     }
   >
-    <View
+    <RNSVGSvgView
+      align="xMidYMid"
+      bbHeight={527.9099526066351}
+      bbWidth={340.3846153846154}
+      fill="none"
+      focusable={false}
+      height={527.9099526066351}
+      meetOrSlice={0}
+      minX={0}
+      minY={0}
       style={
-        Object {
-          "alignItems": "center",
-          "height": "100%",
-          "paddingHorizontal": 30.76923076923077,
-          "width": "100%",
-        }
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          Object {
+            "flex": 0,
+            "height": 527,
+            "width": 340,
+          },
+        ]
       }
+      vbHeight={334}
+      vbWidth={177}
+      width={340.3846153846154}
     >
-      <RNSVGSvgView
-        align="xMidYMid"
-        bbHeight={527.9099526066351}
-        bbWidth={340.3846153846154}
-        fill="none"
-        focusable={false}
-        height={527.9099526066351}
-        meetOrSlice={0}
-        minX={0}
-        minY={0}
-        style={
+      <RNSVGGroup
+        fill={null}
+        propList={
           Array [
-            Object {
-              "backgroundColor": "transparent",
-              "borderWidth": 0,
-            },
-            Object {
-              "flex": 0,
-              "height": 527,
-              "width": 340,
-            },
+            "fill",
           ]
         }
-        vbHeight={334}
-        vbWidth={177}
-        width={340.3846153846154}
       >
-        <RNSVGGroup
-          fill={null}
+        <RNSVGPath
+          d="M88 194.708c3.708 0 7.188-.709 10.438-2.128a27.611 27.611 0 0 0 8.649-5.888 27.385 27.385 0 0 0 5.867-8.651c1.414-3.281 2.121-6.782 2.121-10.504 0-3.723-.716-7.215-2.148-10.476a27.733 27.733 0 0 0-5.867-8.68 26.918 26.918 0 0 0-8.622-5.86c-3.268-1.419-6.757-2.128-10.466-2.128-3.691 0-7.171.709-10.44 2.128a27.237 27.237 0 0 0-8.648 5.86 27.962 27.962 0 0 0-5.84 8.68c-1.414 3.261-2.12 6.753-2.12 10.476 0 3.722.706 7.223 2.12 10.504 1.414 3.28 3.36 6.164 5.84 8.651a27.617 27.617 0 0 0 8.648 5.888c3.269 1.419 6.758 2.128 10.467 2.128Zm-.028-19.017c-.625 0-1.166-.23-1.625-.691l-8.842-8.901a2.21 2.21 0 0 1-.496-.746 2.315 2.315 0 0 1-.165-.802c0-.645.193-1.161.578-1.548.386-.405.882-.608 1.488-.608.33 0 .615.056.853.166.258.111.487.286.69.525l1.597 1.687 4.049 4.643-.33-4.533V154.13c0-.663.201-1.197.605-1.603.404-.424.937-.635 1.598-.635.624 0 1.138.211 1.542.635.404.406.606.94.606 1.603v10.753l-.303 4.506 4.022-4.589 1.68-1.714c.202-.221.44-.387.716-.497.275-.129.57-.194.881-.194.588 0 1.075.212 1.46.636.386.406.579.912.579 1.52 0 .277-.056.544-.166.802-.11.258-.284.516-.523.774L89.569 175c-.202.221-.44.396-.716.525-.275.111-.57.166-.881.166Zm-9.806 6.081c-.606 0-1.111-.203-1.515-.608-.386-.405-.578-.921-.578-1.548 0-.571.192-1.059.578-1.465.404-.424.909-.636 1.515-.636h19.639c.606 0 1.102.212 1.487.636.404.406.606.894.606 1.465 0 .627-.202 1.143-.606 1.548-.385.405-.881.608-1.487.608h-19.64Z"
+          fill={4286102069}
           propList={
             Array [
               "fill",
             ]
           }
-        >
-          <RNSVGPath
-            d="M88 194.708c3.708 0 7.188-.709 10.438-2.128a27.611 27.611 0 0 0 8.649-5.888 27.385 27.385 0 0 0 5.867-8.651c1.414-3.281 2.121-6.782 2.121-10.504 0-3.723-.716-7.215-2.148-10.476a27.733 27.733 0 0 0-5.867-8.68 26.918 26.918 0 0 0-8.622-5.86c-3.268-1.419-6.757-2.128-10.466-2.128-3.691 0-7.171.709-10.44 2.128a27.237 27.237 0 0 0-8.648 5.86 27.962 27.962 0 0 0-5.84 8.68c-1.414 3.261-2.12 6.753-2.12 10.476 0 3.722.706 7.223 2.12 10.504 1.414 3.28 3.36 6.164 5.84 8.651a27.617 27.617 0 0 0 8.648 5.888c3.269 1.419 6.758 2.128 10.467 2.128Zm-.028-19.017c-.625 0-1.166-.23-1.625-.691l-8.842-8.901a2.21 2.21 0 0 1-.496-.746 2.315 2.315 0 0 1-.165-.802c0-.645.193-1.161.578-1.548.386-.405.882-.608 1.488-.608.33 0 .615.056.853.166.258.111.487.286.69.525l1.597 1.687 4.049 4.643-.33-4.533V154.13c0-.663.201-1.197.605-1.603.404-.424.937-.635 1.598-.635.624 0 1.138.211 1.542.635.404.406.606.94.606 1.603v10.753l-.303 4.506 4.022-4.589 1.68-1.714c.202-.221.44-.387.716-.497.275-.129.57-.194.881-.194.588 0 1.075.212 1.46.636.386.406.579.912.579 1.52 0 .277-.056.544-.166.802-.11.258-.284.516-.523.774L89.569 175c-.202.221-.44.396-.716.525-.275.111-.57.166-.881.166Zm-9.806 6.081c-.606 0-1.111-.203-1.515-.608-.386-.405-.578-.921-.578-1.548 0-.571.192-1.059.578-1.465.404-.424.909-.636 1.515-.636h19.639c.606 0 1.102.212 1.487.636.404.406.606.894.606 1.465 0 .627-.202 1.143-.606 1.548-.385.405-.881.608-1.487.608h-19.64Z"
-            fill={4286102069}
-            propList={
-              Array [
-                "fill",
-              ]
-            }
-          />
-          <RNSVGPath
-            clipRule={0}
-            d="M139.94 9.058H36.683c-6.709 0-11.178.007-14.607.297-3.319.28-4.83.774-5.79 1.282a13.586 13.586 0 0 0-5.65 5.65c-.507.958-1.001 2.47-1.281 5.789-.29 3.43-.297 7.898-.297 14.607v260.634c0 6.709.007 11.178.297 14.607.28 3.319.774 4.831 1.282 5.789a13.584 13.584 0 0 0 5.65 5.65c.958.508 2.47 1.002 5.789 1.282 3.43.29 7.898.297 14.607.297H139.94c6.71 0 11.179-.007 14.608-.297 3.319-.28 4.83-.774 5.789-1.282a13.588 13.588 0 0 0 5.65-5.65c.508-.958 1.002-2.47 1.282-5.789.29-3.429.297-7.898.297-14.607V36.683c0-6.709-.007-11.178-.297-14.607-.28-3.319-.774-4.83-1.282-5.79a13.59 13.59 0 0 0-5.65-5.65c-.959-.507-2.47-1.001-5.789-1.281-3.429-.29-7.898-.297-14.608-.297ZM2.632 12.048C0 17.02 0 23.574 0 36.683v260.634c0 13.109 0 19.664 2.632 24.635a22.647 22.647 0 0 0 9.416 9.416C17.02 334 23.574 334 36.683 334H139.94c13.11 0 19.664 0 24.636-2.632a22.65 22.65 0 0 0 9.416-9.416c2.632-4.971 2.632-11.526 2.632-24.635V36.683c0-13.109 0-19.664-2.632-24.635a22.647 22.647 0 0 0-9.416-9.416C159.604 0 153.05 0 139.94 0H36.683C23.574 0 17.02 0 12.048 2.632a22.644 22.644 0 0 0-9.416 9.416Z"
-            fill={4291223723}
-            fillRule={0}
-            propList={
-              Array [
-                "fill",
-                "fillRule",
-              ]
-            }
-          />
-          <RNSVGCircle
-            cx="88.312"
-            cy="305.695"
-            fill={4291223723}
-            propList={
-              Array [
-                "fill",
-              ]
-            }
-            r="11.322"
-          />
-          <RNSVGRect
-            fill={4291223723}
-            height="6.793"
-            propList={
-              Array [
-                "fill",
-              ]
-            }
-            rx="3.397"
-            width="32.834"
-            x="72.461"
-            y="14.719"
-          />
-        </RNSVGGroup>
-      </RNSVGSvgView>
-      <View
+        />
+        <RNSVGPath
+          clipRule={0}
+          d="M139.94 9.058H36.683c-6.709 0-11.178.007-14.607.297-3.319.28-4.83.774-5.79 1.282a13.586 13.586 0 0 0-5.65 5.65c-.507.958-1.001 2.47-1.281 5.789-.29 3.43-.297 7.898-.297 14.607v260.634c0 6.709.007 11.178.297 14.607.28 3.319.774 4.831 1.282 5.789a13.584 13.584 0 0 0 5.65 5.65c.958.508 2.47 1.002 5.789 1.282 3.43.29 7.898.297 14.607.297H139.94c6.71 0 11.179-.007 14.608-.297 3.319-.28 4.83-.774 5.789-1.282a13.588 13.588 0 0 0 5.65-5.65c.508-.958 1.002-2.47 1.282-5.789.29-3.429.297-7.898.297-14.607V36.683c0-6.709-.007-11.178-.297-14.607-.28-3.319-.774-4.83-1.282-5.79a13.59 13.59 0 0 0-5.65-5.65c-.959-.507-2.47-1.001-5.789-1.281-3.429-.29-7.898-.297-14.608-.297ZM2.632 12.048C0 17.02 0 23.574 0 36.683v260.634c0 13.109 0 19.664 2.632 24.635a22.647 22.647 0 0 0 9.416 9.416C17.02 334 23.574 334 36.683 334H139.94c13.11 0 19.664 0 24.636-2.632a22.65 22.65 0 0 0 9.416-9.416c2.632-4.971 2.632-11.526 2.632-24.635V36.683c0-13.109 0-19.664-2.632-24.635a22.647 22.647 0 0 0-9.416-9.416C159.604 0 153.05 0 139.94 0H36.683C23.574 0 17.02 0 12.048 2.632a22.644 22.644 0 0 0-9.416 9.416Z"
+          fill={4291223723}
+          fillRule={0}
+          propList={
+            Array [
+              "fill",
+              "fillRule",
+            ]
+          }
+        />
+        <RNSVGCircle
+          cx="88.312"
+          cy="305.695"
+          fill={4291223723}
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          r="11.322"
+        />
+        <RNSVGRect
+          fill={4291223723}
+          height="6.793"
+          propList={
+            Array [
+              "fill",
+            ]
+          }
+          rx="3.397"
+          width="32.834"
+          x="72.461"
+          y="14.719"
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+    <View
+      style={
+        Object {
+          "marginVertical": 50.5781990521327,
+        }
+      }
+    >
+      <Text
+        adjustsFontSizeToFit={false}
+        numberOfLines={0}
         style={
-          Object {
-            "marginVertical": 63.22274881516588,
-            "width": 426.7535545023697,
-          }
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Demi",
+              "fontSize": 20,
+              "fontWeight": "600",
+              "lineHeight": 24,
+              "textAlign": "center",
+            },
+            Object {
+              "marginBottom": 25.28909952606635,
+            },
+          ]
         }
+        testID="header2-test-id"
       >
-        <Text
-          adjustsFontSizeToFit={false}
-          numberOfLines={0}
-          style={
-            Array [
-              Object {
-                "color": "#333333",
-                "fontFamily": "DIN2014-Demi",
-                "fontSize": 20,
-                "fontWeight": "600",
-                "lineHeight": 24,
-                "textAlign": "center",
-              },
-              Object {
-                "marginBottom": 25.28909952606635,
-              },
-            ]
-          }
-          testID="header2-test-id"
-        >
-          newAppVersion.title
-        </Text>
-        <Text
-          adjustsFontSizeToFit={false}
-          style={
-            Array [
-              Object {
-                "color": "#333333",
-                "fontFamily": "DIN2014-Regular",
-                "fontSize": 16,
-                "lineHeight": 24,
-                "textAlign": "center",
-              },
-              undefined,
-            ]
-          }
-          testID="paragraph-test-id"
-        >
-          newAppVersion.content
-        </Text>
-      </View>
-      <View
-        accessibilityState={
-          Object {
-            "disabled": false,
-          }
+        newAppVersion.title
+      </Text>
+      <Text
+        adjustsFontSizeToFit={false}
+        style={
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "DIN2014-Regular",
+              "fontSize": 16,
+              "lineHeight": 24,
+              "textAlign": "center",
+            },
+            undefined,
+          ]
         }
-        accessible={true}
-        collapsable={false}
-        focusable={true}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
+        testID="paragraph-test-id"
+      >
+        newAppVersion.content
+      </Text>
+    </View>
+    <View
+      accessibilityState={
+        Object {
+          "disabled": false,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Array [
+          Object {
+            "alignItems": "center",
+            "borderRadius": 30.76923076923077,
+            "flexDirection": "row",
+            "height": "100%",
+            "justifyContent": "center",
+            "width": "100%",
+          },
+          Object {
+            "elevation": 5,
+            "shadowColor": "#333333",
+            "shadowOffset": Object {
+              "height": 0,
+              "width": 7.6923076923076925,
+            },
+            "shadowOpacity": 0.07,
+            "shadowRadius": 15.384615384615385,
+          },
+          Array [
+            Object {
+              "height": 92.3076923076923,
+              "width": 565.3846153846154,
+            },
+            Object {},
+          ],
+        ]
+      }
+      testID="secondary-btn-test-id"
+    >
+      <View
         style={
           Array [
             Object {
@@ -194,66 +216,33 @@ exports[`Storyshots containers/NewAppVersion/NewAppVersionContainer Default 1`] 
               "width": "100%",
             },
             Object {
-              "elevation": 5,
-              "shadowColor": "#333333",
-              "shadowOffset": Object {
-                "height": 0,
-                "width": 7.6923076923076925,
-              },
-              "shadowOpacity": 0.07,
-              "shadowRadius": 15.384615384615385,
+              "backgroundColor": "#C63733",
             },
-            Array [
-              Object {
-                "height": 92.3076923076923,
-                "width": 565.3846153846154,
-              },
-              Object {},
-            ],
+            undefined,
           ]
         }
-        testID="secondary-btn-test-id"
+        testID="secondary-btn-test-id-container"
       >
-        <View
+        <Text
+          adjustsFontSizeToFit={true}
           style={
             Array [
               Object {
-                "alignItems": "center",
-                "borderRadius": 30.76923076923077,
-                "flexDirection": "row",
-                "height": "100%",
-                "justifyContent": "center",
-                "width": "100%",
+                "color": "#333333",
+                "fontFamily": "DIN2014-Demi",
+                "fontSize": 18,
+                "lineHeight": 28,
+                "textAlign": "left",
               },
               Object {
-                "backgroundColor": "#C63733",
+                "color": "#FFFFFF",
               },
-              undefined,
             ]
           }
-          testID="secondary-btn-test-id-container"
+          testID="secondary-btn-test-id-text"
         >
-          <Text
-            adjustsFontSizeToFit={true}
-            style={
-              Array [
-                Object {
-                  "color": "#333333",
-                  "fontFamily": "DIN2014-Demi",
-                  "fontSize": 18,
-                  "lineHeight": 28,
-                  "textAlign": "left",
-                },
-                Object {
-                  "color": "#FFFFFF",
-                },
-              ]
-            }
-            testID="secondary-btn-test-id-text"
-          >
-            newAppVersion.updateButton
-          </Text>
-        </View>
+          newAppVersion.updateButton
+        </Text>
       </View>
     </View>
   </View>
