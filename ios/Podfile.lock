@@ -418,9 +418,9 @@ PODS:
     - glog
   - react-native-compass-heading (1.4.0):
     - React
-  - react-native-config (1.4.4):
-    - react-native-config/App (= 1.4.4)
-  - react-native-config/App (1.4.4):
+  - react-native-config (1.4.6):
+    - react-native-config/App (= 1.4.6)
+  - react-native-config/App (1.4.6):
     - React-Core
   - react-native-get-random-values (1.7.0):
     - React-Core
@@ -927,7 +927,7 @@ SPEC CHECKSUMS:
   React-jsinspector: d0374f7509d407d2264168b6d0fad0b54e300b85
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-compass-heading: f3a8fcfcd578b26ab97283e5c0fb0f02a764013e
-  react-native-config: 72d948053a442779b3178fddd571e37f118ef606
+  react-native-config: 7cd105e71d903104e8919261480858940a6b9c0e
   react-native-get-random-values: 237bffb1c7e05fb142092681531810a29ba53015
   react-native-google-maps: 54fdfa45c3f194eeedfc0e3a548ad35f46af72e9
   react-native-image-picker: 5a7dd93d4f9dd0d910da5dde3707fd96f70d03b3
