@@ -19,7 +19,6 @@ import {
 import {HorizontalSpacer} from '@components/divider';
 import {Header1, Header3, Subtitle} from '@components/texts/texts';
 import {ChevronUp} from '@components/svg';
-import style from '@src/pages/template/styles';
 
 interface IProps {
     onOpenPress: (e: GestureResponderEvent) => void;
@@ -134,4 +133,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Metrics;
+export default React.memo(Metrics);
