@@ -53,6 +53,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
+    const distanceRef = useRef(0);
 
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
@@ -182,6 +183,10 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
         setTrackerData(prev => {
             if (prev) {
+                if (prev.odometer) {
+                    distanceRef.current = prev.odometer;
+                }
+
                 return {
                     ...prev,
                     speed: DEFAULT_SPEED,
@@ -202,7 +207,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
      */
     const onResumeTracker = useCallback(async () => {
         dispatch(setRecordingState('recording'));
-        await resumeTracingLocation(currentRouteId);
+        await resumeTracingLocation(currentRouteId, distanceRef.current);
 
         /* Debug route - start */
         dispatchRouteDebugAction(dispatch, 'resume', currentRouteId);

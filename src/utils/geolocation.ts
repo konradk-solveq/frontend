@@ -476,7 +476,10 @@ export const pauseTracingLocation = async (clearRouteId?: boolean) => {
 };
 
 /* Force plugin to moving state */
-export const resumeTracingLocation = async (routeId?: string) => {
+export const resumeTracingLocation = async (
+    routeId?: string,
+    odometer?: number,
+) => {
     try {
         if (routeId) {
             await BackgroundGeolocation.setConfig({
@@ -492,6 +495,10 @@ export const resumeTracingLocation = async (routeId?: string) => {
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
             await BackgroundGeolocation.changePace(true);
+        }
+
+        if (odometer) {
+            await BackgroundGeolocation.setOdometer(odometer);
         }
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
