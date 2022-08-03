@@ -434,6 +434,7 @@ const RoutesMap: React.FC = () => {
                 pathType={routeInfo.mapType}
                 animateButtonsPosition={bottomSheetWithDetails}
                 centerMapAtLocation={centerMapAtLocation}
+                mapID={mapID}
             />
             <BottomModal show={bottomSheetWithDetails} canOpen={canOpenModal}>
                 {mapData ? (
