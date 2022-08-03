@@ -167,4 +167,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default FullMetrics;
+export default React.memo(FullMetrics);

@@ -302,7 +302,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setBeforeRecording(true);
                 const isLongEnough = checkIfRouteIsLongEnough();
 
-                await stopTracker(!isLongEnough);
+                stopTracker(!isLongEnough);
 
                 if (!isLongEnough) {
                     setShowToShortRouteAlert(true);
@@ -392,37 +392,40 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const [mapToNorth, setMapToNorth] = useState(false);
 
-    const onPressLocationButtonHandler = (actionType: LocationButtonT) => {
-        switch (actionType) {
-            case 'default':
-                /**
-                 * Disable heading, leave following user position
-                 * if enabled
-                 */
-                setHeadingOn(false);
-                break;
-            case 'follow':
-                /**
-                 * If needed enable following user position
-                 * and enable heading
-                 */
-                setHeadingOn(true);
-                setAutoFindMe(prev => ++prev);
-                break;
-            case 'center':
-                /**
-                 * Center on user position
-                 */
-                setAutoFindMe(prev => ++prev);
-                break;
-            case 'north':
-                setMapToNorth(true);
-                setMapRotated(false);
-                break;
-            default:
-                break;
-        }
-    };
+    const onPressLocationButtonHandler = useCallback(
+        (actionType: LocationButtonT) => {
+            switch (actionType) {
+                case 'default':
+                    /**
+                     * Disable heading, leave following user position
+                     * if enabled
+                     */
+                    setHeadingOn(false);
+                    break;
+                case 'follow':
+                    /**
+                     * If needed enable following user position
+                     * and enable heading
+                     */
+                    setHeadingOn(true);
+                    setAutoFindMe(prev => ++prev);
+                    break;
+                case 'center':
+                    /**
+                     * Center on user position
+                     */
+                    setAutoFindMe(prev => ++prev);
+                    break;
+                case 'north':
+                    setMapToNorth(true);
+                    setMapRotated(false);
+                    break;
+                default:
+                    break;
+            }
+        },
+        [],
+    );
 
     const onMapRotatedHandler = useCallback(
         (angle: number) => {

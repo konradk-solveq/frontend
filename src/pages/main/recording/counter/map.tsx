@@ -344,14 +344,14 @@ const Map: React.FC<IProps> = ({
         zoom: ZOOM_START_VALUE,
     };
 
-    const onSetLocationHanlder = (pos: LatLng) => {
+    const onSetLocationHanlder = useCallback((pos: LatLng) => {
         setLocaion(pos);
-    };
+    }, []);
 
-    const onSetIsRestoredHandler = () => {
+    const onSetIsRestoredHandler = useCallback(() => {
         restoreRef.current = true;
         canAnimateRef.current = true;
-    };
+    }, []);
 
     const handleCameraChange = useCallback(
         _ => {
@@ -434,4 +434,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Map;
+export default React.memo(Map);
