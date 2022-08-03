@@ -142,6 +142,7 @@ const BottomModal: React.FC<IProps> = ({
         [onChangeState],
     );
 
+    const modalAnimationTiming = useSharedValue(750);
     const modalHeight = useSharedValue(
         initWithStartHeight ? openModalHeight : 0,
     );
@@ -150,7 +151,10 @@ const BottomModal: React.FC<IProps> = ({
 
     const modalAnimation = useAnimatedStyle(() => ({
         height: withTiming(modalHeight.value, {
-            duration: isReactive ? 0 : 750,
+            duration:
+                modalHeight.value < containerHeight
+                    ? 750
+                    : modalAnimationTiming.value,
         }),
     }));
     /**
@@ -197,6 +201,19 @@ const BottomModal: React.FC<IProps> = ({
         openDuration,
         closeDuration,
     ]);
+
+    /**
+     * Delay setting new timer valu to avoid skipping animation
+     */
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            modalAnimationTiming.value = isReactive ? 0 : 750;
+        }, 750);
+
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [isReactive, modalAnimationTiming]);
 
     /**
      * Set full height of modal
@@ -320,4 +337,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default BottomModal;
+export default React.memo(BottomModal);

@@ -52,6 +52,11 @@ const initRouteInfo = {
     routeMapType: RouteMapType.BIKE_MAP,
 };
 
+/**
+ * Equal to animation duration time
+ */
+const FETCH_DATA_DELAY = 750;
+
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
     const dispatch = useAppDispatch();
@@ -150,10 +155,20 @@ const RoutesMap: React.FC = () => {
     };
 
     useEffect(() => {
+        let timer: NodeJS.Timeout;
         const {id, routeMapType} = routeInfo;
         if (id) {
-            dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
+            /**
+             * Delay fetching for smooth animation
+             */
+            timer = setTimeout(() => {
+                dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
+            }, FETCH_DATA_DELAY);
         }
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, [dispatch, routeInfo]);
 
     const mapData = useAppSelector(
@@ -298,7 +313,7 @@ const RoutesMap: React.FC = () => {
                     break;
             }
         },
-        [globalLocation, routeMapMarkers, navigation],
+        [globalLocation, navigation, debouncedMarkersFetch],
     );
 
     /**
@@ -306,9 +321,7 @@ const RoutesMap: React.FC = () => {
      * When no data exists placeholder will be shown.
      */
     useEffect(() => {
-        customInteractionManager.runAfterInteractions(() => {
-            setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
-        });
+        setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
     }, [routeInfo.id, mapID]);
 
     const onPressHandler = useCallback(

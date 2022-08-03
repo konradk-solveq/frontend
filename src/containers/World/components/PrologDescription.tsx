@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PrologDescription;
+export default React.memo(PrologDescription);
