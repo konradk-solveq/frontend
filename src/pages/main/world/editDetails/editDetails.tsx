@@ -203,12 +203,14 @@ const EditDetails = () => {
                         androidSize={getFVerticalPx(48)}
                     />
                 </View>
-                <ErrorModal
-                    showModal={showErrorModal}
-                    errorTitle={t('errorTitle')}
-                    errorMessage={error?.message}
-                    handleClose={() => setShowErrorModal(false)}
-                />
+                {!!error?.message && (
+                    <ErrorModal
+                        showModal={showErrorModal}
+                        errorTitle={t('errorTitle')}
+                        errorMessage={error?.message}
+                        handleClose={() => setShowErrorModal(false)}
+                    />
+                )}
             </>
         );
     }
@@ -252,12 +254,14 @@ const EditDetails = () => {
                     />
                 </ScrollView>
             </View>
-            <ErrorModal
-                showModal={showErrorModal}
-                errorTitle={t('errorTitle')}
-                errorMessage={error?.message}
-                handleClose={() => setShowErrorModal(false)}
-            />
+            {!!error?.message && (
+                <ErrorModal
+                    showModal={showErrorModal}
+                    errorTitle={t('errorTitle')}
+                    errorMessage={error?.message}
+                    handleClose={() => setShowErrorModal(false)}
+                />
+            )}
         </GenericScreen>
     );
 };

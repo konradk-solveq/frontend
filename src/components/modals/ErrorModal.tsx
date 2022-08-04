@@ -28,7 +28,7 @@ interface IProps {
 const BOTTOM_PADDING_HEIGHT = 24;
 
 const ErrorModal = ({
-    showModal,
+    showModal = false,
     isFullScreen = false,
     handleRetryAction,
     handleClose,
