@@ -1,11 +1,15 @@
 import {View, Linking, StyleSheet, StyleProp, ViewStyle} from 'react-native';
 import {Header3, Paragraph} from '@components/texts/texts';
-import linkify, {addNotificationLinks} from '@utils/linking/linkify';
+import linkify, {
+    addNotificationLinks,
+    compareUrls,
+} from '@utils/linking/linkify';
 import Hyperlink from 'react-native-hyperlink';
 import React from 'react';
 import {LegalDocumentVersionType} from '@models/regulations.model';
 import colors from '@theme/colors';
 import {getFVerticalPx} from '@helpers/appLayoutDimensions';
+import {Text} from 'react-native';
 
 interface IProps {
     message: LegalDocumentVersionType;
@@ -26,11 +30,13 @@ const LegalDocument = ({message, style, linkColor = colors.link}: IProps) => {
                 );
                 return (
                     <Hyperlink
-                        key={paragraph.text}
+                        key={JSON.stringify(paragraph.text)}
                         linkify={linkify}
                         linkStyle={{color: linkColor}}
                         linkText={(url: string) => {
-                            const link = actions.find(e => e.value === url);
+                            const link = actions.find(action =>
+                                compareUrls(url, action),
+                            );
                             if (link) {
                                 return link.text;
                             } else {
@@ -45,7 +51,13 @@ const LegalDocument = ({message, style, linkColor = colors.link}: IProps) => {
                                 fontWeight: paragraph.font,
                                 marginTop: paragraph.marginTop,
                             }}>
-                            {displayText}
+                            {typeof displayText === 'string'
+                                ? displayText
+                                : displayText.map(({bold, phrase}) => (
+                                    <Text style={[bold && styles.bold]}>
+                                        {phrase}
+                                    </Text>
+                                ))}
                         </Paragraph>
                     </Hyperlink>
                 );
@@ -60,5 +72,8 @@ const styles = StyleSheet.create({
     container: {
         marginTop: getFVerticalPx(16),
         width: '100%',
+    },
+    bold: {
+        fontWeight: 'bold',
     },
 });
