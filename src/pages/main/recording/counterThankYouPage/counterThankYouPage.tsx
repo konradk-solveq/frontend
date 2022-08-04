@@ -142,20 +142,26 @@ const CounterThankYouPage: React.FC = () => {
         }
     }, [error?.statusCode, isSyncData, onGoForward, goForward, error.message]);
 
-    const handleRouteAction = (forward: string) => {
-        setGoForward(forward);
-        dispatch(syncCurrentRouteData());
-    };
+    const handleRouteAction = useCallback(
+        (forward: string) => {
+            setGoForward(forward);
+            dispatch(syncCurrentRouteData());
+        },
+        [dispatch],
+    );
 
-    const onCancelRouteHandler = (forward: string) => {
-        setGoForward(forward);
-        dispatch(abortSyncCurrentRouteData(true)).then(() => {
-            /**
-             * prevent going back to counter after recording the new route after the 'x' button was pressed
-             */
-            setGoForward('');
-        });
-    };
+    const onCancelRouteHandler = useCallback(
+        (forward: string) => {
+            setGoForward(forward);
+            dispatch(abortSyncCurrentRouteData(true)).then(() => {
+                /**
+                 * prevent going back to counter after recording the new route after the 'x' button was pressed
+                 */
+                setGoForward('');
+            });
+        },
+        [dispatch],
+    );
 
     const onCloseErrorModalHandler = () => {
         canGoForwardRef.current = false;
@@ -232,4 +238,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CounterThankYouPage;
+export default React.memo(CounterThankYouPage);

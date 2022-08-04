@@ -21,4 +21,4 @@ const StatisticElement: React.FC<IStatisticElementProps> = ({
     );
 };
 
-export default StatisticElement;
+export default React.memo(StatisticElement);
