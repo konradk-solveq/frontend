@@ -407,6 +407,11 @@ export const fetchAppNotification = (
 
         const response = await getAppNotificationService(notificationDate);
 
+        if (response.error || response.status >= 400 || !response.data) {
+            dispatch(setSyncError(response.error, response.status));
+            return;
+        }
+
         batch(() => {
             dispatch(setAppNotifications(response.data));
             if (!notificationDate) {
