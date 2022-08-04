@@ -851,9 +851,6 @@
 				);
 				MARKETING_VERSION = 3.33.11;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross;
 				PRODUCT_NAME = myKROSS;
@@ -1408,9 +1405,6 @@
 				);
 				MARKETING_VERSION = 3.33.11;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.dev;
 				PRODUCT_NAME = "myKROSS-dev";
@@ -1650,9 +1644,6 @@
 				);
 				MARKETING_VERSION = 3.33.11;
 				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.dev;
 				PRODUCT_NAME = "myKROSS-dev";

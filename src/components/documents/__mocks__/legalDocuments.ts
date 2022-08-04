@@ -1,5 +1,4 @@
 import {NotificationType, LegalDocumentType} from '@models/regulations.model';
-import {DEEPLINKING_NAMESPACE} from '@env';
 
 export const notifications: NotificationType[] = [
     {
@@ -15,7 +14,7 @@ export const notifications: NotificationType[] = [
             actions: [
                 {
                     type: 'internal_uri',
-                    value: `${DEEPLINKING_NAMESPACE}://policy`,
+                    value: 'policy',
                     text: 'Privacy policy',
                     match: '{{policy}}',
                 },
@@ -56,7 +55,9 @@ type LegalDocumentsT = {
 export const legalDocuments: LegalDocumentsT = {
     policy: {
         current: {
+            id: 1,
             content: {
+                version: '1',
                 header: 'TEST',
                 title: 'Testing',
                 paragraph: [
@@ -77,7 +78,9 @@ export const legalDocuments: LegalDocumentsT = {
             ],
         },
         next: {
+            id: 2,
             content: {
+                version: '1',
                 header: 'TEST NEXT',
                 title: 'next next',
                 paragraph: [
@@ -100,7 +103,9 @@ export const legalDocuments: LegalDocumentsT = {
     },
     regulations: {
         current: {
+            id: 1,
             content: {
+                version: '1',
                 header: 'TEST',
                 title: 'Testing',
                 paragraph: [
@@ -121,7 +126,9 @@ export const legalDocuments: LegalDocumentsT = {
             ],
         },
         next: {
+            id: 2,
             content: {
+                version: '1',
                 header: 'TEST NEXT',
                 title: 'next next',
                 paragraph: [

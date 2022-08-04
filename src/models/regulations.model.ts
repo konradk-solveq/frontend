@@ -8,7 +8,12 @@ export type ActionType = {
 export type ParagraphType = {
     font: 'bold' | 'normal';
     marginTop: number;
-    text: string;
+    text: string | NestedParagraphType[];
+};
+
+export type NestedParagraphType = {
+    bold: boolean;
+    phrase: string;
 };
 
 export type MessageContentType = {
@@ -17,8 +22,16 @@ export type MessageContentType = {
     header?: string;
 };
 
+export type LegalDocumentContentType = {
+    version: string;
+    title: string;
+    header: string;
+    paragraph: ParagraphType[];
+};
+
 export type LegalDocumentVersionType = {
-    content?: MessageContentType;
+    content?: LegalDocumentContentType;
+    actions: ActionType[];
     id: number;
 };
 
