@@ -185,4 +185,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ThankYouPageContainer;
+export default React.memo(ThankYouPageContainer);
