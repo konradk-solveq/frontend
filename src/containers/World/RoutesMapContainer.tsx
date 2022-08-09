@@ -21,6 +21,7 @@ import useCompassHook from '@src/hooks/useCompassHook';
 import {AnimatedContainerPosition} from './components';
 import {googleMapId} from '@src/utils/constants/googleMapId';
 import {Loader} from '@src/components/loader';
+import {debounce} from '@src/utils/input/debounce';
 
 interface IProps {
     onWebViewMessage: (e: WebViewMessageEvent) => void;
@@ -32,7 +33,6 @@ interface IProps {
     mapPath?: CoordsType[];
     pathType?: string;
     animateButtonsPosition?: boolean;
-    mapID?: string;
 }
 
 /* TODO: try to exclude logic from useEffects to custom one to avoid race conditions */
@@ -46,7 +46,6 @@ const RoutesMapContainer: React.FC<IProps> = ({
     mapPath,
     pathType,
     animateButtonsPosition = false,
-    mapID,
 }: IProps) => {
     const mapRef = useRef<WebView>(null);
     const posRef = useRef(false);
@@ -63,7 +62,10 @@ const RoutesMapContainer: React.FC<IProps> = ({
      * which causes rerenders.
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const loc = useMemo(() => getMapInitLocation(location), []);
+    const debouncedLocation = useMemo(
+        () => debounce(getMapInitLocation(location), 500),
+        [],
+    );
 
     const markersExists = useMemo(
         () => routesMarkers && routesMarkers.length > 0,
@@ -200,7 +202,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
                 source={{
                     html:
                         '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
-                        `${mapID ? null : loc}` +
+                        debouncedLocation +
                         googleMapId +
                         mapSource +
                         '</body></html>',
@@ -210,7 +212,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
                 ref={mapRef}
                 onMessage={onWebViewMessageHandler}
             />
-            {!centerMapAtLocation && mapID && (
+            {!mapLoaded && (
                 <View style={styles.loaderContainer}>
                     <Loader
                         color={colors.grey}
