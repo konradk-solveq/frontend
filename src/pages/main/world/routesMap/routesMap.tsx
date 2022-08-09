@@ -40,7 +40,6 @@ import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation
 import Bookmark from '@src/components/icons/Bookmark';
 import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 import {debounce} from '@utils/input/debounce';
 import {mapMarkersDebounceTime} from '@utils/constants';
@@ -447,7 +446,6 @@ const RoutesMap: React.FC = () => {
                 pathType={routeInfo.mapType}
                 animateButtonsPosition={bottomSheetWithDetails}
                 centerMapAtLocation={centerMapAtLocation}
-                mapID={mapID}
             />
             <BottomModal show={bottomSheetWithDetails} canOpen={canOpenModal}>
                 {mapData ? (
@@ -465,12 +463,13 @@ const RoutesMap: React.FC = () => {
                     <RoutesMapDetailsPlaceholderContainer />
                 )}
             </BottomModal>
-
-            <RouteShareModal
-                showModal={shareModalOpen}
-                mapId={mapID ? mapID : ''}
-                onClose={closeShareModal}
-            />
+            {shareModalOpen && (
+                <RouteShareModal
+                    showModal={shareModalOpen}
+                    mapId={mapID ? mapID : ''}
+                    onClose={closeShareModal}
+                />
+            )}
 
             <MoreActionsModal
                 show={bottomSheetWithMoreActions}

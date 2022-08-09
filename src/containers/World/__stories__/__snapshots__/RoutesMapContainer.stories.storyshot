@@ -57,7 +57,19 @@ exports[`Storyshots containers/World/RoutesMapContainer Default 1`] = `
         source={
           Object {
             "baseUrl": "",
-            "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body><script>let pos={latitude: 50.664087722680975, longitude: 17.88744936290463}</script><script>const googleMapId = 'undefined'</script>
+            "html": "<!DOCTYPE html><html lang=\\"pl-PL\\"><head><meta http-equiv=\\"Content-Type\\" content=\\"text/html;  charset=utf-8\\"><meta name=\\"viewport\\" content=\\"width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0\\" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>function executedFunction() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    var later = function later() {
+      clearTimeout(timeout);
+      func.apply(void 0, args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  }<script>const googleMapId = 'undefined'</script>
 <style>
 @font-face {
     font-family: 'DIN2014Narrow-Light';
@@ -420,6 +432,21 @@ const clearMarkersCluster = () => {
         }
         textInteractionEnabled={true}
         useSharedProcessPool={true}
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "height": "100%",
+          "justifyContent": "center",
+          "width": "100%",
+        }
+      }
+    >
+      <ActivityIndicator
+        color="#d3d3d3"
+        size="large"
+        testID="loader-test-id"
       />
     </View>
     <View
