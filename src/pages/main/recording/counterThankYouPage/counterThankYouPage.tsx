@@ -214,16 +214,12 @@ const CounterThankYouPage: React.FC = () => {
                 onCloseAction={() => setShowAlert(true)}
             />
 
-            {!!error?.message && (
-                <ShortRouteModal
-                    showModal={showErrorModal}
-                    errorTitle={t('errorTitle')}
-                    showAlterMessage={
-                        !error?.routeToShort ? error?.message : ''
-                    }
-                    onClose={onCloseErrorModalHandler}
-                />
-            )}
+            <ShortRouteModal
+                showModal={showErrorModal}
+                errorTitle={t('errorTitle')}
+                showAlterMessage={!error?.routeToShort ? error?.message : ''}
+                onClose={onCloseErrorModalHandler}
+            />
 
             <Alert show={showAlert} {...alertData} />
         </GenericScreen>

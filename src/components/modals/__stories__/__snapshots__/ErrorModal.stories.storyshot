@@ -26,7 +26,6 @@ Array [
         Object {
           "alignItems": "center",
           "backgroundColor": "#FFFFFF",
-          "height": "100%",
           "justifyContent": "center",
           "width": "100%",
         },
@@ -411,7 +410,6 @@ Array [
         Object {
           "alignItems": "center",
           "backgroundColor": "#FFFFFF",
-          "height": "100%",
           "justifyContent": "center",
           "width": "100%",
         },
