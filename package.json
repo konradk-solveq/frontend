@@ -1,6 +1,6 @@
 {
   "name": "kross_app",
-  "version": "3.26.10",
+  "version": "3.34.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -63,7 +63,7 @@
     "react-native-background-fetch": "^4.0.2",
     "react-native-background-geolocation-android": "git+ssh://git@github.com:transistorsoft/react-native-background-geolocation-android.git#f4d5b202c2d1a86daea530ac50ad4754e38031bb",
     "react-native-compass-heading": "^1.4.0",
-    "react-native-config": "^1.4.4",
+    "react-native-config": "^1.4.6",
     "react-native-device-info": "^8.1.8",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "^1.10.3",
@@ -74,7 +74,7 @@
     "react-native-image-picker": "^3.8.1",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-linear-gradient": "^2.5.6",
-    "react-native-maps": "^0.30.1",
+    "react-native-maps": "^1.1.0",
     "react-native-nfc-manager": "^3.13.2",
     "react-native-permissions": "^3.0.5",
     "react-native-reanimated": "^2.3.0",

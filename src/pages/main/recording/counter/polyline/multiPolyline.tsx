@@ -126,7 +126,7 @@ const MultiPolyline: React.FC<IProps> = ({
             const pos = {
                 latitude: coords.coords.lat,
                 longitude: coords.coords.lon,
-                timestamp: coords.timestamp,
+                timestamp: new Date(coords.timestamp).getUTCMilliseconds(),
             };
 
             const newRure = deepCopy(routeRef.current);

@@ -1,42 +1,25 @@
 import {useEffect, useState} from 'react';
 
-import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
 import {askFineLocationPermission} from '@utils/geolocation';
 import useAppState from '@hooks/useAppState';
 
 const useFineWhenInUseLocationPermission = (omitCheck?: boolean) => {
-    const {openLocationSettings} = useOpenGPSSettings(true);
-
     const [permissionResult, setPermissionResult] = useState<string>('');
 
-    const {appIsActive} = useAppState();
+    const {appStateVisible} = useAppState();
 
     useEffect(() => {
-        if (permissionResult === 'granted') {
-            const t = setTimeout(() => {
-                openLocationSettings();
-            }, 500);
-
-            return () => {
-                clearTimeout(t);
-            };
-        }
-    }, [permissionResult, openLocationSettings]);
-
-    useEffect(() => {
-        if (appIsActive) {
+        if (appStateVisible === 'active' && !omitCheck) {
             const perm = async () => {
                 const resp = await askFineLocationPermission();
                 setPermissionResult(resp);
             };
 
-            if (!omitCheck) {
-                perm();
-            }
+            perm();
         }
-    }, [omitCheck, appIsActive]);
+    }, [omitCheck, appStateVisible]);
 
-    return {permissionResult, openLocationSettings};
+    return {permissionResult};
 };
 
 export default useFineWhenInUseLocationPermission;

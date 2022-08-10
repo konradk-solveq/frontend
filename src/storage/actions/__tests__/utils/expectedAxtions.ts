@@ -3,11 +3,16 @@ import {endedRoute, startedRoute, stoppedRoute} from './routeData';
 import i18next from '@translations/i18next';
 import {MIN_ROUTE_LENGTH} from '@helpers/global';
 import recordedRoutesData from '../mocks/recordedRoutesData';
+import {startTab} from '@storage/actions/__tests__/mocks/recordTimes';
 
 export const startRecordingExpectedActions = [
     {
         state: true,
         type: actionTypes.SET_ROUTES_LOADING_STATE,
+    },
+    {
+        recordTimes: startTab,
+        type: actionTypes.SET_CURRENT_ROUTE_RECORD_TIMES,
     },
     {
         type: actionTypes.SET_CURRENT_ROUTE,
@@ -68,6 +73,7 @@ export const stopRecordingExpectedActions = [
         type: actionTypes.SET_ROUTES_DATA,
         routes: {
             id: stoppedRoute.id,
+            recordTimes: startTab,
             route: recordedRoutesData,
             remoteRouteId: stoppedRoute.remoteRouteId,
         },

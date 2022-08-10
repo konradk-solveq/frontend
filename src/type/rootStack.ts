@@ -60,6 +60,7 @@ export type KrossWorldParamsListT = {
               favourite?: boolean;
               featured?: boolean;
               shareID?: string;
+              navigateAfterSave?: boolean;
           }
         | undefined;
     RouteDetails: {
@@ -87,7 +88,6 @@ export type KrossWorldParamsListT = {
         sectionName: string;
         featuredMapData?: MapType[];
     };
-    ShareRouteScreen: {mapID: string; mapType?: selectorMapTypeEnum};
 };
 export type RoutesMapRouteT = RouteProp<KrossWorldParamsListT, 'RoutesMap'>;
 export type RoutesMapNavigationPropT = MainNavigationCompositePropT<
@@ -119,14 +119,6 @@ export type FeaturedMapsScreenRouteT = RouteProp<
 export type FeaturedMapsScreenNavigationPropT = MainNavigationCompositePropT<
     KrossWorldParamsListT,
     'FeaturedRoutesScreen'
->;
-export type ShareRouteScreenRouteT = RouteProp<
-    KrossWorldParamsListT,
-    'ShareRouteScreen'
->;
-export type ShareRouteScreenNavigationPropT = MainNavigationCompositePropT<
-    KrossWorldParamsListT,
-    'ShareRouteScreen'
 >;
 /* WORLD */
 
@@ -275,7 +267,6 @@ export type CounterParamsLsitT = {
         time?: number;
         pause?: number;
     };
-    ShortRouteScreen: undefined;
 };
 export type CounterRouteT = RouteProp<CounterParamsLsitT, 'Counter'>;
 export type CounterNavigationPropT = MainNavigationCompositePropT<
@@ -289,14 +280,6 @@ export type CounterThankYouPageRouteT = RouteProp<
 export type CounterThankYouPageNavigationPropT = MainNavigationCompositePropT<
     CounterParamsLsitT,
     'CounterThankYouPage'
->;
-export type ShortRouteScreenRouteT = RouteProp<
-    CounterParamsLsitT,
-    'ShortRouteScreen'
->;
-export type ShortRouteScreenNavigationPropT = MainNavigationCompositePropT<
-    CounterParamsLsitT,
-    'ShortRouteScreen'
 >;
 /* COUNTER */
 

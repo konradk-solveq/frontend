@@ -41,6 +41,7 @@ export const convertToDateWithTime = (date: string | Date | undefined) => {
  */
 export const convertToCounterFormat = (
     time: number,
+    pauseTime: number,
     startTime?: Date,
 ): CounterTimeT => {
     const result = {
@@ -56,7 +57,7 @@ export const convertToCounterFormat = (
         /**
          * Current time
          */
-        const timeInMilliSeconds = new Date(time).valueOf();
+        const timeInMilliSeconds = new Date(time - pauseTime).valueOf();
 
         /**
          * Start time of current recording

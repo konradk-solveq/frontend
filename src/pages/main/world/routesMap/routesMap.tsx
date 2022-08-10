@@ -40,14 +40,21 @@ import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation
 import Bookmark from '@src/components/icons/Bookmark';
 import NotificationList from '@components/notifications/NotificationList';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import customInteractionManager from '@utils/customInteractionManager/customInteractionManager';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
+import {debounce} from '@utils/input/debounce';
+import {mapMarkersDebounceTime} from '@utils/constants';
+import RouteShareModal from '@src/containers/World/components/RouteShareModal';
 
 const initRouteInfo = {
     id: '',
     mapType: selectorMapTypeEnum.regular,
     routeMapType: RouteMapType.BIKE_MAP,
 };
+
+/**
+ * Equal to animation duration time
+ */
+const FETCH_DATA_DELAY = 750;
 
 const RoutesMap: React.FC = () => {
     const navigation = useAppNavigation();
@@ -115,6 +122,7 @@ const RoutesMap: React.FC = () => {
         bottomSheetWithMoreActions,
         setBottomSheetWithMoreActions,
     ] = useState(false);
+    const [shareModalOpen, setShareModalOpen] = useState(false);
 
     const handleMarkerClick = (id: string, types: string[]) => {
         const isPlanned = types.includes('FAVORITE');
@@ -146,10 +154,20 @@ const RoutesMap: React.FC = () => {
     };
 
     useEffect(() => {
+        let timer: NodeJS.Timeout;
         const {id, routeMapType} = routeInfo;
         if (id) {
-            dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
+            /**
+             * Delay fetching for smooth animation
+             */
+            timer = setTimeout(() => {
+                dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
+            }, FETCH_DATA_DELAY);
         }
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, [dispatch, routeInfo]);
 
     const mapData = useAppSelector(
@@ -243,6 +261,15 @@ const RoutesMap: React.FC = () => {
         }
     }, [navigation]);
 
+    const debouncedMarkersFetch = useMemo(
+        () =>
+            debounce(
+                routeMapMarkers.fetchRoutesMarkers,
+                mapMarkersDebounceTime,
+            ),
+        [routeMapMarkers.fetchRoutesMarkers],
+    );
+
     const onWebViewMessageHandler = useCallback(
         (e: WebViewMessageEvent) => {
             const webviewMessage = e.nativeEvent?.data?.split('#$#');
@@ -261,7 +288,7 @@ const RoutesMap: React.FC = () => {
                     ];
 
                     if (globalLocation) {
-                        routeMapMarkers.fetchRoutesMarkers(
+                        debouncedMarkersFetch(
                             {
                                 bbox: bbox,
                                 width: 500,
@@ -285,7 +312,7 @@ const RoutesMap: React.FC = () => {
                     break;
             }
         },
-        [globalLocation, routeMapMarkers, navigation],
+        [globalLocation, navigation, debouncedMarkersFetch],
     );
 
     /**
@@ -293,9 +320,7 @@ const RoutesMap: React.FC = () => {
      * When no data exists placeholder will be shown.
      */
     useEffect(() => {
-        customInteractionManager.runAfterInteractions(() => {
-            setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
-        });
+        setBottomSheetWithDetails(routeInfo.id || mapID ? true : false);
     }, [routeInfo.id, mapID]);
 
     const onPressHandler = useCallback(
@@ -340,10 +365,7 @@ const RoutesMap: React.FC = () => {
                     });
                     break;
                 case 'share':
-                    navigation.navigate('ShareRouteScreen', {
-                        mapID: mapId,
-                        mapType: routeInfo.mapType,
-                    });
+                    setShareModalOpen(true);
                     break;
                 case 'edit':
                     navigation.navigate('EditDetails', {
@@ -392,13 +414,16 @@ const RoutesMap: React.FC = () => {
             mapData?.id,
             mapData?.reaction,
             mapData?.isPublic,
-            routeInfo.mapType,
             isCreatedByUser,
             reaction?.enumValue,
             t,
             addToast,
         ],
     );
+
+    const closeShareModal = useCallback(() => {
+        setShareModalOpen(false);
+    }, [setShareModalOpen]);
 
     return (
         <GenericScreen hideBackArrow transculentStatusBar transculentBottom>
@@ -438,6 +463,13 @@ const RoutesMap: React.FC = () => {
                     <RoutesMapDetailsPlaceholderContainer />
                 )}
             </BottomModal>
+            {shareModalOpen && (
+                <RouteShareModal
+                    showModal={shareModalOpen}
+                    mapId={mapID ? mapID : ''}
+                    onClose={closeShareModal}
+                />
+            )}
 
             <MoreActionsModal
                 show={bottomSheetWithMoreActions}

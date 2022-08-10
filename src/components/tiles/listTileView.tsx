@@ -16,6 +16,10 @@ import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import {isIOS} from '@src/utils/platform';
 import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
+import colors from '@theme/colors';
+
+const ICON_SIZE = 24;
+
 interface PropsI {
     tilePressOn: () => void;
     fullDate: string;
@@ -144,7 +148,8 @@ const ListTileView: React.FC<PropsI> = ({
                                                         ? MykrossIconFont.MYKROSS_ICON_LIKE_ON
                                                         : MykrossIconFont.MYKROSS_ICON_LIKE_OFF
                                                 }
-                                                style={styles.icon}
+                                                iconColor={colors.black}
+                                                iconSize={ICON_SIZE}
                                             />
                                             <Header2 style={styles.iconNumber}>
                                                 {numberOfLikes}
@@ -163,7 +168,8 @@ const ListTileView: React.FC<PropsI> = ({
                                                         ? MykrossIconFont.MYKROSS_ICON_SAVE_ON
                                                         : MykrossIconFont.MYKROSS_ICON_SAVE_OFF
                                                 }
-                                                style={styles.icon}
+                                                iconColor={colors.black}
+                                                iconSize={ICON_SIZE}
                                             />
                                         </PressableComponent>
                                     </View>
@@ -177,7 +183,8 @@ const ListTileView: React.FC<PropsI> = ({
                                             icon={
                                                 MYKROSS_ICON_NATIVE_SHARE_ICON
                                             }
-                                            style={styles.icon}
+                                            iconColor={colors.black}
+                                            iconSize={ICON_SIZE}
                                         />
                                     </PressableComponent>
                                 )}
@@ -188,7 +195,8 @@ const ListTileView: React.FC<PropsI> = ({
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_EDIT
                                             }
-                                            style={styles.icon}
+                                            iconColor={colors.black}
+                                            iconSize={ICON_SIZE}
                                         />
                                     </PressableComponent>
                                 )}
@@ -202,7 +210,8 @@ const ListTileView: React.FC<PropsI> = ({
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_MORE
                                             }
-                                            style={styles.icon}
+                                            iconColor={colors.black}
+                                            iconSize={ICON_SIZE}
                                         />
                                     </PressableComponent>
                                 </View>

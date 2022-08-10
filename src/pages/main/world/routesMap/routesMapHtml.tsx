@@ -302,13 +302,21 @@ const setPath = (path, mapType) => {
     });
 
         
-    routePath.setMap(map);
+    if(routePath){
+        routePath.setMap(map);
+    }
 }
 
 const clearPath = () => {
-    routePath.setMap(null);
-    startMark.setMap(null);
-    endMark.setMap(null);
+    if(routePath){
+        routePath.setMap(null);
+    }
+    if(startMark){
+        startMark.setMap(null);
+    }
+    if(endMark){
+        endMark.setMap(null);
+    }
 }
 
 const clearMarkersCluster = () => {

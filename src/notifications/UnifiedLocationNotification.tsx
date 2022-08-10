@@ -10,12 +10,14 @@ import {ViewStyle} from 'react-native';
 interface IProps {
     locationNotAlwaysNotification?: boolean;
     showGPSStatus?: boolean;
+    hideSearchSignal?: boolean;
     style?: ViewStyle | ViewStyle[];
 }
 
 const UnifiedLocationNotification: React.FC<IProps> = ({
     locationNotAlwaysNotification,
     showGPSStatus,
+    hideSearchSignal,
     style,
 }: IProps) => {
     const {
@@ -63,6 +65,7 @@ const UnifiedLocationNotification: React.FC<IProps> = ({
         return (
             <LocationStatusNotification
                 showWhenLocationIsDisabled
+                hideSearchSignal={hideSearchSignal}
                 style={style}
             />
         );

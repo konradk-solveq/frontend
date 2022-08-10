@@ -34,6 +34,7 @@ import useAppState from '@hooks/useAppState';
 import {getHaversineDistance} from '@utils/locationData';
 import {MINIMAL_DISTANCE_FOR_LOCATION_UPDATE} from '@utils/system/location';
 import {ANDROID_VERSION_10, isIOS} from '@utils/platform';
+import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
 
 const INTERVAL_TO_REFRESH_LOCATION = __DEV__ ? 30000 : 300000;
 const DELAY_TO_RERUN_GEOFANCE = 15000;
@@ -48,6 +49,7 @@ const useProviderStaticLocation = () => {
     const initialGeofence = useRef(false);
 
     const {appIsActive} = useAppState();
+    const {openLocationSettings, isGPSEnabled} = useOpenGPSSettings();
     const isOnboardingFinished = useAppSelector(onboardingFinishedSelector);
     const isRouteRecordingActive = useAppSelector(trackerActiveSelector);
     /**
@@ -67,6 +69,16 @@ const useProviderStaticLocation = () => {
     const {locationType, permissionGranted} = useCheckLocationType();
     const [isTrackingActivated, setIsTrackingActivated] = useState(false);
 
+    useEffect(() => {
+        if (permissionGranted && isOnboardingFinished && !isGPSEnabled) {
+            openLocationSettings();
+        }
+    }, [
+        isGPSEnabled,
+        isOnboardingFinished,
+        openLocationSettings,
+        permissionGranted,
+    ]);
     /**
      * Get initial location with low accuracy.
      * It should be rerun after user has logged out and logged in again.

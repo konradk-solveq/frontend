@@ -22,13 +22,30 @@ export interface LocationDataI {
     activity: MotionActivityEvent;
 }
 
+export enum RecordTimeAction {
+    START = 'start',
+    END = 'end',
+    START_PAUSE = 'start-pause',
+    END_PAUSE = 'end-pause',
+}
+
+export interface RecordTimeI {
+    time: number;
+    action: RecordTimeAction;
+}
+
 export interface ApiPathI {
     lat: number;
     lon: number;
     altitude: number | undefined;
     speed: number | undefined;
     time: string;
-    displayDistance?: number;
+}
+
+export interface PathApiRequestBodyI {
+    path: ApiPathI[];
+    displayDistance: number;
+    recordTimes: RecordTimeI[];
 }
 
 export interface GeofenceEvent extends GE {}

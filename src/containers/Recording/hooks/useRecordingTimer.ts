@@ -3,9 +3,14 @@ import {useCallback, useEffect, useRef, useState} from 'react';
 import useAppState from '@hooks/useAppState';
 import {convertToCounterFormat} from '@utils/dateTime';
 
-const useRecordingTimer = (time?: Date, isRunning?: boolean) => {
+const useRecordingTimer = (
+    time?: Date,
+    isRunning?: boolean,
+    pauseTime?: number,
+) => {
     const interval = useRef<NodeJS.Timeout | null>(null);
     const timerStartedRef = useRef(false);
+    const pauseTimeRef = useRef(0);
 
     const [currentTime, setCurrentTime] = useState(0);
 
@@ -15,6 +20,12 @@ const useRecordingTimer = (time?: Date, isRunning?: boolean) => {
     useEffect(() => {
         setPrevoiusState(appStateVisible);
     }, [appStateVisible]);
+
+    useEffect(() => {
+        if (pauseTime) {
+            pauseTimeRef.current = pauseTime;
+        }
+    }, [pauseTime]);
 
     const startTimer = () => {
         setCurrentTime(Date.now());
@@ -47,6 +58,8 @@ const useRecordingTimer = (time?: Date, isRunning?: boolean) => {
             interval.current = setInterval(() => {
                 setCurrentTime(prevTime => prevTime + 1000);
             }, 1000);
+        } else {
+            timerStartedRef.current = false;
         }
 
         return () => {
@@ -54,7 +67,11 @@ const useRecordingTimer = (time?: Date, isRunning?: boolean) => {
         };
     }, [isRunning]);
 
-    const convertedTime = convertToCounterFormat(currentTime, time);
+    const convertedTime = convertToCounterFormat(
+        currentTime,
+        pauseTimeRef.current,
+        time,
+    );
 
     /**
      * Returns hours and minutes as one value

@@ -28,6 +28,7 @@ import {
 import {routesDataToAPIRequest} from '@utils/apiDataTransform/prepareRequest';
 
 import routesDataToUpdateMock from './mocks/routesDataToUpdate';
+import {startTab} from '@storage/actions/__tests__/mocks/recordTimes';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -132,7 +133,10 @@ describe('[Recording Route actions]', () => {
                 ...initState,
                 routes: {
                     ...initState.routes,
-                    currentRoute: startedRoute /* set started state */,
+                    currentRoute: {
+                        ...startedRoute,
+                        recordTimes: startTab,
+                    } /* set started state */,
                 },
             });
 
@@ -351,7 +355,7 @@ describe('[Recording Route actions]', () => {
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
                     expect(patchSynchDataSuccessSpy).toBeCalledTimes(1);
                     expect(patchSynchDataSuccessSpy).toBeCalledWith(
-                        '/routes/route/remote-route-test-id/path',
+                        '/routes/route/remote-route-test-id/path-and-properties',
                         dataToCompare,
                         {
                             cancelToken: {
@@ -423,7 +427,7 @@ describe('[Recording Route actions]', () => {
                     expect(createRemoteRouteIdSuccessSpy).toBeCalled();
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledWith(
-                        '/routes/route/remote-route-test-id/path',
+                        '/routes/route/remote-route-test-id/path-and-properties',
                         dataToCompare,
                         {
                             cancelToken: {
@@ -473,7 +477,7 @@ describe('[Recording Route actions]', () => {
                 return store.dispatch<any>(syncCurrentRouteData()).then(() => {
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledTimes(1);
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledWith(
-                        '/routes/route/remote-route-test-id/path',
+                        '/routes/route/remote-route-test-id/path-and-properties',
                         dataToCompare,
                         {
                             cancelToken: {

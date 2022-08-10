@@ -20,19 +20,17 @@ const NewAppVersionContainer: React.FC<IProps> = ({
     const {t} = useMergedTranslation('newAppVersion');
     return (
         <View style={styles.container}>
-            <View style={styles.container}>
-                <UpdateAppSvg />
-                <View style={styles.updateText}>
-                    <Header2 algin="center" style={styles.header}>
-                        {t('title')}
-                    </Header2>
-                    <Paragraph algin="center">
-                        {forceUpdate ? t('forceUpdateContent') : t('content')}
-                    </Paragraph>
-                </View>
-
-                <PrimaryButton text={t('updateButton')} onPress={handlePress} />
+            <UpdateAppSvg />
+            <View style={styles.updateText}>
+                <Header2 algin="center" style={styles.header}>
+                    {t('title')}
+                </Header2>
+                <Paragraph algin="center">
+                    {forceUpdate ? t('forceUpdateContent') : t('content')}
+                </Paragraph>
             </View>
+
+            <PrimaryButton text={t('updateButton')} onPress={handlePress} />
         </View>
     );
 };
@@ -44,16 +42,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         paddingHorizontal: appContainerHorizontalMargin,
+        paddingBottom: getFVerticalPx(16),
         alignItems: 'center',
     },
     updateText: {
-        marginVertical: getFVerticalPx(40),
-        width: getFVerticalPx(270),
+        marginVertical: getFVerticalPx(32),
     },
     header: {
         marginBottom: getFVerticalPx(16),
-    },
-    buttonContainer: {
-        bottom: getFVerticalPx(65),
     },
 });

@@ -6,9 +6,9 @@ import {
 
 import {useAppDispatch, useAppSelector} from './redux';
 import {
+    trackerActiveSelector,
     trackerFollowedRouteIdSelector,
     trackerRouteIdSelector,
-    trackerActiveSelector,
 } from '@storage/selectors/routes';
 import {
     setRecordingState,
@@ -53,7 +53,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
-
+    const distanceRef = useRef(0);
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
@@ -131,6 +131,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
             const startAction = await dispatch(
                 startRecordingRoute(routeIdToFollow),
             );
+
             /**
              * If any crash occurs, stop the tracker
              * to allow users start it again
@@ -161,7 +162,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
                 return;
             }
 
-            const res = getTrackerData(location, true);
+            const res = getTrackerData(location, true, true);
             if (!res) {
                 return;
             }
@@ -182,6 +183,10 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
 
         setTrackerData(prev => {
             if (prev) {
+                if (prev.odometer) {
+                    distanceRef.current = prev.odometer;
+                }
+
                 return {
                     ...prev,
                     speed: DEFAULT_SPEED,
@@ -202,7 +207,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
      */
     const onResumeTracker = useCallback(async () => {
         dispatch(setRecordingState('recording'));
-        await resumeTracingLocation(currentRouteId);
+        await resumeTracingLocation(currentRouteId, distanceRef.current);
 
         /* Debug route - start */
         dispatchRouteDebugAction(dispatch, 'resume', currentRouteId);

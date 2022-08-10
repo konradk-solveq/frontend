@@ -1,6 +1,10 @@
 import {createRoute, removePrivateMapData, sendRouteData} from '@api/index';
-import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
-import {MIN_ROUTE_LENGTH} from '@helpers/global';
+import {
+    LocationDataI,
+    PathApiRequestBodyI,
+    RecordTimeI,
+} from '@interfaces/geolocation';
+
 import {
     getRouteDefaultName,
     routesDataToAPIRequest,
@@ -18,7 +22,7 @@ export interface RoutesResponse {
     error: string;
     rawError?: string;
     shortRoute?: boolean;
-    sentData?: ApiPathI[];
+    sentData?: PathApiRequestBodyI;
 }
 
 export const createNewRouteService = async (
@@ -115,6 +119,7 @@ export const removeCeratedRouteIDService = async (
 
 export const syncRouteData = async (
     path: LocationDataI[],
+    recordTimes: RecordTimeI[],
     remoteRouteId?: string,
     routeNumber?: number | null,
 ): Promise<RoutesResponse> => {
@@ -152,7 +157,7 @@ export const syncRouteData = async (
 
         const routeId = remoteRouteId || response?.data?.id;
 
-        const pathToSend = routesDataToAPIRequest(path);
+        const pathToSend = routesDataToAPIRequest(path, recordTimes);
         const responseFromUpdate = await sendRouteData(routeId, pathToSend);
 
         if (

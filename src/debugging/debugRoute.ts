@@ -1,4 +1,4 @@
-import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {LocationDataI, PathApiRequestBodyI} from '@interfaces/geolocation';
 import {DebugRouteI} from '@interfaces/debugRoute';
 import {
     ConnectionStateT,
@@ -186,7 +186,7 @@ export class DebugRoute implements DebugRouteI {
         routeData: CurrentRouteI,
         routeAdditionalInfo: RouteAdditionalInfoT,
         dataToSynch?: LocationDataI[],
-        dataSendToServer?: ApiPathI[],
+        dataSendToServer?: PathApiRequestBodyI,
     ) => {
         const deviceInfo = {deviceGeneralInfo: this._deviceGeneralInfo};
         const dataToWrite: any = {
@@ -236,7 +236,7 @@ export class DebugRoute implements DebugRouteI {
         routeData: CurrentRouteI,
         routeAdditionalInfo: RouteAdditionalInfoT,
         dataToSynch?: LocationDataI[],
-        dataSendToServer?: ApiPathI[],
+        dataSendToServer?: PathApiRequestBodyI,
     ) => {
         const actionDateTime = getISODateString();
 

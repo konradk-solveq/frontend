@@ -42,6 +42,7 @@ export const startCurrentRoute = async (
 export const getTrackerData = (
     gpsData: Location,
     noSpeed?: boolean,
+    noDistance?: boolean,
 ): DataI | undefined => {
     if (!gpsData || !isLocationValidate(gpsData)) {
         return;
@@ -50,17 +51,14 @@ export const getTrackerData = (
     const speed = noSpeed
         ? DEFAULT_SPEED
         : msToKH(gpsData?.coords?.speed) || DEFAULT_SPEED;
-    const distance = transformMetersToKilometersString(
-        gpsData?.odometer,
-        2,
-        true,
-        '.',
-    );
+    const distance = noDistance
+        ? DEFAULT_DISTANCE
+        : transformMetersToKilometersString(gpsData?.odometer, 2, true, '.');
 
     const res = {
         distance: distance || DEFAULT_DISTANCE,
         speed: speed || DEFAULT_SPEED,
-        odometer: gpsData?.odometer,
+        odometer: noDistance ? 0 : gpsData?.odometer,
         coords: {
             lat: gpsData?.coords?.latitude,
             lon: gpsData?.coords?.longitude,

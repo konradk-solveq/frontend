@@ -60,6 +60,7 @@ import useCheckLocationType from '@hooks/staticLocationProvider/useCheckLocation
 import {globalLocationSelector} from '@storage/selectors/app';
 import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
+import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
 
 const length = getFVerticalPx(311);
 const getItemLayout = (_: any, index: number) => ({
@@ -87,6 +88,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const isRefreshing = useAppSelector(refreshMapsSelector);
     const {planned: plannedMapsCount} = useAppSelector(mapsCountSelector);
     const {permissionGranted, permissionResult} = useCheckLocationType();
+    const {isGPSEnabled, isGPSStatusRead} = useOpenGPSSettings();
     const location = useAppSelector(globalLocationSelector);
     const plannedRoutesDropdownList = useMemo(
         () =>
@@ -161,7 +163,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
         setShowListLoader(true);
-        setSavedMapFilters({...picked});
+        setSavedMapFilters(prev => ({
+            created: prev.created,
+            distance: prev.distance,
+            ...picked,
+        }));
     };
 
     const onPressHandler = (state: boolean, mapID?: string) => {
@@ -209,12 +215,22 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                         onPressTile={onPressTileHandler}
                         mode={'saved'}
                         tilePressable
-                        hideDistanceToStart={!location || !permissionGranted}
+                        hideDistanceToStart={
+                            !location ||
+                            !permissionGranted ||
+                            (!isGPSEnabled && isGPSStatusRead)
+                        }
                     />
                 </View>
             );
         },
-        [location, onPressTileHandler, permissionGranted],
+        [
+            isGPSEnabled,
+            isGPSStatusRead,
+            location,
+            onPressTileHandler,
+            permissionGranted,
+        ],
     );
 
     const [showBackdrop, setShowBackdrop] = useState(false);
@@ -339,7 +355,11 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const mapHeaderComponent = useMemo(
         () => (
             <View style={styles.listHeaderContainer}>
-                <UnifiedLocationNotification style={styles.notification} />
+                <UnifiedLocationNotification
+                    style={styles.notification}
+                    showGPSStatus
+                    hideSearchSignal
+                />
                 <Header2 style={styles.header}>
                     {userName || t('defaultUserName')}
                     {t('title')}
