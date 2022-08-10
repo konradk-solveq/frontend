@@ -60,4 +60,4 @@ const SavingPanel: React.FC<ISavingPanelProps> = ({
     );
 };
 
-export default SavingPanel;
+export default React.memo(SavingPanel);

@@ -820,7 +820,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -849,11 +849,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross;
 				PRODUCT_NAME = myKROSS;
@@ -1069,11 +1069,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.development;
 				PRODUCT_NAME = "myKROSS-feature";
@@ -1184,7 +1184,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1223,6 +1223,7 @@
 		};
 		90F934FB26C5D599001FEFCA /* Test.Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1294,11 +1295,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.test;
 				PRODUCT_NAME = "myKROSS-test";
@@ -1333,6 +1334,7 @@
 		};
 		90F934FE26C5D5A7001FEFCA /* Dev.Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1404,11 +1406,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.dev;
 				PRODUCT_NAME = "myKROSS-dev";
@@ -1443,6 +1445,7 @@
 		};
 		90F9350426C5D5C4001FEFCA /* Test.Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1522,7 +1525,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1565,6 +1568,7 @@
 		};
 		90F9350726C5D5CE001FEFCA /* Dev.Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905F172A27956F7500BC6C75 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1644,11 +1648,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.26.10;
+				MARKETING_VERSION = 3.34.1;
 				OTHER_LDFLAGS = (
-					"$(inherited)",
 					"-ObjC",
 					"-lc++",
+					"$(inherited)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = pl.kross.mykross.dev;
 				PRODUCT_NAME = "myKROSS-dev";

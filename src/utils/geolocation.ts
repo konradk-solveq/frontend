@@ -27,7 +27,6 @@ import {
     sentryLogLevel,
 } from '@sentryLogger/sentryLogger';
 import {getTimeInUTCMilliseconds} from './transformData';
-import {result} from 'lodash';
 
 const isIOS = Platform.OS === 'ios';
 export const LOCATION_ACCURACY = 60;
@@ -227,6 +226,10 @@ export const startBackgroundGeolocation = async (
     });
     let state: State | undefined;
     try {
+        if (!keep) {
+            await BackgroundGeolocation.resetOdometer();
+        }
+
         await BackgroundGeolocation.setConfig({
             stopOnTerminate: false,
             startOnBoot: true,
@@ -246,12 +249,7 @@ export const startBackgroundGeolocation = async (
         });
         state = await startBackgroundGeolocationPlugin(true);
 
-        if (!keep) {
-            BackgroundGeolocation.resetOdometer();
-        }
-        setTimeout(async () => {
-            await resumeTracingLocation();
-        }, 1000);
+        await resumeTracingLocation();
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);
         console.warn('[startBackgroundGeolocation - error]', errorMessage);
@@ -285,9 +283,7 @@ export const stopBackgroundGeolocation = async () => {
         });
 
         const state = await stopBackgroundGeolocationPlugin(true);
-        if (state?.odometer && state?.odometer > 0) {
-            BackgroundGeolocation.resetOdometer();
-        }
+        BackgroundGeolocation.resetOdometer();
 
         return state;
     } catch (e) {
@@ -478,7 +474,10 @@ export const pauseTracingLocation = async (clearRouteId?: boolean) => {
 };
 
 /* Force plugin to moving state */
-export const resumeTracingLocation = async (routeId?: string) => {
+export const resumeTracingLocation = async (
+    routeId?: string,
+    odometer?: number,
+) => {
     try {
         if (routeId) {
             await BackgroundGeolocation.setConfig({
@@ -494,6 +493,10 @@ export const resumeTracingLocation = async (routeId?: string) => {
         const state = await getBackgroundGeolocationState();
         if (state?.enabled) {
             await BackgroundGeolocation.changePace(true);
+        }
+
+        if (odometer) {
+            await BackgroundGeolocation.setOdometer(odometer);
         }
     } catch (e) {
         const errorMessage = transformLocationErrorCode(e);

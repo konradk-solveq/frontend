@@ -540,6 +540,7 @@ export const editPrivateMapMetaData = (
 
         const errorMessage = i18next.t('dataAction.apiError');
         dispatch(setError(errorMessage, 500));
+        dispatch(setFormLoadingState(false));
     }
 };
 

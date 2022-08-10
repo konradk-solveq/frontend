@@ -27,7 +27,7 @@ exports[`Storyshots containers/World/components/FullDescription Customized 1`] =
       style={
         Array [
           Object {
-            "marginTop": 37.93364928909953,
+            "marginTop": 44.25592417061611,
           },
           Object {
             "paddingBottom": 37.93364928909953,
@@ -677,7 +677,7 @@ exports[`Storyshots containers/World/components/FullDescription Default 1`] = `
       style={
         Array [
           Object {
-            "marginTop": 37.93364928909953,
+            "marginTop": 44.25592417061611,
           },
           Object {
             "paddingBottom": 37.93364928909953,

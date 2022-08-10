@@ -11,14 +11,6 @@ import {postApiCallMock} from '@utils/testUtils/apiCalls';
 import {mockedRouteData} from '@pages/main/recording/counterThankYouPage/__test__/mocks/mockedRouteData';
 
 import Counter from '@pages/main/recording/counter/counter';
-import Animated, {
-    FadeIn,
-    Layout,
-    FadeOut,
-    useSharedValue,
-    useAnimatedStyle,
-    withTiming,
-} from 'react-native-reanimated';
 
 const mockedNavigate = jest.fn();
 const mockedCanGoBack = jest.fn();
@@ -40,6 +32,7 @@ const initStore = {
             startedAt: undefined,
             endedAt: undefined,
             pauseTime: 0,
+            recordTimes: [],
             routeId: undefined,
             remoteRouteId: undefined,
             recordingState: 'not-started',
@@ -203,8 +196,11 @@ describe('<CounterContainer /> - containers/Recordging', () => {
 
             /**
              * Returns value of pauseTime in milliseconds
+             * mocked twice because it's used by setTotalTime function and the pause-end event
              */
-            jest.spyOn(global.Date, 'now').mockReturnValueOnce(1654583888000);
+            jest.spyOn(global.Date, 'now')
+                .mockReturnValueOnce(1654583888000)
+                .mockReturnValueOnce(1654583888000);
             /**
              * Re-run recording
              */

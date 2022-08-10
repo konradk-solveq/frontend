@@ -80,7 +80,7 @@ const ImageSwiper: React.FC<IProps> = ({
             testID={testID}>
             {images.map((i, index) => (
                 <ImageItem
-                    key={i}
+                    key={`${index}-${i}`}
                     testID={i}
                     imageUri={i}
                     onPress={onPressHandle}

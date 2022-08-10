@@ -1,4 +1,5 @@
 import {renderHook, cleanup} from '@testing-library/react-hooks';
+import {AppState} from 'react-native';
 import Permissions from 'react-native-permissions';
 import ReduxThunk from 'redux-thunk';
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
@@ -49,6 +50,10 @@ const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
 
 describe('[useLocationProvider]', () => {
+    beforeAll(() => {
+        AppState.currentState = 'active';
+    });
+
     describe('Permission not granted', () => {
         beforeAll(() => {
             /**
@@ -211,6 +216,7 @@ describe('[useLocationProvider]', () => {
     });
 
     afterAll(() => {
+        AppState.currentState = 'inactive';
         jest.resetAllMocks();
     });
 });

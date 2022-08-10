@@ -482,7 +482,7 @@ exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
           }
           testID="header3-test-id"
         >
-          0:09 ThankYouPage.pauseSuffix
+          0:09 ThankYouPage.tripTimeSuffix
         </Text>
       </View>
       <View
@@ -524,7 +524,7 @@ exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
           }
           testID="header3-test-id"
         >
-          0:00 ThankYouPage.tripTimeSuffix
+          0:00 ThankYouPage.pauseSuffix
         </Text>
       </View>
     </View>

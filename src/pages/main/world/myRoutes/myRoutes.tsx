@@ -6,7 +6,7 @@ import {
     NativeScrollEvent,
 } from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useRoute} from '@react-navigation/native';
 
 import {
     userNameSelector,
@@ -58,6 +58,8 @@ import {globalLocationSelector} from '@storage/selectors/app';
 import UnifiedLocationNotification from '../../../../notifications/UnifiedLocationNotification';
 import useForegroundLocationMapRefresh from '@hooks/useForegroundLocationMapRefresh';
 import {mapKeyExtractor} from '@utils/transformData';
+import {RoutesMapRouteT} from '@src/type/rootStack';
+import useOpenGPSSettings from '@hooks/useOpenGPSSettings';
 
 /**
  * My route tiles have additional text with date above the tile
@@ -88,7 +90,10 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const totalNumberOfPrivateMaps = useAppSelector(
         privateTotalMapsNumberSelector,
     );
+    const route = useRoute<RoutesMapRouteT>();
+    const navigateAfterSave = route.params?.navigateAfterSave;
     const {permissionGranted, permissionResult} = useCheckLocationType();
+    const {isGPSEnabled, isGPSStatusRead} = useOpenGPSSettings();
     const location = useAppSelector(globalLocationSelector);
     const privateRoutesDropdownList = useMemo(
         () =>
@@ -107,6 +112,15 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         () => ({bottom: getFVerticalPx(129) - bottom}),
         [bottom],
     );
+
+    const newestRouteId = useMemo(() => {
+        if (privateMaps.length) {
+            const newestMap = privateMaps.reduce((prev, next) =>
+                prev.createdAt > next.createdAt ? prev : next,
+            );
+            return newestMap.id;
+        }
+    }, [privateMaps]);
 
     const isLoading = useAppSelector(loadingMapsSelector);
     const isRefreshing = useAppSelector(refreshMapsSelector);
@@ -152,6 +166,15 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         }
     }, [dispatch, savedMapFilters]);
 
+    useEffect(() => {
+        if (navigateAfterSave && isTabFocused) {
+            onRefresh();
+        }
+        if (!isTabFocused) {
+            navigation.setParams({navigateAfterSave: false});
+        }
+    }, [navigateAfterSave, onRefresh, navigation, isTabFocused]);
+
     const onFiltersModalOpenHandler = () => {
         setShowFiltersModal(true);
     };
@@ -162,7 +185,11 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const onFiltersSaveHandler = (picked: PickedFilters) => {
         setShowFiltersModal(false);
         setShowListLoader(true);
-        setSavedMapFilters({...picked});
+        setSavedMapFilters(prev => ({
+            created: prev.created,
+            distance: prev.distance,
+            ...picked,
+        }));
     };
 
     const emptyListButtonHandler = () => {
@@ -204,12 +231,27 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                         onPressTile={onPressTileHandler}
                         mode={'my'}
                         tilePressable
-                        hideDistanceToStart={!location || !permissionGranted}
+                        hideDistanceToStart={
+                            !location ||
+                            !permissionGranted ||
+                            (!isGPSEnabled && isGPSStatusRead)
+                        }
+                        isRouteNewest={
+                            newestRouteId === item.id && navigateAfterSave
+                        }
                     />
                 </View>
             );
         },
-        [onPressTileHandler, location, permissionGranted],
+        [
+            onPressTileHandler,
+            location,
+            permissionGranted,
+            isGPSEnabled,
+            isGPSStatusRead,
+            newestRouteId,
+            navigateAfterSave,
+        ],
     );
 
     const onEndReachedHandler = useCallback(() => {
@@ -345,7 +387,11 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
     const mapHeaderComponent = useMemo(
         () => (
             <View style={styles.listHeaderContainer}>
-                <UnifiedLocationNotification style={styles.notification} />
+                <UnifiedLocationNotification
+                    style={styles.notification}
+                    showGPSStatus
+                    hideSearchSignal
+                />
                 <Header2 style={styles.header}>
                     {totalNumberOfPrivateMaps && totalNumberOfPrivateMaps > 0
                         ? secondTitle

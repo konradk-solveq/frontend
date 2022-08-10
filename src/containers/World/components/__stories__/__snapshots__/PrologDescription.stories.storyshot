@@ -79,7 +79,7 @@ exports[`Storyshots containers/World/components/PrologDescription Customized 1`]
         Object {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 31.61137440758294,
+          "paddingBottom": 18.966824644549764,
         }
       }
       testID="prolog-description-test-id-row2"
@@ -129,7 +129,7 @@ exports[`Storyshots containers/World/components/PrologDescription Customized 1`]
           Object {
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "paddingBottom": 31.61137440758294,
+            "paddingBottom": 18.966824644549764,
           },
           Object {
             "alignItems": "center",
@@ -295,7 +295,7 @@ exports[`Storyshots containers/World/components/PrologDescription Default 1`] = 
         Object {
           "flexDirection": "row",
           "justifyContent": "space-between",
-          "paddingBottom": 31.61137440758294,
+          "paddingBottom": 18.966824644549764,
         }
       }
       testID="prolog-description-test-id-row2"
@@ -343,7 +343,7 @@ exports[`Storyshots containers/World/components/PrologDescription Default 1`] = 
           Object {
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "paddingBottom": 31.61137440758294,
+            "paddingBottom": 18.966824644549764,
           },
           Object {
             "alignItems": "center",

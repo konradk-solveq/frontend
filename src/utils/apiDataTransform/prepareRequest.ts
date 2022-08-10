@@ -1,5 +1,10 @@
 import {Point} from '@models/places.model';
-import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {
+    ApiPathI,
+    LocationDataI,
+    PathApiRequestBodyI,
+    RecordTimeI,
+} from '@interfaces/geolocation';
 import {MapMetadataType} from '@interfaces/api';
 import {ImageType, MapFormDataResult} from '@interfaces/form';
 import {BasicCoordsType} from '@type/coords';
@@ -14,8 +19,15 @@ export const tranformParamsToBBoxRequest = (data: Point[]): string => {
     return `${first}&${second}`;
 };
 
-export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
-    const apiPathArr: ApiPathI[] = [];
+export const routesDataToAPIRequest = (
+    path: LocationDataI[],
+    recordTimes: RecordTimeI[] = [],
+): PathApiRequestBodyI => {
+    const apiRequestBody: PathApiRequestBodyI = {
+        path: [],
+        recordTimes: recordTimes,
+        displayDistance: 0,
+    };
     const distance = path?.[path?.length - 1]?.odometer;
     let addedDistance = false;
 
@@ -31,14 +43,14 @@ export const routesDataToAPIRequest = (path: LocationDataI[]): ApiPathI[] => {
          * Backend searches for that value only in first element
          */
         if (!addedDistance && distance) {
-            np.displayDistance = distance;
+            apiRequestBody.displayDistance = distance;
             addedDistance = true;
         }
 
-        apiPathArr.push(np);
+        apiRequestBody.path.push(np);
     });
 
-    return apiPathArr;
+    return apiRequestBody;
 };
 
 export const getRouteDefaultName = (routeNumber?: number | null) => {

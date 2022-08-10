@@ -19,6 +19,8 @@ interface IProps {
     shopAppVersion: string;
 }
 
+const BASE_MODAL_HEIGHT = 688;
+
 const NewAppVersionModal: React.FC<IProps> = ({
     showModal = false,
     forceUpdate,
@@ -26,7 +28,6 @@ const NewAppVersionModal: React.FC<IProps> = ({
     shopAppVersion,
 }: IProps) => {
     const dispatch = useAppDispatch();
-
     const handleLinkToShop = () => {
         !forceUpdate && dispatch(setNewAppVersion(shopAppVersion));
         if (isIOS) {
@@ -40,7 +41,7 @@ const NewAppVersionModal: React.FC<IProps> = ({
         <>
             <BottomModal
                 show={showModal}
-                openModalHeight={getFVerticalPx(688)}
+                openModalHeight={getFVerticalPx(BASE_MODAL_HEIGHT)}
                 header={
                     <>
                         <HorizontalSpacer height={forceUpdate ? 60 : 22} />

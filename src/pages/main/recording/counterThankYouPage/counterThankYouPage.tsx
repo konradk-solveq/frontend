@@ -17,7 +17,8 @@ import {
     syncCurrentRouteData,
 } from '@storage/actions/routes';
 
-import PoorConnectionModal from '@sharedComponents/modals/poorConnectionModal/poorConnectionModal';
+import {PoorConnectionModal} from '@components/modals';
+import {ShortRouteModal} from '@components/modals';
 
 import {CounterParamsLsitT, CounterThankYouPageRouteT} from '@type/rootStack';
 import {
@@ -26,7 +27,6 @@ import {
 } from '@utils/transformData';
 import GenericScreen from '@src/pages/template/GenericScreen';
 import {ThankYouPageContainer} from '@src/containers/Recording';
-import ShortRouteModal from '@src/sharedComponents/modals/shortRouteModal/ShortRouteModal';
 import {Loader} from '@components/loader';
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import colors from '@src/theme/colors';
@@ -120,7 +120,10 @@ const CounterThankYouPage: React.FC = () => {
             }
 
             dispatch(setHeavyTaskProcessingState(false));
-            navigation.navigate('WorldTab', {screen: 'WorldMyRoutes'});
+            navigation.navigate('WorldTab', {
+                screen: 'WorldMyRoutes',
+                params: {navigateAfterSave: true},
+            });
         },
         [dispatch, goForward, navigation],
     );
@@ -139,20 +142,26 @@ const CounterThankYouPage: React.FC = () => {
         }
     }, [error?.statusCode, isSyncData, onGoForward, goForward, error.message]);
 
-    const handleRouteAction = (forward: string) => {
-        setGoForward(forward);
-        dispatch(syncCurrentRouteData());
-    };
+    const handleRouteAction = useCallback(
+        (forward: string) => {
+            setGoForward(forward);
+            dispatch(syncCurrentRouteData());
+        },
+        [dispatch],
+    );
 
-    const onCancelRouteHandler = (forward: string) => {
-        setGoForward(forward);
-        dispatch(abortSyncCurrentRouteData(true)).then(() => {
-            /**
-             * prevent going back to counter after recording the new route after the 'x' button was pressed
-             */
-            setGoForward('');
-        });
-    };
+    const onCancelRouteHandler = useCallback(
+        (forward: string) => {
+            setGoForward(forward);
+            dispatch(abortSyncCurrentRouteData(true)).then(() => {
+                /**
+                 * prevent going back to counter after recording the new route after the 'x' button was pressed
+                 */
+                setGoForward('');
+            });
+        },
+        [dispatch],
+    );
 
     const onCloseErrorModalHandler = () => {
         canGoForwardRef.current = false;
@@ -177,6 +186,7 @@ const CounterThankYouPage: React.FC = () => {
                 )}
                 <ShortRouteModal
                     showModal={showErrorModal}
+                    errorTitle={t('errorTitle')}
                     showAlterMessage={
                         !error?.routeToShort ? error?.message : ''
                     }
@@ -206,6 +216,7 @@ const CounterThankYouPage: React.FC = () => {
 
             <ShortRouteModal
                 showModal={showErrorModal}
+                errorTitle={t('errorTitle')}
                 showAlterMessage={!error?.routeToShort ? error?.message : ''}
                 onClose={onCloseErrorModalHandler}
             />
@@ -223,4 +234,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CounterThankYouPage;
+export default React.memo(CounterThankYouPage);

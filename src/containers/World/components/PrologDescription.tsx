@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingBottom: getFVerticalPx(20),
+        paddingBottom: getFVerticalPx(12),
     },
     flexStart: {
         alignItems: 'center',
@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PrologDescription;
+export default React.memo(PrologDescription);

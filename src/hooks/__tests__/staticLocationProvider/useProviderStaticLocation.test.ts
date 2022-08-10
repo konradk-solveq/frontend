@@ -1,4 +1,5 @@
 import {act} from 'react-test-renderer';
+import {AppState} from 'react-native';
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
 import {renderHook, cleanup} from '@testing-library/react-hooks';
 import ReduxThunk from 'redux-thunk';
@@ -30,6 +31,10 @@ const mockStore = configureStore(middlewares);
 
 describe('[useProviderStaticLocation]', () => {
     let store: MockStoreEnhanced<unknown, {}>;
+
+    beforeAll(() => {
+        AppState.currentState = 'active';
+    });
 
     it('Should set location on mount for geofence listener [ALWAYS] when recording is not active', async () => {
         jest.spyOn(Permissions, 'check').mockReturnValue(
@@ -146,5 +151,9 @@ describe('[useProviderStaticLocation]', () => {
 
     afterEach(() => {
         cleanup();
+    });
+
+    afterAll(() => {
+        AppState.currentState = 'inactive';
     });
 });

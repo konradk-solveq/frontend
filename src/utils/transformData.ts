@@ -49,6 +49,9 @@ export const getTimeInUTCMilliseconds = (
     return time;
 };
 
+export const getTimeInUTCSeconds = (date: string | number) =>
+    Math.floor(getTimeInUTCMilliseconds(date, true) / 1000);
+
 export const isLocationValidToPass = (
     loc: any,
     routeId?: string,

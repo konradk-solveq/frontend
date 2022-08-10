@@ -19,7 +19,6 @@ import {
 import {HorizontalSpacer} from '@components/divider';
 import {Header1, Header3, Subtitle} from '@components/texts/texts';
 import {ChevronUp} from '@components/svg';
-import style from '@src/pages/template/styles';
 
 interface IProps {
     onOpenPress: (e: GestureResponderEvent) => void;
@@ -38,7 +37,8 @@ const Metrics: React.FC<IProps> = ({
     const distance =
         useContext(CounterDataContext).trackerData?.distance ||
         DEFAULT_DISTANCE;
-    const time = useRecordingTimer(startTime, started);
+    const pauseTime = useContext(CounterDataContext).pauseTime;
+    const time = useRecordingTimer(startTime, started, pauseTime);
     const avgSpeed = useGetAverageSpeed(startTime, started);
     const averageSpeed = useMemo(() => avgSpeed, [avgSpeed]);
 
@@ -133,4 +133,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Metrics;
+export default React.memo(Metrics);

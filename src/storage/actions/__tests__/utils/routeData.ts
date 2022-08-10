@@ -1,5 +1,6 @@
 import {LocationDataI} from '@src/interfaces/geolocation';
 import {CurrentRouteI} from '../../../reducers/routes';
+import {endedTab} from '@storage/actions/__tests__/mocks/recordTimes';
 
 export const startedRoute: CurrentRouteI = {
     id: 'current-route-test-id',
@@ -28,6 +29,7 @@ export const stoppedRoute: CurrentRouteI = {
     isActive: false,
     startedAt: new Date('Wed, 28 Jul 2021 07:08:41 GMT'),
     endedAt: new Date('Wed, 28 Jul 2021 20:33:54 GMT'),
+    recordTimes: endedTab,
     pauseTime: 0,
     routeId: 'route-id',
     remoteRouteId: 'remote-route-test-id',

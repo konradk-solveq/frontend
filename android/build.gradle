@@ -7,9 +7,9 @@ buildscript {
         compileSdkVersion = 31
         targetSdkVersion = 30
         ndkVersion = "21.4.7075529"
-        playServicesVersion = "17.0.0"
+        playServicesVersion = "18.0.0"
         supportLibVersion = "28.0.0"
-        googlePlayServicesVersion = "11.8.0"
+        googlePlayServicesVersion = "12.0.1"
         androidMapsUtilsVersion = "0.5+"
         googlePlayServicesLocationVersion = "19.0.1"
         appCompatVersion = "1.1.0"
@@ -20,8 +20,7 @@ buildscript {
     }
     dependencies {
         classpath('com.android.tools.build:gradle:4.2.2')
-        classpath("com.google.gms:google-services:4.3.4")
-        classpath("com.google.gms:google-services:4.3.10")
+        classpath("com.google.gms:google-services:4.3.13")
     }
 }
 

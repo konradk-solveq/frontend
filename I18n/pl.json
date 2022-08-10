@@ -221,7 +221,8 @@
         "ShareContent": {
             "Route": {
                 "title": "Hej! Polecam Ci ciekawą trasę rowerową nagraną w aplikacji myKROSS.",
-                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS"
+                "subject": "Polecam trasę zarejestrowaną w aplikacji myKROSS",
+                "errorTitle": "Coś poszło nie tak!"
             }
         }
     },
@@ -478,7 +479,8 @@
             "hours": "h",
             "minutes": "m",
             "distanceToStart": "km od Ciebie",
-            "public": "publiczna"
+            "public": "publiczna",
+            "routePlaceholderTitle": "Trwa generowanie najnowszej trasy"
         },
         "moreActionsModal": {
             "actions": {
@@ -631,7 +633,8 @@
             "imagesTitle": "Zdjęcia z trasy",
             "removeRouteBtn": "Tak, usuń",
             "cancelRemoveRouteBtn": "Anuluj",
-            "defaultUser": "Rowerzysta"
+            "defaultUser": "Rowerzysta",
+            "errorTitle": "Coś poszło nie tak!"
         }
 
     },
@@ -1021,7 +1024,9 @@
                 "title": "Szukanie sygnału GPS"
             },
             "disabled": {
-                "title": "Wyłączony GPS"
+                "title": "Włącz lokalizację urządzenia",
+                "subtitle": "GPS telefonu jest wyłączony",
+                "action": "Włącz"
             },
             "permission": {
                 "title": "Sprawdź uprawienia lokalizacji",
@@ -1041,5 +1046,9 @@
         "routePublished": "Trasa została opublikowana",
         "addRouteToPlanned": "Trasa została dodana do zapisanych",
         "removeRouteFromPlanned": "Trasa została usunięta z zapisanych"
+    },
+    "ErrorModal": {
+        "retry": "Ponów",
+        "close": "Zamknij"
     }
 }

@@ -2,7 +2,8 @@ require File.join(File.dirname(`node --print "require.resolve('expo/package.json
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '12.0'
+flipperkit_version = '0.156.0' 
+platform :ios, '13.0'
 
 project 'myKROSS',
         'Dev.Debug' => :debug,
@@ -44,7 +45,7 @@ target 'myKROSS' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!({'Flipper' => '0.109.0'})
+  use_flipper!({'Flipper' => flipperkit_version})
 
   ENVFILES = {
     'Dev.Debug' => '${PODS_ROOT}/../../.env.development',

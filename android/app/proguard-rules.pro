@@ -10,3 +10,5 @@
 # Add any project specific keep options here:
 
 -keep class pl.kross.mykross.BuildConfig { *; }
+-keep class com.facebook.hermes.unicode.** { *; }
+-keep class com.facebook.jni.** { *; }

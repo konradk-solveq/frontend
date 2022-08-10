@@ -1,5 +1,5 @@
-import React, {useEffect, useState, useRef, useCallback, useMemo} from 'react';
-import {StyleSheet, View, GestureResponderEvent} from 'react-native';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {GestureResponderEvent, StyleSheet, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -8,8 +8,9 @@ import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import useAppState from '@hooks/useAppState';
 import useLocalizationTracker from '@hooks/useLocalizationTracker';
 import {
-    setCurrentRoutePauseTime,
     abortSyncCurrentRouteData,
+    setCurrentRoutePauseTime,
+    setCurrentRouteRecordTime,
 } from '@storage/actions/routes';
 import {
     setFocusedOnRecordingScreenState,
@@ -47,6 +48,8 @@ import {Notification} from '@components/notifications';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
 import {CompassButton, LocationButton} from './components';
 import {LocationButtonT} from './components/LocationButton';
+import {RecordTimeAction} from '@interfaces/geolocation';
+import {getTimeInUTCSeconds} from '@utils/transformData';
 
 const recordingNotification = {
     key: 'pause-notifications',
@@ -199,7 +202,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (isTrackerActive && mountedRef.current) {
             setBeforeRecording(false);
             setPauseTime({start: 0, total: trackerPauseTime});
-            startTracker(mapID);
+            startTracker(mapID, false, false, true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -302,7 +305,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setBeforeRecording(true);
                 const isLongEnough = checkIfRouteIsLongEnough();
 
-                await stopTracker(!isLongEnough);
+                stopTracker(!isLongEnough);
 
                 if (!isLongEnough) {
                     setShowToShortRouteAlert(true);
@@ -351,21 +354,39 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
      */
     const onPressPauseResumeHandler = useCallback(
         async (e: GestureResponderEvent, shouldPause) => {
+            const pauseDT = Date.now();
             /**
              * Copied from prevoius version
              */
             if (shouldPause) {
                 /**
+                 * Add pause start event
+                 */
+                dispatch(
+                    setCurrentRouteRecordTime({
+                        action: RecordTimeAction.START_PAUSE,
+                        time: getTimeInUTCSeconds(pauseDT),
+                    }),
+                );
+                /**
                  * Add pause notification
                  */
                 setNotifications(prev => [...prev, recordingNotification]);
-
-                pauseTracker();
                 setPauseTime(prevPT => ({
                     ...prevPT,
-                    start: Date.now(),
+                    start: pauseDT,
                 }));
+                pauseTracker();
             } else {
+                /**
+                 * Add pause end event
+                 */
+                dispatch(
+                    setCurrentRouteRecordTime({
+                        action: RecordTimeAction.END_PAUSE,
+                        time: getTimeInUTCSeconds(pauseDT),
+                    }),
+                );
                 /**
                  * Remove pause notification
                  */
@@ -373,55 +394,58 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     ...prev.filter(n => n.key !== 'pause-notifications'),
                 ]);
 
-                resumeTracker();
-
                 setPauseTime(prevPT => {
                     const newTotalTime = setTotalTime(prevPT);
                     return {
                         ...prevPT,
                         total: newTotalTime,
+                        start: 0 /* clear to avoid double counting when recording is finished */,
                     };
                 });
+                resumeTracker();
             }
         },
-        [pauseTracker, resumeTracker],
+        [dispatch, pauseTracker, resumeTracker],
     );
 
     const [mapRotated, setMapRotated] = useState(false);
 
     const [mapToNorth, setMapToNorth] = useState(false);
 
-    const onPressLocationButtonHandler = (actionType: LocationButtonT) => {
-        switch (actionType) {
-            case 'default':
-                /**
-                 * Disable heading, leave following user position
-                 * if enabled
-                 */
-                setHeadingOn(false);
-                break;
-            case 'follow':
-                /**
-                 * If needed enable following user position
-                 * and enable heading
-                 */
-                setHeadingOn(true);
-                setAutoFindMe(prev => ++prev);
-                break;
-            case 'center':
-                /**
-                 * Center on user position
-                 */
-                setAutoFindMe(prev => ++prev);
-                break;
-            case 'north':
-                setMapToNorth(true);
-                setMapRotated(false);
-                break;
-            default:
-                break;
-        }
-    };
+    const onPressLocationButtonHandler = useCallback(
+        (actionType: LocationButtonT) => {
+            switch (actionType) {
+                case 'default':
+                    /**
+                     * Disable heading, leave following user position
+                     * if enabled
+                     */
+                    setHeadingOn(false);
+                    break;
+                case 'follow':
+                    /**
+                     * If needed enable following user position
+                     * and enable heading
+                     */
+                    setHeadingOn(true);
+                    setAutoFindMe(prev => ++prev);
+                    break;
+                case 'center':
+                    /**
+                     * Center on user position
+                     */
+                    setAutoFindMe(prev => ++prev);
+                    break;
+                case 'north':
+                    setMapToNorth(true);
+                    setMapRotated(false);
+                    break;
+                default:
+                    break;
+            }
+        },
+        [],
+    );
 
     const onMapRotatedHandler = useCallback(
         (angle: number) => {
