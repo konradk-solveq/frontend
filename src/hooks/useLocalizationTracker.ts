@@ -162,7 +162,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
                 return;
             }
 
-            const res = getTrackerData(location, true);
+            const res = getTrackerData(location, true, true);
             if (!res) {
                 return;
             }
