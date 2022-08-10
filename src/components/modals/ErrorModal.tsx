@@ -109,7 +109,6 @@ export default ErrorModal;
 
 const styles = StyleSheet.create({
     modalContainer: {
-        height: '100%',
         width: '100%',
         backgroundColor: colors.white,
         alignItems: 'center',
