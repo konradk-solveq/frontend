@@ -4,8 +4,12 @@ import {batch} from 'react-redux';
 import i18next from '@translations/i18next';
 import {CurrentRouteI, RoutesI, RoutesState} from '../reducers/routes';
 import * as actionTypes from './actionTypes';
-import {routesDataToPersist} from '@utils/transformData';
-import {LocationDataI} from '@interfaces/geolocation';
+import {getTimeInUTCSeconds, routesDataToPersist} from '@utils/transformData';
+import {
+    LocationDataI,
+    RecordTimeAction,
+    RecordTimeI,
+} from '@interfaces/geolocation';
 import {AppState} from '../reducers/app';
 import {MapsState} from '../reducers/maps';
 import {removeCeratedRouteIDService} from '@services/routesService';
@@ -24,10 +28,10 @@ import {
 } from '@sentryLogger/sentryLogger';
 import {startCurrentRoute} from '@hooks/utils/localizationTracker';
 import {
+    checkIfDataLengthAreDifferent,
     getNextRouteNumber,
     startRecording,
     stopRecording,
-    checkIfDataLengthAreDifferent,
 } from './utils/routes';
 import {RecordingStateT} from '@storage/reducers/routes';
 
@@ -74,6 +78,20 @@ export const setCurrentRouteData = (currentRouteData: LocationDataI[]) => ({
 export const setCurrentRoutePauseTime = (pauseTime: number) => ({
     type: actionTypes.SET_CURRENT_ROUTE_PAUSE_TIME,
     pauseTime: pauseTime,
+});
+
+export const setCurrentRouteRecordTime = (recordTime: RecordTimeI) => ({
+    type: actionTypes.SET_CURRENT_ROUTE_RECORD_TIME,
+    recordTime: recordTime,
+});
+
+export const setCurrentRouteRecordTimes = (recordTimes: RecordTimeI[]) => ({
+    type: actionTypes.SET_CURRENT_ROUTE_RECORD_TIMES,
+    recordTimes: recordTimes,
+});
+
+export const clearCurrentRouteRecordTime = () => ({
+    type: actionTypes.CLEAR_CURRENT_ROUTE_RECORD_TIME,
 });
 
 export const setAverageSpeed = (averageSpeed: number) => ({
@@ -154,18 +172,40 @@ export const startRecordingRoute = (
             internetConnectionInfo,
             routeDebugMode,
         }: AppState = getState().app;
+        /**
+         * If the recording is active (this can occur when the application is restarted),
+         * do not overwrite the identifier to avoid losing information about collected data
+         */
+        const keepCurrentRecording = currentRoute.isActive;
 
+        /**
+         * Add initialize a tab with start route event
+         */
+        if (!keepCurrentRecording) {
+            dispatch(
+                setCurrentRouteRecordTimes([
+                    {
+                        action: RecordTimeAction.START,
+                        time: getTimeInUTCSeconds(new Date().toISOString()),
+                    },
+                ]),
+            );
+        }
+        if (keepCurrentRecording && currentRoute.recordingState === 'paused') {
+            dispatch(
+                setCurrentRouteRecordTime({
+                    action: RecordTimeAction.END_PAUSE,
+                    time: getTimeInUTCSeconds(new Date().toISOString()),
+                }),
+            );
+        }
         /**
          * Creates entry data
          */
         const currentRouteToStore: CurrentRouteI = await startCurrentRoute(
             routeIdToFollow,
         );
-        /**
-         * If the recording is active (this can occur when the application is restarted),
-         * do not overwrite the identifier to avoid losing information about collected data
-         */
-        const keepCurrentRecording = currentRoute.isActive;
+
         /**
          * Set state for new recording route
          */
@@ -328,8 +368,25 @@ export const stopCurrentRoute = (
             return {success: stoppedState, finished: true};
         }
 
+        const recordTimes = [...currentRoute.recordTimes];
+        const currentTime = getTimeInUTCSeconds(new Date().toISOString());
+        if (currentRoute.recordingState === 'paused') {
+            recordTimes.push({
+                action: RecordTimeAction.END_PAUSE,
+                time: currentTime,
+            });
+        }
+        /**
+         * Add end route event
+         */
+        recordTimes.push({
+            action: RecordTimeAction.END,
+            time: currentTime,
+        });
+
         const currentRouteToEnd: CurrentRouteI = {
             ...currentRoute,
+            recordTimes,
             isActive: false,
             endedAt: new Date(),
             recordingState: 'stopped',
@@ -427,6 +484,7 @@ export const addRoutesToSynchQueue = (
                 setRoutesData({
                     id: routeId,
                     route: routeDataToSynch,
+                    recordTimes: currentRoute?.recordTimes,
                     remoteRouteId: currentRoute?.remoteRouteId,
                 }),
             );
@@ -528,6 +586,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         const response = await syncRouteData(
             currRoutesDat,
+            currentRoute?.recordTimes,
             currentRoute?.remoteRouteId,
             getNextRouteNumber(totalPrivateMaps),
         );
@@ -693,6 +752,7 @@ export const syncRouteDataFromQueue = (
 
             const response = await syncRouteData(
                 routeToSync.route,
+                routeToSync.recordTimes,
                 remoteId,
                 routeNumber,
             );

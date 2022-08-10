@@ -2,7 +2,7 @@ import {persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as actionTypes from '@storage/actions/actionTypes';
-import {LocationDataI} from '@interfaces/geolocation';
+import {LocationDataI, RecordTimeI} from '@interfaces/geolocation';
 export type RecordingStateT =
     | 'not-started'
     | 'recording'
@@ -15,6 +15,7 @@ export interface CurrentRouteI {
     startedAt: Date | undefined;
     endedAt: Date | undefined;
     pauseTime: number;
+    recordTimes: RecordTimeI[];
     routeId?: string | undefined;
     remoteRouteId?: string | undefined;
 }
@@ -22,6 +23,7 @@ export interface CurrentRouteI {
 export interface RoutesI {
     id: string;
     route: LocationDataI[];
+    recordTimes: RecordTimeI[];
     remoteRouteId?: string;
 }
 
@@ -46,6 +48,7 @@ const initialStateList: RoutesState = {
         startedAt: undefined,
         endedAt: undefined,
         pauseTime: 0,
+        recordTimes: [],
         routeId: undefined,
         remoteRouteId: undefined,
     },
@@ -107,7 +110,7 @@ const routesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
-                currentRoute: route,
+                currentRoute: {...state.currentRoute, ...route},
             };
         }
         case actionTypes.SET_CURRENT_ROUTE_PAUSE_TIME: {
@@ -116,6 +119,36 @@ const routesReducer = (state = initialStateList, action: any) => {
                 currentRoute: {
                     ...state.currentRoute,
                     pauseTime: action.pauseTime,
+                },
+            };
+        }
+        case actionTypes.SET_CURRENT_ROUTE_RECORD_TIME: {
+            return {
+                ...state,
+                currentRoute: {
+                    ...state.currentRoute,
+                    recordTimes: [
+                        ...state.currentRoute.recordTimes,
+                        action.recordTime,
+                    ],
+                },
+            };
+        }
+        case actionTypes.CLEAR_CURRENT_ROUTE_RECORD_TIME: {
+            return {
+                ...state,
+                currentRoute: {
+                    ...state.currentRoute,
+                    recordTimes: [],
+                },
+            };
+        }
+        case actionTypes.SET_CURRENT_ROUTE_RECORD_TIMES: {
+            return {
+                ...state,
+                currentRoute: {
+                    ...state.currentRoute,
+                    recordTimes: action.recordTimes,
                 },
             };
         }
@@ -239,6 +272,7 @@ const persistConfig = {
         'currentRouteData',
         'routes',
         'routesToSync',
+        'recordTimes',
         'averageSpeed',
         'isMapVisible',
     ],

@@ -16,12 +16,14 @@ export const compareResultsWhenStartRecordingFirstCase = (
 ) => {
     /* loading - start */
     expect(actionsLog[0]).toEqual(startRecordingExpectedActions[0]);
-    /* set route data */
+    /* set record times data */
     expect(actionsLog[1]).toEqual(startRecordingExpectedActions[1]);
-    /* clear errors */
+    /* set route data */
     expect(actionsLog[2]).toEqual(startRecordingExpectedActions[2]);
-    /* loading - end */
+    /* clear errors */
     expect(actionsLog[3]).toEqual(startRecordingExpectedActions[3]);
+    /* loading - end */
+    expect(actionsLog[4]).toEqual(startRecordingExpectedActions[4]);
 };
 
 export const compareResultsWhenStartRecordingSecondCase = (

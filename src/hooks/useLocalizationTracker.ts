@@ -6,9 +6,9 @@ import {
 
 import {useAppDispatch, useAppSelector} from './redux';
 import {
+    trackerActiveSelector,
     trackerFollowedRouteIdSelector,
     trackerRouteIdSelector,
-    trackerActiveSelector,
 } from '@storage/selectors/routes';
 import {
     setRecordingState,
@@ -54,7 +54,6 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
     const distanceRef = useRef(0);
-
     const currentRouteId = useAppSelector(trackerRouteIdSelector);
     const isTrackerActive = useAppSelector(trackerActiveSelector);
     const followedRouteId = useAppSelector(trackerFollowedRouteIdSelector);
@@ -132,6 +131,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
             const startAction = await dispatch(
                 startRecordingRoute(routeIdToFollow),
             );
+
             /**
              * If any crash occurs, stop the tracker
              * to allow users start it again

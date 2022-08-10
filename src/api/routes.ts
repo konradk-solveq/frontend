@@ -1,5 +1,5 @@
 import instance, {axiosGet, source} from './api';
-import {ApiPathI} from '../interfaces/geolocation';
+import {PathApiRequestBodyI} from '../interfaces/geolocation';
 
 export const createRoute = async (name: string) => {
     return await instance.post(
@@ -13,10 +13,17 @@ export const createRoute = async (name: string) => {
     );
 };
 
-export const sendRouteData = async (id: string, path: ApiPathI[]) => {
-    return await instance.patch(`/routes/route/${id}/path`, path, {
-        cancelToken: source.token,
-    });
+export const sendRouteData = async (
+    id: string,
+    routeData: PathApiRequestBodyI,
+) => {
+    return await instance.patch(
+        `/routes/route/${id}/path-and-properties`,
+        routeData,
+        {
+            cancelToken: source.token,
+        },
+    );
 };
 
 export const getRouteByUrl = async (url: string) => {

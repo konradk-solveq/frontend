@@ -34,7 +34,7 @@ import i18next from '@translations/i18next';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
-import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {LocationDataI, PathApiRequestBodyI} from '@interfaces/geolocation';
 import {RouteActionT, RouteAdditionalInfoT} from '@type/debugRoute';
 import {DebugRouteInstance} from '@debugging/debugRoute';
 import {batch} from 'react-redux';
@@ -452,7 +452,7 @@ export const appendRouteDebuggInfoToFIle = (
     routeData?: CurrentRouteI,
     routeAdditionalInfo?: RouteAdditionalInfoT,
     routeLocationData?: LocationDataI[],
-    dataSendToServer?: ApiPathI[],
+    dataSendToServer?: PathApiRequestBodyI,
 ): AppThunk<Promise<void>> => async (_, getState) => {
     try {
         const {
