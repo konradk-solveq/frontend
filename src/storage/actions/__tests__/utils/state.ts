@@ -5,6 +5,7 @@ export const initState = {
             isActive: false,
             startedAt: undefined,
             endedAt: undefined,
+            recordTimes: [],
             pauseTime: 0,
             routeId: undefined,
             remoteRouteId: undefined,

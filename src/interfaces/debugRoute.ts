@@ -5,7 +5,7 @@ import {
 } from '@type/debugRoute';
 import {CurrentRouteI} from '@storage/reducers/routes';
 
-import {ApiPathI, LocationDataI} from '@interfaces/geolocation';
+import {LocationDataI, PathApiRequestBodyI} from '@interfaces/geolocation';
 
 export interface DebugRouteI {
     readonly routeID: string;
@@ -17,6 +17,6 @@ export interface DebugRouteI {
         routeData: CurrentRouteI,
         routeAdditionalInfo: RouteAdditionalInfoT,
         dataToSynch?: LocationDataI[],
-        dataSendToServer?: ApiPathI[],
+        dataSendToServer?: PathApiRequestBodyI,
     ) => void;
 }
