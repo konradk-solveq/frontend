@@ -236,9 +236,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                             !permissionGranted ||
                             (!isGPSEnabled && isGPSStatusRead)
                         }
-                        isRouteNewest={
-                            newestRouteId === item.id && navigateAfterSave
-                        }
+                        isRouteNewest={newestRouteId === item.id}
                     />
                 </View>
             );
@@ -250,7 +248,6 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             isGPSEnabled,
             isGPSStatusRead,
             newestRouteId,
-            navigateAfterSave,
         ],
     );
 
