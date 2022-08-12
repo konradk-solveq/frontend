@@ -1,10 +1,9 @@
 import * as Sentry from '@sentry/react-native';
+import {SeverityLevel} from '@sentry/types';
 
-export type SentryLogLevelT = Sentry.Severity;
+export type SentryLogLevelT = SeverityLevel;
 type ContextT = {[key: string]: any} | null;
 export type SentryContextT = {name: string; context: ContextT};
-
-export const sentryLogLevel = Sentry.Severity;
 
 export const sentryMessager = (message: string, level?: SentryLogLevelT) => {
     Sentry.captureMessage(message, level);
@@ -27,7 +26,7 @@ export const loggErrorMessage = (
     logName?: string,
     level?: SentryLogLevelT,
 ) => {
-    const defaultLevel = level || Sentry.Severity.Log;
+    const defaultLevel: SentryLogLevelT = level || 'log';
     const logMessage = logName ? `[${logName}] - ${error}` : `${error}`;
 
     console.error(logMessage);
@@ -53,7 +52,7 @@ export const loggError = (
 ) => {
     const err = convertErr ? getErrorObject(error) : error;
 
-    loggErrorMessage(error, logName, Sentry.Severity.Log);
+    loggErrorMessage(error, logName, 'log');
     sentryLogger(err);
 };
 
@@ -68,7 +67,7 @@ export const loggErrorWithScope = (
 
     Sentry.withScope(function (scope) {
         scope.setTag('method', `[${logName}]`);
-        scope.setLevel(logLevel || Sentry.Severity.Error);
+        scope.setLevel(logLevel || 'log');
 
         if (context) {
             scope.setContext(context.name, context.context);

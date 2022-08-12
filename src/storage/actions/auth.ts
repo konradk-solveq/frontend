@@ -13,7 +13,10 @@ import i18next from '@translations/i18next';
 import {setAutorizationHeader, setUserAgentHeader} from '@api/api';
 import {convertToApiError} from '@utils/apiDataTransform/communicationError';
 import {API_URL} from '@env';
-import {loggErrorWithScope, sentryLogLevel} from '@sentryLogger/sentryLogger';
+import {
+    loggErrorWithScope,
+    sentrySetUserInfo,
+} from '@sentryLogger/sentryLogger';
 import {AppDispatch} from '@hooks/redux';
 import {AuthState} from '@storage/reducers/auth';
 import {AppState} from '@storage/reducers/app';
@@ -107,6 +110,13 @@ export const register = (
                 ),
             );
             dispatch(setAuthorizationState('mobile', false));
+        });
+
+        /**
+         * Set userID after registration
+         */
+        sentrySetUserInfo({
+            id: userId,
         });
 
         setSyncState(dispatch, false, skipLoadingState);
@@ -244,12 +254,7 @@ export const checkSession = (
                 `[checkSession] - an error occured. Cannot refresh session data or re-login. - ${API_URL}`,
             );
 
-            loggErrorWithScope(
-                error,
-                'checkSession',
-                undefined,
-                sentryLogLevel.Log,
-            );
+            loggErrorWithScope(error, 'checkSession', undefined, 'log');
 
             setSyncState(dispatch, false, skipLoadingState);
             return;
