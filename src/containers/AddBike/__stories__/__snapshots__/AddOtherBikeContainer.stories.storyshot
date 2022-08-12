@@ -440,6 +440,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Customized 1`] = `
         Object {
           "height": 0,
         },
+        false,
         Object {
           "backgroundColor": "#FFFFFF",
         },
@@ -1733,6 +1734,7 @@ exports[`Storyshots containers/AddBike/AddOtherBikeContainer Default 1`] = `
         Object {
           "height": 0,
         },
+        false,
         Object {
           "backgroundColor": "#FFFFFF",
         },
