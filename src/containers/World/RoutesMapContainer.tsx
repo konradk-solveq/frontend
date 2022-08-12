@@ -62,10 +62,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
      * which causes rerenders.
      */
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const debouncedLocation = useMemo(
-        () => debounce(getMapInitLocation(location), 500),
-        [],
-    );
+    const loc = useMemo(() => getMapInitLocation(location), []);
 
     const markersExists = useMemo(
         () => routesMarkers && routesMarkers.length > 0,
@@ -149,12 +146,17 @@ const RoutesMapContainer: React.FC<IProps> = ({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [routesMarkers, mapLoaded]);
 
+    const debouncedSetMapLoaded = useMemo(
+        () => debounce(() => setMapLoaded(true), 500),
+        [],
+    );
+
     const onMapLoadEndHandler = useCallback(() => {
         if (onMapLoadEnd) {
             onMapLoadEnd();
         }
-        setMapLoaded(true);
-    }, [onMapLoadEnd]);
+        debouncedSetMapLoaded();
+    }, [onMapLoadEnd, debouncedSetMapLoaded]);
 
     const onWebViewMessageHandler = (e: WebViewMessageEvent) => {
         onWebViewMessage(e);
@@ -202,7 +204,7 @@ const RoutesMapContainer: React.FC<IProps> = ({
                 source={{
                     html:
                         '<!DOCTYPE html><html lang="pl-PL"><head><meta http-equiv="Content-Type" content="text/html;  charset=utf-8"><meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" /><style>html,body {margin:0;padding:0;height:100%;width:100%;overflow:hidden;background-color:transparent}</style></head><body>' +
-                        debouncedLocation +
+                        loc +
                         googleMapId +
                         mapSource +
                         '</body></html>',
