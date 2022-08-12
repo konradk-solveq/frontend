@@ -21,11 +21,7 @@ import {BasicCoordsType} from '@type/coords';
 import i18next from '@translations/i18next';
 import {getTrackerData} from '@hooks/utils/localizationTracker';
 import {isLocationValidate} from './locationData';
-import {
-    loggErrorMessage,
-    loggErrorWithScope,
-    sentryLogLevel,
-} from '@sentryLogger/sentryLogger';
+import {loggErrorMessage, loggErrorWithScope} from '@sentryLogger/sentryLogger';
 import {getTimeInUTCMilliseconds} from './transformData';
 
 const isIOS = Platform.OS === 'ios';
@@ -165,7 +161,7 @@ export const getCurrentLocation = async (
         console.log('[getCurrentLocation - e]', errorMessage);
         const error = new Error(errorMessage);
 
-        loggErrorMessage(error, 'getCurrentLocation', sentryLogLevel.Log);
+        loggErrorMessage(error, 'getCurrentLocation', 'log');
     }
 };
 
