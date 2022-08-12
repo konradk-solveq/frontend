@@ -1,68 +1,78 @@
-import instance, {source} from './api';
+import {AxiosRequestConfig} from 'axios';
+import instance, {axiosGet} from '@api/api';
+import {prepareConfigReuqstWithController} from './utils/config';
 
 /* Initial registration process (as device). API returns all data */
-export const registerDevice = async () => {
-    return await instance.post(
-        '/session/mobile/register',
-        {},
-        {
-            cancelToken: source.token,
-        },
-    );
+export const registerDevice = async (controller?: AbortController) => {
+    const requestConfig: AxiosRequestConfig = {
+        ...prepareConfigReuqstWithController(controller),
+    };
+    return await instance.post('/session/mobile/register', {}, requestConfig);
 };
 
-export const logInMobile = async (userId: string, deviceToken: string) => {
+export const logInMobile = async (
+    userId: string,
+    deviceToken: string,
+    controller?: AbortController,
+) => {
+    const requestConfig: AxiosRequestConfig = {
+        ...prepareConfigReuqstWithController(controller),
+    };
     return await instance.post(
         '/session/mobile/login',
         {
             userId: userId,
             deviceToken: deviceToken,
         },
-        {
-            cancelToken: source.token,
-        },
+        requestConfig,
     );
 };
 
-export const logIn = async (email: string, password: string) => {
+export const logIn = async (
+    email: string,
+    password: string,
+    controller?: AbortController,
+) => {
+    const requestConfig: AxiosRequestConfig = {
+        ...prepareConfigReuqstWithController(controller),
+    };
     return await instance.post(
         '/session/login',
         {
             email: email,
             password: password,
         },
-        {
-            cancelToken: source.token,
-        },
+        requestConfig,
     );
 };
 
 export const currentSession = async (token: string) => {
-    return await instance.get('/session/current', {
+    return await axiosGet('/session/current', {
         headers: {Authorization: `Bearer ${token}`},
-        cancelToken: source.token,
     });
 };
 
-export const refreshSession = async (token: string, refreshToken: string) => {
+export const refreshSession = async (
+    token: string,
+    refreshToken: string,
+    controller?: AbortController,
+) => {
+    const requestConfig: AxiosRequestConfig = {
+        ...prepareConfigReuqstWithController(controller),
+        headers: {Authorization: `Bearer ${token}`},
+    };
     return await instance.post(
         '/session/refresh',
         {
             refresh_token: refreshToken,
         },
-        {
-            headers: {Authorization: `Bearer ${token}`},
-            cancelToken: source.token,
-        },
+        requestConfig,
     );
 };
 
-export const logOut = async () => {
-    return await instance.post(
-        '/session/logout',
-        {},
-        {
-            cancelToken: source.token,
-        },
-    );
+export const logOut = async (controller?: AbortController) => {
+    const requestConfig: AxiosRequestConfig = {
+        ...prepareConfigReuqstWithController(controller),
+    };
+    return await instance.post('/session/logout', {}, requestConfig);
 };

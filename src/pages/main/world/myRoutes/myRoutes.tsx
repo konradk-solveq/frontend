@@ -143,7 +143,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         [dispatch, nextCoursor, savedMapFilters],
     );
     const onGetFiltersCount = useCallback(
-        filters => dispatch(fetchPrivateMapsCount(filters)),
+        (filters, controller?: AbortController) =>
+            dispatch(fetchPrivateMapsCount(filters, controller)),
         [dispatch],
     );
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [

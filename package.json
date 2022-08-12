@@ -1,6 +1,6 @@
 {
   "name": "kross_app",
-  "version": "3.36.0",
+  "version": "3.36.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -42,7 +42,7 @@
     "@sentry/react-native": "^4.2.3",
     "@solveq/path-decimation-sttrace": "0.0.0",
     "@types/linkify-it": "^3.0.2",
-    "axios": "^0.21.1",
+    "axios": "^0.27.2",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "expo": "^43.0.4",

@@ -1,15 +1,34 @@
-import instance, {axiosGet, source} from './api';
+import instance, {axiosGet, AxiosRequestConfigI} from '@api/api';
+import {prepareConfigReuqstWithController} from '@api/utils/config';
 
-export const shareRoute = async (routeId: string) => {
-    return await instance.post(`/share/cyclingMap/${routeId}`, undefined, {
-        cancelToken: source.token,
-    });
+export const shareRoute = async (
+    routeId: string,
+    controller?: AbortController,
+) => {
+    const requestConfig: AxiosRequestConfigI = {
+        ...prepareConfigReuqstWithController(controller),
+    };
+    return await instance.post(
+        `/share/cyclingMap/${routeId}`,
+        undefined,
+        requestConfig,
+    );
 };
 
-export const checkSharedImageExists = async (url: string) => {
-    return await axiosGet(url);
+export const checkSharedImageExists = async (
+    url: string,
+    controller?: AbortController,
+) => {
+    return await axiosGet(url, undefined, controller);
 };
 
-export const getSharedCyclingMap = async (shareId: string) => {
-    return await axiosGet(`/share/cyclingMap/${shareId}`);
+export const getSharedCyclingMap = async (
+    shareId: string,
+    controller?: AbortController,
+) => {
+    return await axiosGet(
+        `/share/cyclingMap/${shareId}`,
+        undefined,
+        controller,
+    );
 };

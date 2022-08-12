@@ -156,16 +156,26 @@ const RoutesMap: React.FC = () => {
     useEffect(() => {
         let timer: NodeJS.Timeout;
         const {id, routeMapType} = routeInfo;
+        // eslint-disable-next-line no-undef
+        const controller = new AbortController();
         if (id) {
             /**
              * Delay fetching for smooth animation
              */
             timer = setTimeout(() => {
-                dispatch(fetchMapIfNotExistsLocally(id, routeMapType, true));
+                dispatch(
+                    fetchMapIfNotExistsLocally(
+                        id,
+                        routeMapType,
+                        true,
+                        controller,
+                    ),
+                );
             }, FETCH_DATA_DELAY);
         }
 
         return () => {
+            controller.abort();
             clearTimeout(timer);
         };
     }, [dispatch, routeInfo]);

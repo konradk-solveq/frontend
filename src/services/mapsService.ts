@@ -123,11 +123,11 @@ export const getMapsList = async (
 };
 
 export const getMapsListCount = async (
-    location: Coords,
     filters?: PickedFilters,
+    controller?: AbortController,
 ): Promise<MapsCountResponse> => {
     const f = getFiltersParam(filters);
-    const response = await getMapsCount(location, f);
+    const response = await getMapsCount(f, controller);
     if (
         !response?.data ||
         response.status >= 400 ||
@@ -152,11 +152,11 @@ export const getMapsListCount = async (
 };
 
 export const getPrivateMapsListCount = async (
-    location: Coords,
     filters?: PickedFilters,
+    controller?: AbortController,
 ): Promise<MapsCountResponse> => {
     const f = getFiltersParam(filters);
-    const response = await getPrivateMapsCount(location, f);
+    const response = await getPrivateMapsCount(f, controller);
     if (
         !response?.data ||
         response.status >= 400 ||
@@ -181,11 +181,11 @@ export const getPrivateMapsListCount = async (
 };
 
 export const getPlannedMapsListCount = async (
-    location: Coords,
     filters?: PickedFilters,
+    controller?: AbortController,
 ): Promise<MapsCountResponse> => {
     const f = getFiltersParam(filters);
-    const response = await getPlannedMapsCount(location, f);
+    const response = await getPlannedMapsCount(f, controller);
     if (
         !response?.data ||
         response.status >= 400 ||
@@ -507,8 +507,9 @@ export const getMapsByTypeAndId = async (
     mapId: string,
     location?: Coords,
     withPath?: boolean,
+    controller?: AbortController,
 ): Promise<MapResponse> => {
-    const response = await getRoute(mapId, location, withPath);
+    const response = await getRoute(mapId, location, withPath, controller);
 
     if (
         !response?.data ||
@@ -536,9 +537,10 @@ export const getMapsByTypeAndId = async (
 export const getMarkersListService = async (
     bbox: BBox,
     location: BasicCoordsType,
+    controller?: AbortController,
 ): Promise<MapMarkersResponse> => {
     try {
-        const response = await getMarkersList(bbox, location);
+        const response = await getMarkersList(bbox, location, controller);
 
         if (
             !response?.data ||
