@@ -136,8 +136,11 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
         () => dispatch(fetchMapsList(nextCoursor, savedMapFilters)),
         [dispatch, nextCoursor, savedMapFilters],
     );
+
     const onGetFiltersCount = useCallback(
-        filters => dispatch(fetchMapsCount(filters)),
+        (filters, controller?: AbortController) => {
+            dispatch(fetchMapsCount(filters, controller));
+        },
         [dispatch],
     );
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [

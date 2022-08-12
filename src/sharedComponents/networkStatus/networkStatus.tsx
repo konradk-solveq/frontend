@@ -27,7 +27,7 @@ const NetworkStatus: React.FC<IProps> = ({children}: IProps) => {
             /* Check wifi too. Some hotspots may have poor connection quality */
             if (!isOffline) {
                 const connectionQuality = await checkInternetConnectionQualityService();
-                if (connectionQuality.status === 408) {
+                if (connectionQuality.status >= 408) {
                     goodInternetConnection = false;
                 }
             }
