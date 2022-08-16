@@ -115,6 +115,7 @@ const AddBikeByNumberScreen: React.FC = () => {
             subtitle: toastsT('bikeAddedSubtitle'),
             icon: <Approved />,
             leaveOnScreenChange: true,
+            onPressDismiss: true,
         });
     };
 
