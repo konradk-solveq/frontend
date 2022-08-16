@@ -8,7 +8,7 @@ linking.add(`${DEEPLINKING_NAMESPACE}:/`, {
     validate: (text, pos, self) => {
         const tail = text.slice(pos);
         if (!self.re[DEEPLINKING_NAMESPACE]) {
-            self.re[DEEPLINKING_NAMESPACE] = new RegExp(/(\/?[a-z-]*)+/);
+            self.re[DEEPLINKING_NAMESPACE] = new RegExp(/(\/?[a-z-A-Z]*)+/);
         }
         const output = tail.match(self.re[DEEPLINKING_NAMESPACE]);
         if (output?.length && output.index === 0 && output[0].length > 1) {
