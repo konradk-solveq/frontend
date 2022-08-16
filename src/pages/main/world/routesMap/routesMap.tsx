@@ -357,6 +357,7 @@ const RoutesMap: React.FC = () => {
                         key: 'toast-route-added-to-favorites',
                         title: t('addRouteToPlanned'),
                         icon: <Bookmark />,
+                        onPressDismiss: true,
                     });
                     break;
                 case 'remove_from_planned':
@@ -372,6 +373,7 @@ const RoutesMap: React.FC = () => {
                         key: 'toast-route-removed-from-favorites',
                         title: t('removeRouteFromPlanned'),
                         icon: <Bookmark />,
+                        onPressDismiss: true,
                     });
                     break;
                 case 'share':

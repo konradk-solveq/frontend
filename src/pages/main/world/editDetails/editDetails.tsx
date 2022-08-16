@@ -120,6 +120,7 @@ const EditDetails = () => {
                         : toastsT('routeSaved'),
                     icon: <ApprovedMarker />,
                     leaveOnScreenChange: true,
+                    onPressDismiss: true,
                 });
                 onBackHandler();
                 return;
@@ -127,7 +128,7 @@ const EditDetails = () => {
             setSubmit(false);
             setShowErrorModal(true);
         }
-    }, [isLoading, error?.statusCode, submit, onBackHandler]);
+    }, [isLoading, error?.statusCode, submit, onBackHandler, publish, toastsT]);
 
     const onSubmitHandler = useCallback(
         (

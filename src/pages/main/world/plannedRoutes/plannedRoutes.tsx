@@ -315,6 +315,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                         key: 'toast-route-removed-from-favorites',
                         title: toastsT('removeRouteFromPlanned'),
                         icon: <Bookmark />,
+                        onPressDismiss: true,
                     });
                     break;
                 default:

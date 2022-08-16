@@ -154,7 +154,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 302
-        versionName "3.36.2"
+        versionName "3.37.0"
     }
     splits {
         abi {
