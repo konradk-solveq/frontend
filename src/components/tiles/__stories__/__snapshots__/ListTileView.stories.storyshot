@@ -185,6 +185,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -194,6 +202,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -259,6 +275,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 >
                   <RNGestureHandlerButton
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     onGestureEvent={[Function]}
                     onGestureHandlerEvent={[Function]}
                     onGestureHandlerStateChange={[Function]}
@@ -268,6 +292,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                     <View
                       accessible={true}
                       collapsable={false}
+                      hitSlop={
+                        Object {
+                          "bottom": 23.708530805687204,
+                          "left": 19.23076923076923,
+                          "right": 19.23076923076923,
+                          "top": 23.708530805687204,
+                        }
+                      }
                       nativeID="animatedComponent"
                       style={Object {}}
                     >
@@ -294,6 +326,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 </View>
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -303,6 +343,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -338,6 +386,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -347,6 +403,14 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -581,6 +645,14 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -590,6 +662,14 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -625,6 +705,14 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -634,6 +722,14 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -852,6 +948,14 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -861,6 +965,14 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -926,6 +1038,14 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 >
                   <RNGestureHandlerButton
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     onGestureEvent={[Function]}
                     onGestureHandlerEvent={[Function]}
                     onGestureHandlerStateChange={[Function]}
@@ -935,6 +1055,14 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                     <View
                       accessible={true}
                       collapsable={false}
+                      hitSlop={
+                        Object {
+                          "bottom": 23.708530805687204,
+                          "left": 19.23076923076923,
+                          "right": 19.23076923076923,
+                          "top": 23.708530805687204,
+                        }
+                      }
                       nativeID="animatedComponent"
                       style={Object {}}
                     >
@@ -961,6 +1089,14 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 </View>
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -970,6 +1106,14 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -1188,6 +1332,14 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -1197,6 +1349,14 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -1255,6 +1415,14 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 </RNGestureHandlerButton>
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -1264,6 +1432,14 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
@@ -1299,6 +1475,14 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  hitSlop={
+                    Object {
+                      "bottom": 23.708530805687204,
+                      "left": 19.23076923076923,
+                      "right": 19.23076923076923,
+                      "top": 23.708530805687204,
+                    }
+                  }
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
@@ -1308,6 +1492,14 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   <View
                     accessible={true}
                     collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
                     nativeID="animatedComponent"
                     style={Object {}}
                   >
