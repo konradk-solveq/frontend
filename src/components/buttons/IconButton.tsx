@@ -18,6 +18,7 @@ interface IProps {
     iconColor?: string;
     iconSize?: number;
     style?: ViewStyle;
+    hitSlop?: number;
     testID?: string;
 }
 
@@ -27,11 +28,12 @@ const IconButton: React.FC<IProps> = ({
     iconColor = colors.red,
     iconSize = 24,
     style,
+    hitSlop,
     testID = 'icon-btn-test-id',
 }: IProps) => {
     const iSize = getFFontSize(iconSize);
     return (
-        <Pressable onPress={onPress} testID={testID}>
+        <Pressable onPress={onPress} testID={testID} hitSlop={hitSlop}>
             <View style={[styles.container, style]}>
                 <TextIcon
                     icon={icon}
