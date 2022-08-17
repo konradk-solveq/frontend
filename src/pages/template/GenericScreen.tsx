@@ -25,6 +25,7 @@ interface IProps {
     showCross?: boolean /* Shows cross instead of back arrow */;
     statusBarBackgroundColor?: string;
     backgroundColor?: string;
+    backHitSlop?: number;
     onArrowPress?: (e: GestureResponderEvent) => void;
 }
 
@@ -39,6 +40,7 @@ const GenericScreen: React.FC<IProps> = ({
     noHeader = false,
     showCross = false,
     statusBarBackgroundColor = 'transparent',
+    backHitSlop,
     backgroundColor = colors.backgroundPrimary,
     onArrowPress,
 }: IProps) => {
@@ -98,6 +100,7 @@ const GenericScreen: React.FC<IProps> = ({
                             title={title}
                             style={{height: headerHeightModifier}}
                             rightActions={actionElement}
+                            backHitSlop={backHitSlop}
                             hideBackArrow={hideBackArrow}
                             showCross={showCross}
                             onPress={onArrowPress}
