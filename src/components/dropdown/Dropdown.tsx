@@ -8,7 +8,6 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import colors from '@theme/colors';
-import {appContainerHorizontalMargin} from '@theme/commonStyle';
 import {IconFont, MykrossIconFont} from '@theme/enums/iconFonts';
 import {
     getFHorizontalPx,
@@ -261,7 +260,6 @@ const styles = StyleSheet.create({
         borderBottomEndRadius: 15,
         borderBottomStartRadius: 15,
         opacity: 0,
-        paddingHorizontal: appContainerHorizontalMargin,
     },
     listItem: {
         opacity: 1,
