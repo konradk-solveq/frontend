@@ -38,7 +38,7 @@ import {
 import {FullMetrics, Metrics} from '@containers/Recording/components';
 import {PopUpHint} from '@containers/Recording/components';
 
-export const BOTTOM_MODAL_HEIGHT = 303;
+export const BOTTOM_MODAL_HEIGHT = 301;
 export const BOTTOM_MODAL_HEIGHT_AFTER_START = 223;
 const BOTTOM_SPACE_AFTER_START = getFVerticalPx(50);
 const BOTTOM_SPACE = getFVerticalPx(50) + BOTTOM_TAB_HEIGHT;
@@ -199,6 +199,7 @@ const CounterContainer: React.FC<IProps> = ({
                 openModalHeight={modalHeight}
                 isReactive
                 isSwipeable
+                instantAnimation
                 autoClose
                 openDuration={500}
                 closeDuration={500}
