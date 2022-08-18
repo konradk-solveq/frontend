@@ -50,8 +50,8 @@ export const ExploreIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         explore: {
             left: getFHorizontalPx(9.5),
-            width: getFHorizontalPx(107.5),
-            paddingRight: getFHorizontalPx(30),
+            width: getFHorizontalPx(80),
+            paddingRight: getFHorizontalPx(2.5),
         },
         activeText: {
             color: isFocused ? colors.red : colors.black,
@@ -119,9 +119,9 @@ export const RecordIcon: FunctionComponent<RecordIconIprops> = ({
 export const BikeIcon: FunctionComponent<IProps> = ({isFocused}: IProps) => {
     const style = StyleSheet.create({
         bike: {
-            left: getFHorizontalPx(-39),
-            width: getFHorizontalPx(107.5),
-            paddingLeft: getFHorizontalPx(30),
+            left: getFHorizontalPx(-9.5),
+            width: getFHorizontalPx(80),
+            paddingLeft: getFHorizontalPx(2.5),
         },
         activeText: {
             color: isFocused ? colors.red : colors.black,
