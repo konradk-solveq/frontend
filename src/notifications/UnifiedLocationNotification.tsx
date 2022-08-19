@@ -6,6 +6,7 @@ import {
 import React from 'react';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {ViewStyle} from 'react-native';
+import {locationTypeEnum} from '@type/location';
 
 interface IProps {
     locationNotAlwaysNotification?: boolean;
@@ -24,6 +25,7 @@ const UnifiedLocationNotification: React.FC<IProps> = ({
         permissionGranted,
         permissionResult,
         permissionAlways,
+        locationType,
     } = useCheckLocationType();
     const {t} = useMergedTranslation('Notifications.location.permissionAlways');
 
@@ -46,7 +48,11 @@ const UnifiedLocationNotification: React.FC<IProps> = ({
      * "always".
      * Controlled by the 'locationNotAlwaysNotification' parameter
      */
-    if (!permissionAlways && locationNotAlwaysNotification) {
+    if (
+        !permissionAlways &&
+        locationNotAlwaysNotification &&
+        locationType !== locationTypeEnum.NONE
+    ) {
         return (
             <LocationPermissionNotification
                 title={t('title')}
