@@ -1,11 +1,10 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {View, StyleSheet, Modal} from 'react-native';
 import colors from '@theme/colors';
 import {Loader} from '@src/components/loader';
 import useFetchShareLink from '@src/hooks/useFetchShareLink';
 import {callSystemShare} from '@src/utils/callSystemShare';
 import customInteractionManager from '@src/utils/customInteractionManager/customInteractionManager';
-import {useFocusEffect} from '@react-navigation/native';
 import {useMergedTranslation} from '@src/utils/translations/useMergedTranslation';
 import {ErrorModal} from '@src/components/modals';
 
@@ -19,6 +18,7 @@ const RouteShareModal: React.FC<IProps> = ({showModal, mapId, onClose}) => {
     const {sharedContent, shareError, isFetching} = useFetchShareLink(mapId);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const systemShareCalledRef = useRef(false);
     const {t} = useMergedTranslation('ShareScreen.ShareContent.Route');
 
     useEffect(() => {
@@ -29,12 +29,18 @@ const RouteShareModal: React.FC<IProps> = ({showModal, mapId, onClose}) => {
 
     const onCloseModalHandler = useCallback(() => {
         setShowErrorModal(false);
+        systemShareCalledRef.current = false;
         setIsLoading(false);
         onClose();
     }, [setShowErrorModal, onClose]);
 
     const callSharing = useCallback(() => {
-        if (sharedContent?.url && !shareError) {
+        if (
+            sharedContent?.url &&
+            !shareError &&
+            !systemShareCalledRef.current
+        ) {
+            systemShareCalledRef.current = true;
             callSystemShare(
                 sharedContent.url,
                 {
@@ -47,18 +53,18 @@ const RouteShareModal: React.FC<IProps> = ({showModal, mapId, onClose}) => {
         }
     }, [sharedContent?.url, shareError, t, onCloseModalHandler]);
 
-    useFocusEffect(
-        React.useCallback(() => {
-            const task = customInteractionManager.runAfterInteractions(() => {
-                if (showModal) {
-                    setIsLoading(true);
-                    callSharing();
-                }
-            });
+    const handleShare = useCallback(() => {
+        const task = customInteractionManager.runAfterInteractions(() => {
+            if (showModal) {
+                setIsLoading(true);
+                callSharing();
+            }
+        });
 
-            return () => task.cancel();
-        }, [callSharing, showModal]),
-    );
+        return () => task.cancel();
+    }, [callSharing, showModal]);
+
+    useEffect(handleShare, [handleShare]);
 
     return (
         <>

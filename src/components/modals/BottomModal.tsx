@@ -80,6 +80,7 @@ interface IProps {
      */
     drawUnderStatusBar?: boolean;
     initWithStartHeight?: boolean;
+    instantAnimation?: boolean;
     style?: ViewStyle;
     testID?: string;
     /**
@@ -106,6 +107,7 @@ const BottomModal: React.FC<IProps> = ({
     closeDuration = 750,
     drawUnderStatusBar = false,
     initWithStartHeight = false,
+    instantAnimation = false,
     style,
     testID = 'bottom-modal-test-id',
     transparent = false,
@@ -211,14 +213,19 @@ const BottomModal: React.FC<IProps> = ({
      * Delay setting new timer valu to avoid skipping animation
      */
     useEffect(() => {
-        const timer = setTimeout(() => {
+        let timer: NodeJS.Timeout;
+        if (!instantAnimation) {
+            timer = setTimeout(() => {
+                modalAnimationTiming.value = isReactive ? 0 : 750;
+            }, 750);
+        } else {
             modalAnimationTiming.value = isReactive ? 0 : 750;
-        }, 750);
+        }
 
         return () => {
             clearTimeout(timer);
         };
-    }, [isReactive, modalAnimationTiming]);
+    }, [isReactive, modalAnimationTiming, instantAnimation]);
 
     /**
      * Set full height of modal

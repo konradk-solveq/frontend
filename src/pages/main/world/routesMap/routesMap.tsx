@@ -478,7 +478,7 @@ const RoutesMap: React.FC = () => {
             {shareModalOpen && (
                 <RouteShareModal
                     showModal={shareModalOpen}
-                    mapId={mapID ? mapID : ''}
+                    mapId={routeInfo?.id || ''}
                     onClose={closeShareModal}
                 />
             )}
