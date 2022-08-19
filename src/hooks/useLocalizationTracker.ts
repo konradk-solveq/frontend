@@ -72,15 +72,21 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
      * Stop recording location data
      */
     const onStopTracker = useCallback(
-        async (omitPersist?: boolean) => {
-            setProcessing(true);
+        async (
+            omitPersist?: boolean,
+            skipProcessing?: boolean,
+            skipResettingState?: boolean,
+        ) => {
+            if (!skipProcessing) {
+                setProcessing(true);
+            }
 
             /**
              * Dispatch actions, stop GPS plugin
              */
             const stopAction = await dispatch(stopCurrentRoute(omitPersist));
 
-            if (stopAction?.finished) {
+            if (stopAction?.finished && !skipResettingState) {
                 setIsActive(false);
             }
 
@@ -89,7 +95,9 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
              */
             deactivateKeepAwake();
 
-            setProcessing(false);
+            if (!skipProcessing) {
+                setProcessing(false);
+            }
         },
         [dispatch],
     );
