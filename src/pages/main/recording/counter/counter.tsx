@@ -202,7 +202,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
         if (isTrackerActive && mountedRef.current) {
             setBeforeRecording(false);
             setPauseTime({start: 0, total: trackerPauseTime});
-            startTracker(mapID, false, false, true);
+            startTracker(mapID, false, false);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -219,7 +219,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
     const {appStateVisible} = useAppState();
     const prevAppStateRef = useRef('active');
     useEffect(() => {
-        if (!isActive) {
+        if (!isActive || !mountedRef.current) {
             return;
         }
         if (
@@ -305,7 +305,10 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                 setBeforeRecording(true);
                 const isLongEnough = checkIfRouteIsLongEnough();
 
-                stopTracker(!isLongEnough);
+                /**
+                 * Skip processing to avoid setting new state on onmounted component
+                 */
+                stopTracker(!isLongEnough, true, true);
 
                 if (!isLongEnough) {
                     setShowToShortRouteAlert(true);
@@ -462,7 +465,7 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
 
     const onCompassButtonPressHandler = useCallback(() => {
         onPressLocationButtonHandler('north');
-    }, []);
+    }, [onPressLocationButtonHandler]);
 
     return (
         <GenericScreen

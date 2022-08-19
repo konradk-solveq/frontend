@@ -125,6 +125,10 @@ const Map: React.FC<IProps> = ({
 
         return () => {
             mountedRef.current = false;
+            canAnimateRef.current = false;
+
+            clearTimeout(timerRef.current as NodeJS.Timeout);
+            clearTimeout(cooldownRef.current as NodeJS.Timeout);
         };
     }, []);
 
@@ -206,12 +210,6 @@ const Map: React.FC<IProps> = ({
         };
         loc();
     }, [globalLocation, trackerData?.coords]);
-
-    useEffect(() => {
-        return () => {
-            clearTimeout(timerRef.current as NodeJS.Timeout);
-        };
-    }, []);
 
     useEffect(() => {
         if (mapData?.path?.length && mountedRef.current && !foreignRoute) {
