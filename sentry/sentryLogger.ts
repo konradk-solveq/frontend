@@ -1,6 +1,8 @@
 import * as Sentry from '@sentry/react-native';
 import {SeverityLevel} from '@sentry/types';
 
+const ERR_NETWORK_CODE = 'ERR_NETWORK';
+
 export type SentryLogLevelT = SeverityLevel;
 type ContextT = {[key: string]: any} | null;
 export type SentryContextT = {name: string; context: ContextT};
@@ -64,6 +66,14 @@ export const loggErrorWithScope = (
     convertErr?: boolean,
 ) => {
     const err = convertErr ? getErrorObject(error) : error;
+
+    /**
+     * Prevent excessive logging of axios Network Errors
+     */
+    if (error?.code === ERR_NETWORK_CODE) {
+        console.info(`Sentry logging skipped: [${logName}] - ${error}`);
+        return;
+    }
 
     Sentry.withScope(function (scope) {
         scope.setTag('method', `[${logName}]`);
