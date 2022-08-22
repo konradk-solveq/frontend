@@ -17,10 +17,12 @@ const Regulations: React.FC = () => {
             screenTitle={data?.current?.content?.header}>
             <ScrollView style={styles.scrollWrapper}>
                 <View style={styles.wrap}>
-                    <LegalDocument
-                        message={data.current}
-                        style={styles.document}
-                    />
+                    {data?.current && (
+                        <LegalDocument
+                            message={data.current}
+                            style={styles.document}
+                        />
+                    )}
                     {data?.next && <LegalDocument message={data.next} />}
                 </View>
             </ScrollView>
