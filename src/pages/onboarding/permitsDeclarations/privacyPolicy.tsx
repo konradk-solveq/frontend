@@ -16,10 +16,12 @@ const PrivacyPolicy: React.FC = () => {
             transculentStatusBar>
             <ScrollView style={styles.scrollWrapper}>
                 <View style={styles.wrap}>
-                    <LegalDocument
-                        message={data.current}
-                        style={styles.document}
-                    />
+                    {data?.current && (
+                        <LegalDocument
+                            message={data.current}
+                            style={styles.document}
+                        />
+                    )}
                     {data?.next && <LegalDocument message={data.next} />}
                 </View>
             </ScrollView>
