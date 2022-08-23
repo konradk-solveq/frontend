@@ -9,7 +9,7 @@ import {useMergedState} from '@hooks/useMergedState';
 import {FiltersContainer} from '@containers/World';
 import {getFilterDistance} from '@utils/transformData';
 import {debounce} from '@utils/input/debounce';
-import {setMapsAppliedFilters} from '@src/storage/actions/maps';
+import {setMapsAppliedFilters} from '@storage/actions/maps';
 
 const lengthOptions = ['0', '5', '10', '20', '40', '80', '120', '160', '200'];
 
@@ -76,9 +76,10 @@ const FiltersModal: React.FC<IProps> = ({
         onResetFiltersCount,
     ]);
 
-    const debouncedGetFilters = useMemo(() => debounce(onGetFiltersCount), [
-        onGetFiltersCount,
-    ]);
+    const debouncedGetFilters = useMemo(
+        () => debounce(onGetFiltersCount, 500),
+        [onGetFiltersCount],
+    );
 
     const handleRangeChange = useCallback(
         (low: string, high: string) => {
@@ -120,6 +121,9 @@ const FiltersModal: React.FC<IProps> = ({
             minLength === lengthOptions[0] &&
             maxLength === lengthOptions[lengthOptions.length - 1];
         const isDefaultFilters = !Object.keys(pickedFilters).length;
+
+        // eslint-disable-next-line no-undef
+        const controller = new AbortController();
         if (isLoop || isMyPublic || !isDefaultFilters || !isDefaultLength) {
             setIsDirty(true);
             debouncedGetFilters(
@@ -130,11 +134,16 @@ const FiltersModal: React.FC<IProps> = ({
                     minLength,
                     maxLength,
                 ),
+                controller,
             );
         } else {
             debouncedReset();
             setIsDirty(false);
         }
+
+        return () => {
+            controller.abort();
+        };
     }, [
         isLoop,
         isMyPublic,

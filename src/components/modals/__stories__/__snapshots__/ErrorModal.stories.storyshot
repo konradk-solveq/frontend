@@ -23,6 +23,7 @@ Array [
         Object {
           "height": 0,
         },
+        false,
         Object {
           "alignItems": "center",
           "backgroundColor": "#FFFFFF",
@@ -407,6 +408,7 @@ Array [
         Object {
           "height": 0,
         },
+        false,
         Object {
           "alignItems": "center",
           "backgroundColor": "#FFFFFF",

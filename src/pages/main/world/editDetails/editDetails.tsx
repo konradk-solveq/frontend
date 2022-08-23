@@ -120,6 +120,7 @@ const EditDetails = () => {
                         : toastsT('routeSaved'),
                     icon: <ApprovedMarker />,
                     leaveOnScreenChange: true,
+                    onPressDismiss: true,
                 });
                 onBackHandler();
                 return;
@@ -127,7 +128,7 @@ const EditDetails = () => {
             setSubmit(false);
             setShowErrorModal(true);
         }
-    }, [isLoading, error?.statusCode, submit, onBackHandler]);
+    }, [isLoading, error?.statusCode, submit, onBackHandler, publish, toastsT]);
 
     const onSubmitHandler = useCallback(
         (
@@ -220,12 +221,12 @@ const EditDetails = () => {
             contentBelowHeader
             screenTitle={publish ? t('publishHeader') : t('header')}
             backgroundColor={colors.white}
+            backHitSlop={getFVerticalPx(20)}
             onArrowPress={() => setShowAlert(true)}
             navigationRightActionElement={
                 <Pressable
-                    onPress={() =>
-                        formRef.current && formRef.current?.submit()
-                    }>
+                    onPress={() => formRef.current && formRef.current?.submit()}
+                    hitSlop={getFVerticalPx(20)}>
                     <BodyPrimary color={colors.red}>
                         {publish ? t('publish') : t('save')}
                     </BodyPrimary>

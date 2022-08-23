@@ -143,7 +143,8 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
         [dispatch, nextCoursor, savedMapFilters],
     );
     const onGetFiltersCount = useCallback(
-        filters => dispatch(fetchPrivateMapsCount(filters)),
+        (filters, controller?: AbortController) =>
+            dispatch(fetchPrivateMapsCount(filters, controller)),
         [dispatch],
     );
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
@@ -236,9 +237,7 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
                             !permissionGranted ||
                             (!isGPSEnabled && isGPSStatusRead)
                         }
-                        isRouteNewest={
-                            newestRouteId === item.id && navigateAfterSave
-                        }
+                        isRouteNewest={newestRouteId === item.id}
                     />
                 </View>
             );
@@ -250,7 +249,6 @@ const MyRoutes: React.FC<IProps> = ({}: IProps) => {
             isGPSEnabled,
             isGPSStatusRead,
             newestRouteId,
-            navigateAfterSave,
         ],
     );
 

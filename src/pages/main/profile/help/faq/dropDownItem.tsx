@@ -1,4 +1,4 @@
-import React, {ReactNode, useState} from 'react';
+import React, {ReactNode, useMemo, useState} from 'react';
 
 import {
     TouchableOpacity,
@@ -6,6 +6,7 @@ import {
     StyleSheet,
     Animated,
     LayoutChangeEvent,
+    ViewStyle,
 } from 'react-native';
 
 import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
@@ -25,6 +26,8 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
+        position: 'absolute',
+        opacity: 0,
     },
     contentChild: {
         paddingTop: getFVerticalPx(16),
@@ -37,8 +40,9 @@ const styles = StyleSheet.create({
     },
     dropDownImage: {
         position: 'absolute',
-        top: '50%',
         right: 0,
+        justifyContent: 'center',
+        height: '100%',
     },
 });
 
@@ -70,6 +74,11 @@ const DropDownItem: React.FC<IProps> = ({
     const [headerHeight, setHeaderHeight] = useState(0);
     const [contentHeight, setContentHeight] = useState(0);
     const [animatedItemValue, setAnimatedItemValue] = useState<any>();
+
+    const visibleStyle: ViewStyle = useMemo(
+        () => (isContentVisible ? {position: 'relative', opacity: 1} : {}),
+        [isContentVisible],
+    );
 
     const runAnimation = () => {
         const initialValue = isContentVisible
@@ -133,12 +142,14 @@ const DropDownItem: React.FC<IProps> = ({
                 </TouchableOpacity>
 
                 <View
+                    pointerEvents="none"
                     style={{
                         ...styles.content,
                         backgroundColor: contentBackground,
+                        ...visibleStyle,
                     }}
                     onLayout={onLayout}>
-                    <View style={[styles.contentChild]}>{children}</View>
+                    <View style={styles.contentChild}>{children}</View>
                 </View>
             </Animated.View>
             <HorizontalDivider

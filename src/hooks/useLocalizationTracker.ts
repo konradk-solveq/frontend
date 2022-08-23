@@ -51,6 +51,7 @@ export interface DataI {
 const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
     const dispatch = useAppDispatch();
 
+    const initialRunRef = useRef(false);
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
     const distanceRef = useRef(0);
@@ -72,15 +73,21 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
      * Stop recording location data
      */
     const onStopTracker = useCallback(
-        async (omitPersist?: boolean) => {
-            setProcessing(true);
-
+        async (
+            omitPersist?: boolean,
+            skipProcessing?: boolean,
+            skipResettingState?: boolean,
+        ) => {
+            if (!skipProcessing) {
+                setProcessing(true);
+            }
+            initialRunRef.current = false;
             /**
              * Dispatch actions, stop GPS plugin
              */
             const stopAction = await dispatch(stopCurrentRoute(omitPersist));
 
-            if (stopAction?.finished) {
+            if (stopAction?.finished && !skipResettingState) {
                 setIsActive(false);
             }
 
@@ -89,7 +96,9 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
              */
             deactivateKeepAwake();
 
-            setProcessing(false);
+            if (!skipProcessing) {
+                setProcessing(false);
+            }
         },
         [dispatch],
     );
@@ -106,6 +115,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
             if (!skipProcessing) {
                 setProcessing(true);
             }
+            initialRunRef.current = true;
             /**
              * clear current tracker data
              */
@@ -328,7 +338,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
     }, [currentRouteId, isTrackerActive]);
 
     useEffect(() => {
-        if (isActive) {
+        if (isActive && initialRunRef.current) {
             /**
              * Initial location with lower accuracy
              */

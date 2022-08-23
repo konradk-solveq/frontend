@@ -23,7 +23,6 @@ import {AppDispatch} from '@hooks/redux';
 import {
     loggErrorMessage,
     loggErrorWithScope,
-    sentryLogLevel,
     sentryMessager,
 } from '@sentryLogger/sentryLogger';
 import {startCurrentRoute} from '@hooks/utils/localizationTracker';
@@ -337,7 +336,7 @@ export const stopCurrentRoute = (
                     loggErrorMessage(
                         response.error,
                         'stopCurrentRoute',
-                        sentryLogLevel.Error,
+                        'error',
                     );
                 }
             }
@@ -494,7 +493,7 @@ export const addRoutesToSynchQueue = (
         /* Route debug - start */
         await dispatch(
             appendRouteDebuggInfoToFIle(
-                currentRoute.id,
+                routeId,
                 'persist',
                 currentRoute,
                 {
@@ -576,7 +575,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
             sentryMessager(
                 'syncCurrentRouteData -route path was to short',
-                sentryLogLevel.Log,
+                'log',
             );
             dispatch(setLoadingState(false));
             return;
@@ -599,7 +598,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
                     `[syncCurrentRouteData - error during sync] - ${errorMessage} - ${currRoutesDat?.length}`,
                 );
 
-                sentryMessager(errorMessage, sentryLogLevel.Error);
+                sentryMessager(errorMessage, 'error');
             }
 
             batch(() => {
@@ -631,11 +630,7 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
             );
             /* Route debug - end */
 
-            loggErrorMessage(
-                response.error,
-                'syncCurrentRoute',
-                sentryLogLevel.Error,
-            );
+            loggErrorMessage(response.error, 'syncCurrentRoute', 'error');
             dispatch(setLoadingState(false));
             return;
         }
@@ -762,11 +757,7 @@ export const syncRouteDataFromQueue = (
                 newRoutes.push(routeToSync);
 
                 /* TODO: in the future we could add error messages to stack, to inform user about failures */
-                loggErrorMessage(
-                    response.error,
-                    'syncRouteFromQueue',
-                    sentryLogLevel.Error,
-                );
+                loggErrorMessage(response.error, 'syncRouteFromQueue', 'error');
                 return;
             }
 

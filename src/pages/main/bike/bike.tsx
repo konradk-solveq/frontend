@@ -3,7 +3,6 @@ import {Alert, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
-import {UserBike} from '@models/userBike.model';
 import {RegularStackRoute} from '@navigation/route';
 import {removeBikeByNumber} from '@storage/actions';
 import {bikesListSelector} from '@storage/selectors';
@@ -42,7 +41,7 @@ const Bike: React.FC<Props> = (props: Props) => {
     /* Show modal with adding bike actions */
     const [showAddBikeModal, setShowAddBikeModal] = useState(false);
 
-    const handleBikeChange = (bike: UserBike) => {
+    const handleBikeChange = (bike: number) => {
         setBike(bike);
         setShowBottomModal(false);
     };
@@ -51,18 +50,18 @@ const Bike: React.FC<Props> = (props: Props) => {
         setNfc(r);
     });
 
-    const [bike, setBike] = useState<UserBike | null>(bikes?.[0] || null);
+    const [bike, setBike] = useState<number>(0);
 
     useEffect(() => {
-        setBike(bikes?.[0] || null);
+        setBike(prev => (prev && prev < bikes.length ? prev : 0));
     }, [bikes]);
 
     const {t} = useMergedTranslation('MainBike');
 
     const handleParams = () => {
         props.navigation.navigate(RegularStackRoute.BIKE_PARAMS_SCREEN, {
-            description: bike?.description,
-            params: bike?.params,
+            description: bikes[bike]?.description,
+            params: bikes[bike]?.params,
         });
     };
 
@@ -78,9 +77,11 @@ const Bike: React.FC<Props> = (props: Props) => {
             {
                 text: t('removveAction'),
                 onPress: () => {
-                    if (bike?.description) {
+                    if (bikes[bike]?.description) {
                         dispatch(
-                            removeBikeByNumber(bike.description.serial_number),
+                            removeBikeByNumber(
+                                bikes[bike].description.serial_number,
+                            ),
                         );
                         scrollRef.current?.scrollTo({
                             y: 0,
@@ -157,12 +158,15 @@ const Bike: React.FC<Props> = (props: Props) => {
     const bikeType = useMemo(
         () =>
             bikeTypes &&
-            bike?.description.bikeType &&
-            getEnumValueTranslation(bikeTypes, bike?.description.bikeType),
-        [bike?.description.bikeType, bikeTypes],
+            bikes[bike]?.description.bikeType &&
+            getEnumValueTranslation(
+                bikeTypes,
+                bikes[bike]?.description.bikeType,
+            ),
+        [bikes, bike, bikeTypes],
     );
 
-    const warrantyData = bike?.warranty || genericBikeData?.warranty;
+    const warrantyData = bikes[bike]?.warranty || genericBikeData?.warranty;
     const {top} = useSafeAreaInsets();
     return (
         <GenericScreen
@@ -174,7 +178,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                 {hasAnyBikesAdded ? (
                     <>
                         <BikeDetailsContainer
-                            bike={bike}
+                            bike={bikes[bike]}
                             showBikeChangeButton={bikes.length > 1}
                             onAddKrossBike={showOtherBike}
                             handleParams={handleParams}
@@ -191,7 +195,7 @@ const Bike: React.FC<Props> = (props: Props) => {
                             onCloseBottomModal={onCloseBottomModal}
                             bikes={bikes}
                             onBikeSelect={handleBikeChange}
-                            selectedBike={bike}
+                            selectedBike={bikes[bike]}
                             onAddKrossBike={showOtherBike}
                         />
                         <AddBikeModal

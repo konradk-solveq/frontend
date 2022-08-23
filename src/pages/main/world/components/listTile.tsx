@@ -156,6 +156,7 @@ const ListTile: React.FC<PropsI> = ({
                 key: `route-${mapData.id}-${state ? 'added' : 'removed'}`,
                 title: toggleRouteToPlanned,
                 icon: <Bookmark />,
+                onPressDismiss: true,
             });
             state
                 ? dispatch(addPlannedMap(mapData.id))

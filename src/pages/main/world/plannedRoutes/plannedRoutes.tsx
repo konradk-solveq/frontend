@@ -130,7 +130,8 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
         [dispatch, nextCoursor, savedMapFilters],
     );
     const onGetFiltersCount = useCallback(
-        filters => dispatch(fetchPlannedMapsCount(filters)),
+        (filters, controller?: AbortController) =>
+            dispatch(fetchPlannedMapsCount(filters, controller)),
         [dispatch],
     );
     const onResetFiltersCount = useCallback(() => dispatch(resetMapsCount()), [
@@ -314,6 +315,7 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
                         key: 'toast-route-removed-from-favorites',
                         title: toastsT('removeRouteFromPlanned'),
                         icon: <Bookmark />,
+                        onPressDismiss: true,
                     });
                     break;
                 default:

@@ -37,6 +37,7 @@ interface IProps {
     titleStyle?: TextStyle;
     forceBackArrow?: boolean;
     showCross?: boolean;
+    backHitSlop?: number;
     style?: ViewStyle;
     testID?: string;
 }
@@ -51,6 +52,7 @@ const NavigationHeader: React.FC<IProps> = ({
     titleStyle,
     forceBackArrow,
     showCross = false,
+    backHitSlop,
     testID = 'navigation-header-test-id',
 }: IProps) => {
     const navigation = useNavigation();
@@ -111,6 +113,7 @@ const NavigationHeader: React.FC<IProps> = ({
                         <BackButton
                             onPress={onPressHandler}
                             showCross={showCross}
+                            hitSlop={backHitSlop}
                             testID={`${testID}-back-button`}
                         />
                     )}
@@ -158,11 +161,12 @@ const TitleContainer: React.FC<IPropsContainer> = ({
 interface IIBProps {
     onPress: (e: GestureResponderEvent) => void;
     showCross?: boolean;
+    hitSlop?: number;
     testID?: string;
 }
 
 const BackButton: React.FC<IIBProps> = React.memo(
-    ({onPress, showCross, testID = 'back-button-id'}: IIBProps) => (
+    ({onPress, showCross, hitSlop, testID = 'back-button-id'}: IIBProps) => (
         <IconButton
             icon={
                 showCross
@@ -172,6 +176,7 @@ const BackButton: React.FC<IIBProps> = React.memo(
             iconColor={colors.black}
             style={styles.backButton}
             onPress={onPress}
+            hitSlop={hitSlop}
             testID={showCross ? `${testID}-cross` : testID}
         />
     ),

@@ -32,6 +32,7 @@ import {
     getPlannedMapsListCount,
 } from '@services/mapsService';
 import {defaultLocation} from '@utils/constants/location';
+import CancelRequestError from '@utils/apiDataTransform/cancelRequestError';
 
 const TEST_ENV = process.env.JEST_WORKER_ID;
 
@@ -318,22 +319,16 @@ export const fetchMapsList = (
 
 export const fetchMapsCount = (
     filters?: PickedFilters,
+    controller?: AbortController,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     try {
-        const {
-            location,
-            isOffline,
-            internetConnectionInfo,
-        }: AppState = getState().app;
-        if (!location?.latitude || !location.longitude) {
-            return;
-        }
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             return;
         }
 
-        const response = await getMapsListCount(location, filters);
+        const response = await getMapsListCount(filters, controller);
 
         if (
             response.error ||
@@ -348,30 +343,34 @@ export const fetchMapsCount = (
         }
         dispatch(setMapsCount(total));
     } catch (error) {
-        console.log(`[fetchMapsCount] - ${error}`);
+        /**
+         * Intended behaviour
+         */
+        if (error instanceof CancelRequestError) {
+            console.log(`[fetchMapsCount] - ${error}`);
+            dispatch(clearError());
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        console.error(`[fetchMapsCount] - ${error}`);
         const err = convertToApiError(error);
 
-        loggErrorWithScope(err, 'fetchMapsList');
+        loggErrorWithScope(err, 'fetchMapsCount');
     }
 };
 export const fetchPrivateMapsCount = (
     filters?: PickedFilters,
+    controller?: AbortController,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     try {
-        const {
-            location,
-            isOffline,
-            internetConnectionInfo,
-        }: AppState = getState().app;
-        if (!location?.latitude || !location.longitude) {
-            return;
-        }
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             return;
         }
 
-        const response = await getPrivateMapsListCount(location, filters);
+        const response = await getPrivateMapsListCount(filters, controller);
 
         if (
             response.error ||
@@ -387,30 +386,34 @@ export const fetchPrivateMapsCount = (
 
         dispatch(setPrivateMapsCount(total));
     } catch (error) {
-        console.log(`[fetchPrivateMapsCount] - ${error}`);
+        /**
+         * Intended behaviour
+         */
+        if (error instanceof CancelRequestError) {
+            console.log(`[fetchPrivateMapsCount] - ${error}`);
+            dispatch(clearError());
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        console.error(`[fetchPrivateMapsCount] - ${error}`);
         const err = convertToApiError(error);
 
-        loggErrorWithScope(err, 'fetchMapsList');
+        loggErrorWithScope(err, 'fetchPrivateMapsCount');
     }
 };
 export const fetchPlannedMapsCount = (
     filters?: PickedFilters,
+    controller?: AbortController,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     try {
-        const {
-            location,
-            isOffline,
-            internetConnectionInfo,
-        }: AppState = getState().app;
-        if (!location?.latitude || !location.longitude) {
-            return;
-        }
+        const {isOffline, internetConnectionInfo}: AppState = getState().app;
 
         if (isOffline || !internetConnectionInfo?.goodConnectionQuality) {
             return;
         }
 
-        const response = await getPlannedMapsListCount(location, filters);
+        const response = await getPlannedMapsListCount(filters, controller);
 
         if (
             response.error ||
@@ -426,10 +429,20 @@ export const fetchPlannedMapsCount = (
 
         dispatch(setPlannedMapsCount(total));
     } catch (error) {
-        console.log(`[fetchPlannedMapsCount] - ${error}`);
+        /**
+         * Intended behaviour
+         */
+        if (error instanceof CancelRequestError) {
+            console.log(`[fetchPlannedMapsCount] - ${error}`);
+            dispatch(clearError());
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        console.error(`[fetchPlannedMapsCount] - ${error}`);
         const err = convertToApiError(error);
 
-        loggErrorWithScope(err, 'fetchMapsList');
+        loggErrorWithScope(err, 'fetchPlannedMapsCount');
     }
 };
 
@@ -723,6 +736,7 @@ export const fetchMapIfNotExistsLocally = (
     mapId: string,
     mapType?: RouteMapType,
     withPath?: boolean,
+    controller?: AbortController,
 ): AppThunk<Promise<void>> => async (dispatch, getState) => {
     dispatch(setLoadingState(true));
     try {
@@ -750,7 +764,12 @@ export const fetchMapIfNotExistsLocally = (
             return;
         }
 
-        const response = await getMapsByTypeAndId(mapId, location, withPath);
+        const response = await getMapsByTypeAndId(
+            mapId,
+            location,
+            withPath,
+            controller,
+        );
 
         if (response.error || !response.data || !response.data) {
             dispatch(setError(response.error, response.status));
@@ -761,7 +780,17 @@ export const fetchMapIfNotExistsLocally = (
         dispatch(clearError());
         dispatch(setLoadingState(false));
     } catch (error) {
-        console.log(`[fetchMapIfNotExistsLocally] - ${error}`);
+        /**
+         * Intended behaviour
+         */
+        if (error instanceof CancelRequestError) {
+            console.log(`[fetchMapIfNotExistsLocally] - ${error}`);
+            dispatch(clearError());
+            dispatch(setLoadingState(false));
+            return;
+        }
+
+        console.error(`[fetchMapIfNotExistsLocally] - ${error}`);
         const err = convertToApiError(error);
 
         loggErrorWithScope(err, 'fetchMapIfNotExistsLocally');

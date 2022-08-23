@@ -8,6 +8,7 @@ import {getFHorizontal, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
 import {TextIcon} from '@components/icons';
 import {BodyPrimary} from '@components/texts/texts';
 import {HorizontalDivider} from '@components/divider';
+import {appContainerHorizontalMargin} from '@theme/commonStyle';
 
 interface IProps {
     text: string;
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignContent: 'center',
+        paddingHorizontal: appContainerHorizontalMargin,
     },
     textWrapper: {
         flexDirection: 'row',

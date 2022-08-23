@@ -7,7 +7,8 @@ import {
 } from 'react-native-maps';
 
 import {isIOS} from '@utils/platform';
-import MarkPointer from '../markPointer';
+import {LocationIconSvg} from '@components/svg';
+import colors from '@theme/colors';
 
 const ANIMATION_DURATION = 500;
 
@@ -178,7 +179,7 @@ const AnimatedMarker: React.FC<IProps> = ({
                 stopPropagation
                 tracksInfoWindowChanges={false}
                 rotation={!headingOn ? compassHeading : 0}>
-                <MarkPointer />
+                <LocationIconSvg color={colors.black} />
             </MarkerAnimated>
         );
     }
@@ -192,9 +193,9 @@ const AnimatedMarker: React.FC<IProps> = ({
             ref={markerRef}
             identifier="direction_arrow"
             coordinate={location}
-            anchor={{x: 0.5, y: 0.5}}
+            anchor={{x: 0.5, y: 0.6}}
             rotation={!headingOn ? compassHeading : 0}>
-            <MarkPointer />
+            <LocationIconSvg color={colors.black} />
         </MapMarker>
     );
 };

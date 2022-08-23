@@ -7,7 +7,7 @@
 import React from 'react';
 
 import ErrorBoundaryView from './errorBoundaryView/ErrorBoundaryView';
-import {loggErrorWithScope, sentryLogLevel} from '@sentryLogger/sentryLogger';
+import {loggErrorWithScope} from '@sentryLogger/sentryLogger';
 
 interface IProps {
     children: React.ReactNode;
@@ -44,7 +44,7 @@ class ErrorBoundary extends React.Component<IProps, IState> {
                 name: 'errorInfo',
                 context: errorInfo,
             },
-            sentryLogLevel.Error,
+            'error',
             true,
         );
 
