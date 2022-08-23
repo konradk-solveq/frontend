@@ -3,7 +3,8 @@ import {InteractionManager, Platform} from 'react-native';
 import {Polyline as MapPolyline} from 'react-native-maps';
 
 import {CounterDataContext} from '@pages/main/recording/counter/context/counterContext';
-import {getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
+import {getFVerticalPx} from '@theme/utils/appLayoutDimensions';
+import colors from '@theme/colors';
 
 type ShortCoordsType = {
     latitude: number;
@@ -79,11 +80,11 @@ const Polyline: React.FC<IProps> = ({
         <MapPolyline
             ref={polylineRef}
             coordinates={[]}
-            strokeColor={strokeColor || '#d8232a'}
-            strokeColors={strokeColors || ['#d8232a']}
+            strokeColor={strokeColor || colors.red}
+            strokeColors={strokeColors || [colors.red]}
             lineCap={'round'}
             lineJoin={'round'}
-            strokeWidth={getFHorizontalPx(8)}
+            strokeWidth={getFVerticalPx(3)}
             tappable={false}
         />
     );

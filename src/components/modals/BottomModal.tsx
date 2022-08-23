@@ -83,6 +83,10 @@ interface IProps {
     instantAnimation?: boolean;
     style?: ViewStyle;
     testID?: string;
+    /**
+     * Disables white background
+     */
+    transparent?: boolean;
 }
 
 const BottomModal: React.FC<IProps> = ({
@@ -106,6 +110,7 @@ const BottomModal: React.FC<IProps> = ({
     instantAnimation = false,
     style,
     testID = 'bottom-modal-test-id',
+    transparent = false,
 }: IProps) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -309,7 +314,12 @@ const BottomModal: React.FC<IProps> = ({
             activeOffsetY={[-10, 10]}
             enabled={isReactive}>
             <Animated.View
-                style={[styles.container, modalAnimation, style]}
+                style={[
+                    styles.container,
+                    modalAnimation,
+                    transparent && styles.transparent,
+                    style,
+                ]}
                 testID={testID}>
                 <View style={styles.innerContainer}>
                     <Animated.View style={modalHeaderAnimation}>
@@ -342,6 +352,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         width: '100%',
     },
+    transparent: {backgroundColor: 'transparent'},
 });
 
 export default React.memo(BottomModal);

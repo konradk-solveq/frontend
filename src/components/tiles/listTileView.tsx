@@ -14,11 +14,23 @@ import {TextIcon} from '../icons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
-import {isIOS} from '@src/utils/platform';
-import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@src/theme/utils/getNativeShareIcon';
+import {isIOS} from '@utils/platform';
+import {MYKROSS_ICON_NATIVE_SHARE_ICON} from '@theme/utils/getNativeShareIcon';
 import colors from '@theme/colors';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
 
 const ICON_SIZE = 24;
+const VERTICAL_INSET = getFVerticalPx(15);
+const HORIZONTAL_INSET = getFHorizontalPx(10);
+const INSETS = {
+    top: VERTICAL_INSET,
+    bottom: VERTICAL_INSET,
+    left: HORIZONTAL_INSET,
+    right: HORIZONTAL_INSET,
+};
 
 interface PropsI {
     tilePressOn: () => void;
@@ -140,6 +152,7 @@ const ListTileView: React.FC<PropsI> = ({
                                 {((mode === 'my' && checkPublic) ||
                                     mode !== 'my') && (
                                     <PressableComponent
+                                        hitSlop={INSETS}
                                         onPress={handleLikeOnPress}>
                                         <View style={styles.iconWrap}>
                                             <TextIcon
@@ -161,6 +174,7 @@ const ListTileView: React.FC<PropsI> = ({
                                 {(mode === 'public' || mode === 'featured') && (
                                     <View style={styles.reactionWrap}>
                                         <PressableComponent
+                                            hitSlop={INSETS}
                                             onPress={handleSaveOnPress}>
                                             <TextIcon
                                                 icon={
@@ -178,6 +192,7 @@ const ListTileView: React.FC<PropsI> = ({
                                 {((mode === 'my' && checkPublic) ||
                                     mode !== 'my') && (
                                     <PressableComponent
+                                        hitSlop={INSETS}
                                         onPress={onPressShareHandler}>
                                         <TextIcon
                                             icon={
@@ -190,7 +205,9 @@ const ListTileView: React.FC<PropsI> = ({
                                 )}
 
                                 {mode === 'my' && !checkPublic && (
-                                    <PressableComponent onPress={editPressOn}>
+                                    <PressableComponent
+                                        hitSlop={INSETS}
+                                        onPress={editPressOn}>
                                         <TextIcon
                                             icon={
                                                 MykrossIconFont.MYKROSS_ICON_EDIT
@@ -205,6 +222,7 @@ const ListTileView: React.FC<PropsI> = ({
                             {mode !== 'public' && (
                                 <View style={styles.edit}>
                                     <PressableComponent
+                                        hitSlop={INSETS}
                                         onPress={detailsPressOn}>
                                         <TextIcon
                                             icon={

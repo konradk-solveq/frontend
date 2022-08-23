@@ -26,7 +26,7 @@ interface IProps {
     onCloseBottomModal: () => void;
     onAddKrossBike: () => void;
     bikes: UserBike[];
-    onBikeSelect: (bike: UserBike) => void;
+    onBikeSelect: (bike: number) => void;
     selectedBike: UserBike | null;
     testID?: string;
 }
@@ -34,16 +34,13 @@ interface IProps {
 interface SingleBikeIProps {
     bike: UserBike;
     isSelected: boolean;
-    onBikeSelect: (bike: UserBike) => void;
+    onBikeSelect: () => void;
 }
 
 const {height: screenHeight} = Dimensions.get('window');
 
 const SingleBike = ({bike, isSelected, onBikeSelect}: SingleBikeIProps) => {
-    const handleBikePress = useCallback(() => onBikeSelect(bike), [
-        bike,
-        onBikeSelect,
-    ]);
+    const handleBikePress = useCallback(onBikeSelect, [bike, onBikeSelect]);
     return (
         <>
             <Pressable onPress={handleBikePress}>
@@ -107,7 +104,7 @@ const ChangeBikeModal = ({
                 style={{backgroundColor: colors.white}}
                 testID={`${testID}-bottom-modal`}>
                 <ScrollView>
-                    {bikes.map(bike => (
+                    {bikes.map((bike, index) => (
                         <SingleBike
                             key={bike.description.serial_number}
                             bike={bike}
@@ -116,7 +113,7 @@ const ChangeBikeModal = ({
                                 bike.description.serial_number ===
                                     selectedBike?.description.serial_number
                             }
-                            onBikeSelect={onBikeSelect}
+                            onBikeSelect={() => onBikeSelect(index)}
                         />
                     ))}
                 </ScrollView>

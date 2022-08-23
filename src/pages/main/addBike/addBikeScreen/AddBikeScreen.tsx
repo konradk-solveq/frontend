@@ -102,7 +102,6 @@ const AddBikeScreen: React.FC = () => {
             {isAndroid && (
                 <ScanModal
                     showModal={startScanNFC}
-                    startScan={() => {}}
                     onPressCancel={cancelScanByNfcHandler}
                 />
             )}

@@ -20,7 +20,7 @@ const NotificationMessage = ({
 }: IProps) => {
     const displayText = addNotificationLinks(
         message.data.text,
-        message.actions || [],
+        message?.actions || [],
     );
     return (
         <View key={message.data.title} style={[styles.container, style]}>
@@ -30,7 +30,7 @@ const NotificationMessage = ({
                 linkify={linkify}
                 linkStyle={{color: linkColor}}
                 linkText={(url: string) => {
-                    const link = message.actions.find(e => e.value === url);
+                    const link = message?.actions.find(e => e.value === url);
                     if (link) {
                         return link.text;
                     } else {

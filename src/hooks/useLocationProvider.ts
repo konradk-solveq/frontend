@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
+import {Subscription} from 'react-native-background-geolocation-android';
 
 import {AuthorizationStatusEnum, ProviderChangeEventI} from '@type/location';
 import {
@@ -106,20 +107,24 @@ const useLocationProvider = () => {
     );
 
     useEffect(() => {
-        /* TODO: check condition if component will be rendered globbaly (above navigation stack) */
-        if (!permissionGranted) {
-            return;
+        return () => {
+            checkInitRef.current = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        let subscription: Subscription | undefined;
+        if (permissionGranted) {
+            /**
+             * Check current ProviderState
+             */
+            getProviderState().then(checkProviderState);
+
+            /**
+             * Subscribe to event listener
+             */
+            subscription = onProviderChangeListener(checkProviderState);
         }
-
-        /**
-         * Check current ProviderState
-         */
-        getProviderState().then(checkProviderState);
-
-        /**
-         * Subscribe to event listener
-         */
-        const subscription = onProviderChangeListener(checkProviderState);
 
         return () => {
             subscription?.remove();

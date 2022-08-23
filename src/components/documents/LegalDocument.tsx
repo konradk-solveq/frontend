@@ -19,7 +19,7 @@ interface IProps {
 
 const LegalDocument = ({message, style, linkColor = colors.link}: IProps) => {
     const content = message?.content;
-    const actions = message.actions || [];
+    const actions = message?.actions || [];
     return (
         <View key={content?.title} style={[styles.container, style]}>
             <Header3>{content?.header}</Header3>

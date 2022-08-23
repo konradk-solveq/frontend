@@ -357,11 +357,7 @@ describe('[Recording Route actions]', () => {
                     expect(patchSynchDataSuccessSpy).toBeCalledWith(
                         '/routes/route/remote-route-test-id/path-and-properties',
                         dataToCompare,
-                        {
-                            cancelToken: {
-                                promise: {_U: 0, _V: 0, _W: null, _X: null},
-                            },
-                        },
+                        {},
                     );
                     /**
                      * Check if all expected actions have been called.
@@ -429,11 +425,7 @@ describe('[Recording Route actions]', () => {
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledWith(
                         '/routes/route/remote-route-test-id/path-and-properties',
                         dataToCompare,
-                        {
-                            cancelToken: {
-                                promise: {_U: 0, _V: 0, _W: null, _X: null},
-                            },
-                        },
+                        {},
                     );
                     /**
                      * Check if all expected actions have been called.
@@ -479,11 +471,7 @@ describe('[Recording Route actions]', () => {
                     expect(patchSynchRouteDataSuccessSpy).toBeCalledWith(
                         '/routes/route/remote-route-test-id/path-and-properties',
                         dataToCompare,
-                        {
-                            cancelToken: {
-                                promise: {_U: 0, _V: 0, _W: null, _X: null},
-                            },
-                        },
+                        {},
                     );
                     /**
                      * Check if all expected actions have been called.

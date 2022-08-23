@@ -67,7 +67,7 @@ const UnifiedLocationNotification: React.FC<IProps> = ({
      * show the GPS status notification.
      * Controlled by the 'showGPSStatus' parameter
      */
-    if (showGPSStatus) {
+    if (showGPSStatus && locationType !== locationTypeEnum.NONE) {
         return (
             <LocationStatusNotification
                 showWhenLocationIsDisabled

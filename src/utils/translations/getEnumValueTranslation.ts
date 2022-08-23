@@ -3,7 +3,7 @@ export const getEnumValueTranslation = (
         enumValue: string;
         i18nValue: string;
     }[],
-    enumValue: string,
+    enumValue?: string,
 ) => {
     const translation = values.find(val => val.enumValue === enumValue);
     return translation && translation.i18nValue;
