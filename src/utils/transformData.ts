@@ -57,38 +57,46 @@ export const isLocationValidToPass = (
     routeId?: string,
     skipFiltering?: boolean,
 ) => {
-    if (!routeId || !loc?.extras?.route_id) {
-        return false;
-    }
-    if (routeId !== loc?.extras?.route_id) {
-        return false;
-    }
-    if (!isLocationValidate(loc)) {
-        return false;
-    }
+    try {
+        if (!routeId || !loc?.extras?.route_id) {
+            return false;
+        }
+        if (routeId !== loc?.extras?.route_id) {
+            return false;
+        }
+        if (!isLocationValidate(loc)) {
+            return false;
+        }
 
-    if (skipFiltering) {
+        if (skipFiltering) {
+            return true;
+        }
+
+        if (loc?.sample === true) {
+            return false;
+        }
+        if (
+            loc?.coords?.accuracy &&
+            loc?.coords?.accuracy > LOCATION_ACCURACY
+        ) {
+            return false;
+        }
+        /**
+         * Deosn't work properly on Android devices
+         */
+        if (
+            loc?.activity?.type === 'still' &&
+            loc?.activity?.confidence >= 90 &&
+            isIOS
+        ) {
+            return false;
+        }
+
         return true;
-    }
-
-    if (loc?.sample === true) {
+    } catch (error) {
+        console.error('[isLocationValidToPass - error]: ', error);
         return false;
     }
-    if (loc?.coords?.accuracy && loc?.coords?.accuracy > LOCATION_ACCURACY) {
-        return false;
-    }
-    /**
-     * Deosn't work properly on Android devices
-     */
-    if (
-        loc?.activity?.type === 'still' &&
-        loc?.activity?.confidence >= 90 &&
-        isIOS
-    ) {
-        return false;
-    }
-
-    return true;
 };
 
 const sortLocationArrayByTime = (locations: ShortCoordsType[]) => {
