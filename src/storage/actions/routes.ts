@@ -493,7 +493,7 @@ export const addRoutesToSynchQueue = (
         /* Route debug - start */
         await dispatch(
             appendRouteDebuggInfoToFIle(
-                currentRoute.id,
+                routeId,
                 'persist',
                 currentRoute,
                 {

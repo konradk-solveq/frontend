@@ -51,6 +51,7 @@ export interface DataI {
 const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
     const dispatch = useAppDispatch();
 
+    const initialRunRef = useRef(false);
     const mountedRef = useRef(true);
     const restoredRef = useRef(false);
     const distanceRef = useRef(0);
@@ -80,7 +81,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
             if (!skipProcessing) {
                 setProcessing(true);
             }
-
+            initialRunRef.current = false;
             /**
              * Dispatch actions, stop GPS plugin
              */
@@ -114,6 +115,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
             if (!skipProcessing) {
                 setProcessing(true);
             }
+            initialRunRef.current = true;
             /**
              * clear current tracker data
              */
@@ -336,7 +338,7 @@ const useLocalizationTracker = (omitRequestingPermission?: boolean) => {
     }, [currentRouteId, isTrackerActive]);
 
     useEffect(() => {
-        if (isActive) {
+        if (isActive && initialRunRef.current) {
             /**
              * Initial location with lower accuracy
              */
