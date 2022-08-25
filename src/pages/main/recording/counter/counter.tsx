@@ -38,18 +38,16 @@ import {Alert as CustomAlert} from '@components/alerts';
 import {CounterContainer} from '@containers/Recording';
 import GenericScreen from '@pages/template/GenericScreen';
 import Map from './map';
-import {appContainerHorizontalMargin} from '@theme/commonStyle';
-import {BOTTOM_MODAL_HEIGHT} from '@containers/Recording/CounterContainer';
 import NotificationList, {
     NotificationListItemI,
 } from '@components/notifications/NotificationList';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
 import {Notification} from '@components/notifications';
 import UnifiedLocationNotification from '@notifications/UnifiedLocationNotification';
-import {CompassButton, LocationButton} from './components';
 import {LocationButtonT} from './components/LocationButton';
 import {RecordTimeAction} from '@interfaces/geolocation';
 import {getTimeInUTCSeconds} from '@utils/transformData';
+import MapControlButtons from '@pages/main/recording/counter/components/MapControlButtons';
 
 const recordingNotification = {
     key: 'pause-notifications',
@@ -490,28 +488,14 @@ const Counter: React.FC<Props> = ({navigation, route}: Props) => {
                     onMapHeadingReset={mapHeadingResetHandler}
                 />
 
-                <View
-                    pointerEvents="box-none"
-                    style={styles.mapButtonsContainer}>
-                    <View
-                        style={{
-                            marginBottom: getFVerticalPx(
-                                BOTTOM_MODAL_HEIGHT + 16,
-                            ) /* Bottom modal Height + padding 16px */,
-                        }}>
-                        {mapRotated && (
-                            <CompassButton
-                                onPress={onCompassButtonPressHandler}
-                                compassHeading={compassHeading}
-                                style={styles.compassButton}
-                            />
-                        )}
-                        <LocationButton
-                            onPress={onPressLocationButtonHandler}
-                            inactive={!autoFindMe}
-                        />
-                    </View>
-                </View>
+                <MapControlButtons
+                    isActive={isActive}
+                    mapRotated={mapRotated}
+                    onCompassButtonPressHandler={onCompassButtonPressHandler}
+                    onPressLocationButtonHandler={onPressLocationButtonHandler}
+                    compassHeading={compassHeading}
+                    locationInactive={!autoFindMe}
+                />
 
                 <CounterDataContext.Provider
                     value={{
@@ -571,18 +555,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         zIndex: 20,
-    },
-    mapButtonsContainer: {
-        position: 'absolute',
-        height: '100%',
-        width: '100%',
-        zIndex: 2,
-        paddingHorizontal: appContainerHorizontalMargin,
-        alignItems: 'flex-end',
-        justifyContent: 'flex-end',
-    },
-    compassButton: {
-        marginBottom: getFVerticalPx(16),
     },
 });
 
