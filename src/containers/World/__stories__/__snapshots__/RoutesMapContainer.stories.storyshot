@@ -98,7 +98,7 @@ exports[`Storyshots containers/World/RoutesMapContainer Default 1`] = `
 
 <div id=\\"map\\"></div>
 
-<script src=\\"https://unpkg.com/@googlemaps/markerclustererplus/dist/index.min.js\\"></script>
+<script src=\\"https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js\\"></script>
 
 <script>
 //NOTION!: All null-safty operators (optional chaining) has been removed,
@@ -183,6 +183,10 @@ const getRgion = () => {
     window.ReactNativeWebView.postMessage(\\"changeRegion#$#\\"+customJsonStringify(bounds, ''));
 }
 
+let clusterPublic = null;
+let clusterPrivate = null;
+let clusterPlanned = null;
+
 function initMap() {
     map = new google.maps.Map(googleMap, {
         mapTypeId: 'roadmap',
@@ -207,6 +211,25 @@ function initMap() {
     map.addListener('click', () => {
         window.ReactNativeWebView.postMessage(\\"clickMap\\");
     });
+    clusterPublic = new markerClusterer.MarkerClusterer({
+            map,
+            markers: [],
+            algorithm: clusteringAlgorithm,
+            renderer: clusterRenderer(\\"pinroute_published_empty.png\\"),
+    });
+    clusterPrivate = new markerClusterer.MarkerClusterer({
+            map,
+            markers: [],
+            algorithm: clusteringAlgorithm,
+            renderer: clusterRenderer(\\"pinroute_private_empty.png\\"),
+    });   
+    clusterPlanned = new markerClusterer.MarkerClusterer({
+            map,
+            markers: [],
+            algorithm: clusteringAlgorithm,
+            renderer: clusterRenderer(\\"pinroute_planned_empty.png\\"),
+        });
+
 }
 
 // dodawanie punktów po zmianie regionu
@@ -214,11 +237,38 @@ const marks = [];
 const privateMarks = [];
 const plannedMarks = [];
 const routeMarks = [];
-let clusterPublic = null;
-let clusterPrivate = null;
-let clusterPlanned = null;
 let startMark
 let endMark
+
+
+    
+/**
+* minPoints - minimum number of points needed to form a cluster
+* extent - tile size in px, used to calculate the clustering radius (default radius: 40px)
+* maxZoom - maximum level of zoom on which clustering takes place, 
+*           zooming above that level causes all single markers to be shown
+*/
+const clusteringAlgorithm = new markerClusterer.SuperClusterAlgorithm({minPoints: 3, extent: 256, maxZoom: 23});
+
+/**
+* the base for rendering cluster markers, the only changing thing is the icon,
+* which is passed as a parameter
+*/
+const renderCluster = (icon) => ({ count, position }) => {
+    return new google.maps.Marker({
+        label: { 
+            text: String(count), 
+            color: \\"white\\", 
+            fontSize: '17px',  
+            fontFamily: \\"DIN2014Narrow-Regular\\", 
+        },
+        position,
+        // adjust zIndex to be above other markers
+        zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
+        icon,
+    })}
+            
+const clusterRenderer = (icon) => ({render: renderCluster(icon)})
 
 const setMarks = places => {
     for (let p of places) {
@@ -269,48 +319,9 @@ const setMarks = places => {
         });
     }
 
-    clusterPublic = new MarkerClusterer(map, marks, {
-        ignoreHidden: true,
-        minimumClusterSize: 3,
-        styles: [{
-                url: \\"pinroute_published_empty.png\\",
-                fontFamily: \\"DIN2014Narrow-Regular\\",
-                textSize: 17,
-                textColor: \\"#fff\\",
-                width: 32,
-                height: 32,
-                anchor:[16,16],
-            },
-        ]
-    });
-    clusterPrivate = new MarkerClusterer(map, privateMarks, {
-        ignoreHidden: true,
-        minimumClusterSize: 3,
-        styles: [{
-                url: \\"pinroute_private_empty.png\\",
-                fontFamily: \\"DIN2014Narrow-Regular\\",
-                textSize: 17,
-                textColor: \\"#fff\\",
-                width: 32,
-                height: 32,
-                anchor:[16,16],
-            },
-        ]
-    });
-    clusterPlanned = new MarkerClusterer(map, plannedMarks, {
-        ignoreHidden: true,
-        minimumClusterSize: 3,
-        styles: [{
-                url: \\"pinroute_planned_empty.png\\",
-                fontFamily: \\"DIN2014Narrow-Regular\\",
-                textSize: 17,
-                textColor: \\"#fff\\",
-                width: 32,
-                height: 32,
-                anchor:[16,16],
-            },
-        ]
-    });
+    clusterPublic.addMarkers(marks);
+    clusterPrivate.addMarkers(privateMarks);
+    clusterPlanned.addMarkers(plannedMarks);
 }
 
 const setPath = (path, mapType) => {
