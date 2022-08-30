@@ -28,7 +28,7 @@ import {
 import {routesDataToAPIRequest} from '@utils/apiDataTransform/prepareRequest';
 
 import routesDataToUpdateMock from './mocks/routesDataToUpdate';
-import {startTab} from '@storage/actions/__tests__/mocks/recordTimes';
+import {endedTab, startTab} from '@storage/actions/__tests__/mocks/recordTimes';
 
 const middlewares = [ReduxThunk];
 const mockStore = configureStore(middlewares);
@@ -349,6 +349,7 @@ describe('[Recording Route actions]', () => {
                     );
                 const dataToCompare = routesDataToAPIRequest(
                     routesDataToUpdateMock,
+                    endedTab,
                 );
 
                 actionsLog = store.getActions();
@@ -416,6 +417,7 @@ describe('[Recording Route actions]', () => {
                     );
                 const dataToCompare = routesDataToAPIRequest(
                     routesDataToUpdateMock,
+                    endedTab,
                 );
 
                 actionsLog = store.getActions();
@@ -463,6 +465,7 @@ describe('[Recording Route actions]', () => {
                     );
                 const dataToCompare = routesDataToAPIRequest(
                     routesDataToUpdateMock,
+                    endedTab,
                 );
 
                 actionsLog = store.getActions();

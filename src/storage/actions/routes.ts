@@ -176,28 +176,6 @@ export const startRecordingRoute = (
          * do not overwrite the identifier to avoid losing information about collected data
          */
         const keepCurrentRecording = currentRoute.isActive;
-
-        /**
-         * Add initialize a tab with start route event
-         */
-        if (!keepCurrentRecording) {
-            dispatch(
-                setCurrentRouteRecordTimes([
-                    {
-                        action: RecordTimeAction.START,
-                        time: getTimeInUTCSeconds(new Date().toISOString()),
-                    },
-                ]),
-            );
-        }
-        if (keepCurrentRecording && currentRoute.recordingState === 'paused') {
-            dispatch(
-                setCurrentRouteRecordTime({
-                    action: RecordTimeAction.END_PAUSE,
-                    time: getTimeInUTCSeconds(new Date().toISOString()),
-                }),
-            );
-        }
         /**
          * Creates entry data
          */
@@ -213,6 +191,18 @@ export const startRecordingRoute = (
                 keepCurrentRecording ? undefined : currentRouteToStore,
             ),
         );
+
+        /**
+         * Add initialize a tab with start route event
+         */
+        if (keepCurrentRecording && currentRoute.recordingState === 'paused') {
+            dispatch(
+                setCurrentRouteRecordTime({
+                    action: RecordTimeAction.END_PAUSE,
+                    time: getTimeInUTCSeconds(new Date().toISOString()),
+                }),
+            );
+        }
 
         const routeID = keepCurrentRecording
             ? currentRoute.id

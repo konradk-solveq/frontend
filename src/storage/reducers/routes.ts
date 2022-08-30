@@ -110,7 +110,7 @@ const routesReducer = (state = initialStateList, action: any) => {
 
             return {
                 ...state,
-                currentRoute: {...state.currentRoute, ...route},
+                currentRoute: route,
             };
         }
         case actionTypes.SET_CURRENT_ROUTE_PAUSE_TIME: {
