@@ -4,10 +4,13 @@ import {transformMetersToKilometersString} from '@utils/metersToKilometers';
 import {getAverageSpeed, msToKH} from '@utils/speed';
 import {isLocationValidate} from '@utils/locationData';
 import {CurrentRouteI} from '@storage/reducers/routes';
-import {Location} from '@interfaces/geolocation';
+import {Location, RecordTimeAction, RecordTimeI} from '@interfaces/geolocation';
 import {DataI} from '@hooks/useLocalizationTracker';
 import {getCurrentLocation} from '@utils/geolocation';
-import {isLocationValidToPass} from '@src/utils/transformData';
+import {
+    getTimeInUTCSeconds,
+    isLocationValidToPass,
+} from '@src/utils/transformData';
 
 export const DEFAULT_SPEED = '0.0';
 export const DEFAULT_DISTANCE = '0.00';
@@ -24,15 +27,34 @@ export const getAverageSpeedData = (
     return avgSpeed;
 };
 
+export const getRecordTime = (
+    actionType: RecordTimeAction,
+): RecordTimeI | undefined => {
+    try {
+        const recordTime = {
+            action: actionType,
+            time: getTimeInUTCSeconds(new Date().toISOString()),
+        };
+        return recordTime;
+    } catch (error) {
+        console.error('[getRecordTime - error: ]', error);
+        return;
+    }
+};
+
 export const startCurrentRoute = async (
     followByRoute?: string,
 ): Promise<CurrentRouteI> => {
+    const recordTime = getRecordTime(RecordTimeAction.START);
+    const recordTimes = recordTime ? [recordTime] : [];
+
     return {
         id: uuidv4(),
         isActive: true,
         recordingState: 'recording',
         startedAt: new Date(),
         endedAt: undefined,
+        recordTimes: recordTimes,
         routeId: followByRoute || undefined,
         pauseTime: 0,
         remoteRouteId: undefined,

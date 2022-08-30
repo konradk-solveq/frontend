@@ -11,10 +11,6 @@ export const startRecordingExpectedActions = [
         type: actionTypes.SET_ROUTES_LOADING_STATE,
     },
     {
-        recordTimes: startTab,
-        type: actionTypes.SET_CURRENT_ROUTE_RECORD_TIMES,
-    },
-    {
         type: actionTypes.SET_CURRENT_ROUTE,
         currentRoute: startedRoute,
     },
