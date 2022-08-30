@@ -56,6 +56,9 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
           "height": 92.3076923076923,
           "width": 565.3846153846154,
         },
+        Object {
+          "backgroundColor": "#C63733",
+        },
       ]
     }
     testID="button-test-id"
@@ -70,9 +73,6 @@ exports[`Storyshots components/buttons/Button Customized 1`] = `
             "height": "100%",
             "justifyContent": "center",
             "width": "100%",
-          },
-          Object {
-            "backgroundColor": "#C63733",
           },
           undefined,
         ]
@@ -180,6 +180,9 @@ exports[`Storyshots components/buttons/Button Default 1`] = `
           "height": 92.3076923076923,
           "width": 565.3846153846154,
         },
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="button-test-id"
@@ -194,9 +197,6 @@ exports[`Storyshots components/buttons/Button Default 1`] = `
             "height": "100%",
             "justifyContent": "center",
             "width": "100%",
-          },
-          Object {
-            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -284,6 +284,9 @@ exports[`Storyshots components/buttons/Button With Icon 1`] = `
           "height": 92.3076923076923,
           "width": 565.3846153846154,
         },
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="button-test-id"
@@ -298,9 +301,6 @@ exports[`Storyshots components/buttons/Button With Icon 1`] = `
             "height": "100%",
             "justifyContent": "center",
             "width": "100%",
-          },
-          Object {
-            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]

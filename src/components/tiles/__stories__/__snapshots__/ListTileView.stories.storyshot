@@ -19,7 +19,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
     delayLongPress={600}
     enabled={true}
     exclusive={true}
-    handlerTag={20}
+    handlerTag={21}
     handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
@@ -194,7 +194,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   delayLongPress={600}
                   enabled={true}
                   exclusive={true}
-                  handlerTag={21}
+                  handlerTag={22}
                   handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
@@ -290,7 +290,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                     delayLongPress={600}
                     enabled={true}
                     exclusive={true}
-                    handlerTag={22}
+                    handlerTag={23}
                     handlerType="NativeViewGestureHandler"
                     hitSlop={
                       Object {
@@ -347,7 +347,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   delayLongPress={600}
                   enabled={true}
                   exclusive={true}
-                  handlerTag={23}
+                  handlerTag={24}
                   handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
@@ -413,7 +413,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   delayLongPress={600}
                   enabled={true}
                   exclusive={true}
-                  handlerTag={24}
+                  handlerTag={25}
                   handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
@@ -1506,6 +1506,11 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 >
                   <RNGestureHandlerButton
                     collapsable={false}
+                    delayLongPress={600}
+                    enabled={true}
+                    exclusive={true}
+                    handlerTag={18}
+                    handlerType="NativeViewGestureHandler"
                     hitSlop={
                       Object {
                         "bottom": 23.708530805687204,
@@ -1519,6 +1524,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                     onGestureHandlerStateChange={[Function]}
                     onHandlerStateChange={[Function]}
                     rippleColor={0}
+                    touchSoundDisabled={false}
                   >
                     <View
                       accessible={true}
@@ -1560,7 +1566,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   delayLongPress={600}
                   enabled={true}
                   exclusive={true}
-                  handlerTag={18}
+                  handlerTag={19}
                   handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
@@ -1626,7 +1632,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   delayLongPress={600}
                   enabled={true}
                   exclusive={true}
-                  handlerTag={19}
+                  handlerTag={20}
                   handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {

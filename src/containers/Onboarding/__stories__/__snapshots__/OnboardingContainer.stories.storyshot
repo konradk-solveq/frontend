@@ -25,7 +25,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
   >
     <View
       collapsable={false}
-      handlerTag={43}
+      handlerTag={44}
       handlerType="FlingGestureHandler"
       onGestureHandlerEvent={[Function]}
       onGestureHandlerStateChange={[Function]}
@@ -665,6 +665,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
             },
             Object {},
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -679,9 +682,6 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]
@@ -739,7 +739,7 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
   >
     <View
       collapsable={false}
-      handlerTag={41}
+      handlerTag={42}
       handlerType="FlingGestureHandler"
       onGestureHandlerEvent={[Function]}
       onGestureHandlerStateChange={[Function]}
@@ -1379,6 +1379,9 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
             },
             Object {},
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -1393,9 +1396,6 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]

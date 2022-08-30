@@ -1,10 +1,14 @@
 import React from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Pressable} from 'react-native';
 import colors from '@theme/colors';
 import Svg, {Path} from 'react-native-svg';
 import {appContainerHorizontalMargin} from '@theme/commonStyle';
-import {getFHorizontalPx, getFVerticalPx} from '@theme/utils/appLayoutDimensions';
-import {TextLink} from '@src/components/texts/texts';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import {TextLink} from '@components/texts/texts';
+import {isIOS} from '@utils/platform';
 
 interface Props {
     title: string;
@@ -13,7 +17,6 @@ interface Props {
 }
 
 const ProfileButton: React.FC<Props> = (props: Props) => {
-
     const styles = StyleSheet.create({
         container: {
             display: 'flex',
@@ -26,7 +29,7 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
             paddingHorizontal: appContainerHorizontalMargin,
         },
         textLinkContainer: {
-            height: getFVerticalPx(48)
+            height: getFVerticalPx(48),
         },
         buttonText: {
             marginVertical: getFVerticalPx(16),
@@ -40,12 +43,18 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
     });
 
     return (
-        <TouchableOpacity onPress={props.onpress}>
+        <Pressable
+            onPress={props.onpress}
+            android_ripple={{color: colors.buttons.secondaryHighlight}}
+            style={({pressed}) => ({
+                backgroundColor:
+                    pressed && isIOS
+                        ? colors.buttons.secondaryHighlight
+                        : undefined,
+            })}>
             <View style={styles.container}>
                 <View style={styles.textLinkContainer}>
-                    <TextLink style={styles.buttonText}>
-                        {props.title}
-                    </TextLink>
+                    <TextLink style={styles.buttonText}>{props.title}</TextLink>
                 </View>
                 <Svg style={styles.arrow} viewBox="0 0 9 15">
                     <Path
@@ -55,7 +64,7 @@ const ProfileButton: React.FC<Props> = (props: Props) => {
                     />
                 </Svg>
             </View>
-        </TouchableOpacity>
+        </Pressable>
     );
 };
 

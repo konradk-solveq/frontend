@@ -41,6 +41,7 @@ describe('<MultiSelect /> - components/input', () => {
 
         const button = getByTestId(TEST_BUTTON_1_ID);
         const text = getByText(TEST_BUTTON_1_TEXT);
+
         expect(text.props.style[1].color).toBe(inactiveTextColor);
         fireEvent.press(button);
         expect(text.props.style[1].color).toBe(activeTextColor);

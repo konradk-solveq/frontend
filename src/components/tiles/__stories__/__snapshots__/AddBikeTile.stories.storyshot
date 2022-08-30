@@ -277,6 +277,9 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
                 "marginBottom": 25.28909952606635,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="add-bike-tile-primary-button"
@@ -291,9 +294,6 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -358,6 +358,9 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
               },
               Object {},
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="add-bike-tile-secondary-button"
@@ -372,9 +375,6 @@ exports[`Storyshots components/tiles/AddBIkeTile Customized 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -712,6 +712,9 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
                 "marginBottom": 25.28909952606635,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="add-bike-tile-primary-button"
@@ -726,9 +729,6 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -793,6 +793,9 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
               },
               Object {},
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="add-bike-tile-secondary-button"
@@ -807,9 +810,6 @@ exports[`Storyshots components/tiles/AddBIkeTile Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]

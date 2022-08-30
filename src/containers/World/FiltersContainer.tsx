@@ -1,29 +1,31 @@
-import React, {Ref, useMemo} from 'react';
+import React, {Ref, useCallback, useMemo, useState} from 'react';
 import {
-    View,
+    Dimensions,
+    GestureResponderEvent,
     Pressable,
     ScrollView,
     StyleSheet,
-    Dimensions,
+    View,
 } from 'react-native';
-import colors from '@theme/colors';
-import {Demi18h28} from '@components/texts/texts';
-import {IconButton, PrimaryButton, SecondaryButton} from '@components/buttons';
-import {MykrossIconFont} from '@theme/enums/iconFonts';
-import RangePicker, {RangePickerRef} from '@components/slider/RangePicker';
-import {Switch} from '@components/inputs';
-import Filter from '@pages/main/world/components/filters/filter';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-    getFVerticalPx,
-    getFHorizontalPx,
-} from '@theme/utils/appLayoutDimensions';
-import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
-import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
-import {FiltersI} from '@pages/main/world/components/filters/filtersData';
-import {PickedFilters} from '@interfaces/form';
-import {BackdropModal} from '@components/modals';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+import {IconButton, PrimaryButton, SecondaryButton} from '@components/buttons';
+import {Switch} from '@components/inputs';
+import {BackdropModal} from '@components/modals';
+import RangePicker, {RangePickerRef} from '@components/slider/RangePicker';
+import {Demi18h28} from '@components/texts/texts';
+import {getHorizontalPx, getVerticalPx} from '@helpers/layoutFoo';
+import {PickedFilters} from '@interfaces/form';
+import Filter from '@pages/main/world/components/filters/filter';
+import {FiltersI} from '@pages/main/world/components/filters/filtersData';
+import colors from '@theme/colors';
+import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {
+    getFHorizontalPx,
+    getFVerticalPx,
+} from '@theme/utils/appLayoutDimensions';
+import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 interface IProps {
     showModal: boolean;
@@ -83,6 +85,15 @@ const FiltersContainer: React.FC<IProps> = ({
                 : '',
         [t, itemsCount],
     );
+    const [clearBtnTextColor, setClearBtnTextColor] = useState(colors.red);
+
+    const changeTextHighlightColor = useCallback(
+        (_: GestureResponderEvent, revert?: boolean) => {
+            setClearBtnTextColor(!revert ? colors.darkRed : colors.red);
+        },
+        [],
+    );
+
     return (
         <>
             <BackdropModal
@@ -105,8 +116,12 @@ const FiltersContainer: React.FC<IProps> = ({
                         />
                         <Pressable
                             onPress={onResetHandler}
+                            onPressIn={changeTextHighlightColor}
+                            onPressOut={e => changeTextHighlightColor(e, true)}
                             testID={'filters-container-clear-button'}>
-                            <Demi18h28 style={styles.clearText}>
+                            <Demi18h28
+                                style={styles.clearText}
+                                color={clearBtnTextColor}>
                                 {t('filtersClear')}
                             </Demi18h28>
                         </Pressable>
@@ -220,7 +235,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     clearText: {
-        color: colors.red,
         paddingRight: getHorizontalPx(14),
     },
     wrap: {

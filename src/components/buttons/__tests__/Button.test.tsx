@@ -50,8 +50,8 @@ describe('<Button /> - components/buttons', () => {
             />,
         );
 
-        const buttonElement = getByTestId(`${BUTTON_TEST_ID}-container`);
-        expect(buttonElement.props.style[1].backgroundColor).toEqual(
+        const buttonElement = getByTestId(`${BUTTON_TEST_ID}`);
+        expect(buttonElement.props.style[3].backgroundColor).toEqual(
             BUTTON_COLOR,
         );
     });
@@ -114,8 +114,8 @@ describe('<Button /> - components/buttons', () => {
             />,
         );
 
-        const buttonElement = getByTestId(`${BUTTON_TEST_ID}-container`);
-        expect(buttonElement.props.style[1].backgroundColor).toEqual(
+        const buttonElement = getByTestId(`${BUTTON_TEST_ID}`);
+        expect(buttonElement.props.style[3].backgroundColor).toEqual(
             BUTTON_DISABLED_COLOR,
         );
     });

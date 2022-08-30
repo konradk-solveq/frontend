@@ -73,6 +73,9 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "width": "45%",
             },
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -87,9 +90,6 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]
@@ -185,6 +185,9 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "width": "45%",
             },
           ],
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -199,9 +202,6 @@ exports[`Storyshots containers/World/components/ButtonsGroup Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#FFFFFF",
             },
             undefined,
           ]

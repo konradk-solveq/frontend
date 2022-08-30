@@ -504,6 +504,9 @@ const clearMarkersCluster = () => {
                 "width": 221.15384615384616,
               },
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="secondary-btn-test-id"
@@ -518,9 +521,6 @@ const clearMarkersCluster = () => {
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]

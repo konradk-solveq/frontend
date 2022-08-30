@@ -286,6 +286,9 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Customized 1`] = 
               "marginBottom": 71.12559241706161,
             },
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="add-bike-summary-container-test-id-button"
@@ -300,9 +303,6 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Customized 1`] = 
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]
@@ -621,6 +621,9 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Default 1`] = `
               "marginBottom": 71.12559241706161,
             },
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="add-bike-summary-container-test-id-button"
@@ -635,9 +638,6 @@ exports[`Storyshots containers/AddBike/AddBikeSummaryContainer Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]

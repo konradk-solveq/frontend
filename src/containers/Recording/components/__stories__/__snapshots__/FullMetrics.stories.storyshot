@@ -597,6 +597,9 @@ exports[`Storyshots containers/Recording/components/metrics/FullMetrics Default 
               "width": 386.53846153846155,
             },
           ],
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -611,9 +614,6 @@ exports[`Storyshots containers/Recording/components/metrics/FullMetrics Default 
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#FFFFFF",
             },
             undefined,
           ]
@@ -1263,6 +1263,9 @@ exports[`Storyshots containers/Recording/components/metrics/FullMetrics With tra
               "width": 386.53846153846155,
             },
           ],
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -1277,9 +1280,6 @@ exports[`Storyshots containers/Recording/components/metrics/FullMetrics With tra
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#FFFFFF",
             },
             undefined,
           ]

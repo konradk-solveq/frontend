@@ -286,6 +286,9 @@ Array [
                       "marginTop": 25.28909952606635,
                     },
                   ],
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
                 ]
               }
               testID="error-modal-test-id-close-button"
@@ -300,9 +303,6 @@ Array [
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#FFFFFF",
                     },
                     undefined,
                   ]
@@ -673,6 +673,9 @@ Array [
                       "marginTop": 25.28909952606635,
                     },
                   ],
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
                 ]
               }
               testID="error-modal-test-id-retry-button"
@@ -687,9 +690,6 @@ Array [
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#FFFFFF",
                     },
                     undefined,
                   ]
@@ -765,6 +765,9 @@ Array [
                       "marginTop": 25.28909952606635,
                     },
                   ],
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
                 ]
               }
               testID="error-modal-test-id-close-button"
@@ -779,9 +782,6 @@ Array [
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#FFFFFF",
                     },
                     undefined,
                   ]

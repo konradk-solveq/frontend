@@ -840,6 +840,9 @@ Array [
                 "width": 328.84615384615387,
               },
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="thank-you-page-container-save-button"
@@ -854,9 +857,6 @@ Array [
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -932,6 +932,9 @@ Array [
                 "width": 328.84615384615387,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="thank-you-page-container-publish-button"
@@ -946,9 +949,6 @@ Array [
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -1872,6 +1872,9 @@ Array [
                 "width": 328.84615384615387,
               },
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="thank-you-page-container-save-button"
@@ -1886,9 +1889,6 @@ Array [
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -1964,6 +1964,9 @@ Array [
                 "width": 328.84615384615387,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="thank-you-page-container-publish-button"
@@ -1978,9 +1981,6 @@ Array [
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]

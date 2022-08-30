@@ -276,6 +276,9 @@ Array [
                   "height": 48,
                 },
               ],
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
           testID="secondary-btn-test-id"
@@ -290,9 +293,6 @@ Array [
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]
@@ -653,6 +653,9 @@ Array [
                   "height": 48,
                 },
               ],
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
           testID="secondary-btn-test-id"
@@ -667,9 +670,6 @@ Array [
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]
@@ -1050,6 +1050,9 @@ Array [
                   "height": 48,
                 },
               ],
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
           testID="secondary-btn-test-id"
@@ -1064,9 +1067,6 @@ Array [
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]

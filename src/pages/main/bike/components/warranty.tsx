@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {GestureResponderEvent, Pressable, StyleSheet, View} from 'react-native';
 
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
@@ -33,6 +33,7 @@ const Warranty: React.FC<Props> = ({
     onPress,
 }: Props) => {
     const {t} = useMergedTranslation('MainBike');
+    const [statusInfoPressed, setStatusInfoPressed] = useState(false);
     const daysToEnd = useMemo(() => endDate && countDaysToEnd(endDate), [
         endDate,
     ]);
@@ -54,6 +55,13 @@ const Warranty: React.FC<Props> = ({
         showWarrantyStatusInfo,
         info,
         containsWarrantyInfo,
+    );
+    const testHighlightColor = useMemo(
+        () =>
+            !containsWarrantyInfo && statusInfoPressed
+                ? colors.darkGrey
+                : undefined,
+        [containsWarrantyInfo, statusInfoPressed],
     );
 
     const warrantyStatusInfo = getWarrantyStatusInfo(containsWarrantyInfo);
@@ -91,12 +99,19 @@ const Warranty: React.FC<Props> = ({
                         </BodyPrimary>
                         <Pressable
                             style={styles.rightText}
+                            onPressIn={() => setStatusInfoPressed(true)}
+                            onPressOut={() => setStatusInfoPressed(false)}
                             onPress={onPressHandler}>
-                            <BodyPrimary algin="right">
+                            <BodyPrimary
+                                algin="right"
+                                color={testHighlightColor}>
                                 {warrantyStatusInfoText}
                             </BodyPrimary>
                             {!containsWarrantyInfo && (
-                                <ArrowSvg style={styles.arrow} />
+                                <ArrowSvg
+                                    style={styles.arrow}
+                                    color={testHighlightColor}
+                                />
                             )}
                         </Pressable>
                     </View>
