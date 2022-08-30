@@ -25,6 +25,8 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Customized 1`] = `
   >
     <View
       collapsable={false}
+      handlerTag={43}
+      handlerType="FlingGestureHandler"
       onGestureHandlerEvent={[Function]}
       onGestureHandlerStateChange={[Function]}
       style={
@@ -737,6 +739,8 @@ exports[`Storyshots containers/Onboarding/OnboardingContainer Default 1`] = `
   >
     <View
       collapsable={false}
+      handlerTag={41}
+      handlerType="FlingGestureHandler"
       onGestureHandlerEvent={[Function]}
       onGestureHandlerStateChange={[Function]}
       style={

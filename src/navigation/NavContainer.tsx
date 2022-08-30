@@ -27,7 +27,7 @@ const NavContainer: React.FC = () => {
         onboardingFinishedSelector,
     );
     useAppInit();
-    const {removeAllToasts} = useToastContext();
+    const {removeAllToasts, handleCurrentRoute} = useToastContext();
 
     const routeNameRef = useRef<string | undefined>();
     const navigationRef: RefObject<NavigationContainerRef> = useRef(null);
@@ -73,6 +73,7 @@ const NavContainer: React.FC = () => {
                 }
                 removeAllToasts();
                 routeNameRef.current = currentRouteName;
+                handleCurrentRoute(currentRouteName);
             }}>
             {!isOnboardingFinished ? (
                 <OnboardingStackNavigator />

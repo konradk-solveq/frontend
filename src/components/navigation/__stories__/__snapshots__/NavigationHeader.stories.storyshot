@@ -119,6 +119,8 @@ exports[`Storyshots components/navigation/NavigationHeader Customized 1`] = `
           <View
             collapsable={false}
             forwardedRef={[Function]}
+            handlerTag={8}
+            handlerType="PanGestureHandler"
             onGestureHandlerEvent={[Function]}
             onGestureHandlerStateChange={[Function]}
             style={
@@ -590,6 +592,8 @@ exports[`Storyshots components/navigation/NavigationHeader Default 1`] = `
           <View
             collapsable={false}
             forwardedRef={[Function]}
+            handlerTag={6}
+            handlerType="PanGestureHandler"
             onGestureHandlerEvent={[Function]}
             onGestureHandlerStateChange={[Function]}
             style={
@@ -947,6 +951,8 @@ exports[`Storyshots components/navigation/NavigationHeader With additional butto
           <View
             collapsable={false}
             forwardedRef={[Function]}
+            handlerTag={7}
+            handlerType="PanGestureHandler"
             onGestureHandlerEvent={[Function]}
             onGestureHandlerStateChange={[Function]}
             style={
