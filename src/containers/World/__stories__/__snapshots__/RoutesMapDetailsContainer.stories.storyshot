@@ -279,6 +279,9 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "width": 290.3846153846154,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="route-map-details-container-common-action-buttons-primary-button"
@@ -293,9 +296,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -392,6 +392,9 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "width": 275,
               },
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="route-map-details-container-common-action-buttons-secondary-button"
@@ -406,9 +409,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Customized 1`] = 
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -1414,6 +1414,9 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "width": 290.3846153846154,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="route-map-details-container-common-action-buttons-primary-button"
@@ -1428,9 +1431,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]
@@ -1527,6 +1527,9 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "width": 275,
               },
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="route-map-details-container-common-action-buttons-secondary-button"
@@ -1541,9 +1544,6 @@ exports[`Storyshots containers/World/RoutesMapDetailsContainer Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]

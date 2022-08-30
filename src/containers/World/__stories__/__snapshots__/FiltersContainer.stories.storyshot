@@ -161,14 +161,13 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                 style={
                   Array [
                     Object {
-                      "color": "#333333",
+                      "color": "#C63733",
                       "fontFamily": "DIN2014-Demi",
                       "fontSize": 18,
                       "lineHeight": 28,
                       "textAlign": "left",
                     },
                     Object {
-                      "color": "#C63733",
                       "paddingRight": 25.36231884057971,
                     },
                   ]
@@ -1010,6 +1009,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-easy"
@@ -1024,9 +1026,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1094,6 +1093,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-moderate"
@@ -1108,9 +1110,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1178,6 +1177,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-hard"
@@ -1192,9 +1194,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1320,6 +1319,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-gravel"
@@ -1334,9 +1336,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1404,6 +1403,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-asphalt"
@@ -1418,9 +1420,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1488,6 +1487,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-paved"
@@ -1502,9 +1504,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1572,6 +1571,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-unpaved"
@@ -1586,9 +1588,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1656,6 +1655,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-bike_path"
@@ -1670,9 +1672,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1798,6 +1797,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-scenic"
@@ -1812,9 +1814,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1882,6 +1881,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-weekend"
@@ -1896,9 +1898,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -1966,6 +1965,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-low-traffic"
@@ -1980,9 +1982,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2050,6 +2049,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-high-traffic"
@@ -2064,9 +2066,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2134,6 +2133,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-delicious-food"
@@ -2148,9 +2150,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2218,6 +2217,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-interesting-attractions"
@@ -2232,9 +2234,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2302,6 +2301,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-family"
@@ -2316,9 +2318,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2386,6 +2385,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-trekking"
@@ -2400,9 +2402,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2470,6 +2469,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-forest"
@@ -2484,9 +2486,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2554,6 +2553,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-city"
@@ -2568,9 +2570,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2638,6 +2637,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-mountain"
@@ -2652,9 +2654,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2722,6 +2721,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-tourist"
@@ -2736,9 +2738,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2806,6 +2805,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-relic"
@@ -2820,9 +2822,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2890,6 +2889,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-historic-trail"
@@ -2904,9 +2906,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -2974,6 +2973,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-overnight-stay"
@@ -2988,9 +2990,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -3058,6 +3057,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-bike-park"
@@ -3072,9 +3074,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -3142,6 +3141,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-professional"
@@ -3156,9 +3158,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -3226,6 +3225,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-recreational"
@@ -3240,9 +3242,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -3310,6 +3309,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-singletrack"
@@ -3324,9 +3326,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -3394,6 +3393,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                 "marginRight": 15.384615384615385,
                                 "width": "auto",
                               },
+                              Object {
+                                "backgroundColor": "#FFFFFF",
+                              },
                             ]
                           }
                           testID="multiselect-button-nature-monuments"
@@ -3408,9 +3410,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                                   "height": "100%",
                                   "justifyContent": "center",
                                   "width": "100%",
-                                },
-                                Object {
-                                  "backgroundColor": "#FFFFFF",
                                 },
                                 Object {
                                   "paddingHorizontal": 30.76923076923077,
@@ -3530,6 +3529,9 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                   },
                   Object {},
                 ],
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
               ]
             }
             testID="filters-container-show-all-button"
@@ -3544,9 +3546,6 @@ exports[`Storyshots containers/World/FiltersContainer Default 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#FFFFFF",
                   },
                   undefined,
                 ]

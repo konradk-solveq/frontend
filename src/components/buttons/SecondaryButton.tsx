@@ -14,6 +14,7 @@ interface IProps {
     disabled?: boolean;
     withLoader?: boolean;
     withoutShadow?: boolean;
+    highlightTextColor?: string;
     style?: ViewStyle;
     testID?: string;
 }
@@ -34,6 +35,7 @@ const SecondaryButton: React.FC<IProps> = ({
             text={text}
             onPress={onPress}
             color={colors.white}
+            highlightColor={colors.buttons.secondaryHighlight}
             icon={icon}
             disabled={disabled}
             withLoader={withLoader}

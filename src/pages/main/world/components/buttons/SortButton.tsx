@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, ViewStyle} from 'react-native';
 import {TransparentButton} from '@components/buttons';
 import {MykrossIconFont} from '@theme/enums/iconFonts';
+import colors from '@theme/colors';
 
 interface SortBtnI {
     onPress: () => void;
@@ -21,6 +22,7 @@ const SortButton = ({
             text={title}
             onPress={onPress}
             icon={MykrossIconFont.MYKROSS_ICON_CHEVRON_DOWN}
+            textColorHighlight={colors.darkGrey}
             style={style}
             containerStyle={styles.buttonContainer}
             testID={testID}

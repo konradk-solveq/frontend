@@ -200,6 +200,9 @@ exports[`Storyshots containers/NewAppVersion/NewAppVersionContainer Default 1`] 
             },
             Object {},
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="secondary-btn-test-id"
@@ -214,9 +217,6 @@ exports[`Storyshots containers/NewAppVersion/NewAppVersionContainer Default 1`] 
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]

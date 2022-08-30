@@ -34,6 +34,7 @@ const PrimaryButton: React.FC<IProps> = ({
             text={text}
             onPress={onPress}
             color={colors.red}
+            highlightColor={colors.buttons.primaryHighlight}
             disabledColor={colors.lightRed}
             icon={icon}
             disabled={disabled}

@@ -313,6 +313,9 @@ exports[`Storyshots containers/AddBike/AddBikeFrameInfo Default 1`] = `
               "marginTop": 104.3175355450237,
             },
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="add-bike-frame-info-container-id-button"
@@ -327,9 +330,6 @@ exports[`Storyshots containers/AddBike/AddBikeFrameInfo Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]

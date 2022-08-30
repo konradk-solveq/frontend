@@ -308,6 +308,9 @@ exports[`Storyshots components/error/GenericError Customized 1`] = `
                   "height": 48,
                 },
               ],
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
           testID="secondary-btn-test-id"
@@ -322,9 +325,6 @@ exports[`Storyshots components/error/GenericError Customized 1`] = `
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]
@@ -667,6 +667,9 @@ exports[`Storyshots components/error/GenericError Default 1`] = `
                   "height": 48,
                 },
               ],
+              Object {
+                "backgroundColor": "#FFFFFF",
+              },
             ]
           }
           testID="secondary-btn-test-id"
@@ -681,9 +684,6 @@ exports[`Storyshots components/error/GenericError Default 1`] = `
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#FFFFFF",
                 },
                 undefined,
               ]

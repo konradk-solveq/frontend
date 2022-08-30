@@ -144,6 +144,9 @@ exports[`Storyshots containers/Onboarding/LocationUsage Default 1`] = `
             },
             Object {},
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="location-usage-button-test-id"
@@ -158,9 +161,6 @@ exports[`Storyshots containers/Onboarding/LocationUsage Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]

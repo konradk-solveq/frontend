@@ -209,6 +209,9 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#C63733",
+                },
               ]
             }
             testID="alert-id-positive-button"
@@ -223,9 +226,6 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#C63733",
                   },
                   undefined,
                 ]
@@ -307,6 +307,9 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
               ]
             }
             testID="alert-id-negative-button"
@@ -321,9 +324,6 @@ exports[`Storyshots components/alerts/alert Customized 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#FFFFFF",
                   },
                   undefined,
                 ]
@@ -633,6 +633,9 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#C63733",
+                },
               ]
             }
             testID="alert-id-positive-button"
@@ -647,9 +650,6 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#C63733",
                   },
                   undefined,
                 ]
@@ -731,6 +731,9 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
               ]
             }
             testID="alert-id-negative-button"
@@ -745,9 +748,6 @@ exports[`Storyshots components/alerts/alert Default 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#FFFFFF",
                   },
                   undefined,
                 ]
@@ -1057,6 +1057,9 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#C63733",
+                },
               ]
             }
             testID="alert-id-positive-button"
@@ -1071,9 +1074,6 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#C63733",
                   },
                   undefined,
                 ]
@@ -1155,6 +1155,9 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#FFFFFF",
+                },
               ]
             }
             testID="alert-id-negative-button"
@@ -1169,9 +1172,6 @@ exports[`Storyshots components/alerts/alert With content 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#FFFFFF",
                   },
                   undefined,
                 ]
@@ -1481,6 +1481,9 @@ exports[`Storyshots components/alerts/alert Without cancel button 1`] = `
                     "width": "100%",
                   },
                 ],
+                Object {
+                  "backgroundColor": "#C63733",
+                },
               ]
             }
             testID="alert-id-positive-button"
@@ -1495,9 +1498,6 @@ exports[`Storyshots components/alerts/alert Without cancel button 1`] = `
                     "height": "100%",
                     "justifyContent": "center",
                     "width": "100%",
-                  },
-                  Object {
-                    "backgroundColor": "#C63733",
                   },
                   undefined,
                 ]

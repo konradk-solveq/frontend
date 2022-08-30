@@ -10,6 +10,7 @@ interface IProps {
     text: string;
     onPress: (e: GestureResponderEvent) => void;
     textColor?: string;
+    textColorHighlight?: string;
     icon?: MykrossIconFont /* Font symbol from 'mykross' font */;
     disabled?: boolean;
     withLoader?: boolean;
@@ -22,6 +23,7 @@ const TransparentButton: React.FC<IProps> = ({
     text,
     onPress,
     textColor = colors.black,
+    textColorHighlight,
     icon,
     disabled = false,
     withLoader = false,
@@ -39,7 +41,8 @@ const TransparentButton: React.FC<IProps> = ({
             withLoader={withLoader}
             testID={testID}
             textColor={textColor}
-            disabledTextColor={colors.grey}
+            highlightTextColor={textColorHighlight}
+            disabledTextColor={colors.darkGrey}
             loaderColor={colors.black}
             style={[styles.button, style || {}]}
             containerStyle={containerStyle || {}}

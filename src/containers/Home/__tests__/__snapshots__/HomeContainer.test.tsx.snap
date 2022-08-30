@@ -337,6 +337,9 @@ Array [
                       "marginBottom": 25.28909952606635,
                     },
                   ],
+                  Object {
+                    "backgroundColor": "#C63733",
+                  },
                 ]
               }
               testID="add-bike-tile-primary-button"
@@ -351,9 +354,6 @@ Array [
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#C63733",
                     },
                     undefined,
                   ]
@@ -418,6 +418,9 @@ Array [
                     },
                     Object {},
                   ],
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
                 ]
               }
               testID="add-bike-tile-secondary-button"
@@ -432,9 +435,6 @@ Array [
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#FFFFFF",
                     },
                     undefined,
                   ]

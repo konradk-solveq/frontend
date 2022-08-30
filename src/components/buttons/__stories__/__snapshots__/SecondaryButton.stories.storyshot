@@ -61,6 +61,9 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
             "backgroundColor": "#FFFFFF",
           },
         ],
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="secondary-btn-test-id"
@@ -75,9 +78,6 @@ exports[`Storyshots components/buttons/SecondaryButton Customized 1`] = `
             "height": "100%",
             "justifyContent": "center",
             "width": "100%",
-          },
-          Object {
-            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -188,6 +188,9 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
           },
           Object {},
         ],
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="secondary-btn-test-id"
@@ -202,9 +205,6 @@ exports[`Storyshots components/buttons/SecondaryButton Default 1`] = `
             "height": "100%",
             "justifyContent": "center",
             "width": "100%",
-          },
-          Object {
-            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]
@@ -295,6 +295,9 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
           },
           Object {},
         ],
+        Object {
+          "backgroundColor": "#FFFFFF",
+        },
       ]
     }
     testID="secondary-btn-test-id"
@@ -309,9 +312,6 @@ exports[`Storyshots components/buttons/SecondaryButton With Icon 1`] = `
             "height": "100%",
             "justifyContent": "center",
             "width": "100%",
-          },
-          Object {
-            "backgroundColor": "#FFFFFF",
           },
           undefined,
         ]

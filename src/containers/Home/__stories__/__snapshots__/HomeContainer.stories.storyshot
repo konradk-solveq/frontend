@@ -349,6 +349,9 @@ exports[`Storyshots containers/Home/HomeContainer Custiomized 1`] = `
                       "marginBottom": 25.28909952606635,
                     },
                   ],
+                  Object {
+                    "backgroundColor": "#C63733",
+                  },
                 ]
               }
               testID="add-bike-tile-primary-button"
@@ -363,9 +366,6 @@ exports[`Storyshots containers/Home/HomeContainer Custiomized 1`] = `
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#C63733",
                     },
                     undefined,
                   ]
@@ -430,6 +430,9 @@ exports[`Storyshots containers/Home/HomeContainer Custiomized 1`] = `
                     },
                     Object {},
                   ],
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
                 ]
               }
               testID="add-bike-tile-secondary-button"
@@ -444,9 +447,6 @@ exports[`Storyshots containers/Home/HomeContainer Custiomized 1`] = `
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#FFFFFF",
                     },
                     undefined,
                   ]
@@ -861,6 +861,9 @@ exports[`Storyshots containers/Home/HomeContainer Default 1`] = `
                       "marginBottom": 25.28909952606635,
                     },
                   ],
+                  Object {
+                    "backgroundColor": "#C63733",
+                  },
                 ]
               }
               testID="add-bike-tile-primary-button"
@@ -875,9 +878,6 @@ exports[`Storyshots containers/Home/HomeContainer Default 1`] = `
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#C63733",
                     },
                     undefined,
                   ]
@@ -942,6 +942,9 @@ exports[`Storyshots containers/Home/HomeContainer Default 1`] = `
                     },
                     Object {},
                   ],
+                  Object {
+                    "backgroundColor": "#FFFFFF",
+                  },
                 ]
               }
               testID="add-bike-tile-secondary-button"
@@ -956,9 +959,6 @@ exports[`Storyshots containers/Home/HomeContainer Default 1`] = `
                       "height": "100%",
                       "justifyContent": "center",
                       "width": "100%",
-                    },
-                    Object {
-                      "backgroundColor": "#FFFFFF",
                     },
                     undefined,
                   ]

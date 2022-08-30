@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import {
     Pressable,
     View,
@@ -14,7 +15,6 @@ import {
     getFVerticalPx,
     getFHorizontalPx,
 } from '@theme/utils/appLayoutDimensions';
-import React from 'react';
 import {useMergedTranslation} from '@utils/translations/useMergedTranslation';
 
 interface IProps {
@@ -31,9 +31,15 @@ export default ({
     testID = 'services-tile-test-id',
 }: IProps) => {
     const {t} = useMergedTranslation('MainBike.noBikes');
+    const [pressedTile, setPressedTile] = useState(false);
+
     return (
         <View style={[styles.tileContainer, style]}>
-            <Pressable onPress={onPressTile} testID={testID}>
+            <Pressable
+                onPress={onPressTile}
+                testID={testID}
+                onPressIn={() => setPressedTile(true)}
+                onPressOut={() => setPressedTile(false)}>
                 <View
                     style={[
                         styles.tile,
@@ -67,7 +73,9 @@ export default ({
                             }}>
                             {t('servicesTile.body')}
                         </Header3>
-                        <BodyPrimary color={colors.red} algin="center">
+                        <BodyPrimary
+                            color={!pressedTile ? colors.red : colors.darkRed}
+                            algin="center">
                             {t('servicesTile.button')}
                         </BodyPrimary>
                     </View>

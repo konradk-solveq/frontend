@@ -324,6 +324,9 @@ exports[`Storyshots containers/AddBike/AddBike Customized 1`] = `
                   "marginBottom": 25.28909952606635,
                 },
               ],
+              Object {
+                "backgroundColor": "#C63733",
+              },
             ]
           }
           testID="add-bike-container-test-id-scan-nfc-button"
@@ -338,9 +341,6 @@ exports[`Storyshots containers/AddBike/AddBike Customized 1`] = `
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#C63733",
                 },
                 undefined,
               ]
@@ -414,6 +414,9 @@ exports[`Storyshots containers/AddBike/AddBike Customized 1`] = `
                 },
                 Object {},
               ],
+              Object {
+                "backgroundColor": "#C63733",
+              },
             ]
           }
           testID="add-bike-container-test-id-find-by-number-button"
@@ -428,9 +431,6 @@ exports[`Storyshots containers/AddBike/AddBike Customized 1`] = `
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#C63733",
                 },
                 undefined,
               ]
@@ -789,6 +789,9 @@ exports[`Storyshots containers/AddBike/AddBike Default 1`] = `
                   "marginBottom": 25.28909952606635,
                 },
               ],
+              Object {
+                "backgroundColor": "#C63733",
+              },
             ]
           }
           testID="add-bike-container-test-id-scan-nfc-button"
@@ -803,9 +806,6 @@ exports[`Storyshots containers/AddBike/AddBike Default 1`] = `
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#C63733",
                 },
                 undefined,
               ]
@@ -879,6 +879,9 @@ exports[`Storyshots containers/AddBike/AddBike Default 1`] = `
                 },
                 Object {},
               ],
+              Object {
+                "backgroundColor": "#C63733",
+              },
             ]
           }
           testID="add-bike-container-test-id-find-by-number-button"
@@ -893,9 +896,6 @@ exports[`Storyshots containers/AddBike/AddBike Default 1`] = `
                   "height": "100%",
                   "justifyContent": "center",
                   "width": "100%",
-                },
-                Object {
-                  "backgroundColor": "#C63733",
                 },
                 undefined,
               ]

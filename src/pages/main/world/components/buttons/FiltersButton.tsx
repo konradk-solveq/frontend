@@ -26,6 +26,7 @@ const FiltersButton = ({
                 text={t('btnFilters')}
                 onPress={onPress}
                 icon={MykrossIconFont.MYKROSS_ICON_FILTR}
+                textColorHighlight={colors.darkGrey}
                 style={style}
                 testID={testID}
             />

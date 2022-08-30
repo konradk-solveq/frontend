@@ -84,6 +84,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-1"
@@ -98,9 +101,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -168,6 +168,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-2"
@@ -182,9 +185,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -252,6 +252,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-3"
@@ -266,9 +269,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -336,6 +336,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-4"
@@ -350,9 +353,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -420,6 +420,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-5"
@@ -434,9 +437,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -504,6 +504,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-6"
@@ -518,9 +521,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -588,6 +588,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-7"
@@ -602,9 +605,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -672,6 +672,9 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-8"
@@ -686,9 +689,6 @@ exports[`Storyshots components/input/MultiSelect Custom 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -809,6 +809,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-1"
@@ -823,9 +826,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -893,6 +893,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-2"
@@ -907,9 +910,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -977,6 +977,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-3"
@@ -991,9 +994,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -1061,6 +1061,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-4"
@@ -1075,9 +1078,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -1145,6 +1145,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-5"
@@ -1159,9 +1162,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -1229,6 +1229,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-6"
@@ -1243,9 +1246,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -1313,6 +1313,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-7"
@@ -1327,9 +1330,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,
@@ -1397,6 +1397,9 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
               "marginRight": 15.384615384615385,
               "width": "auto",
             },
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="multiselect-button-8"
@@ -1411,9 +1414,6 @@ exports[`Storyshots components/input/MultiSelect Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               Object {
                 "paddingHorizontal": 30.76923076923077,

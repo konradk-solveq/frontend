@@ -1,4 +1,10 @@
-import React, {useMemo, useCallback, ReactNode} from 'react';
+import React, {
+    ReactNode,
+    useCallback,
+    useLayoutEffect,
+    useMemo,
+    useState,
+} from 'react';
 import {
     GestureResponderEvent,
     Pressable,
@@ -7,19 +13,35 @@ import {
     ViewStyle,
 } from 'react-native';
 
-import {getFFontSize, getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
-import {MykrossIconFont} from '@theme/enums/iconFonts';
 import colors from '@theme/colors';
+import {MykrossIconFont} from '@theme/enums/iconFonts';
+import {getFFontSize, getFHorizontalPx} from '@theme/utils/appLayoutDimensions';
 
 import {TextIcon} from '@components/icons/index';
 import {Loader} from '@components/loader';
 import {Demi18h28} from '@components/texts/texts';
+
+const setComponentColor = (
+    callback: (color: string) => void,
+    primaryColor: string,
+    secondaryColor?: string,
+    revert?: boolean,
+) => {
+    if (!secondaryColor) {
+        return;
+    }
+
+    callback(!revert ? secondaryColor : primaryColor);
+};
 
 export interface IProps {
     text: string;
     onPress: (e: GestureResponderEvent) => void;
     adjustsTextSizeToFit?: boolean;
     color?: string;
+    highlightColor?: string;
+    highlightTextColor?: string;
+    highlightIconColor?: string;
     disabledColor?: string;
     textColor?: string;
     disabledTextColor?: string;
@@ -49,6 +71,9 @@ const Button: React.FC<IProps> = ({
     adjustsTextSizeToFit = true,
     onPress,
     color = colors.white,
+    highlightColor,
+    highlightTextColor,
+    highlightIconColor,
     disabledColor = colors.white,
     textColor = colors.black,
     iconColor,
@@ -84,34 +109,74 @@ const Button: React.FC<IProps> = ({
     const shadowStyle = useMemo(() => (!withoutShadow ? styles.shadow : {}), [
         withoutShadow,
     ]);
+    /**
+     * Text color
+     */
+    const [tHColor, setTHColor] = useState(tColor);
+    /**
+     * Icon color
+     */
+    const [iHColor, setIHColor] = useState(iColor);
 
     const Icon = useCallback(
         ({iconStyle}) =>
             icon ? (
                 <TextIcon
                     icon={icon}
-                    iconColor={iColor}
+                    iconColor={iHColor}
                     iconSize={iconSize}
                     style={iconStyle}
                     testID={`${testID}-icon`}
                 />
             ) : null,
-        [iColor, icon, iconSize, testID],
+        [iHColor, icon, iconSize, testID],
     );
+
+    const changeHighlightColor = useCallback(
+        (_: GestureResponderEvent, revert?: boolean) => {
+            /**
+             * Set button text color
+             */
+            setComponentColor(setTHColor, tColor, highlightTextColor, revert);
+            /**
+             * Set button icon color
+             */
+            setComponentColor(
+                setIHColor,
+                iColor,
+                highlightIconColor || highlightTextColor,
+                revert,
+            );
+        },
+        [highlightIconColor, highlightTextColor, iColor, tColor],
+    );
+
+    useLayoutEffect(() => {
+        setTHColor(tColor);
+        setIHColor(iColor);
+    }, [iColor, tColor]);
 
     return (
         <Pressable
             onPress={onPress}
             testID={testID}
+            onPressIn={changeHighlightColor}
+            onPressOut={e => changeHighlightColor(e, true)}
             disabled={disabled || disableTouch}
-            style={[styles.innerContainer, shadowStyle, style]}>
+            style={({pressed}) => [
+                styles.innerContainer,
+                shadowStyle,
+                style,
+                {
+                    backgroundColor:
+                        pressed && !highlightTextColor && highlightColor
+                            ? highlightColor
+                            : buttonColor,
+                },
+            ]}>
             <View
                 testID={`${testID}-container`}
-                style={[
-                    styles.innerContainer,
-                    {backgroundColor: buttonColor},
-                    containerStyle,
-                ]}>
+                style={[styles.innerContainer, containerStyle]}>
                 {isFillUp && !disabled && !withLoader ? (
                     <View style={styles.fillUpContainer}>{children}</View>
                 ) : null}
@@ -120,7 +185,7 @@ const Button: React.FC<IProps> = ({
                         {!iconRight && <Icon iconStyle={styles.leftIcon} />}
                         <Demi18h28
                             testID={`${testID}-text`}
-                            style={{color: tColor}}
+                            style={{color: tHColor}}
                             adjustsFontSizeToFit={adjustsTextSizeToFit}>
                             {text}
                         </Demi18h28>

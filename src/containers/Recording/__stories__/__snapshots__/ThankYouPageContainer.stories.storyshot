@@ -854,6 +854,9 @@ exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
                 "width": 328.84615384615387,
               },
             ],
+            Object {
+              "backgroundColor": "#FFFFFF",
+            },
           ]
         }
         testID="thank-you-page-container-save-button"
@@ -868,9 +871,6 @@ exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#FFFFFF",
               },
               undefined,
             ]
@@ -946,6 +946,9 @@ exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
                 "width": 328.84615384615387,
               },
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="thank-you-page-container-publish-button"
@@ -960,9 +963,6 @@ exports[`Storyshots containers/Recording/ThankYouPageContainer Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]

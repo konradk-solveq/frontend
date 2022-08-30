@@ -79,6 +79,9 @@ exports[`Storyshots components/buttons/FillUpButton Customized 1`] = `
           Array [
             Object {},
           ],
+          Object {
+            "backgroundColor": "#C63733",
+          },
         ]
       }
       testID="fill-up-btn-test-id"
@@ -93,9 +96,6 @@ exports[`Storyshots components/buttons/FillUpButton Customized 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#C63733",
             },
             undefined,
           ]
@@ -237,6 +237,9 @@ exports[`Storyshots components/buttons/FillUpButton Default 1`] = `
           Array [
             Object {},
           ],
+          Object {
+            "backgroundColor": "#FFFFFF",
+          },
         ]
       }
       testID="fill-up-btn-test-id"
@@ -251,9 +254,6 @@ exports[`Storyshots components/buttons/FillUpButton Default 1`] = `
               "height": "100%",
               "justifyContent": "center",
               "width": "100%",
-            },
-            Object {
-              "backgroundColor": "#FFFFFF",
             },
             undefined,
           ]

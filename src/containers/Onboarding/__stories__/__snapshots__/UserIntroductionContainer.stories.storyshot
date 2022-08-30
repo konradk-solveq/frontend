@@ -164,6 +164,9 @@ exports[`Storyshots containers/Onboarding/UserIntroduction Default 1`] = `
               },
               Object {},
             ],
+            Object {
+              "backgroundColor": "#C63733",
+            },
           ]
         }
         testID="user-introduction-container-id-submit-button"
@@ -178,9 +181,6 @@ exports[`Storyshots containers/Onboarding/UserIntroduction Default 1`] = `
                 "height": "100%",
                 "justifyContent": "center",
                 "width": "100%",
-              },
-              Object {
-                "backgroundColor": "#C63733",
               },
               undefined,
             ]

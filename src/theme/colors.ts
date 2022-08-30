@@ -6,6 +6,7 @@ const colors = {
     greyish: '#BDBDBD',
     darkGrey: '#717171',
     red: '#C63733',
+    darkRed: '#A92E2B',
     lightRed: '#EFD8D8',
     white: '#FFFFFF',
     whiteGrey: '#FAFAFA',
@@ -20,6 +21,10 @@ const colors = {
     lightBlue: '#E7F0FA',
     link: '#3587ea',
     transparent: 'transparent',
+    buttons: {
+        primaryHighlight: '#BB332F',
+        secondaryHighlight: '#FCF7F7',
+    },
 };
 
 export default colors;
