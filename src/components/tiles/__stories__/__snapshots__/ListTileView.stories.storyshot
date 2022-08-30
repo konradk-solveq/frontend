@@ -1413,6 +1413,64 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                     </View>
                   </View>
                 </RNGestureHandlerButton>
+                <View
+                  style={
+                    Object {
+                      "marginRight": 30.76923076923077,
+                    }
+                  }
+                >
+                  <RNGestureHandlerButton
+                    collapsable={false}
+                    hitSlop={
+                      Object {
+                        "bottom": 23.708530805687204,
+                        "left": 19.23076923076923,
+                        "right": 19.23076923076923,
+                        "top": 23.708530805687204,
+                      }
+                    }
+                    onGestureEvent={[Function]}
+                    onGestureHandlerEvent={[Function]}
+                    onGestureHandlerStateChange={[Function]}
+                    onHandlerStateChange={[Function]}
+                    rippleColor={0}
+                  >
+                    <View
+                      accessible={true}
+                      collapsable={false}
+                      hitSlop={
+                        Object {
+                          "bottom": 23.708530805687204,
+                          "left": 19.23076923076923,
+                          "right": 19.23076923076923,
+                          "top": 23.708530805687204,
+                        }
+                      }
+                      nativeID="animatedComponent"
+                      style={Object {}}
+                    >
+                      <Text
+                        style={
+                          Array [
+                            Object {
+                              "fontFamily": "mykross",
+                              "textAlign": "center",
+                            },
+                            Object {
+                              "color": "#333333",
+                              "fontSize": 24,
+                            },
+                            undefined,
+                          ]
+                        }
+                        testID="text-icon-test-id"
+                      >
+                        S
+                      </Text>
+                    </View>
+                  </RNGestureHandlerButton>
+                </View>
                 <RNGestureHandlerButton
                   collapsable={false}
                   hitSlop={

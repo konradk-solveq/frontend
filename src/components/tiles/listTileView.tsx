@@ -170,8 +170,7 @@ const ListTileView: React.FC<PropsI> = ({
                                         </View>
                                     </PressableComponent>
                                 )}
-
-                                {(mode === 'public' || mode === 'featured') && (
+                                {mode !== 'my' && (
                                     <View style={styles.reactionWrap}>
                                         <PressableComponent
                                             hitSlop={INSETS}
