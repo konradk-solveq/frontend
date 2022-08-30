@@ -78,7 +78,7 @@ const AddBikeModal: React.FC<IProps> = ({
                     testID={`${testID}-add-bike-tile`}
                 />
             </BottomModal>
-            <Backdrop isVisible />
+            <Backdrop isVisible onPress={onClose} />
         </Modal>
     );
 };
