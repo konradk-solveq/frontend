@@ -16,12 +16,18 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={20}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -185,6 +191,11 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={21}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -198,6 +209,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -275,6 +287,11 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 >
                   <RNGestureHandlerButton
                     collapsable={false}
+                    delayLongPress={600}
+                    enabled={true}
+                    exclusive={true}
+                    handlerTag={22}
+                    handlerType="NativeViewGestureHandler"
                     hitSlop={
                       Object {
                         "bottom": 23.708530805687204,
@@ -288,6 +305,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                     onGestureHandlerStateChange={[Function]}
                     onHandlerStateChange={[Function]}
                     rippleColor={0}
+                    touchSoundDisabled={false}
                   >
                     <View
                       accessible={true}
@@ -326,6 +344,11 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                 </View>
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={23}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -339,6 +362,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -386,6 +410,11 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={24}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -399,6 +428,7 @@ exports[`Storyshots components/tiles/ListTileView Featured 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -460,12 +490,18 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={13}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -645,6 +681,11 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={14}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -658,6 +699,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -705,6 +747,11 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={15}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -718,6 +765,7 @@ exports[`Storyshots components/tiles/ListTileView My 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -779,12 +827,18 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={9}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -948,6 +1002,11 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={10}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -961,6 +1020,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1038,6 +1098,11 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 >
                   <RNGestureHandlerButton
                     collapsable={false}
+                    delayLongPress={600}
+                    enabled={true}
+                    exclusive={true}
+                    handlerTag={11}
+                    handlerType="NativeViewGestureHandler"
                     hitSlop={
                       Object {
                         "bottom": 23.708530805687204,
@@ -1051,6 +1116,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                     onGestureHandlerStateChange={[Function]}
                     onHandlerStateChange={[Function]}
                     rippleColor={0}
+                    touchSoundDisabled={false}
                   >
                     <View
                       accessible={true}
@@ -1089,6 +1155,11 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                 </View>
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={12}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -1102,6 +1173,7 @@ exports[`Storyshots components/tiles/ListTileView Public 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1163,12 +1235,18 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={16}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -1332,6 +1410,11 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={17}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -1345,6 +1428,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1473,6 +1557,11 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                 </View>
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={18}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -1486,6 +1575,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1533,6 +1623,11 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={19}
+                  handlerType="NativeViewGestureHandler"
                   hitSlop={
                     Object {
                       "bottom": 23.708530805687204,
@@ -1546,6 +1641,7 @@ exports[`Storyshots components/tiles/ListTileView Saved 1`] = `
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}

@@ -15,8 +15,8 @@ import {
     navBarHeight,
     screenHeight,
 } from '@theme/commonStyle';
-import Toast from '../../components/notifications/Toast';
-import {NotificationI} from '../../components/notifications/Notification';
+import Toast from '@components/notifications/Toast';
+import {NotificationI} from '@components/notifications/Notification';
 import {v4 as uuidv4} from 'uuid';
 
 const DEFAULT_VISIBILITY_TIME = 3000;
@@ -42,6 +42,7 @@ interface InitialState {
     addToast: (toast: ToastItem) => void;
     removeToast: (toast: string) => void;
     removeAllToasts: () => void;
+    handleCurrentRoute: (routeName: string | undefined) => void;
 }
 
 const initialState: InitialState = {
@@ -49,13 +50,17 @@ const initialState: InitialState = {
     addToast: () => {},
     removeToast: () => {},
     removeAllToasts: () => {},
+    handleCurrentRoute: () => {},
 };
+
+const tabsWithoutNavbar = ['RoutesMap', 'AddBikeByNumber', 'AddOtherBike'];
 
 export const ToastContext = createContext(initialState);
 export const useToastContext = () => useContext(ToastContext);
 
 const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
     const [toastList, setToastList] = useState<ToastItem[]>([]);
+    const [isToastToBottom, setToastToBottom] = useState(false);
     const listRef = useRef(toastList);
 
     const removeToast = useCallback(
@@ -91,6 +96,14 @@ const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
         }
     }, [toastList]);
 
+    const handleCurrentRoute = useCallback((routeName: string | undefined) => {
+        if (routeName && tabsWithoutNavbar.includes(routeName)) {
+            setToastToBottom(true);
+            return;
+        }
+        setToastToBottom(false);
+    }, []);
+
     useEffect(() => {
         listRef.current = toastList;
     }, [toastList]);
@@ -101,14 +114,20 @@ const ToastProvider: React.FC<IToastProps> = ({children}: IToastProps) => {
             addToast,
             removeAllToasts,
             removeToast,
+            handleCurrentRoute,
         }),
-        [toastList, addToast, removeAllToasts, removeToast],
+        [toastList, addToast, removeAllToasts, removeToast, handleCurrentRoute],
     );
 
     return (
         <ToastContext.Provider value={values}>
             {children}
-            <View style={styles.container} pointerEvents={'box-none'}>
+            <View
+                style={[
+                    styles.container,
+                    isToastToBottom && styles.bottomContainer,
+                ]}
+                pointerEvents={'box-none'}>
                 {toastList.map((toast: ToastItem) => {
                     return (
                         <Toast
@@ -134,6 +153,9 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-end',
         paddingHorizontal: appContainerHorizontalMargin,
+    },
+    bottomContainer: {
+        bottom: getFVerticalPx(44),
     },
 });
 

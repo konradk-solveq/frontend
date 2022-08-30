@@ -1569,12 +1569,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={10}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -1811,12 +1817,18 @@ viewBox=\\"0 0 414 414\\">
           >
             <RNGestureHandlerButton
               collapsable={false}
+              delayLongPress={600}
+              enabled={true}
+              exclusive={true}
+              handlerTag={11}
+              handlerType="NativeViewGestureHandler"
               onGestureEvent={[Function]}
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
               testID="big-white-btn"
+              touchSoundDisabled={false}
             >
               <View
                 accessible={true}
@@ -1862,12 +1874,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={12}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -3526,12 +3544,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={13}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="route-details-start-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -3570,12 +3594,18 @@ viewBox=\\"0 0 414 414\\">
             </View>
             <RNGestureHandlerButton
               collapsable={false}
+              delayLongPress={600}
+              enabled={true}
+              exclusive={true}
+              handlerTag={14}
+              handlerType="NativeViewGestureHandler"
               onGestureEvent={[Function]}
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
               testID="route-details-remove-btn"
+              touchSoundDisabled={false}
             >
               <View
                 accessible={true}
@@ -3812,12 +3842,18 @@ viewBox=\\"0 0 414 414\\">
           >
             <RNGestureHandlerButton
               collapsable={false}
+              delayLongPress={600}
+              enabled={true}
+              exclusive={true}
+              handlerTag={15}
+              handlerType="NativeViewGestureHandler"
               onGestureEvent={[Function]}
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
               testID="big-white-btn"
+              touchSoundDisabled={false}
             >
               <View
                 accessible={true}
@@ -3863,12 +3899,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={16}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -5610,12 +5652,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={7}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -5852,12 +5900,18 @@ viewBox=\\"0 0 414 414\\">
           >
             <RNGestureHandlerButton
               collapsable={false}
+              delayLongPress={600}
+              enabled={true}
+              exclusive={true}
+              handlerTag={8}
+              handlerType="NativeViewGestureHandler"
               onGestureEvent={[Function]}
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
               testID="big-white-btn"
+              touchSoundDisabled={false}
             >
               <View
                 accessible={true}
@@ -5903,12 +5957,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={9}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -7572,12 +7632,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={1}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -7814,12 +7880,18 @@ viewBox=\\"0 0 414 414\\">
           >
             <RNGestureHandlerButton
               collapsable={false}
+              delayLongPress={600}
+              enabled={true}
+              exclusive={true}
+              handlerTag={2}
+              handlerType="NativeViewGestureHandler"
               onGestureEvent={[Function]}
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
               testID="big-white-btn"
+              touchSoundDisabled={false}
             >
               <View
                 accessible={true}
@@ -7865,12 +7937,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={3}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -9590,12 +9668,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={4}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}
@@ -9832,12 +9916,18 @@ viewBox=\\"0 0 414 414\\">
           >
             <RNGestureHandlerButton
               collapsable={false}
+              delayLongPress={600}
+              enabled={true}
+              exclusive={true}
+              handlerTag={5}
+              handlerType="NativeViewGestureHandler"
               onGestureEvent={[Function]}
               onGestureHandlerEvent={[Function]}
               onGestureHandlerStateChange={[Function]}
               onHandlerStateChange={[Function]}
               rippleColor={0}
               testID="big-white-btn"
+              touchSoundDisabled={false}
             >
               <View
                 accessible={true}
@@ -9883,12 +9973,18 @@ viewBox=\\"0 0 414 414\\">
             >
               <RNGestureHandlerButton
                 collapsable={false}
+                delayLongPress={600}
+                enabled={true}
+                exclusive={true}
+                handlerTag={6}
+                handlerType="NativeViewGestureHandler"
                 onGestureEvent={[Function]}
                 onGestureHandlerEvent={[Function]}
                 onGestureHandlerStateChange={[Function]}
                 onHandlerStateChange={[Function]}
                 rippleColor={0}
                 testID="big-red-btn"
+                touchSoundDisabled={false}
               >
                 <View
                   accessible={true}

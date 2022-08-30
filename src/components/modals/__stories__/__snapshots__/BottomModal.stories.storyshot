@@ -18,6 +18,8 @@ exports[`Storyshots components/modals/BottomModal Customized 1`] = `
 >
   <View
     collapsable={false}
+    handlerTag={3}
+    handlerType="PanGestureHandler"
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     style={
@@ -86,6 +88,8 @@ exports[`Storyshots components/modals/BottomModal Default 1`] = `
 >
   <View
     collapsable={false}
+    handlerTag={2}
+    handlerType="PanGestureHandler"
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     style={

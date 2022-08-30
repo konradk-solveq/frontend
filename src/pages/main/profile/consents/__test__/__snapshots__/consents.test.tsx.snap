@@ -681,12 +681,18 @@ stroke= \\"#D8232A\\" stroke-width=\\"3\\" stroke-linecap=\\"round\\" stroke-lin
                     >
                       <RNGestureHandlerButton
                         collapsable={false}
+                        delayLongPress={600}
+                        enabled={true}
+                        exclusive={true}
+                        handlerTag={2}
+                        handlerType="NativeViewGestureHandler"
                         onGestureEvent={[Function]}
                         onGestureHandlerEvent={[Function]}
                         onGestureHandlerStateChange={[Function]}
                         onHandlerStateChange={[Function]}
                         rippleColor={0}
                         testID="big-red-btn"
+                        touchSoundDisabled={false}
                       >
                         <View
                           accessible={true}
@@ -1331,12 +1337,18 @@ Array [
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={3}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
                   testID="ConsentsPostBtn"
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1678,12 +1690,18 @@ Array [
                     >
                       <RNGestureHandlerButton
                         collapsable={false}
+                        delayLongPress={600}
+                        enabled={true}
+                        exclusive={true}
+                        handlerTag={4}
+                        handlerType="NativeViewGestureHandler"
                         onGestureEvent={[Function]}
                         onGestureHandlerEvent={[Function]}
                         onGestureHandlerStateChange={[Function]}
                         onHandlerStateChange={[Function]}
                         rippleColor={0}
                         testID="big-red-btn"
+                        touchSoundDisabled={false}
                       >
                         <View
                           accessible={true}
@@ -2328,12 +2346,18 @@ Array [
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={5}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
                   testID="ConsentsPostBtn"
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -2675,12 +2699,18 @@ Array [
                     >
                       <RNGestureHandlerButton
                         collapsable={false}
+                        delayLongPress={600}
+                        enabled={true}
+                        exclusive={true}
+                        handlerTag={6}
+                        handlerType="NativeViewGestureHandler"
                         onGestureEvent={[Function]}
                         onGestureHandlerEvent={[Function]}
                         onGestureHandlerStateChange={[Function]}
                         onHandlerStateChange={[Function]}
                         rippleColor={0}
                         testID="big-red-btn"
+                        touchSoundDisabled={false}
                       >
                         <View
                           accessible={true}

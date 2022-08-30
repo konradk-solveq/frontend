@@ -25,12 +25,18 @@ exports[`Storyshots Buttons/BigRed Basic 1`] = `
     <View>
       <RNGestureHandlerButton
         collapsable={false}
+        delayLongPress={600}
+        enabled={true}
+        exclusive={true}
+        handlerTag={1}
+        handlerType="NativeViewGestureHandler"
         onGestureEvent={[Function]}
         onGestureHandlerEvent={[Function]}
         onGestureHandlerStateChange={[Function]}
         onHandlerStateChange={[Function]}
         rippleColor={0}
         testID="big-red-btn"
+        touchSoundDisabled={false}
       >
         <View
           accessible={true}

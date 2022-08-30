@@ -16,12 +16,18 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder No Data available 1`] 
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={25}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="placeholder-list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -775,11 +781,17 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder No Data available 1`] 
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={26}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -819,11 +831,17 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder No Data available 1`] 
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={27}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -877,12 +895,18 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route details availabl
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={31}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="placeholder-list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -1205,11 +1229,17 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route details availabl
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={32}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1249,11 +1279,17 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route details availabl
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={33}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1307,12 +1343,18 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route image available 
 >
   <RNGestureHandlerButton
     collapsable={false}
+    delayLongPress={600}
+    enabled={true}
+    exclusive={true}
+    handlerTag={28}
+    handlerType="NativeViewGestureHandler"
     onGestureEvent={[Function]}
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     onHandlerStateChange={[Function]}
     rippleColor={0}
     testID="placeholder-list-tile"
+    touchSoundDisabled={false}
   >
     <View
       accessible={true}
@@ -1926,11 +1968,17 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route image available 
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={29}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}
@@ -1970,11 +2018,17 @@ exports[`Storyshots components/tiles/RouteTilePlaceholder Route image available 
               >
                 <RNGestureHandlerButton
                   collapsable={false}
+                  delayLongPress={600}
+                  enabled={true}
+                  exclusive={true}
+                  handlerTag={30}
+                  handlerType="NativeViewGestureHandler"
                   onGestureEvent={[Function]}
                   onGestureHandlerEvent={[Function]}
                   onGestureHandlerStateChange={[Function]}
                   onHandlerStateChange={[Function]}
                   rippleColor={0}
+                  touchSoundDisabled={false}
                 >
                   <View
                     accessible={true}

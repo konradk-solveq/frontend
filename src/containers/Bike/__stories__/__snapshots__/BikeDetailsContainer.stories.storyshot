@@ -28,9 +28,18 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
         "paddingBottom": 189.66824644549763,
       }
     }
+    handlerTag={38}
+    handlerType="NativeViewGestureHandler"
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     showsVerticalScrollIndicator={false}
+    waitFor={
+      Array [
+        Object {
+          "current": null,
+        },
+      ]
+    }
   >
     <View>
       <View
@@ -542,6 +551,8 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
         />
         <RCTScrollView
           collapsable={false}
+          handlerTag={39}
+          handlerType="NativeViewGestureHandler"
           horizontal={true}
           onGestureHandlerEvent={[Function]}
           onGestureHandlerStateChange={[Function]}
@@ -551,6 +562,13 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Customized 1`] = `
             Object {
               "width": "100%",
             }
+          }
+          waitFor={
+            Array [
+              Object {
+                "current": null,
+              },
+            ]
           }
         >
           <View>
@@ -1049,9 +1067,18 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
         "paddingBottom": 189.66824644549763,
       }
     }
+    handlerTag={36}
+    handlerType="NativeViewGestureHandler"
     onGestureHandlerEvent={[Function]}
     onGestureHandlerStateChange={[Function]}
     showsVerticalScrollIndicator={false}
+    waitFor={
+      Array [
+        Object {
+          "current": null,
+        },
+      ]
+    }
   >
     <View>
       <View
@@ -1563,6 +1590,8 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
         />
         <RCTScrollView
           collapsable={false}
+          handlerTag={37}
+          handlerType="NativeViewGestureHandler"
           horizontal={true}
           onGestureHandlerEvent={[Function]}
           onGestureHandlerStateChange={[Function]}
@@ -1572,6 +1601,13 @@ exports[`Storyshots containers/Bike/BikeDetailsContainer Default 1`] = `
             Object {
               "width": "100%",
             }
+          }
+          waitFor={
+            Array [
+              Object {
+                "current": null,
+              },
+            ]
           }
         >
           <View>
