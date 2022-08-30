@@ -117,6 +117,10 @@ const AddOtherBikeContainer: React.FC<IProps> = ({
         [setValue],
     );
 
+    const onPressBackdropHandler = () => {
+        setShowModal(false);
+    };
+
     return (
         <>
             <View style={styles.container} testID={testID}>
@@ -206,7 +210,11 @@ const AddOtherBikeContainer: React.FC<IProps> = ({
                     onValidate={onValidateHandler}
                 />
             </BottomModal>
-            <Backdrop isVisible={showModal} style={{height: 'auto'}} />
+            <Backdrop
+                isVisible={showModal}
+                style={{height: 'auto'}}
+                onPress={onPressBackdropHandler}
+            />
         </>
     );
 };

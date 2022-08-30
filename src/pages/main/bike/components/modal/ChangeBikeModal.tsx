@@ -124,7 +124,7 @@ const ChangeBikeModal = ({
                     withoutShadow
                 />
             </BottomModal>
-            <Backdrop isVisible={visible} />
+            <Backdrop isVisible={visible} onPress={onCloseBottomModal} />
         </Modal>
     );
 };
