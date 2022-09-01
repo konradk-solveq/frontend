@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>259499610831-qan537mvtael8vgkh1mt5h9272bmlipc.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.259499610831-qan537mvtael8vgkh1mt5h9272bmlipc</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>259499610831-59hap9i0csr362je3tcu7oeloqitfj7q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB38Kr0em1y7Ch3DrxDpYv_2nWGDu1vbAo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>259499610831</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>pl.kross.mykross</string>
+	<key>PROJECT_ID</key>
+	<string>mykross-a2eea</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mykross-a2eea.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:259499610831:ios:a4d2cab538fe4767dd9dba</string>
+</dict>
+</plist>
