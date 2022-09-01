@@ -16,4 +16,6 @@ brew install npm
 
 # Install dependencies you manage with CocoaPods.
 npm install
+npm run test
+
 pod install
