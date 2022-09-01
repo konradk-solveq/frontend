@@ -65,6 +65,7 @@
 		909E2E9127BFA2E40062F828 /* DIN2014-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 909E2E8527BFA2E40062F828 /* DIN2014-Regular.otf */; };
 		909E2E9427BFA2E50062F828 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 905F172A27956F7500BC6C75 /* Config.xcconfig */; };
 		90B996A926A840590015E097 /* current_map_route_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 90B996A826A840580015E097 /* current_map_route_marker.png */; };
+		90DDC59528C0A48400E7D2D6 /* ci_post_clone.sh in Resources */ = {isa = PBXBuildFile; fileRef = 90DDC59428C0A48400E7D2D6 /* ci_post_clone.sh */; };
 		BBC47965CE1341EB8CB39296 /* DIN2014Narrow-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 08020F1093564DD6AD7F9F1B /* DIN2014Narrow-Bold.otf */; };
 		C4AB1.5.0F6B4C598D170F16 /* DIN2014Narrow-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */; };
 		D43C97B9B2484C629391EFE3 /* DIN2014Narrow-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 00D96B0661BF44AF8326B420 /* DIN2014Narrow-Light.otf */; };
@@ -159,6 +160,7 @@
 		909E2E8627BFA2E40062F828 /* DIN2014-Demi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.ttf"; path = "../assets/fonts/DIN2014-Demi.ttf"; sourceTree = "<group>"; };
 		909E2E8727BFA2E40062F828 /* DIN2014-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DIN2014-Demi.otf"; path = "../assets/fonts/DIN2014-Demi.otf"; sourceTree = "<group>"; };
 		90B996A826A840580015E097 /* current_map_route_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = current_map_route_marker.png; path = ../src/assets/images/current_map_route_marker.png; sourceTree = "<group>"; };
+		90DDC59428C0A48400E7D2D6 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		AF6C4A6E77BB191E4608498C /* Pods-myKROSS.test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS.test.release.xcconfig"; path = "Target Support Files/Pods-myKROSS/Pods-myKROSS.test.release.xcconfig"; sourceTree = "<group>"; };
 		AFA0DABCF09F6B184F140527 /* Pods-myKROSS-myKROSSTests.feat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; path = "Target Support Files/Pods-myKROSS-myKROSSTests/Pods-myKROSS-myKROSSTests.feat.debug.xcconfig"; sourceTree = "<group>"; };
 		B0C17BD1F8694E06997D1EFE /* DIN2014Narrow-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "DIN2014Narrow-Regular.otf"; path = "../assets/fonts/DIN2014Narrow-Regular.otf"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				90DDC59328C0A46B00E7D2D6 /* ci_scripts */,
 				2813CA1F27C4E35E003B6128 /* mykross.eot */,
 				2813CA1E27C4E35E003B6128 /* mykross.otf */,
 				2813CA1D27C4E35E003B6128 /* mykross.svg */,
@@ -352,6 +355,14 @@
 				00E356EE1AD99517003FC87E /* myKROSSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		90DDC59328C0A46B00E7D2D6 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				90DDC59428C0A48400E7D2D6 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		D311D1CD22807FD417F3B00A /* myKROSS */ = {
@@ -505,6 +516,7 @@
 				1D13B20D2657B97F00A4F34A /* DIN2014Narrow-Bold.svg in Resources */,
 				90B996A926A840590015E097 /* current_map_route_marker.png in Resources */,
 				1D13B20E2657B97F00A4F34A /* DIN2014Narrow-Regular.woff2 in Resources */,
+				90DDC59528C0A48400E7D2D6 /* ci_post_clone.sh in Resources */,
 				1D13B20F2657B97F00A4F34A /* DIN2014Narrow-Bold.woff in Resources */,
 				909E2E9027BFA2E40062F828 /* DIN2014-Demi.svg in Resources */,
 				1D13B2102657B97F00A4F34A /* DIN2014Narrow-Light.woff in Resources */,
