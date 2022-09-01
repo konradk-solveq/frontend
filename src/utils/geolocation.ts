@@ -5,7 +5,7 @@ import BackgroundGeolocation, {
     LocationError,
     State,
     ProviderChangeEvent,
-} from 'react-native-background-geolocation-android';
+} from 'react-native-background-geolocation';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 import {
     checkMultiple,

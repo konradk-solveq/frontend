@@ -1,9 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import {Platform} from 'react-native';
-import {
-    Location,
-    LocationError,
-} from 'react-native-background-geolocation-android';
+import {Location, LocationError} from 'react-native-background-geolocation';
 import GetLocation from 'react-native-get-location';
 
 import {LocationDataI} from '../interfaces/geolocation';

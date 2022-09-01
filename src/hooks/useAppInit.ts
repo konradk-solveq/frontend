@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useRef} from 'react';
-import {State} from 'react-native-background-geolocation-android';
+import {State} from 'react-native-background-geolocation';
 
 import {useAppDispatch, useAppSelector} from '@hooks/redux';
 import {

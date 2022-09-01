@@ -1,4 +1,4 @@
-import BackgroundGeolocation from 'react-native-background-geolocation-android';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
 BackgroundGeolocation.getCurrentPosition = jest.fn().mockImplementation(() =>
     Promise.resolve({

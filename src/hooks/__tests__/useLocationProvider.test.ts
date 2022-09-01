@@ -3,7 +3,7 @@ import {AppState} from 'react-native';
 import Permissions from 'react-native-permissions';
 import ReduxThunk from 'redux-thunk';
 import configureStore, {MockStoreEnhanced} from 'redux-mock-store';
-import BackgroundGeolocation from 'react-native-background-geolocation-android';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
 import {hookWrapper} from '@jestUtils/render';
 import asyncEvent from '@jestUtils/asyncEvent';

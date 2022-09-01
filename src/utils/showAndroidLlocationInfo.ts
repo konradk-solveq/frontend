@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import BackgroundGeolocation from 'react-native-background-geolocation-android';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
 import {RegularStackRoute} from '@navigation/route';
 import {showAndroidLocationAlert} from '@sharedComponents/alerts/androidLocationInfoAlert';
