@@ -29,10 +29,12 @@ import {startCurrentRoute} from '@hooks/utils/localizationTracker';
 import {
     checkIfDataLengthAreDifferent,
     getNextRouteNumber,
+    getRecordTimesFromDatesWhenEmpty,
     startRecording,
     stopRecording,
 } from './utils/routes';
 import {RecordingStateT} from '@storage/reducers/routes';
+import {parseStringToDate} from '@src/utils/dateTime';
 
 export interface ActionAsyncResponseI {
     success: boolean;
@@ -473,7 +475,10 @@ export const addRoutesToSynchQueue = (
                 setRoutesData({
                     id: routeId,
                     route: routeDataToSynch,
-                    recordTimes: currentRoute?.recordTimes,
+                    recordTimes: getRecordTimesFromDatesWhenEmpty(
+                        currentRoute.recordTimes,
+                        [currentRoute.startedAt, currentRoute.endedAt],
+                    ),
                     remoteRouteId: currentRoute?.remoteRouteId,
                 }),
             );
@@ -575,7 +580,10 @@ export const syncCurrentRouteData = (): AppThunk<Promise<void>> => async (
 
         const response = await syncRouteData(
             currRoutesDat,
-            currentRoute?.recordTimes,
+            getRecordTimesFromDatesWhenEmpty(currentRoute.recordTimes, [
+                currentRoute.startedAt,
+                currentRoute.endedAt,
+            ]),
             currentRoute?.remoteRouteId,
             getNextRouteNumber(totalPrivateMaps),
         );
@@ -725,7 +733,8 @@ export const syncRouteDataFromQueue = (
         let newRoutesToSync: string[] = [];
         routesToSync.forEach(async (id: string, idx: number) => {
             const routeToSync = routes.find((r: RoutesI) => r.id === id);
-            if (!routeToSync || routeToSync?.route?.length <= 2) {
+            const routesLength = routeToSync?.route?.length;
+            if (!routeToSync || !routesLength || routesLength <= 2) {
                 return;
             }
 
@@ -735,9 +744,19 @@ export const syncRouteDataFromQueue = (
                     : routeToSync?.remoteRouteId;
             const routeNumber = getNextRouteNumber(totalPrivateMaps, idx);
 
+            const firstTime = parseStringToDate(
+                routeToSync.route[0]?.timestamp,
+            );
+
+            const lastTime = parseStringToDate(
+                routeToSync.route?.[routesLength - 1]?.timestamp,
+            );
             const response = await syncRouteData(
                 routeToSync.route,
-                routeToSync.recordTimes,
+                getRecordTimesFromDatesWhenEmpty(routeToSync.recordTimes, [
+                    firstTime,
+                    lastTime,
+                ]),
                 remoteId,
                 routeNumber,
             );
