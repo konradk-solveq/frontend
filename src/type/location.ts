@@ -1,7 +1,7 @@
 import {
     ProviderChangeEvent,
     AuthorizationStatus,
-} from 'react-native-background-geolocation-android';
+} from 'react-native-background-geolocation';
 
 export enum locationTypeEnum {
     NONE = 'NONE',

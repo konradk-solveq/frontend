@@ -31,6 +31,14 @@ Copy `google_maps_api.xml` file into `android/app/src/main/res/values`, `android
 
 ### Private Registry
 
+Repository contains `.npmrc` file with configured access. The only thing that has to be done i to set proper env variable:
+
+```bash
+export NPM_CONFIG_TOKEN_SOLVEQ=your_token
+```
+
+alternatively you can modify your local register.
+
 We use internal package so adding gitlab registry to npm config is must. Do the following:
 
 ```bash
@@ -126,13 +134,13 @@ App is configured to works with deep links and universal links. All values are p
 
 App contains default route translation for `world` screen. It means, that deeplink which provide it will be handled and user will be navigated to `World Screen`.
 
-* **DEEPLINKING_NAMESPACE** - deep links
+* __DEEPLINKING_NAMESPACE__ - deep links
 
     This variable is used for base deep linking. Value equal to `mykross` means that every url `mykross://custom-url/with/as-many/paths/as-needed` will be handled by the app.
 
     Each path (part after scheme, eg. `mykross://`) must be translated into  the appropriate screens and params (`src\navigation\linking.ts`). Without it, app will be opened, but no other action will be triggered.
 
-* **DEEPLINKING_HOST** - universal links
+* __DEEPLINKING_HOST__ - universal links
 
     This variable is used to listen for universal links from proper domain. Let say we have url like
   this `https://example.com/world`. It will be handled by the application and proper action will be run (if defined).
@@ -141,7 +149,7 @@ App contains default route translation for `world` screen. It means, that deepli
   from `https://${domain}/.well-known/${file-name}`. Without this universal links won't work on IOS. On Android, our
   application will not be selected by default by the operating system to trigger an action when a link is clicked.
 
-* **DEEPLINKING_PREFIX** - universal links
+* __DEEPLINKING_PREFIX__ - universal links
 
   It is connected with `DEEPLINKING_HOST`. By default the value is set to `'/'`, and it can remain as is. Though it
   could be helpful for some links.
@@ -150,7 +158,7 @@ App contains default route translation for `world` screen. It means, that deepli
   replace `DEEPLINKING_HOST` with `'/mobile-app/'`  and from now on, each url `https://example.com/mobile-app/*` will be
   served by the app.
 
-* **LOAD_STORYBOOK** - app mode
+* __LOAD_STORYBOOK__ - app mode
 
   It controls the mode that application boots in. Set it to `true` to enable storybook. Setting it to `false` will
   result in a normal application startup.
@@ -160,12 +168,12 @@ App contains default route translation for `world` screen. It means, that deepli
 ## Storybook
 
 We use Storybook to preview the single components. The stories are defined at `./storybook/stories`. You can run the
-storybook by setting the **LOAD_STORYBOOK** environment variable and running the application on the simulator. To
+storybook by setting the __LOAD_STORYBOOK__ environment variable and running the application on the simulator. To
 control the storybook from the web browser run:
-- `adb reverse tcp:7007 tcp:7007`
-- `npm run storybook`
-- `npm run dev:ios`
-- `npm run dev:android`
+* `adb reverse tcp:7007 tcp:7007`
+* `npm run storybook`
+* `npm run dev:ios`
+* `npm run dev:android`
 
 It will make the website available at `http://localhost:7007/`.
 
@@ -179,9 +187,11 @@ To compile Android version we use JDK v11
 
 We use hook which is initialized before `git push`. Hook is running `npm test` command, and if any test is failing, changes won't be pushed to repository.
 You may encounter following warning on pushing changes:
+
 ```
 hint: The '.husky/pre-push' hook was ignored because it's not set as executable.
 hint: You can disable this warning with `git config advice.ignoredHook false`.
 ```
+
 In this case you have to set the file as executable.
 Navigate to directory with the hook (`.husky/pre-push.sh`) and run command `chmod +x pre-push`.

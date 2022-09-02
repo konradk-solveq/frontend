@@ -65,8 +65,12 @@ target 'myKROSS' do
           if target.name == 'react-native-config'
             config.build_settings['ENVFILE'] = ENVFILES[config.name]
           end
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
         end
       end
+    # We need to make one crude patch to RCT-Folly - set `__IPHONE_10_0` to our iOS target + 1
+    # https://github.com/facebook/flipper/issues/834 - 84 comments and still going...
+    `sed -i -e  $'s/__IPHONE_10_0/__IPHONE_12_0/' #{installer.sandbox.root}/RCT-Folly/folly/portability/Time.h`
     flipper_post_install(installer)
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)

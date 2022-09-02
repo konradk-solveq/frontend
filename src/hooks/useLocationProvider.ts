@@ -1,5 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {Subscription} from 'react-native-background-geolocation-android';
+import {Subscription} from 'react-native-background-geolocation';
 
 import {AuthorizationStatusEnum, ProviderChangeEventI} from '@type/location';
 import {

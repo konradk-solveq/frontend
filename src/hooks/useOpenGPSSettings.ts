@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useState} from 'react';
 
 import {getProviderState, openGPSModule} from '@utils/geolocation';
-import BackgroundGeolocation from 'react-native-background-geolocation-android';
+import BackgroundGeolocation from 'react-native-background-geolocation';
 
 const useOpenGPSSettings = () => {
     const [isGPSEnabled, setIsGPSEnabled] = useState<boolean>();
