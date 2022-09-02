@@ -29,11 +29,14 @@ export const getAverageSpeedData = (
 
 export const getRecordTime = (
     actionType: RecordTimeAction,
+    date?: Date,
 ): RecordTimeI | undefined => {
     try {
+        const d = date ? new Date(date) : new Date();
+
         const recordTime = {
             action: actionType,
-            time: getTimeInUTCSeconds(new Date().toISOString()),
+            time: getTimeInUTCSeconds(d.toISOString()),
         };
         return recordTime;
     } catch (error) {

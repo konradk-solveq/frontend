@@ -1,3 +1,6 @@
+import {getRecordTime} from '@hooks/utils/localizationTracker';
+import {RecordTimeAction, RecordTimeI} from '@src/interfaces/geolocation';
+import {CurrentRouteI} from '@src/storage/reducers/routes';
 import {
     changePaceBackgroundGeolocation,
     startBackgroundGeolocation,
@@ -53,3 +56,25 @@ export const checkIfDataLengthAreDifferent = <T, U>(
     newArray?.length &&
     newArray?.length > 0 &&
     newArray?.length !== oldArray?.length;
+
+export const getRecordTimesFromDatesWhenEmpty = (
+    recordTimes: RecordTimeI[],
+    dates: [Date | undefined, Date | undefined],
+) => {
+    if (recordTimes?.length > 0) {
+        return recordTimes;
+    }
+
+    const rTimes = [];
+    const startTime = getRecordTime(RecordTimeAction.START, dates[0]);
+    if (startTime) {
+        rTimes.push(startTime);
+    }
+
+    const endTime = getRecordTime(RecordTimeAction.END, dates[1]);
+    if (endTime) {
+        rTimes.push(endTime);
+    }
+
+    return rTimes;
+};

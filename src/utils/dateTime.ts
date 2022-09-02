@@ -140,3 +140,15 @@ export const transformTimestampToDate = (tmestamp: number) => {
 export const isInPast = (date: Date | string) => {
     return new Date(date).getTime() < Date.now();
 };
+
+export const parseStringToDate = (timestamp?: string) => {
+    if (!timestamp || typeof timestamp === 'string') {
+        return;
+    }
+
+    try {
+        return new Date(timestamp);
+    } catch (error) {
+        return;
+    }
+};
