@@ -53,7 +53,7 @@ jest.mock('react-native-compass-heading', () => mockCompasHeding);
  */
 jest.mock('@react-native-community/netinfo', () => mockRNCNetInfo);
 
-jest.mock('react-native-background-geolocation-android/src/NativeModule');
+jest.mock('react-native-background-geolocation/src/NativeModule');
 
 jest.mock('./src/utils/translations/useMergedTranslation', () => ({
     useMergedTranslation: val => {

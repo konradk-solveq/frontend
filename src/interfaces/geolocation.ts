@@ -4,7 +4,7 @@ import {
     Coords,
     MotionActivityEvent,
     ProviderChangeEvent,
-} from 'react-native-background-geolocation-android';
+} from 'react-native-background-geolocation';
 
 export interface LocationDataI {
     uuid: string;
