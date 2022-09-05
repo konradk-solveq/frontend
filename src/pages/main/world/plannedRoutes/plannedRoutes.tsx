@@ -92,10 +92,10 @@ const PlannedRoutes: React.FC<IProps> = ({}: IProps) => {
     const location = useAppSelector(globalLocationSelector);
     const plannedRoutesDropdownList = useMemo(
         () =>
-            (permissionGranted || !permissionResult) && location
+            (permissionGranted || !permissionResult) && location && isGPSEnabled
                 ? getPlannedRoutesDropdownList(t)
                 : getPlannedRoutesNoLocationDropdownList(t),
-        [t, permissionGranted, permissionResult, location],
+        [t, permissionGranted, permissionResult, location, isGPSEnabled],
     );
     const listError = useAppSelector(plannedMapsListErrorSelector)?.error;
     const {bottom} = useSafeAreaInsets();

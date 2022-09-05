@@ -90,10 +90,10 @@ const BikeMap: React.FC<IProps> = ({}: IProps) => {
     const location = useAppSelector(globalLocationSelector);
     const publicRoutesDropdownList = useMemo(
         () =>
-            (permissionGranted || !permissionResult) && location
+            (permissionGranted || !permissionResult) && location && isGPSEnabled
                 ? getPublicRoutesDropdownList(t)
                 : getPublicRoutesNoLocationDropdownList(t),
-        [permissionGranted, permissionResult, location, t],
+        [permissionGranted, permissionResult, location, t, isGPSEnabled],
     );
     const listError = useAppSelector(publicMapsListErrorSelector)?.error;
 
